@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>9df7a436-a785-4cc1-96a2-bc1609dde5f1</ProjectGuid>
+    <ProjectGuid>72cfd736-73f9-4859-ab7c-f2ae3505a615</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLibrary.FMS.DataModels</RootNamespace>

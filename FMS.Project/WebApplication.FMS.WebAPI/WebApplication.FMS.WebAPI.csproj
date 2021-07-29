@@ -253,16 +253,12 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClassLibrary.FMS.DatabaseOperations\ClassLibrary.FMS.DatabaseOperations.csproj">
-      <Project>{99afc057-69a2-479f-ac9f-77ce5e49860d}</Project>
+      <Project>{641c911f-4f00-4322-9f7e-c6a09c122325}</Project>
       <Name>ClassLibrary.FMS.DatabaseOperations</Name>
     </ProjectReference>
     <ProjectReference Include="..\ClassLibrary.FMS.DataModels\ClassLibrary.FMS.DataModels.csproj">
-      <Project>{9df7a436-a785-4cc1-96a2-bc1609dde5f1}</Project>
+      <Project>{7c90adab-d3d0-4b85-a547-f885bc29580e}</Project>
       <Name>ClassLibrary.FMS.DataModels</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Models\Models.csproj">
-      <Project>{cf738f0a-377c-4025-b175-cfa6850696d7}</Project>
-      <Name>Models</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
