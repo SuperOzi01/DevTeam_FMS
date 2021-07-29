@@ -11,17 +11,17 @@ namespace WebApplication.FMS.WebAPI.Controllers
 {
     public class FMSController : ApiController
     {
-        [Route("api/fms/ping")] 
+        [Route("Api/Fms/ping")] 
         [HttpGet]
         [ExceptionFilter]
         public IHttpActionResult Ping()
         {
-            // This is a Test For The Push Pull Requests 
+            // test the api logs and exceptions   
             throw new DivideByZeroException();
             return Ok(("Ok" , HttpStatusCode.OK));
         }
 
-        [Route("api/fms/HelthCheck")]
+        [Route("Api/Fms/HelthCheck")]
         [HttpGet]
         public IHttpActionResult HelthCheck()
         {

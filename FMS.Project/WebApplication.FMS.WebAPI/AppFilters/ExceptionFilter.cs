@@ -10,13 +10,16 @@ namespace WebApplication.FMS.WebAPI.AppFilters
     {
         public override void OnException(HttpActionExecutedContext context)
         {
-            var msg = "ExceptionFilter { Action: " + context.ActionContext.ActionDescriptor.ActionName + " | Time: " + DateTime.Now.ToShortTimeString() + " }";
-            string exception = context.Exception.InnerException.Message;
-            Console.WriteLine(exception);
-            switch(exception)
+            var logMessage = "ExceptionFilter { Action: " + context.ActionContext.ActionDescriptor.ActionName
+                                            + " | Time: " + DateTime.Now.ToShortTimeString() 
+                                            + " }";
+            var errorType = context.Exception.GetType();
+
+            //Respone to Error Type 
+            switch (errorType.FullName)
             {
                 case "System.DivideByZeroException":
-                    Console.WriteLine("Divide By Zero Exception");
+                    //Identify Error Based On The Exception;
                     break;
             }
 
