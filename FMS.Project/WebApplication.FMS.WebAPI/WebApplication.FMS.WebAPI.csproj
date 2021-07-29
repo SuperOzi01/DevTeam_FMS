@@ -252,6 +252,10 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary.FMS.DatabaseOperations\ClassLibrary.FMS.DatabaseOperations.csproj">
+      <Project>{641c911f-4f00-4322-9f7e-c6a09c122325}</Project>
+      <Name>ClassLibrary.FMS.DatabaseOperations</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ClassLibrary.FMS.DataModels\ClassLibrary.FMS.DataModels.csproj">
       <Project>{7c90adab-d3d0-4b85-a547-f885bc29580e}</Project>
       <Name>ClassLibrary.FMS.DataModels</Name>

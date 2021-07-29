@@ -1,0 +1,6 @@
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\bin\Debug\ClassLibrary.FMS.DatabaseOperations.dll
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\bin\Debug\ClassLibrary.FMS.DatabaseOperations.pdb
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Debug\ClassLibrary.FMS.DatabaseOperations.csproj.AssemblyReference.cache
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Debug\ClassLibrary.FMS.DatabaseOperations.csproj.CoreCompileInputs.cache
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Debug\ClassLibrary.FMS.DatabaseOperations.dll
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Debug\ClassLibrary.FMS.DatabaseOperations.pdb

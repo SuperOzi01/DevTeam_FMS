@@ -30,12 +30,9 @@ C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAP
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\roslyn\System.IO.Compression.ZipFile.dll
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\roslyn\System.IO.FileSystem.dll
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\roslyn\System.IO.FileSystem.Primitives.dll
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\roslyn\System.Memory.dll
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\roslyn\System.Net.Http.dll
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\roslyn\System.Net.Sockets.dll
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\roslyn\System.Numerics.Vectors.dll
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\roslyn\System.Reflection.Metadata.dll
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\roslyn\System.Security.Cryptography.Algorithms.dll
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\roslyn\System.Security.Cryptography.Encoding.dll
@@ -54,6 +51,8 @@ C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAP
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\roslyn\VBCSCompiler.exe
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\Antlr3.Runtime.dll
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\ClassLibrary.FMS.DatabaseOperations.dll
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\ClassLibrary.FMS.DataModels.dll
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\Newtonsoft.Json.dll
@@ -68,6 +67,8 @@ C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAP
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\System.Web.WebPages.dll
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\System.Web.WebPages.Razor.dll
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\WebGrease.dll
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\ClassLibrary.FMS.DatabaseOperations.pdb
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\ClassLibrary.FMS.DataModels.pdb
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\Newtonsoft.Json.xml
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\System.Net.Http.Formatting.xml
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\System.Web.Helpers.xml

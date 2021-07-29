@@ -11,7 +11,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
 {
     public class FMSController : ApiController
     {
-        [Route("api/fms/ping")]
+        [Route("api/fms/ping")] 
         [HttpGet]
         [ExceptionFilter]
         public IHttpActionResult Ping()
