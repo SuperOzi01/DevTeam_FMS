@@ -4,8 +4,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using WebApplication.FMS.WebAPI.AppFilters;
 using ClassLibrary.FMS.DataModels;
+using WebApplication.FMS.WebAPI.AppFilters;
+
 namespace WebApplication.FMS.WebAPI.Controllers
 {
     public class FMSController : ApiController
