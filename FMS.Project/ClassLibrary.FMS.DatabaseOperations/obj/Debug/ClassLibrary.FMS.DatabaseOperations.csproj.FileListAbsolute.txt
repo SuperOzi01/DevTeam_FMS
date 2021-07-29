@@ -4,3 +4,9 @@ C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.Databas
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Debug\ClassLibrary.FMS.DatabaseOperations.csproj.CoreCompileInputs.cache
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Debug\ClassLibrary.FMS.DatabaseOperations.dll
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Debug\ClassLibrary.FMS.DatabaseOperations.pdb
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\bin\Debug\ClassLibrary.FMS.DatabaseOperations.dll
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\bin\Debug\ClassLibrary.FMS.DatabaseOperations.pdb
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Debug\ClassLibrary.FMS.DatabaseOperations.csprojAssemblyReference.cache
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Debug\ClassLibrary.FMS.DatabaseOperations.csproj.CoreCompileInputs.cache
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Debug\ClassLibrary.FMS.DatabaseOperations.dll
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Debug\ClassLibrary.FMS.DatabaseOperations.pdb
