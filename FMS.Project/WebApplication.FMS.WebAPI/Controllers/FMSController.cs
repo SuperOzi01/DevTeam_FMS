@@ -5,14 +5,19 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
+using WebApplication.FMS.WebAPI.AppFilters;
+
 namespace WebApplication.FMS.WebAPI.Controllers
 {
     public class FMSController : ApiController
     {
         [Route("api/fms/ping")]
         [HttpGet]
+        [ExceptionFilter]
         public IHttpActionResult Ping()
         {
+
+            throw new DivideByZeroException();
             return Ok(("Ok" , HttpStatusCode.OK));
         }
 
