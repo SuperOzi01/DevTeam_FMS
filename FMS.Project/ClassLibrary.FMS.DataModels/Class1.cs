@@ -8,6 +8,6 @@ namespace ClassLibrary.FMS.DataModels
 {
     public class Class1
     {
-        int num;
+        int num1;
     }
 }
