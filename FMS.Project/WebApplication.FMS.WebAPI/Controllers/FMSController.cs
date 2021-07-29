@@ -25,7 +25,10 @@ namespace WebApplication.FMS.WebAPI.Controllers
         [HttpGet]
         public IHttpActionResult HelthCheck()
         {
-            // Here We Should ensure that the connection to DB is running ..  
+            // Here We Should ensure that: 
+            // 1- JWT Working
+            // 2- DB connection 
+            // 3- Logs 
             return Ok(("Ok", HttpStatusCode.OK));
         }
 
