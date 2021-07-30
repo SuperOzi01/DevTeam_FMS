@@ -138,12 +138,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppFilters\AuthinticationManager.cs" />
     <Compile Include="AppFilters\ExceptionFilter.cs" />
-    <Compile Include="App_Start\Authorization.cs" />
+    <Compile Include="AppFilters\AuthorizationManager.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\TokenManager.cs" />
+    <Compile Include="AppFilters\TokenManager.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />

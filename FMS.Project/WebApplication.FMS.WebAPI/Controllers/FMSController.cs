@@ -32,5 +32,23 @@ namespace WebApplication.FMS.WebAPI.Controllers
             return Ok(("Ok", HttpStatusCode.OK));
         }
 
+        [Route("Api/Fms/Token")]
+        [HttpPost]
+        public IHttpActionResult Token()
+        {
+            // This Function Shall recieve User Model Object .. and return the token as a result.. 
+            string token = new AuthinticationManager().Authinticate("Username" , "Password");
+            return Ok((token, HttpStatusCode.OK));
+        }
+
+        [AuthorizationManager(Roles = "test")]
+        [Route("Api/Fms/validate")]
+        [HttpPost]
+        public IHttpActionResult Validate()
+        {
+            // This Function Shall recieve User Model Object .. and return the token as a result.. 
+            return Ok((true, HttpStatusCode.OK));
+        }
+
     }
 }
