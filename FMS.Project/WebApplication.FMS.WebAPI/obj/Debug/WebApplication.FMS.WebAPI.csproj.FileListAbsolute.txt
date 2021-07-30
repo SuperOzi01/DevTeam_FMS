@@ -184,3 +184,11 @@ C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.F
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\obj\Debug\WebApplication.FMS.WebAPI.csproj.CopyComplete
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\obj\Debug\WebApplication.FMS.WebAPI.dll
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\obj\Debug\WebApplication.FMS.WebAPI.pdb
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\Microsoft.IdentityModel.Logging.dll
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\Microsoft.IdentityModel.Tokens.dll
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\Microsoft.IdentityModel.JsonWebTokens.xml
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\Microsoft.IdentityModel.Logging.xml
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\Microsoft.IdentityModel.Tokens.xml
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\System.IdentityModel.Tokens.Jwt.xml
