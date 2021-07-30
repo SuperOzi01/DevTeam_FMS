@@ -12,5 +12,6 @@ namespace ClassLibrary.FMS.DataModels
         public string Message { get; set; }
 
         public int test { get; set; }
+        public int TestDevAli { get; set; }
     }
 }
