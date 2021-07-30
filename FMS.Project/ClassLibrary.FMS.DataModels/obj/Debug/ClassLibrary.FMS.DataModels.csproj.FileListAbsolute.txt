@@ -10,3 +10,9 @@ C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.csproj.CoreCompileInputs.cache
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.dll
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.pdb
+C:\Users\Rawan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\ClassLibrary.FMS.DataModels.dll
+C:\Users\Rawan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\ClassLibrary.FMS.DataModels.pdb
+C:\Users\Rawan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.csprojAssemblyReference.cache
+C:\Users\Rawan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.csproj.CoreCompileInputs.cache
+C:\Users\Rawan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.dll
+C:\Users\Rawan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.pdb
