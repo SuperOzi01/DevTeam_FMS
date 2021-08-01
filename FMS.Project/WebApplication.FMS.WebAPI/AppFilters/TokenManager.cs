@@ -11,12 +11,13 @@ namespace WebApplication.FMS.WebAPI.App_Start
 {
     public class TokenManager
     {
-        private static string Secret = "ERMN05OPLoDvbTTa/QkqLNMI7cPLguaRyHzyg7n5qNBVjQmtBhz4SzYh4NBVCXi3KJHlSXKP+oi2+bXr6CUYTR==";
+        //private static string Secret = "ERMN05OPLoDvbTTa/QkqLNMI7cPLguaRyHzyg7n5qNBVjQmtBhz4SzYh4NBVCXi3KJHlSXKP+oi2+bXr6CUYTR==";
+        private const string secretKey = "This is the Secrit Key";
         public static string GenerateToken()
         {
            // Book_StoreEntities Con = new Book_StoreEntities();
             //var nameRole = Con.RoleName(id).ToList();
-            byte[] key = Encoding.ASCII.GetBytes(Secret);
+            byte[] key = Encoding.ASCII.GetBytes(secretKey);
             SymmetricSecurityKey securityKey = new SymmetricSecurityKey(key);
 
             List<Claim> claims = new List<Claim>();
