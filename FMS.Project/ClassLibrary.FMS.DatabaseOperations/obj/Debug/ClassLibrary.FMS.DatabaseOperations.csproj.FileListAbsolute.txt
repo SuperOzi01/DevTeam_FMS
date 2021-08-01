@@ -16,3 +16,9 @@ C:\Users\Rawan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.Databas
 C:\Users\Rawan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Debug\ClassLibrary.FMS.DatabaseOperations.csproj.CoreCompileInputs.cache
 C:\Users\Rawan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Debug\ClassLibrary.FMS.DatabaseOperations.dll
 C:\Users\Rawan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Debug\ClassLibrary.FMS.DatabaseOperations.pdb
+C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\bin\Debug\ClassLibrary.FMS.DatabaseOperations.dll
+C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\bin\Debug\ClassLibrary.FMS.DatabaseOperations.pdb
+C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Debug\ClassLibrary.FMS.DatabaseOperations.csproj.AssemblyReference.cache
+C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Debug\ClassLibrary.FMS.DatabaseOperations.csproj.CoreCompileInputs.cache
+C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Debug\ClassLibrary.FMS.DatabaseOperations.dll
+C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Debug\ClassLibrary.FMS.DatabaseOperations.pdb
