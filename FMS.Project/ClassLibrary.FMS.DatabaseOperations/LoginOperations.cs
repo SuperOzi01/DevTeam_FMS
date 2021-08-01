@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using ClassLibrary.FMS.DataModels; 
 namespace ClassLibrary.FMS.DatabaseOperations
 {
-    class LoginOperations
+    public class LoginOperations
     {
         FMS_DatabaseEntities DatabaseEntity = new FMS_DatabaseEntities();
         public bool Login(string username, string password)
