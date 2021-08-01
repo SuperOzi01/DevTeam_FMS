@@ -84,5 +84,18 @@ namespace ClassLibrary.FMS.DataModels
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_InsertCompanyEmployee", usernameParameter, passwordParameter, specializationIDParameter, roleIDParameter, locationIDParameter, managerIDParameter);
         }
+    
+        public virtual ObjectResult<Nullable<int>> SP_Ben_LoginCheck(string username, string password)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_Ben_LoginCheck", usernameParameter, passwordParameter);
+        }
     }
 }
