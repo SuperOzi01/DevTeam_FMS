@@ -67,6 +67,7 @@
     <Build Include="Tables\Role.sql" />
     <Build Include="StoredProcedures\SP_InsertCompanyEmployee.sql" />
     <Build Include="StoredProcedures\SP_InsertBeneficiary.sql" />
+    <Build Include="StoredProcedures\SP_Ben_LoginCheck.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SSDP.FMS.Database.refactorlog" />

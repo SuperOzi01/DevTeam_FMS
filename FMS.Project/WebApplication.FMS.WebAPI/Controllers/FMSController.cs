@@ -53,5 +53,10 @@ namespace WebApplication.FMS.WebAPI.Controllers
             return Ok((true, HttpStatusCode.OK));
         }
 
+        public IHttpActionResult Login()
+        {
+
+            return Ok();
+        }
     }
 }

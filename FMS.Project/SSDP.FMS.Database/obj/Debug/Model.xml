@@ -751,6 +751,82 @@
 				</Entry>
 			</Relationship>
 		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[SP_Ben_LoginCheck]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+		IF EXISTS ( SELECT 1 from dbo.Beneficiary where dbo.Beneficiary.Username = @username AND dbo.Beneficiary.Password = @password )
+			BEGIN 
+				Select 1;
+			END 
+		ELSE 
+			Begin
+				Select 0;
+			ENd]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Beneficiary]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Beneficiary].[Username]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SP_Ben_LoginCheck].[@username]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Beneficiary].[Password]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SP_Ben_LoginCheck].[@password]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_Ben_LoginCheck].[@username]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="40" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_Ben_LoginCheck].[@password]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="40" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="301" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_Ben_LoginCheck]&#xD;&#xA;&#x9;@username nchar (40),&#xD;&#xA;&#x9;@password nchar (40)&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[SP_InsertBeneficiary]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[
