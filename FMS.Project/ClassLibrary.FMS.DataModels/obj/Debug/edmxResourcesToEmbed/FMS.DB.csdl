@@ -225,5 +225,9 @@
       <Parameter Name="LocationID" Mode="In" Type="Int32" />
       <Parameter Name="ManagerID" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="SP_Ben_LoginCheck" ReturnType="Collection(Int32)">
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
 </Schema>

@@ -830,15 +830,30 @@
 		<Element Type="SqlProcedure" Name="[dbo].[SP_InsertBeneficiary]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[
-	BEGIN
-		INSERT INTO dbo.Beneficiary(Username, Password, Building_BuildingID, Role_RoleID)
-		VALUES (@Username, @Password, @BuildingID, @RoleID)
-	END]]></Value>
+	IF NOT EXISTS (Select Username from dbo.Beneficiary where dbo.Beneficiary.Username = @Username)
+		Begin
+			INSERT INTO dbo.Beneficiary(Username, Password, Building_BuildingID, Role_RoleID)
+			VALUES (@Username, @Password, @BuildingID, @RoleID)
+			SELECT 1;
+		END
+	ELSE
+		BEGIN
+			SELECT 0; 
+		END]]></Value>
 			</Property>
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="BodyDependencies">
 				<Entry>
 					<References Name="[dbo].[Beneficiary]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Beneficiary].[Username]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Beneficiary].[Username]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SP_InsertBeneficiary].[@Username]" />
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[Beneficiary].[Username]" />
@@ -851,9 +866,6 @@
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[Beneficiary].[Role_RoleID]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[SP_InsertBeneficiary].[@Username]" />
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[SP_InsertBeneficiary].[@Password]" />
@@ -935,7 +947,7 @@
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="285" />
+				<Property Name="Length" Value="439" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_InsertBeneficiary]&#xD;&#xA;&#x9;@Username nchar (40),&#xD;&#xA;&#x9;@Password nchar (40), &#xD;&#xA;&#x9;@BuildingID INT,&#xD;&#xA;&#x9;@RoleID INT&#xD;&#xA;AS" />
