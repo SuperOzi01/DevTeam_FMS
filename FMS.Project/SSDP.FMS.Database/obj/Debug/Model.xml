@@ -751,6 +751,276 @@
 				</Entry>
 			</Relationship>
 		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[SP_InsertBeneficiary]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	BEGIN
+		INSERT INTO dbo.Beneficiary(Username, Password, Building_BuildingID, Role_RoleID)
+		VALUES (@Username, @Password, @BuildingID, @RoleID)
+	END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Beneficiary]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Beneficiary].[Username]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Beneficiary].[Password]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Beneficiary].[Building_BuildingID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Beneficiary].[Role_RoleID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SP_InsertBeneficiary].[@Username]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SP_InsertBeneficiary].[@Password]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SP_InsertBeneficiary].[@BuildingID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SP_InsertBeneficiary].[@RoleID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_InsertBeneficiary].[@Username]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="40" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_InsertBeneficiary].[@Password]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="40" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_InsertBeneficiary].[@BuildingID]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_InsertBeneficiary].[@RoleID]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="285" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_InsertBeneficiary]&#xD;&#xA;&#x9;@Username nchar (40),&#xD;&#xA;&#x9;@Password nchar (40), &#xD;&#xA;&#x9;@BuildingID INT,&#xD;&#xA;&#x9;@RoleID INT&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[SP_InsertCompanyEmployee]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	BEGIN
+		INSERT INTO dbo.CompanyEmployee(Username, Password, Specialization_idSpecialization, Role_idRole, Location_idLocation, ManagerID)
+		VALUES (@username, @password, @SpecializationID, @RoleID, @LocationID, @ManagerID)
+	END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee].[Username]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee].[Password]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee].[Specialization_idSpecialization]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee].[Role_idRole]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee].[Location_idLocation]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee].[ManagerID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SP_InsertCompanyEmployee].[@username]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SP_InsertCompanyEmployee].[@password]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SP_InsertCompanyEmployee].[@SpecializationID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SP_InsertCompanyEmployee].[@RoleID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SP_InsertCompanyEmployee].[@LocationID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SP_InsertCompanyEmployee].[@ManagerID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_InsertCompanyEmployee].[@username]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="40" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_InsertCompanyEmployee].[@password]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="40" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_InsertCompanyEmployee].[@SpecializationID]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_InsertCompanyEmployee].[@RoleID]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_InsertCompanyEmployee].[@LocationID]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_InsertCompanyEmployee].[@ManagerID]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="413" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_InsertCompanyEmployee]&#xD;&#xA;&#x9;@username nchar(40),&#xD;&#xA;&#x9;@password nchar(40),&#xD;&#xA;&#x9;@SpecializationID INT, &#xD;&#xA;&#x9;@RoleID INT, &#xD;&#xA;&#x9;@LocationID INT, &#xD;&#xA;&#x9;@ManagerID INT&#xD;&#xA;&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
 		<Element Type="SqlTable" Name="[dbo].[Specialization]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="Columns">
