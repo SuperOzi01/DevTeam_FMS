@@ -16,3 +16,9 @@ C:\Users\Rawan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataMod
 C:\Users\Rawan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.csproj.CoreCompileInputs.cache
 C:\Users\Rawan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.dll
 C:\Users\Rawan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.pdb
+C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\ClassLibrary.FMS.DataModels.dll
+C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\ClassLibrary.FMS.DataModels.pdb
+C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.csproj.AssemblyReference.cache
+C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.csproj.CoreCompileInputs.cache
+C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.dll
+C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.pdb
