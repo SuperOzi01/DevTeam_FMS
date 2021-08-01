@@ -9,8 +9,7 @@
     <ProjectGuid>{859eb250-56e5-4a34-a17c-e6afc1f9067e}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
-    <RootPath>
-    </RootPath>
+    <RootPath />
     <RootNamespace>SSDP.FMS.Database</RootNamespace>
     <AssemblyName>SSDP.FMS.Database</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
@@ -48,7 +47,6 @@
   </PropertyGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
-    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
     <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
     <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
   </PropertyGroup>
@@ -59,5 +57,21 @@
     <Folder Include="Tables" />
     <Folder Include="StoredProcedures" />
     <Folder Include="Publish" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\CompanyEmployee.sql" />
+    <Build Include="Tables\Location.sql" />
+    <Build Include="Tables\Specialization.sql" />
+    <Build Include="Tables\Building.sql" />
+    <Build Include="Tables\Beneficiary.sql" />
+    <Build Include="Tables\Role.sql" />
+    <Build Include="StoredProcedures\SP_InsertCompanyEmployee.sql" />
+    <Build Include="StoredProcedures\SP_InsertBeneficiary.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="SSDP.FMS.Database.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Publish\SSDP.FMS.Database.publish.xml" />
   </ItemGroup>
 </Project>
