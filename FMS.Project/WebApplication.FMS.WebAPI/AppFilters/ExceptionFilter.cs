@@ -21,8 +21,10 @@ namespace WebApplication.FMS.WebAPI.AppFilters
                 case "System.DivideByZeroException":
                     //Identify Error Based On The Exception;
                     break;
-            }
+                case "System.UnauthorizedAccessException":
 
+                    break;
+            }
         }
     }
 }
