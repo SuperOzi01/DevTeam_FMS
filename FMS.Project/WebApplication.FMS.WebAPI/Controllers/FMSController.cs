@@ -5,12 +5,15 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using ClassLibrary.FMS.DataModels;
+using log4net;
 using WebApplication.FMS.WebAPI.AppFilters;
 
 namespace WebApplication.FMS.WebAPI.Controllers
 {
     public class FMSController : ApiController
     {
+        static readonly ILog ErrorLog = LogManager.GetLogger("ErrorLog");
+        static readonly ILog InfoLog = LogManager.GetLogger("InfoLog");
         [Route("Api/Fms/ping")] 
         [HttpGet]
         [ExceptionFilter]

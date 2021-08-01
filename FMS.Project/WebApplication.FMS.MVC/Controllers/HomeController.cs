@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using log4net;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,8 @@ namespace WebApplication.FMS.MVC.Controllers
 {
     public class HomeController : Controller
     {
+        static readonly ILog ErrorLog = LogManager.GetLogger("ErrorLog");
+        static readonly ILog InfoLog = LogManager.GetLogger("InfoLog");
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -20,7 +23,8 @@ namespace WebApplication.FMS.MVC.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            InfoLog.Info("Successful");
+            return View();            
         }
 
         public IActionResult Privacy()
