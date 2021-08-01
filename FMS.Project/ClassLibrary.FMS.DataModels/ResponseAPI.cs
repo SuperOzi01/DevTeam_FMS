@@ -10,5 +10,6 @@ namespace ClassLibrary.FMS.DataModels
     {
         public bool Result { get; set; }
         public string Message { get; set; }
+
     }
 }
