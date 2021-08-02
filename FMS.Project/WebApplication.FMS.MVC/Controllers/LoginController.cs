@@ -8,6 +8,7 @@ namespace WebApplication.FMS.MVC.Controllers
 {
     public class LoginController : Controller
     {
+        string BaseUrl = Startup.GetBaseUrl();
         public IActionResult Index()
         {
             return View();
