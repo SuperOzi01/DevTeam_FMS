@@ -78,7 +78,5 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Publish\SSDP.FMS.Database.publish.xml" />
-    <None Include="SSDP.FMS.Database.publish.xml" />
-    <None Include="SSDP.FMS.Database2.publish.publish.xml" />
   </ItemGroup>
 </Project>
