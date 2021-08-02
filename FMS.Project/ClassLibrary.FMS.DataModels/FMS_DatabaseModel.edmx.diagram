@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8f3ee8db3bd0432ea488a56e0418d234" Name="Diagram1">
+        <EntityTypeShape EntityType="FMS_DatabaseEF.C__RefactorLog" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="FMS_DatabaseEF.Beneficiary" Width="1.5" PointX="8.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FMS_DatabaseEF.Building" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FMS_DatabaseEF.CompanyEmployee" Width="1.5" PointX="6" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="FMS_DatabaseEF.Location" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FMS_DatabaseEF.Role" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FMS_DatabaseEF.Specialization" Width="1.5" PointX="3.75" PointY="7.25" IsExpanded="true" />
+        <AssociationConnector Association="FMS_DatabaseEF.FK_Beneficiary_Building" ManuallyRouted="false" />
+        <AssociationConnector Association="FMS_DatabaseEF.FK_Beneficiary_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="FMS_DatabaseEF.FK_Building_CompanyEmployee" ManuallyRouted="false" />
+        <AssociationConnector Association="FMS_DatabaseEF.FK_Building_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="FMS_DatabaseEF.FK_CompanyEmployee_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="FMS_DatabaseEF.FK_CompanyEmployee_RoleID" ManuallyRouted="false" />
+        <AssociationConnector Association="FMS_DatabaseEF.FK_CompanyEmployee_Specialization" ManuallyRouted="false" />
+        <AssociationConnector Association="FMS_DatabaseEF.FK_User_ManagerID" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

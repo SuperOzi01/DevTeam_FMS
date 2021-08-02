@@ -22,7 +22,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
         public IHttpActionResult Ping()
         {
             // test the api logs and exceptions   
-            throw new DivideByZeroException();
+            //throw new DivideByZeroException();
             return Ok(("Ok" , HttpStatusCode.OK));
         }
 
@@ -60,6 +60,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
         [HttpPost]
         public IHttpActionResult Login()
         {
+
             LoginOperations BenLogin = new LoginOperations();
             bool result = BenLogin.Login("BenTest", "1234");
 

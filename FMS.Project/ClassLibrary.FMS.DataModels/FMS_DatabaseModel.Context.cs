@@ -15,10 +15,10 @@ namespace ClassLibrary.FMS.DataModels
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class FMS_DatabaseEntities : DbContext
+    public partial class FMS_DatabaseModel : DbContext
     {
-        public FMS_DatabaseEntities()
-            : base("name=FMS_DatabaseEntities")
+        public FMS_DatabaseModel()
+            : base("name=FMS_DatabaseModel")
         {
         }
     
@@ -35,7 +35,20 @@ namespace ClassLibrary.FMS.DataModels
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Specialization> Specializations { get; set; }
     
-        public virtual int SP_InsertBeneficiary(string username, string password, Nullable<int> buildingID, Nullable<int> roleID)
+        public virtual ObjectResult<Nullable<int>> SP_Ben_LoginCheck(string username, string password)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_Ben_LoginCheck", usernameParameter, passwordParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_InsertBeneficiary(string username, string password, Nullable<int> buildingID, Nullable<int> roleID)
         {
             var usernameParameter = username != null ?
                 new ObjectParameter("Username", username) :
@@ -53,7 +66,7 @@ namespace ClassLibrary.FMS.DataModels
                 new ObjectParameter("RoleID", roleID) :
                 new ObjectParameter("RoleID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_InsertBeneficiary", usernameParameter, passwordParameter, buildingIDParameter, roleIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_InsertBeneficiary", usernameParameter, passwordParameter, buildingIDParameter, roleIDParameter);
         }
     
         public virtual int SP_InsertCompanyEmployee(string username, string password, Nullable<int> specializationID, Nullable<int> roleID, Nullable<int> locationID, Nullable<int> managerID)
@@ -83,19 +96,6 @@ namespace ClassLibrary.FMS.DataModels
                 new ObjectParameter("ManagerID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_InsertCompanyEmployee", usernameParameter, passwordParameter, specializationIDParameter, roleIDParameter, locationIDParameter, managerIDParameter);
-        }
-    
-        public virtual ObjectResult<Nullable<int>> SP_Ben_LoginCheck(string username, string password)
-        {
-            var usernameParameter = username != null ?
-                new ObjectParameter("username", username) :
-                new ObjectParameter("username", typeof(string));
-    
-            var passwordParameter = password != null ?
-                new ObjectParameter("password", password) :
-                new ObjectParameter("password", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_Ben_LoginCheck", usernameParameter, passwordParameter);
         }
     }
 }

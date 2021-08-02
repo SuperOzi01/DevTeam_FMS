@@ -8,7 +8,7 @@ namespace ClassLibrary.FMS.DatabaseOperations
 {
     public class LoginOperations
     {
-        FMS_DatabaseEntities DatabaseEntity = new FMS_DatabaseEntities();
+        FMS_DatabaseModel DatabaseEntity = new FMS_DatabaseModel();
         public bool Login(string username, string password)
         {
             var result = DatabaseEntity.SP_Ben_LoginCheck(username, password);
@@ -23,8 +23,13 @@ namespace ClassLibrary.FMS.DatabaseOperations
         {
             // RoleID is  set by the Developers Based on the registration page { System Admin , Beneficary Portal} pages
             // RoleID of 5 is Tenent ... 6 is Outsider Employee Based on the UI 
-            var result = DatabaseEntity.SP_InsertBeneficiary(username, password, BuildingID, RoleID); 
-            return true; 
+            var result = DatabaseEntity.SP_InsertBeneficiary(username, password, BuildingID, RoleID);
+            if (result.FirstOrDefault() == 1)
+                return true;
+            else
+                return false; 
         }
+
+        
     }
 }

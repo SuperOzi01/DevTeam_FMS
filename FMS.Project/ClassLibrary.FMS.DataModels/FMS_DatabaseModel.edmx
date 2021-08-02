@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="FMS_DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="FMS_DatabaseEF.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__RefactorLog">
           <Key>
             <PropertyRef Name="OperationKey" />
@@ -178,7 +178,7 @@
           <Parameter Name="LocationID" Type="int" Mode="In" />
           <Parameter Name="ManagerID" Type="int" Mode="In" />
         </Function>
-        <EntityContainer Name="FMS_DatabaseModelStoreContainer">
+        <EntityContainer Name="FMS_DatabaseEFStoreContainer">
           <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Beneficiary" EntityType="Self.Beneficiary" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Building" EntityType="Self.Building" Schema="dbo" store:Type="Tables" />
@@ -219,10 +219,11 @@
             <End Role="CompanyEmployee1" EntitySet="CompanyEmployee" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="FMS_DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="FMS_DatabaseEF" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="C__RefactorLog">
           <Key>
             <PropertyRef Name="OperationKey" />
@@ -394,7 +395,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="FMS_DatabaseEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="FMS_DatabaseModel" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
           <EntitySet Name="Beneficiaries" EntityType="Self.Beneficiary" />
           <EntitySet Name="Buildings" EntityType="Self.Building" />
@@ -434,7 +435,11 @@
             <End Role="CompanyEmployee" EntitySet="CompanyEmployees" />
             <End Role="CompanyEmployee1" EntitySet="CompanyEmployees" />
           </AssociationSet>
-          <FunctionImport Name="SP_InsertBeneficiary">
+          <FunctionImport Name="SP_Ben_LoginCheck" ReturnType="Collection(Int32)">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_InsertBeneficiary" ReturnType="Collection(Int32)">
             <Parameter Name="Username" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
             <Parameter Name="BuildingID" Mode="In" Type="Int32" />
@@ -448,26 +453,22 @@
             <Parameter Name="LocationID" Mode="In" Type="Int32" />
             <Parameter Name="ManagerID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_Ben_LoginCheck" ReturnType="Collection(Int32)">
-            <Parameter Name="username" Mode="In" Type="String" />
-            <Parameter Name="password" Mode="In" Type="String" />
-          </FunctionImport>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="FMS_DatabaseModelStoreContainer" CdmEntityContainer="FMS_DatabaseEntities">
+        <EntityContainerMapping StorageEntityContainer="FMS_DatabaseEFStoreContainer" CdmEntityContainer="FMS_DatabaseModel">
           <EntitySetMapping Name="C__RefactorLog">
-            <EntityTypeMapping TypeName="FMS_DatabaseModel.C__RefactorLog">
+            <EntityTypeMapping TypeName="FMS_DatabaseEF.C__RefactorLog">
               <MappingFragment StoreEntitySet="__RefactorLog">
                 <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Beneficiaries">
-            <EntityTypeMapping TypeName="FMS_DatabaseModel.Beneficiary">
+            <EntityTypeMapping TypeName="FMS_DatabaseEF.Beneficiary">
               <MappingFragment StoreEntitySet="Beneficiary">
                 <ScalarProperty Name="BeneficiaryID" ColumnName="BeneficiaryID" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
@@ -478,7 +479,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Buildings">
-            <EntityTypeMapping TypeName="FMS_DatabaseModel.Building">
+            <EntityTypeMapping TypeName="FMS_DatabaseEF.Building">
               <MappingFragment StoreEntitySet="Building">
                 <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
                 <ScalarProperty Name="NoFloors" ColumnName="NoFloors" />
@@ -489,7 +490,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CompanyEmployees">
-            <EntityTypeMapping TypeName="FMS_DatabaseModel.CompanyEmployee">
+            <EntityTypeMapping TypeName="FMS_DatabaseEF.CompanyEmployee">
               <MappingFragment StoreEntitySet="CompanyEmployee">
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
@@ -502,7 +503,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Locations">
-            <EntityTypeMapping TypeName="FMS_DatabaseModel.Location">
+            <EntityTypeMapping TypeName="FMS_DatabaseEF.Location">
               <MappingFragment StoreEntitySet="Location">
                 <ScalarProperty Name="LocationID" ColumnName="LocationID" />
                 <ScalarProperty Name="City" ColumnName="City" />
@@ -510,7 +511,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="FMS_DatabaseModel.Role">
+            <EntityTypeMapping TypeName="FMS_DatabaseEF.Role">
               <MappingFragment StoreEntitySet="Role">
                 <ScalarProperty Name="RoleID" ColumnName="RoleID" />
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
@@ -518,16 +519,16 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Specializations">
-            <EntityTypeMapping TypeName="FMS_DatabaseModel.Specialization">
+            <EntityTypeMapping TypeName="FMS_DatabaseEF.Specialization">
               <MappingFragment StoreEntitySet="Specialization">
                 <ScalarProperty Name="SpecializationID" ColumnName="SpecializationID" />
                 <ScalarProperty Name="SpecializationName" ColumnName="SpecializationName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="SP_InsertBeneficiary" FunctionName="FMS_DatabaseModel.Store.SP_InsertBeneficiary" />
-          <FunctionImportMapping FunctionImportName="SP_InsertCompanyEmployee" FunctionName="FMS_DatabaseModel.Store.SP_InsertCompanyEmployee" />
-          <FunctionImportMapping FunctionImportName="SP_Ben_LoginCheck" FunctionName="FMS_DatabaseModel.Store.SP_Ben_LoginCheck" />
+          <FunctionImportMapping FunctionImportName="SP_Ben_LoginCheck" FunctionName="FMS_DatabaseEF.Store.SP_Ben_LoginCheck" />
+          <FunctionImportMapping FunctionImportName="SP_InsertBeneficiary" FunctionName="FMS_DatabaseEF.Store.SP_InsertBeneficiary" />
+          <FunctionImportMapping FunctionImportName="SP_InsertCompanyEmployee" FunctionName="FMS_DatabaseEF.Store.SP_InsertCompanyEmployee" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
