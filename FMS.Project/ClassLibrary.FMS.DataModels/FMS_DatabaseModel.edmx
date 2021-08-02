@@ -18,6 +18,7 @@
           <Property Name="BeneficiaryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Username" Type="nchar" MaxLength="40" Nullable="false" />
           <Property Name="Password" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="Email" Type="nchar" MaxLength="40" Nullable="false" />
           <Property Name="Building_BuildingID" Type="int" Nullable="false" />
           <Property Name="Role_RoleID" Type="int" Nullable="false" />
         </EntityType>
@@ -38,6 +39,7 @@
           <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Username" Type="nchar" MaxLength="40" Nullable="false" />
           <Property Name="Password" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="Email" Type="nchar" MaxLength="40" Nullable="false" />
           <Property Name="Specialization_idSpecialization" Type="int" Nullable="false" />
           <Property Name="ManagerID" Type="int" />
           <Property Name="Location_idLocation" Type="int" Nullable="false" />
@@ -183,12 +185,14 @@
         <Function Name="SP_InsertBeneficiary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Username" Type="nchar" Mode="In" />
           <Parameter Name="Password" Type="nchar" Mode="In" />
+          <Parameter Name="Email" Type="nchar" Mode="In" />
           <Parameter Name="BuildingID" Type="int" Mode="In" />
           <Parameter Name="RoleID" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_InsertCompanyEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="username" Type="nchar" Mode="In" />
           <Parameter Name="password" Type="nchar" Mode="In" />
+          <Parameter Name="Email" Type="nchar" Mode="In" />
           <Parameter Name="SpecializationID" Type="int" Mode="In" />
           <Parameter Name="RoleID" Type="int" Mode="In" />
           <Parameter Name="LocationID" Type="int" Mode="In" />
@@ -256,6 +260,7 @@
           <Property Name="Role_RoleID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Building" Relationship="Self.FK_Beneficiary_Building" FromRole="Beneficiary" ToRole="Building" />
           <NavigationProperty Name="Role" Relationship="Self.FK_Beneficiary_Role" FromRole="Beneficiary" ToRole="Role" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="Building">
           <Key>
@@ -287,6 +292,7 @@
           <NavigationProperty Name="Specialization" Relationship="Self.FK_CompanyEmployee_Specialization" FromRole="CompanyEmployee" ToRole="Specialization" />
           <NavigationProperty Name="CompanyEmployee1" Relationship="Self.FK_User_ManagerID" FromRole="CompanyEmployee" ToRole="CompanyEmployee1" />
           <NavigationProperty Name="CompanyEmployee2" Relationship="Self.FK_User_ManagerID" FromRole="CompanyEmployee1" ToRole="CompanyEmployee" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="Location">
           <Key>
@@ -457,12 +463,14 @@
           <FunctionImport Name="SP_InsertBeneficiary" ReturnType="Collection(Int32)">
             <Parameter Name="Username" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
             <Parameter Name="BuildingID" Mode="In" Type="Int32" />
             <Parameter Name="RoleID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_InsertCompanyEmployee">
             <Parameter Name="username" Mode="In" Type="String" />
             <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
             <Parameter Name="SpecializationID" Mode="In" Type="Int32" />
             <Parameter Name="RoleID" Mode="In" Type="Int32" />
             <Parameter Name="LocationID" Mode="In" Type="Int32" />
@@ -475,10 +483,10 @@
             <Parameter Name="LocationID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_AddLocation" ReturnType="Collection(Int32)">
-            <Parameter Name="CityName" Mode="In" Type="String" />
+          <Parameter Name="CityName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_AddSpecialization" ReturnType="Collection(Int32)">
-            <Parameter Name="SpecializationName" Mode="In" Type="String" />
+          <Parameter Name="SpecializationName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_Employee_LoginCheck" ReturnType="Collection(Int32)">
             <Parameter Name="username" Mode="In" Type="String" />
@@ -501,6 +509,7 @@
           <EntitySetMapping Name="Beneficiaries">
             <EntityTypeMapping TypeName="FMS_DatabaseEF.Beneficiary">
               <MappingFragment StoreEntitySet="Beneficiary">
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="BeneficiaryID" ColumnName="BeneficiaryID" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
@@ -523,6 +532,7 @@
           <EntitySetMapping Name="CompanyEmployees">
             <EntityTypeMapping TypeName="FMS_DatabaseEF.CompanyEmployee">
               <MappingFragment StoreEntitySet="CompanyEmployee">
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
