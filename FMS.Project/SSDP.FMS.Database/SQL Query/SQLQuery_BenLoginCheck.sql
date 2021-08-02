@@ -1,0 +1,1 @@
+﻿EXEC dbo.SP_Ben_LoginCheck @username = "TestBen", @password = "1234"

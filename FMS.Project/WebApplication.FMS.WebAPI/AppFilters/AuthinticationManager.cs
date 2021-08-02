@@ -15,8 +15,10 @@ namespace WebApplication.FMS.WebAPI.AppFilters
         private const string secretKey = "This is the Secrit Key";
 
 
-        public string Authinticate(string username, string password)
+        public string Authinticate(string username)
         {
+
+            
             // this can be undone if you will check if rolls are null
             //if (!Models.UserModel.FindUser(username: username, pass: password))
             //  return ""; // not found
