@@ -6,8 +6,15 @@
 
   <ItemGroup>
     <PackageReference Include="log4net" Version="2.0.12" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
     <PackageReference Include="Microsoft.Extensions.Logging.Log4Net.AspNetCore" Version="3.1.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
     <PackageReference Include="NuGet.Protocol" Version="5.10.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary.FMS.DatabaseOperations\ClassLibrary.FMS.DatabaseOperations.csproj" />
+    <ProjectReference Include="..\ClassLibrary.FMS.DataModels\ClassLibrary.FMS.DataModels.csproj" />
   </ItemGroup>
 
 </Project>
