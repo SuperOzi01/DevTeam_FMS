@@ -21,3 +21,4 @@ C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataMod
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.csproj.CopyComplete
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.dll
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.pdb
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.csproj.AssemblyReference.cache
