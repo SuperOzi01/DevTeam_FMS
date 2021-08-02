@@ -18,6 +18,7 @@ namespace ClassLibrary.FMS.DataModels
         public Specialization()
         {
             this.CompanyEmployees = new HashSet<CompanyEmployee>();
+            this.ServiceRequests = new HashSet<ServiceRequest>();
         }
     
         public int SpecializationID { get; set; }
@@ -25,5 +26,7 @@ namespace ClassLibrary.FMS.DataModels
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CompanyEmployee> CompanyEmployees { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ServiceRequest> ServiceRequests { get; set; }
     }
 }

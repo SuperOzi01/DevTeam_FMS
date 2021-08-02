@@ -88,6 +88,9 @@
     <Compile Include="Role.cs">
       <DependentUpon>FMS_DatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ServiceRequest.cs">
+      <DependentUpon>FMS_DatabaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Specialization.cs">
       <DependentUpon>FMS_DatabaseModel.tt</DependentUpon>
     </Compile>
