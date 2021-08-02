@@ -1,0 +1,31 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Create
+       [dbo].[Beneficiary] (Table)
+       [dbo].[Building] (Table)
+       [dbo].[CompanyEmployee] (Table)
+       [dbo].[Location] (Table)
+       [dbo].[Role] (Table)
+       [dbo].[Specialization] (Table)
+       [dbo].[FK_Beneficiary_Building] (Foreign Key)
+       [dbo].[FK_Beneficiary_Role] (Foreign Key)
+       [dbo].[FK_Building_CompanyEmployee] (Foreign Key)
+       [dbo].[FK_Building_Location] (Foreign Key)
+       [dbo].[FK_User_ManagerID] (Foreign Key)
+       [dbo].[FK_CompanyEmployee_RoleID] (Foreign Key)
+       [dbo].[FK_CompanyEmployee_Location] (Foreign Key)
+       [dbo].[FK_CompanyEmployee_Specialization] (Foreign Key)
+       [dbo].[SP_Ben_LoginCheck] (Procedure)
+       [dbo].[SP_InsertBeneficiary] (Procedure)
+       [dbo].[SP_InsertCompanyEmployee] (Procedure)
+
+** Supporting actions

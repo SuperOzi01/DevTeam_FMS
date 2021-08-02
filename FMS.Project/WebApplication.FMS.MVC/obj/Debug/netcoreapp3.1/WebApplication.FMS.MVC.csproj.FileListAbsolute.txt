@@ -8,7 +8,6 @@ C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.F
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\bin\Debug\netcoreapp3.1\WebApplication.FMS.MVC.pdb
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\bin\Debug\netcoreapp3.1\WebApplication.FMS.MVC.Views.dll
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\bin\Debug\netcoreapp3.1\WebApplication.FMS.MVC.Views.pdb
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.csprojAssemblyReference.cache
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.AssemblyInfoInputs.cache
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.AssemblyInfo.cs
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.csproj.CoreCompileInputs.cache
@@ -128,3 +127,7 @@ C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\o
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.dll
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.pdb
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.genruntimeconfig.cache
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.csproj.AssemblyReference.cache
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Login\Index.cshtml.g.cs
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Login\Index1.cshtml.g.cs
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Login\signin.cshtml.g.cs
