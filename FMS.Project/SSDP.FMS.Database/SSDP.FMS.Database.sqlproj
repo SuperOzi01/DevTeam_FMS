@@ -68,6 +68,10 @@
     <Build Include="StoredProcedures\SP_InsertCompanyEmployee.sql" />
     <Build Include="StoredProcedures\SP_InsertBeneficiary.sql" />
     <Build Include="StoredProcedures\SP_Ben_LoginCheck.sql" />
+    <Build Include="StoredProcedures\SP_Employee_LoginCheck.sql" />
+    <Build Include="StoredProcedures\SP_AddLocation.sql" />
+    <Build Include="StoredProcedures\SP_AddSpecialization.sql" />
+    <Build Include="StoredProcedures\SP_AddBuilding.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SSDP.FMS.Database.refactorlog" />

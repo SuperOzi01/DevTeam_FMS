@@ -8,7 +8,7 @@ namespace ClassLibrary.FMS.DatabaseOperations
 {
     public class LoginOperations
     {
-        FMS_DatabaseEntities DatabaseEntity = new FMS_DatabaseEntities();
+        FMS_DatabaseModel DatabaseEntity = new FMS_DatabaseModel();
         public bool Login(string username, string password)
         {
             var result = DatabaseEntity.SP_Ben_LoginCheck(username, password);
