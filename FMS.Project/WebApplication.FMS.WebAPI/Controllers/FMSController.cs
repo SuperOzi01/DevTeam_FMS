@@ -16,8 +16,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
     {
         static readonly ILog ErrorLog = LogManager.GetLogger("ErrorLog");
         static readonly ILog InfoLog = LogManager.GetLogger("InfoLog");
-        ResponseAPI responseObject = new ResponseAPI();
-
+        ResponseAPI res = new ResponseAPI();
         [Route("Api/Fms/ping")] 
         [HttpGet]
         [ExceptionFilter]
@@ -58,17 +57,72 @@ namespace WebApplication.FMS.WebAPI.Controllers
         }
 
 
-        [Route("Api/Fms/LoginBeneficiry")]
+        [Route("Api/Fms/Login")]
         [HttpPost]
-        public IHttpActionResult Login(LoginModel loginModel)
+        public IHttpActionResult Login(LoginModel login)
         {
+
             LoginOperations BenLogin = new LoginOperations();
-            bool result = BenLogin.Login(loginModel);
 
-            if( result == true )
-            return Token(loginModel.Username); 
+            bool result = BenLogin.Login(login);
 
-            return Ok((false , HttpStatusCode.Unauthorized));
+            if (result == true)
+            {
+                return Token(login.Username);
+            }
+            else
+            {
+                res.Result = false;
+                res.Message = "Login failed";
+                return Ok(res);
+            }
+
+        }
+
+        [Route("Api/Fms/BeneficiaryRegistraion")]
+        [HttpPost]
+        public IHttpActionResult BeneficiaryRegistraion(BeneficiaryRegistraionModel BeneficiaryRegistraion)
+        {
+
+            LoginOperations BenLogin = new LoginOperations();
+
+            bool result = BenLogin.BeneficiaryRegistraion(BeneficiaryRegistraion);
+
+            if (result == true)
+            {
+                res.Result = true;
+                res.Message = "Beneficiary has been successfully registered";
+                return Ok(res);
+            }
+            else
+            {
+                res.Result = false;
+                res.Message = "Registration failed";
+                return Ok(res);
+            }
+        }
+
+        [Route("Api/Fms/EmployeeRegistraion")]
+        [HttpPost]
+        public IHttpActionResult EmployeeRegistraion(EmployeeRegistraionModel EmployeeRegistraion)
+        {
+
+            LoginOperations BenLogin = new LoginOperations();
+
+            bool result = BenLogin.EmployeeRegistraion(EmployeeRegistraion);
+
+            if (result == true)
+            {
+                res.Result = true;
+                res.Message = "Employee has been successfully registered";
+                return Ok(res);
+            }
+            else
+            {
+                res.Result = false;
+                res.Message = "Registration failed";
+                return Ok(res);
+            }
         }
     }
 }

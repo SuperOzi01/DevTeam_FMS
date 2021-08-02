@@ -8,7 +8,13 @@
 	@ManagerID INT
 
 AS
-	BEGIN
-		INSERT INTO dbo.CompanyEmployee(Username, Password, Email, Specialization_idSpecialization, Role_idRole, Location_idLocation, ManagerID)
-		VALUES (@username, @password, @Email, @SpecializationID, @RoleID, @LocationID, @ManagerID)
-	END
+    IF NOT EXISTS (Select Username from dbo.CompanyEmployee where dbo.CompanyEmployee.Username = @username)
+	    BEGIN
+			INSERT INTO dbo.CompanyEmployee(Username, Password, Email, Specialization_idSpecialization, Role_idRole, Location_idLocation, ManagerID)
+			VALUES (@username, @password, @Email, @SpecializationID, @RoleID, @LocationID, @ManagerID)
+			SELECT 1;
+	    END
+	ELSE
+		BEGIN
+			SELECT 0; 
+		END
