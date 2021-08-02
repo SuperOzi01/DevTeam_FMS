@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary.FMS.DataModels
 {
-    class BeneficiaryRegistraionModel
+    public class BeneficiaryRegistraionModel
     {
         public string Username { get; set; }
         public string Password { get; set; }

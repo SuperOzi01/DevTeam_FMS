@@ -19,6 +19,7 @@ namespace ClassLibrary.FMS.DataModels
         public string Password { get; set; }
         public int Building_BuildingID { get; set; }
         public int Role_RoleID { get; set; }
+        public string Email { get; set; }
     
         public virtual Building Building { get; set; }
         public virtual Role Role { get; set; }
