@@ -155,9 +155,25 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="SP_AddBuilding" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NoFloors" Type="int" Mode="In" />
+    <Parameter Name="Ownership" Type="int" Mode="In" />
+    <Parameter Name="ManagerID" Type="int" Mode="In" />
+    <Parameter Name="LocationID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_AddLocation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CityName" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="SP_AddSpecialization" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SpecializationName" Type="nchar" Mode="In" />
+  </Function>
   <Function Name="SP_Ben_LoginCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="username" Type="nchar" Mode="In" />
     <Parameter Name="password" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="SP_Employee_LoginCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="username" Type="nchar" Mode="In" />
+    <Parameter Name="pass" Type="nchar" Mode="In" />
   </Function>
   <Function Name="SP_InsertBeneficiary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Username" Type="nchar" Mode="In" />

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FMS_DatabaseEF.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="FMS_DatabaseEF.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__RefactorLog">
           <Key>
             <PropertyRef Name="OperationKey" />
@@ -160,9 +160,25 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="SP_AddBuilding" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NoFloors" Type="int" Mode="In" />
+          <Parameter Name="Ownership" Type="int" Mode="In" />
+          <Parameter Name="ManagerID" Type="int" Mode="In" />
+          <Parameter Name="LocationID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_AddLocation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CityName" Type="nchar" Mode="In" />
+        </Function>
+        <Function Name="SP_AddSpecialization" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SpecializationName" Type="nchar" Mode="In" />
+        </Function>
         <Function Name="SP_Ben_LoginCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="username" Type="nchar" Mode="In" />
           <Parameter Name="password" Type="nchar" Mode="In" />
+        </Function>
+        <Function Name="SP_Employee_LoginCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="nchar" Mode="In" />
+          <Parameter Name="pass" Type="nchar" Mode="In" />
         </Function>
         <Function Name="SP_InsertBeneficiary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Username" Type="nchar" Mode="In" />
@@ -219,8 +235,7 @@
             <End Role="CompanyEmployee1" EntitySet="CompanyEmployee" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FMS_DatabaseEF" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -453,6 +468,22 @@
             <Parameter Name="LocationID" Mode="In" Type="Int32" />
             <Parameter Name="ManagerID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="SP_AddBuilding" ReturnType="Collection(Int32)">
+            <Parameter Name="NoFloors" Mode="In" Type="Int32" />
+            <Parameter Name="Ownership" Mode="In" Type="Int32" />
+            <Parameter Name="ManagerID" Mode="In" Type="Int32" />
+            <Parameter Name="LocationID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_AddLocation" ReturnType="Collection(Int32)">
+            <Parameter Name="CityName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_AddSpecialization" ReturnType="Collection(Int32)">
+            <Parameter Name="SpecializationName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Employee_LoginCheck" ReturnType="Collection(Int32)">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="pass" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -529,6 +560,10 @@
           <FunctionImportMapping FunctionImportName="SP_Ben_LoginCheck" FunctionName="FMS_DatabaseEF.Store.SP_Ben_LoginCheck" />
           <FunctionImportMapping FunctionImportName="SP_InsertBeneficiary" FunctionName="FMS_DatabaseEF.Store.SP_InsertBeneficiary" />
           <FunctionImportMapping FunctionImportName="SP_InsertCompanyEmployee" FunctionName="FMS_DatabaseEF.Store.SP_InsertCompanyEmployee" />
+          <FunctionImportMapping FunctionImportName="SP_AddBuilding" FunctionName="FMS_DatabaseEF.Store.SP_AddBuilding" />
+          <FunctionImportMapping FunctionImportName="SP_AddLocation" FunctionName="FMS_DatabaseEF.Store.SP_AddLocation" />
+          <FunctionImportMapping FunctionImportName="SP_AddSpecialization" FunctionName="FMS_DatabaseEF.Store.SP_AddSpecialization" />
+          <FunctionImportMapping FunctionImportName="SP_Employee_LoginCheck" FunctionName="FMS_DatabaseEF.Store.SP_Employee_LoginCheck" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

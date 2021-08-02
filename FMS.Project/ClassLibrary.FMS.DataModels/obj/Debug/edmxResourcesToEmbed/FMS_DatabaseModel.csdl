@@ -229,5 +229,21 @@
       <Parameter Name="LocationID" Mode="In" Type="Int32" />
       <Parameter Name="ManagerID" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="SP_AddBuilding" ReturnType="Collection(Int32)">
+      <Parameter Name="NoFloors" Mode="In" Type="Int32" />
+      <Parameter Name="Ownership" Mode="In" Type="Int32" />
+      <Parameter Name="ManagerID" Mode="In" Type="Int32" />
+      <Parameter Name="LocationID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_AddLocation" ReturnType="Collection(Int32)">
+      <Parameter Name="CityName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_AddSpecialization" ReturnType="Collection(Int32)">
+      <Parameter Name="SpecializationName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Employee_LoginCheck" ReturnType="Collection(Int32)">
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="pass" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
 </Schema>
