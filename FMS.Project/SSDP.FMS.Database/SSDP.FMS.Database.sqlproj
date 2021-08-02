@@ -72,6 +72,7 @@
     <Build Include="StoredProcedures\SP_AddLocation.sql" />
     <Build Include="StoredProcedures\SP_AddSpecialization.sql" />
     <Build Include="StoredProcedures\SP_AddBuilding.sql" />
+    <Build Include="Tables\ServiceRequest.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SSDP.FMS.Database.refactorlog" />

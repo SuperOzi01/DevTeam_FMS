@@ -42,4 +42,18 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="RoleID" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="54216c98-0e05-4f33-a97e-427e17803dd2" ChangeDateTime="08/02/2021 13:44:10" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[ServiceRequest].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ServiceRequest]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ServiceRequestID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="da41b11e-f0c2-459f-8fd1-76ecd12852a5" ChangeDateTime="08/02/2021 13:49:16" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[ServiceRequest].[BeneficiaryID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ServiceRequest]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RequiestStatus" />
+  </Operation>
 </Operations>

@@ -34,6 +34,7 @@ namespace ClassLibrary.FMS.DataModels
         public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Specialization> Specializations { get; set; }
+        public virtual DbSet<ServiceRequest> ServiceRequests { get; set; }
     
         public virtual ObjectResult<Nullable<int>> SP_Ben_LoginCheck(string username, string password)
         {

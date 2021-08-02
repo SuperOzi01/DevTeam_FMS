@@ -11,6 +11,7 @@
     <EntitySetMapping Name="Beneficiaries">
       <EntityTypeMapping TypeName="FMS_DatabaseEF.Beneficiary">
         <MappingFragment StoreEntitySet="Beneficiary">
+          <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="BeneficiaryID" ColumnName="BeneficiaryID" />
           <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="Password" ColumnName="Password" />
@@ -33,6 +34,7 @@
     <EntitySetMapping Name="CompanyEmployees">
       <EntityTypeMapping TypeName="FMS_DatabaseEF.CompanyEmployee">
         <MappingFragment StoreEntitySet="CompanyEmployee">
+          <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
           <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="Password" ColumnName="Password" />

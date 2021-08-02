@@ -13,6 +13,7 @@
     <Property Name="BeneficiaryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Username" Type="nchar" MaxLength="40" Nullable="false" />
     <Property Name="Password" Type="nchar" MaxLength="40" Nullable="false" />
+    <Property Name="Email" Type="nchar" MaxLength="40" Nullable="false" />
     <Property Name="Building_BuildingID" Type="int" Nullable="false" />
     <Property Name="Role_RoleID" Type="int" Nullable="false" />
   </EntityType>
@@ -33,6 +34,7 @@
     <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Username" Type="nchar" MaxLength="40" Nullable="false" />
     <Property Name="Password" Type="nchar" MaxLength="40" Nullable="false" />
+    <Property Name="Email" Type="nchar" MaxLength="40" Nullable="false" />
     <Property Name="Specialization_idSpecialization" Type="int" Nullable="false" />
     <Property Name="ManagerID" Type="int" />
     <Property Name="Location_idLocation" Type="int" Nullable="false" />
@@ -178,12 +180,14 @@
   <Function Name="SP_InsertBeneficiary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Username" Type="nchar" Mode="In" />
     <Parameter Name="Password" Type="nchar" Mode="In" />
+    <Parameter Name="Email" Type="nchar" Mode="In" />
     <Parameter Name="BuildingID" Type="int" Mode="In" />
     <Parameter Name="RoleID" Type="int" Mode="In" />
   </Function>
   <Function Name="SP_InsertCompanyEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="username" Type="nchar" Mode="In" />
     <Parameter Name="password" Type="nchar" Mode="In" />
+    <Parameter Name="Email" Type="nchar" Mode="In" />
     <Parameter Name="SpecializationID" Type="int" Mode="In" />
     <Parameter Name="RoleID" Type="int" Mode="In" />
     <Parameter Name="LocationID" Type="int" Mode="In" />
