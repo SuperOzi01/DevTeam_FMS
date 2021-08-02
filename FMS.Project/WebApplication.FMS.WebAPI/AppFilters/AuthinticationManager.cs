@@ -12,7 +12,7 @@ namespace WebApplication.FMS.WebAPI.AppFilters
 {
     public class AuthinticationManager : AuthorizationFilterAttribute
     {
-        private const string secretKey = "This is the Secrit Key";
+        private const string secretKey = "This is the Secrit Key ERMN05OPLoDvbTTa/QkqLNMI7cPLguaRyHzyg7n5qNBVjQmtBhz4SzYh4NBVCXi3KJHlSXKP+oi2+bXr6CUYTR==";
 
 
         public string Authinticate(string username)

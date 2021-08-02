@@ -11,8 +11,10 @@ namespace ClassLibrary.FMS.DatabaseOperations
         FMS_DatabaseModel DatabaseEntity = new FMS_DatabaseModel();
         public bool Login(string username, string password)
         {
-            var result = DatabaseEntity.SP_Ben_LoginCheck(username, password);
-            if (result.FirstOrDefault() == 1)
+            // TODO: Call the Employees DB to check the user to make it the log in the same page {x}
+            var employeesLoginCheck = DatabaseEntity.SP_Employee_LoginCheck(username, password);
+            var beneficiaryLoginCheck = DatabaseEntity.SP_Ben_LoginCheck(username, password);
+            if (beneficiaryLoginCheck.FirstOrDefault() == 1 || employeesLoginCheck.FirstOrDefault() == 1)
                 return true; // Beneficiary is registred 
             else
                 return false; // Beneficiary not found 

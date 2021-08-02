@@ -219,8 +219,13 @@ C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.F
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\System.Memory.xml
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\System.Numerics.Vectors.xml
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\System.Runtime.CompilerServices.Unsafe.xml
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\obj\Debug\WebApplication.FMS.WebAPI.csproj.AssemblyReference.cache
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\obj\Debug\WebApplication.FMS.WebAPI.csproj.CoreCompileInputs.cache
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\EntityFramework.dll
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\ClassLibrary.FMS.DatabaseOperations.dll.config
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\ClassLibrary.FMS.DataModels.dll.config
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\EntityFramework.xml
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\obj\Debug\WebApplication.FMS.WebAPI.csproj.AssemblyReference.cache
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\EntityFramework.SqlServer.dll
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\EntityFramework.SqlServer.xml
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\WebApplication.FMS.WebAPI.dll.config
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\WebApplication.FMS.WebAPI.dll
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\WebApplication.FMS.WebAPI.pdb
@@ -276,6 +281,8 @@ C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAP
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\Antlr3.Runtime.dll
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\ClassLibrary.FMS.DatabaseOperations.dll
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\ClassLibrary.FMS.DataModels.dll
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\EntityFramework.dll
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\EntityFramework.SqlServer.dll
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\log4net.dll
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\Microsoft.Extensions.Configuration.Abstractions.dll
@@ -309,11 +316,12 @@ C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAP
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\System.Web.WebPages.dll
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\System.Web.WebPages.Razor.dll
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\WebGrease.dll
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\EntityFramework.dll
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\ClassLibrary.FMS.DatabaseOperations.pdb
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\ClassLibrary.FMS.DatabaseOperations.dll.config
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\ClassLibrary.FMS.DataModels.pdb
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\ClassLibrary.FMS.DataModels.dll.config
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\EntityFramework.xml
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\EntityFramework.SqlServer.xml
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\log4net.xml
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\Microsoft.Extensions.Configuration.xml
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\Microsoft.Extensions.Configuration.Abstractions.xml
@@ -344,14 +352,8 @@ C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAP
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\System.Web.WebPages.Razor.xml
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\Antlr3.Runtime.pdb
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\EntityFramework.xml
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\obj\Debug\WebApplication.FMS.WebAPI.csproj.AssemblyReference.cache
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\obj\Debug\WebApplication.FMS.WebAPI.csproj.CoreCompileInputs.cache
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\obj\Debug\WebApplication.FMS.WebAPI.csproj.CopyComplete
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\obj\Debug\WebApplication.FMS.WebAPI.dll
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\obj\Debug\WebApplication.FMS.WebAPI.pdb
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\EntityFramework.dll
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\ClassLibrary.FMS.DatabaseOperations.dll.config
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\ClassLibrary.FMS.DataModels.dll.config
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\EntityFramework.xml
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\obj\Debug\WebApplication.FMS.WebAPI.csproj.AssemblyReference.cache
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\EntityFramework.SqlServer.dll
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\EntityFramework.SqlServer.xml

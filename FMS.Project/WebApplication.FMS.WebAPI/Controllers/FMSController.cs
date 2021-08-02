@@ -5,7 +5,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using ClassLibrary.FMS.DataModels;
 using log4net;
 using WebApplication.FMS.WebAPI.AppFilters;
 using ClassLibrary.FMS.DatabaseOperations;
@@ -42,7 +41,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
         public IHttpActionResult Token(string username)
         {
             // This Function Shall recieve User Model Object .. and return the token as a result.. 
-            string token = new AuthinticationManager().Authinticate("Username");
+            string token = new AuthinticationManager().Authinticate(username);
             return Ok((token, HttpStatusCode.OK));
         }
 
@@ -62,10 +61,11 @@ namespace WebApplication.FMS.WebAPI.Controllers
         {
 
             LoginOperations BenLogin = new LoginOperations();
-            bool result = BenLogin.Login("BenTest", "1234");
+
+            bool result = BenLogin.Login("TestBen", "1234");
 
             if( result == true )
-            return Token("BenTest"); 
+            return Token("TestBen"); 
 
             return Ok((false , HttpStatusCode.Unauthorized));
         }

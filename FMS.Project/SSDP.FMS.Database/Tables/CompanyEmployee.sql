@@ -1,8 +1,9 @@
 ﻿CREATE TABLE [dbo].[CompanyEmployee]
 (
 	[EmployeeID] INT NOT NULL PRIMARY KEY IDENTITY, 
-    [Username] NCHAR(40) NOT NULL, 
+    [Username] NCHAR(40) NOT NULL Unique, 
     [Password] NCHAR(40) NOT NULL, 
+    [Email] NCHAR(40) NOT NULL Unique, 
     [Specialization_idSpecialization] INT NOT NULL, 
     [ManagerID] INT NULL, 
     [Location_idLocation] INT NOT NULL, 
