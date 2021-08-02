@@ -17,6 +17,7 @@
     <Property Name="Role_RoleID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Building" Relationship="Self.FK_Beneficiary_Building" FromRole="Beneficiary" ToRole="Building" />
     <NavigationProperty Name="Role" Relationship="Self.FK_Beneficiary_Role" FromRole="Beneficiary" ToRole="Role" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="Building">
     <Key>
@@ -48,6 +49,7 @@
     <NavigationProperty Name="Specialization" Relationship="Self.FK_CompanyEmployee_Specialization" FromRole="CompanyEmployee" ToRole="Specialization" />
     <NavigationProperty Name="CompanyEmployee1" Relationship="Self.FK_User_ManagerID" FromRole="CompanyEmployee" ToRole="CompanyEmployee1" />
     <NavigationProperty Name="CompanyEmployee2" Relationship="Self.FK_User_ManagerID" FromRole="CompanyEmployee1" ToRole="CompanyEmployee" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="Location">
     <Key>
@@ -218,12 +220,14 @@
     <FunctionImport Name="SP_InsertBeneficiary" ReturnType="Collection(Int32)">
       <Parameter Name="Username" Mode="In" Type="String" />
       <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
       <Parameter Name="BuildingID" Mode="In" Type="Int32" />
       <Parameter Name="RoleID" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="SP_InsertCompanyEmployee">
       <Parameter Name="username" Mode="In" Type="String" />
       <Parameter Name="password" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
       <Parameter Name="SpecializationID" Mode="In" Type="Int32" />
       <Parameter Name="RoleID" Mode="In" Type="Int32" />
       <Parameter Name="LocationID" Mode="In" Type="Int32" />

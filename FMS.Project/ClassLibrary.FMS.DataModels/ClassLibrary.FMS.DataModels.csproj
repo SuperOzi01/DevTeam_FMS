@@ -82,9 +82,13 @@
     <Compile Include="Location.cs">
       <DependentUpon>FMS_DatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="LoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResponseAPI.cs" />
     <Compile Include="Role.cs">
+      <DependentUpon>FMS_DatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceRequest.cs">
       <DependentUpon>FMS_DatabaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Specialization.cs">

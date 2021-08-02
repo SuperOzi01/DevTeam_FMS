@@ -20,6 +20,10 @@
         <AssociationConnector Association="FMS_DatabaseEF.FK_CompanyEmployee_RoleID" ManuallyRouted="false" />
         <AssociationConnector Association="FMS_DatabaseEF.FK_CompanyEmployee_Specialization" ManuallyRouted="false" />
         <AssociationConnector Association="FMS_DatabaseEF.FK_User_ManagerID" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="FMS_DatabaseEF.ServiceRequest" Width="1.5" PointX="8.25" PointY="7.375" />
+        <AssociationConnector Association="FMS_DatabaseEF.FK_ServiceRequest_Building" />
+        <AssociationConnector Association="FMS_DatabaseEF.FK_ServiceRequest_CompanyEmployee" />
+        <AssociationConnector Association="FMS_DatabaseEF.FK_ServiceRequest_Specialization" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

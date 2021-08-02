@@ -8,6 +8,7 @@ using System.Web.Http;
 using log4net;
 using WebApplication.FMS.WebAPI.AppFilters;
 using ClassLibrary.FMS.DatabaseOperations;
+using ClassLibrary.FMS.DataModels;
 
 namespace WebApplication.FMS.WebAPI.Controllers
 {
@@ -15,6 +16,8 @@ namespace WebApplication.FMS.WebAPI.Controllers
     {
         static readonly ILog ErrorLog = LogManager.GetLogger("ErrorLog");
         static readonly ILog InfoLog = LogManager.GetLogger("InfoLog");
+        ResponseAPI responseObject = new ResponseAPI();
+
         [Route("Api/Fms/ping")] 
         [HttpGet]
         [ExceptionFilter]
@@ -57,15 +60,13 @@ namespace WebApplication.FMS.WebAPI.Controllers
 
         [Route("Api/Fms/LoginBeneficiry")]
         [HttpPost]
-        public IHttpActionResult Login()
+        public IHttpActionResult Login(LoginModel loginModel)
         {
-
             LoginOperations BenLogin = new LoginOperations();
-
-            bool result = BenLogin.Login("TestBen", "1234");
+            bool result = BenLogin.Login(loginModel);
 
             if( result == true )
-            return Token("TestBen"); 
+            return Token(loginModel.Username); 
 
             return Ok((false , HttpStatusCode.Unauthorized));
         }

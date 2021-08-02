@@ -34,6 +34,7 @@ namespace ClassLibrary.FMS.DataModels
         public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Specialization> Specializations { get; set; }
+        public virtual DbSet<ServiceRequest> ServiceRequests { get; set; }
     
         public virtual ObjectResult<Nullable<int>> SP_Ben_LoginCheck(string username, string password)
         {
@@ -48,7 +49,7 @@ namespace ClassLibrary.FMS.DataModels
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_Ben_LoginCheck", usernameParameter, passwordParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> SP_InsertBeneficiary(string username, string password, Nullable<int> buildingID, Nullable<int> roleID)
+        public virtual ObjectResult<Nullable<int>> SP_InsertBeneficiary(string username, string password, string email, Nullable<int> buildingID, Nullable<int> roleID)
         {
             var usernameParameter = username != null ?
                 new ObjectParameter("Username", username) :
@@ -58,6 +59,10 @@ namespace ClassLibrary.FMS.DataModels
                 new ObjectParameter("Password", password) :
                 new ObjectParameter("Password", typeof(string));
     
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
             var buildingIDParameter = buildingID.HasValue ?
                 new ObjectParameter("BuildingID", buildingID) :
                 new ObjectParameter("BuildingID", typeof(int));
@@ -66,10 +71,10 @@ namespace ClassLibrary.FMS.DataModels
                 new ObjectParameter("RoleID", roleID) :
                 new ObjectParameter("RoleID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_InsertBeneficiary", usernameParameter, passwordParameter, buildingIDParameter, roleIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_InsertBeneficiary", usernameParameter, passwordParameter, emailParameter, buildingIDParameter, roleIDParameter);
         }
     
-        public virtual int SP_InsertCompanyEmployee(string username, string password, Nullable<int> specializationID, Nullable<int> roleID, Nullable<int> locationID, Nullable<int> managerID)
+        public virtual int SP_InsertCompanyEmployee(string username, string password, string email, Nullable<int> specializationID, Nullable<int> roleID, Nullable<int> locationID, Nullable<int> managerID)
         {
             var usernameParameter = username != null ?
                 new ObjectParameter("username", username) :
@@ -78,6 +83,10 @@ namespace ClassLibrary.FMS.DataModels
             var passwordParameter = password != null ?
                 new ObjectParameter("password", password) :
                 new ObjectParameter("password", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
     
             var specializationIDParameter = specializationID.HasValue ?
                 new ObjectParameter("SpecializationID", specializationID) :
@@ -95,7 +104,7 @@ namespace ClassLibrary.FMS.DataModels
                 new ObjectParameter("ManagerID", managerID) :
                 new ObjectParameter("ManagerID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_InsertCompanyEmployee", usernameParameter, passwordParameter, specializationIDParameter, roleIDParameter, locationIDParameter, managerIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_InsertCompanyEmployee", usernameParameter, passwordParameter, emailParameter, specializationIDParameter, roleIDParameter, locationIDParameter, managerIDParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> SP_AddBuilding(Nullable<int> noFloors, Nullable<int> ownership, Nullable<int> managerID, Nullable<int> locationID)
