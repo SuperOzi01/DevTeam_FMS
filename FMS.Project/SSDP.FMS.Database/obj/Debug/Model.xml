@@ -133,25 +133,6 @@
 					<Element Type="SqlIndexedColumnSpecification">
 						<Relationship Name="Column">
 							<Entry>
-								<References Name="[dbo].[Building].[BuildingID]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[Building]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="8" />
-		</Element>
-		<Element Type="SqlPrimaryKeyConstraint">
-			<Relationship Name="ColumnSpecifications">
-				<Entry>
-					<Element Type="SqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
 								<References Name="[dbo].[Specialization].[SpecializationID]" />
 							</Entry>
 						</Relationship>
@@ -163,7 +144,7 @@
 					<References Name="[dbo].[Specialization]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="9" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="8" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -182,7 +163,7 @@
 					<References Name="[dbo].[Location]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="10" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="9" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -201,7 +182,7 @@
 					<References Name="[dbo].[CompanyEmployee]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="11" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="10" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -220,7 +201,7 @@
 					<References Name="[dbo].[ServiceRequest]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="12" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="11" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -239,7 +220,7 @@
 					<References Name="[dbo].[Beneficiary]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="13" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="12" />
 		</Element>
 		<Element Type="SqlUniqueConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -258,7 +239,7 @@
 					<References Name="[dbo].[CompanyEmployee]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="14" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="13" />
 		</Element>
 		<Element Type="SqlUniqueConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -277,7 +258,7 @@
 					<References Name="[dbo].[CompanyEmployee]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="15" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="14" />
 		</Element>
 		<Element Type="SqlUniqueConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -296,7 +277,7 @@
 					<References Name="[dbo].[Beneficiary]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="16" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="15" />
 		</Element>
 		<Element Type="SqlUniqueConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -315,7 +296,7 @@
 					<References Name="[dbo].[Beneficiary]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="17" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="16" />
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[Beneficiary]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -335,7 +316,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="13" />
+						<AttachedAnnotation Disambiguator="12" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -353,7 +334,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="16" />
+						<AttachedAnnotation Disambiguator="15" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -388,7 +369,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="17" />
+						<AttachedAnnotation Disambiguator="16" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -446,8 +427,8 @@
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="17" />
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="18" />
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="19" />
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[Building]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -455,7 +436,6 @@
 				<Entry>
 					<Element Type="SqlSimpleColumn" Name="[dbo].[Building].[BuildingID]">
 						<Property Name="IsNullable" Value="False" />
-						<Property Name="IsIdentity" Value="True" />
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
@@ -467,7 +447,6 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="8" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -540,6 +519,7 @@
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="19" />
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="20" />
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="21" />
 		</Element>
@@ -561,7 +541,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="11" />
+						<AttachedAnnotation Disambiguator="10" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -579,7 +559,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="14" />
+						<AttachedAnnotation Disambiguator="13" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -614,7 +594,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="15" />
+						<AttachedAnnotation Disambiguator="14" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -712,7 +692,7 @@
 					<References Name="[dbo].[Building]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="18" />
+			<AttachedAnnotation Disambiguator="17" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_Beneficiary_Role]">
 			<Relationship Name="Columns">
@@ -735,7 +715,7 @@
 					<References Name="[dbo].[Role]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="19" />
+			<AttachedAnnotation Disambiguator="18" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_Building_CompanyEmployee]">
 			<Relationship Name="Columns">
@@ -758,7 +738,7 @@
 					<References Name="[dbo].[CompanyEmployee]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="20" />
+			<AttachedAnnotation Disambiguator="19" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_Building_Location]">
 			<Relationship Name="Columns">
@@ -781,7 +761,7 @@
 					<References Name="[dbo].[Location]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="21" />
+			<AttachedAnnotation Disambiguator="20" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_CompanyEmployee_Location]">
 			<Relationship Name="Columns">
@@ -985,7 +965,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="10" />
+						<AttachedAnnotation Disambiguator="9" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -1011,6 +991,25 @@
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint" Name="[dbo].[PK_Building]">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[Building].[BuildingID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[Building]" />
+				</Entry>
+			</Relationship>
+			<AttachedAnnotation Disambiguator="21" />
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[Role]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -1075,7 +1074,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="12" />
+						<AttachedAnnotation Disambiguator="11" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -1298,13 +1297,17 @@
 		<Element Type="SqlProcedure" Name="[dbo].[SP_AddBuilding]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[
-	INSERT INTO dbo.Building(NoFloors, Ownership, BuildingManagerID, LocationID) VALUES (@NoFloors, @Ownership, @ManagerID, @LocationID)
+	INSERT INTO dbo.Building( BuildingID,NoFloors, Ownership, BuildingManagerID, LocationID)
+	VALUES (@BuildingID, @NoFloors, @Ownership, @ManagerID, @LocationID)
 	Select 1;]]></Value>
 			</Property>
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="BodyDependencies">
 				<Entry>
 					<References Name="[dbo].[Building]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Building].[BuildingID]" />
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[Building].[NoFloors]" />
@@ -1317,6 +1320,9 @@
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[Building].[LocationID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SP_AddBuilding].[@BuildingID]" />
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[SP_AddBuilding].[@NoFloors]" />
@@ -1332,6 +1338,21 @@
 				</Entry>
 			</Relationship>
 			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_AddBuilding].[@BuildingID]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
 				<Entry>
 					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_AddBuilding].[@NoFloors]">
 						<Relationship Name="Type">
@@ -1399,10 +1420,10 @@
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="263" />
+				<Property Name="Length" Value="309" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_AddBuilding]&#xD;&#xA;&#x9;@NoFloors INT,&#xD;&#xA;&#x9;@Ownership INT, &#xD;&#xA;&#x9;@ManagerID INT, &#xD;&#xA;&#x9;@LocationID INT&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_AddBuilding]&#xD;&#xA;&#x9;@BuildingID INT,&#xD;&#xA;&#x9;@NoFloors INT,&#xD;&#xA;&#x9;@Ownership INT, &#xD;&#xA;&#x9;@ManagerID INT, &#xD;&#xA;&#x9;@LocationID INT&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[SP_AddLocation]">
@@ -2485,7 +2506,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="9" />
+						<AttachedAnnotation Disambiguator="8" />
 					</Element>
 				</Entry>
 				<Entry>
