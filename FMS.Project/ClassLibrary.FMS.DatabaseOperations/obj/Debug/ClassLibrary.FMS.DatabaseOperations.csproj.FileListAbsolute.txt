@@ -10,18 +10,6 @@ C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.Databas
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Debug\ClassLibrary.FMS.DatabaseOperations.csproj.CoreCompileInputs.cache
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Debug\ClassLibrary.FMS.DatabaseOperations.dll
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Debug\ClassLibrary.FMS.DatabaseOperations.pdb
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\bin\Debug\ClassLibrary.FMS.DatabaseOperations.dll.config
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\bin\Debug\ClassLibrary.FMS.DatabaseOperations.dll
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\bin\Debug\ClassLibrary.FMS.DatabaseOperations.pdb
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\bin\Debug\ClassLibrary.FMS.DataModels.dll
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\bin\Debug\ClassLibrary.FMS.DataModels.pdb
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\bin\Debug\ClassLibrary.FMS.DataModels.dll.config
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\bin\Debug\EntityFramework.xml
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Debug\ClassLibrary.FMS.DatabaseOperations.csproj.AssemblyReference.cache
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Debug\ClassLibrary.FMS.DatabaseOperations.csproj.CoreCompileInputs.cache
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Debug\ClassLibrary.FMS.DatabaseOperations.csproj.CopyComplete
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Debug\ClassLibrary.FMS.DatabaseOperations.dll
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Debug\ClassLibrary.FMS.DatabaseOperations.pdb
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\bin\Debug\ClassLibrary.FMS.DatabaseOperations.dll.config
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\bin\Debug\ClassLibrary.FMS.DatabaseOperations.dll
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\bin\Debug\ClassLibrary.FMS.DatabaseOperations.pdb
@@ -33,3 +21,14 @@ C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Debug\ClassLibrary.FMS.DatabaseOperations.csproj.CopyComplete
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Debug\ClassLibrary.FMS.DatabaseOperations.dll
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Debug\ClassLibrary.FMS.DatabaseOperations.pdb
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\bin\Debug\ClassLibrary.FMS.DatabaseOperations.dll.config
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\bin\Debug\ClassLibrary.FMS.DatabaseOperations.dll
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\bin\Debug\ClassLibrary.FMS.DatabaseOperations.pdb
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\bin\Debug\ClassLibrary.FMS.DataModels.dll
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\bin\Debug\ClassLibrary.FMS.DataModels.pdb
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\bin\Debug\ClassLibrary.FMS.DataModels.dll.config
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Debug\ClassLibrary.FMS.DatabaseOperations.csproj.AssemblyReference.cache
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Debug\ClassLibrary.FMS.DatabaseOperations.csproj.CoreCompileInputs.cache
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Debug\ClassLibrary.FMS.DatabaseOperations.csproj.CopyComplete
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Debug\ClassLibrary.FMS.DatabaseOperations.dll
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Debug\ClassLibrary.FMS.DatabaseOperations.pdb

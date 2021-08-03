@@ -159,58 +159,6 @@ namespace ClassLibrary.FMS.DataModels
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_Employee_LoginCheck", usernameParameter, passParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> SP_AddBuilding1(Nullable<int> noFloors, Nullable<int> ownership, Nullable<int> managerID, Nullable<int> locationID)
-        {
-            var noFloorsParameter = noFloors.HasValue ?
-                new ObjectParameter("NoFloors", noFloors) :
-                new ObjectParameter("NoFloors", typeof(int));
-    
-            var ownershipParameter = ownership.HasValue ?
-                new ObjectParameter("Ownership", ownership) :
-                new ObjectParameter("Ownership", typeof(int));
-    
-            var managerIDParameter = managerID.HasValue ?
-                new ObjectParameter("ManagerID", managerID) :
-                new ObjectParameter("ManagerID", typeof(int));
-    
-            var locationIDParameter = locationID.HasValue ?
-                new ObjectParameter("LocationID", locationID) :
-                new ObjectParameter("LocationID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_AddBuilding1", noFloorsParameter, ownershipParameter, managerIDParameter, locationIDParameter);
-        }
-    
-        public virtual ObjectResult<Nullable<int>> SP_AddLocation1(string cityName)
-        {
-            var cityNameParameter = cityName != null ?
-                new ObjectParameter("CityName", cityName) :
-                new ObjectParameter("CityName", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_AddLocation1", cityNameParameter);
-        }
-    
-        public virtual ObjectResult<Nullable<int>> SP_AddSpecialization1(string specializationName)
-        {
-            var specializationNameParameter = specializationName != null ?
-                new ObjectParameter("SpecializationName", specializationName) :
-                new ObjectParameter("SpecializationName", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_AddSpecialization1", specializationNameParameter);
-        }
-    
-        public virtual ObjectResult<Nullable<int>> SP_Employee_LoginCheck1(string username, string pass)
-        {
-            var usernameParameter = username != null ?
-                new ObjectParameter("username", username) :
-                new ObjectParameter("username", typeof(string));
-    
-            var passParameter = pass != null ?
-                new ObjectParameter("pass", pass) :
-                new ObjectParameter("pass", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_Employee_LoginCheck1", usernameParameter, passParameter);
-        }
-    
         public virtual int SP_EmployeeLoginCheck(string username, string pass)
         {
             var usernameParameter = username != null ?
@@ -222,6 +170,26 @@ namespace ClassLibrary.FMS.DataModels
                 new ObjectParameter("pass", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_EmployeeLoginCheck", usernameParameter, passParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetAllBuildings_Result> SP_GetAllBuildings()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetAllBuildings_Result>("SP_GetAllBuildings");
+        }
+    
+        public virtual ObjectResult<SP_GetAllLocations_Result> SP_GetAllLocations()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetAllLocations_Result>("SP_GetAllLocations");
+        }
+    
+        public virtual ObjectResult<SP_GetAllRoles_Result> SP_GetAllRoles()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetAllRoles_Result>("SP_GetAllRoles");
+        }
+    
+        public virtual ObjectResult<SP_GetAllSpecializations_Result> SP_GetAllSpecializations()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetAllSpecializations_Result>("SP_GetAllSpecializations");
         }
     }
 }
