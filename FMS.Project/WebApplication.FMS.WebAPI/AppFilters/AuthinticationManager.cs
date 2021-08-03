@@ -94,7 +94,8 @@ namespace WebApplication.FMS.WebAPI.AppFilters
                 ValidateIssuer = false,   // Because there is no issuer in the generated token
                 //ValidIssuer = "Sample",
                 //ValidAudience = "Sample",
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey)) // The same key as the one that generate the token
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey)), // The same key as the one that generate the token
+                RoleClaimType = ClaimTypes.Role
             };
         }
 

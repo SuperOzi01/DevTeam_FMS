@@ -27,6 +27,37 @@ namespace WebApplication.FMS.MVC.Controllers
         {
             return View();
         }
+        public ActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Login(LoginModel login)
+        {
+            var tokenBased = string.Empty;
+            if (ModelState.IsValid)
+            {
+                HttpClient c = new HttpClient();
+                c.BaseAddress = new Uri(BaseUrl);
+                var response = c.PostAsJsonAsync("UserLogin", login);
+                response.Wait();
+                var result = response.Result;
+                var resultMessage = result.Content.ReadAsAsync<ResponseAPI>().Result;
+                if (resultMessage.Result == true)
+                {
+                    tokenBased = resultMessage.Message;
+                    HttpContext.Response.Cookies.Append("Username", login.Username);
+                    HttpContext.Response.Cookies.Append("TokenNumber", tokenBased);
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ViewBag.message = "Wrong Username or Password";
+                    return View();
+                }
+            }
+            return Content(tokenBased);
+        }
         public IActionResult BeneficiaryRegistraion()
         {
             ViewBag.BuildingList = GetBuilding();
