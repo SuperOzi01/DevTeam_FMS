@@ -12,7 +12,7 @@ namespace WebApplication.FMS.MVC.Controllers
     public class LoginController : Controller
     {
         string BaseUrl = Startup.GetBaseUrl();
-        
+
         public IActionResult Index()
         {
             return View();
@@ -20,7 +20,6 @@ namespace WebApplication.FMS.MVC.Controllers
 
         public IActionResult Signin() 
         {
-            Response.Cookies.Append("SecurityToken","Test");
             return View();
         }
 
@@ -33,7 +32,6 @@ namespace WebApplication.FMS.MVC.Controllers
             ViewBag.BuildingList = GetBuilding();
             return View();
         }
-
         [HttpPost]
         public IActionResult BeneficiaryRegistraion(BeneficiaryRegistraionModel BeneficiaryRegistraion)
         {
@@ -44,7 +42,6 @@ namespace WebApplication.FMS.MVC.Controllers
                 var response = httpClient.PostAsJsonAsync("Api/Fms/BeneficiaryRegistraion", BeneficiaryRegistraion).Result;
                 if (response.IsSuccessStatusCode)
                 {
-                    
                     return RedirectToAction("Index", "Home");
                 }
             }
@@ -145,5 +142,6 @@ namespace WebApplication.FMS.MVC.Controllers
             }
             return RolenName;
         }
+
     }
 }
