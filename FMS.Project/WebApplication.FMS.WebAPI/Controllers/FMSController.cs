@@ -17,6 +17,8 @@ namespace WebApplication.FMS.WebAPI.Controllers
         static readonly ILog ErrorLog = LogManager.GetLogger("ErrorLog");
         static readonly ILog InfoLog = LogManager.GetLogger("InfoLog");
         ResponseAPI res = new ResponseAPI();
+        LoginOperations BenLogin = new LoginOperations();
+
         [Route("Api/Fms/ping")] 
         [HttpGet]
         [ExceptionFilter]
@@ -62,8 +64,6 @@ namespace WebApplication.FMS.WebAPI.Controllers
         public IHttpActionResult Login(LoginModel login)
         {
 
-            LoginOperations BenLogin = new LoginOperations();
-
             bool result = BenLogin.Login(login);
 
             if (result == true)
@@ -83,9 +83,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
         [HttpPost]
         public IHttpActionResult BeneficiaryRegistraion(BeneficiaryRegistraionModel BeneficiaryRegistraion)
         {
-
-            LoginOperations BenLogin = new LoginOperations();
-
+            
             bool result = BenLogin.BeneficiaryRegistraion(BeneficiaryRegistraion);
 
             if (result == true)
@@ -106,8 +104,6 @@ namespace WebApplication.FMS.WebAPI.Controllers
         [HttpPost]
         public IHttpActionResult EmployeeRegistraion(EmployeeRegistraionModel EmployeeRegistraion)
         {
-
-            LoginOperations BenLogin = new LoginOperations();
 
             bool result = BenLogin.EmployeeRegistraion(EmployeeRegistraion);
 
