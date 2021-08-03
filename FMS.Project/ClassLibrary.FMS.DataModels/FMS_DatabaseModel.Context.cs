@@ -334,5 +334,14 @@ namespace ClassLibrary.FMS.DataModels
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_EmployeeResetPassAndActivateAccount", passwordParameter, employeeIDParameter);
         }
+    
+        public virtual ObjectResult<string> SP_EmployeeRoleName(Nullable<int> userID)
+        {
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("SP_EmployeeRoleName", userIDParameter);
+        }
     }
 }
