@@ -12,7 +12,7 @@ namespace WebApplication.FMS.MVC.Controllers
     public class LoginController : Controller
     {
         string BaseUrl = Startup.GetBaseUrl();
-        HttpClient httpClient = new HttpClient();
+        
         public IActionResult Index()
         {
             return View();
@@ -20,6 +20,7 @@ namespace WebApplication.FMS.MVC.Controllers
 
         public IActionResult Signin() 
         {
+            Response.Cookies.Append("SecurityToken","Test");
             return View();
         }
 
@@ -32,15 +33,18 @@ namespace WebApplication.FMS.MVC.Controllers
             ViewBag.BuildingList = GetBuilding();
             return View();
         }
+
         [HttpPost]
         public IActionResult BeneficiaryRegistraion(BeneficiaryRegistraionModel BeneficiaryRegistraion)
         {
             if (ModelState.IsValid)
             {
+                HttpClient httpClient = new HttpClient();
                 httpClient.BaseAddress = new Uri(BaseUrl);
                 var response = httpClient.PostAsJsonAsync("Api/Fms/BeneficiaryRegistraion", BeneficiaryRegistraion).Result;
                 if (response.IsSuccessStatusCode)
                 {
+                    
                     return RedirectToAction("Index", "Home");
                 }
             }
@@ -61,6 +65,7 @@ namespace WebApplication.FMS.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
+                HttpClient httpClient = new HttpClient();
                 httpClient.BaseAddress = new Uri(BaseUrl);
                 var response = httpClient.PostAsJsonAsync("Api/Fms/EmployeeRegistraion", EmployeeRegistraion).Result;
                 if (response.IsSuccessStatusCode)
@@ -77,6 +82,7 @@ namespace WebApplication.FMS.MVC.Controllers
         private IEnumerable<SelectListItem> GetBuilding()
         {
             SelectList ListOfBuilding = null;
+            HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(BaseUrl);
             var response = httpClient.GetAsync("Api/Fms/BeneficiaryRegistraion").Result;
             if (response.IsSuccessStatusCode)
@@ -90,6 +96,7 @@ namespace WebApplication.FMS.MVC.Controllers
         private IEnumerable<SelectListItem> GetSpecializationList()
         {
             SelectList SpecializationName = null;
+            HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(BaseUrl);
             var response = httpClient.GetAsync("Api/Fms/GetSpecializationList").Result;
             if (response.IsSuccessStatusCode)
@@ -102,6 +109,7 @@ namespace WebApplication.FMS.MVC.Controllers
         private IEnumerable<SelectListItem> GetManagerList()
         {
             SelectList ManagerName = null;
+            HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(BaseUrl);
             var response = httpClient.GetAsync("Api/Fms/GetManagerList").Result;
             if (response.IsSuccessStatusCode)
@@ -114,6 +122,7 @@ namespace WebApplication.FMS.MVC.Controllers
         private IEnumerable<SelectListItem> GetLocationList()
         {
             SelectList LocationName = null;
+            HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(BaseUrl);
             var response = httpClient.GetAsync("Api/Fms/GetLocationList").Result;
             if (response.IsSuccessStatusCode)
@@ -126,6 +135,7 @@ namespace WebApplication.FMS.MVC.Controllers
         private IEnumerable<SelectListItem> GetRoleList()
         {
             SelectList RolenName = null;
+            HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(BaseUrl);
             var response = httpClient.GetAsync("Api/Fms/GetRoleList").Result;
             if (response.IsSuccessStatusCode)

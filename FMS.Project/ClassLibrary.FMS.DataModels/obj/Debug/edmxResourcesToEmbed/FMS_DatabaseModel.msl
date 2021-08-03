@@ -11,6 +11,7 @@
     <EntitySetMapping Name="Beneficiaries">
       <EntityTypeMapping TypeName="FMS_DatabaseEF.Beneficiary">
         <MappingFragment StoreEntitySet="Beneficiary">
+          <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="BeneficiaryID" ColumnName="BeneficiaryID" />
           <ScalarProperty Name="Username" ColumnName="Username" />
@@ -77,5 +78,89 @@
     <FunctionImportMapping FunctionImportName="SP_AddSpecialization1" FunctionName="FMS_DatabaseEF.Store.SP_AddSpecialization" />
     <FunctionImportMapping FunctionImportName="SP_Employee_LoginCheck1" FunctionName="FMS_DatabaseEF.Store.SP_Employee_LoginCheck" />
     <FunctionImportMapping FunctionImportName="SP_EmployeeLoginCheck" FunctionName="FMS_DatabaseEF.Store.SP_Employee_LoginCheck" />
+    <EntitySetMapping Name="ServiceRequests">
+      <EntityTypeMapping TypeName="FMS_DatabaseEF.ServiceRequest">
+        <MappingFragment StoreEntitySet="ServiceRequest">
+          <ScalarProperty Name="RequestCreatorID" ColumnName="RequestCreatorID" />
+          <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
+          <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
+          <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
+          <ScalarProperty Name="RequestHandlingStatus" ColumnName="RequestHandlingStatus" />
+          <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
+          <ScalarProperty Name="AssignedWorkerID" ColumnName="AssignedWorkerID" />
+          <ScalarProperty Name="SpecializationID" ColumnName="SpecializationID" />
+          <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+          <ScalarProperty Name="ServiceRequestID" ColumnName="ServiceRequestID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_GetAllBuildings" FunctionName="FMS_DatabaseEF.Store.SP_GetAllBuildings">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FMS_DatabaseEF.SP_GetAllBuildings_Result">
+          <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+          <ScalarProperty Name="NoFloors" ColumnName="NoFloors" />
+          <ScalarProperty Name="Ownership" ColumnName="Ownership" />
+          <ScalarProperty Name="BuildingManagerID" ColumnName="BuildingManagerID" />
+          <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GetAllLocations" FunctionName="FMS_DatabaseEF.Store.SP_GetAllLocations">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FMS_DatabaseEF.SP_GetAllLocations_Result">
+          <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+          <ScalarProperty Name="City" ColumnName="City" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GetAllRoles" FunctionName="FMS_DatabaseEF.Store.SP_GetAllRoles">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FMS_DatabaseEF.SP_GetAllRoles_Result">
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GetAllSpecializations" FunctionName="FMS_DatabaseEF.Store.SP_GetAllSpecializations">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FMS_DatabaseEF.SP_GetAllSpecializations_Result">
+          <ScalarProperty Name="SpecializationID" ColumnName="SpecializationID" />
+          <ScalarProperty Name="SpecializationName" ColumnName="SpecializationName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="View_BuildingAndLocationInfo">
+      <EntityTypeMapping TypeName="FMS_DatabaseEF.View_BuildingAndLocationInfo">
+        <MappingFragment StoreEntitySet="View_BuildingAndLocationInfo">
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="BuildingManagerID" ColumnName="BuildingManagerID" />
+          <ScalarProperty Name="Ownership" ColumnName="Ownership" />
+          <ScalarProperty Name="NoFloors" ColumnName="NoFloors" />
+          <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_ActivateBeneficiaryAccount" FunctionName="FMS_DatabaseEF.Store.SP_ActivateBeneficiaryAccount" />
+    <FunctionImportMapping FunctionImportName="SP_AssignWorkerToRequest" FunctionName="FMS_DatabaseEF.Store.SP_AssignWorkerToRequest" />
+    <FunctionImportMapping FunctionImportName="SP_GetAllServiceRequests" FunctionName="FMS_DatabaseEF.Store.SP_GetAllServiceRequests">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FMS_DatabaseEF.SP_GetAllServiceRequests_Result">
+          <ScalarProperty Name="ServiceRequestID" ColumnName="ServiceRequestID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="SpecializationName" ColumnName="SpecializationName" />
+          <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
+          <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="NoFloors" ColumnName="NoFloors" />
+          <ScalarProperty Name="BuildingManagerID" ColumnName="BuildingManagerID" />
+          <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
+          <ScalarProperty Name="RequestHandlingStatus" ColumnName="RequestHandlingStatus" />
+          <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
+          <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_HandleServiceRequestByWorker" FunctionName="FMS_DatabaseEF.Store.SP_HandleServiceRequestByWorker" />
+    <FunctionImportMapping FunctionImportName="SP_InsertNewServiceRequiest" FunctionName="FMS_DatabaseEF.Store.SP_InsertNewServiceRequiest" />
   </EntityContainerMapping>
 </Mapping>

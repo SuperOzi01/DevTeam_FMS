@@ -42,6 +42,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -112,6 +113,7 @@
     <Compile Include="View_BuildingAndLocationInfo.cs">
       <DependentUpon>FMS_DatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="WebCookies.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />

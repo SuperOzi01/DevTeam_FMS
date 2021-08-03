@@ -18,6 +18,8 @@
     <NavigationProperty Name="Building" Relationship="Self.FK_Beneficiary_Building" FromRole="Beneficiary" ToRole="Building" />
     <NavigationProperty Name="Role" Relationship="Self.FK_Beneficiary_Role" FromRole="Beneficiary" ToRole="Role" />
     <Property Name="Email" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
+    <Property Name="AccountStatus" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ServiceRequests" Relationship="FMS_DatabaseEF.FK_ServiceRequest_Beneficiary" FromRole="Beneficiary" ToRole="ServiceRequest" />
   </EntityType>
   <EntityType Name="Building">
     <Key>
@@ -31,6 +33,7 @@
     <NavigationProperty Name="Beneficiaries" Relationship="Self.FK_Beneficiary_Building" FromRole="Building" ToRole="Beneficiary" />
     <NavigationProperty Name="CompanyEmployee" Relationship="Self.FK_Building_CompanyEmployee" FromRole="Building" ToRole="CompanyEmployee" />
     <NavigationProperty Name="Location" Relationship="Self.FK_Building_Location" FromRole="Building" ToRole="Location" />
+    <NavigationProperty Name="ServiceRequests" Relationship="FMS_DatabaseEF.FK_ServiceRequest_Building" FromRole="Building" ToRole="ServiceRequest" />
   </EntityType>
   <EntityType Name="CompanyEmployee">
     <Key>
@@ -50,6 +53,7 @@
     <NavigationProperty Name="CompanyEmployee1" Relationship="Self.FK_User_ManagerID" FromRole="CompanyEmployee" ToRole="CompanyEmployee1" />
     <NavigationProperty Name="CompanyEmployee2" Relationship="Self.FK_User_ManagerID" FromRole="CompanyEmployee1" ToRole="CompanyEmployee" />
     <Property Name="Email" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="ServiceRequests" Relationship="FMS_DatabaseEF.FK_ServiceRequest_CompanyEmployee" FromRole="CompanyEmployee" ToRole="ServiceRequest" />
   </EntityType>
   <EntityType Name="Location">
     <Key>
@@ -76,6 +80,7 @@
     <Property Name="SpecializationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="SpecializationName" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
     <NavigationProperty Name="CompanyEmployees" Relationship="Self.FK_CompanyEmployee_Specialization" FromRole="Specialization" ToRole="CompanyEmployee" />
+    <NavigationProperty Name="ServiceRequests" Relationship="FMS_DatabaseEF.FK_ServiceRequest_Specialization" FromRole="Specialization" ToRole="ServiceRequest" />
   </EntityType>
   <Association Name="FK_Beneficiary_Building">
     <End Role="Building" Type="Self.Building" Multiplicity="1" />
@@ -250,6 +255,7 @@
       <Parameter Name="pass" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="SP_AddBuilding1" ReturnType="Collection(Int32)">
+      <Parameter Name="BuildingID" Mode="In" Type="Int32" />
       <Parameter Name="NoFloors" Mode="In" Type="Int32" />
       <Parameter Name="Ownership" Mode="In" Type="Int32" />
       <Parameter Name="ManagerID" Mode="In" Type="Int32" />
@@ -269,5 +275,158 @@
       <Parameter Name="username" Mode="In" Type="String" />
       <Parameter Name="pass" Mode="In" Type="String" />
     </FunctionImport>
+    <EntitySet Name="ServiceRequests" EntityType="FMS_DatabaseEF.ServiceRequest" />
+    <AssociationSet Name="FK_ServiceRequest_Building" Association="FMS_DatabaseEF.FK_ServiceRequest_Building">
+      <End Role="Building" EntitySet="Buildings" />
+      <End Role="ServiceRequest" EntitySet="ServiceRequests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ServiceRequest_CompanyEmployee" Association="FMS_DatabaseEF.FK_ServiceRequest_CompanyEmployee">
+      <End Role="CompanyEmployee" EntitySet="CompanyEmployees" />
+      <End Role="ServiceRequest" EntitySet="ServiceRequests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ServiceRequest_Specialization" Association="FMS_DatabaseEF.FK_ServiceRequest_Specialization">
+      <End Role="Specialization" EntitySet="Specializations" />
+      <End Role="ServiceRequest" EntitySet="ServiceRequests" />
+    </AssociationSet>
+    <FunctionImport Name="SP_GetAllBuildings" ReturnType="Collection(FMS_DatabaseEF.SP_GetAllBuildings_Result)" />
+    <FunctionImport Name="SP_GetAllLocations" ReturnType="Collection(FMS_DatabaseEF.SP_GetAllLocations_Result)" />
+    <FunctionImport Name="SP_GetAllRoles" ReturnType="Collection(FMS_DatabaseEF.SP_GetAllRoles_Result)" />
+    <FunctionImport Name="SP_GetAllSpecializations" ReturnType="Collection(FMS_DatabaseEF.SP_GetAllSpecializations_Result)" />
+    <EntitySet Name="View_BuildingAndLocationInfo" EntityType="FMS_DatabaseEF.View_BuildingAndLocationInfo" />
+    <AssociationSet Name="FK_ServiceRequest_Beneficiary" Association="FMS_DatabaseEF.FK_ServiceRequest_Beneficiary">
+      <End Role="Beneficiary" EntitySet="Beneficiaries" />
+      <End Role="ServiceRequest" EntitySet="ServiceRequests" />
+    </AssociationSet>
+    <FunctionImport Name="SP_ActivateBeneficiaryAccount" ReturnType="Collection(Int32)">
+      <Parameter Name="BeneficiaryID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_AssignWorkerToRequest">
+      <Parameter Name="WorkerID" Mode="In" Type="Int32" />
+      <Parameter Name="RequestID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_GetAllServiceRequests" ReturnType="Collection(FMS_DatabaseEF.SP_GetAllServiceRequests_Result)" />
+    <FunctionImport Name="SP_HandleServiceRequestByWorker">
+      <Parameter Name="BuildingNo" Mode="In" Type="Int32" />
+      <Parameter Name="RequestID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_InsertNewServiceRequiest" ReturnType="Collection(Int32)">
+      <Parameter Name="BuildinNo" Mode="In" Type="Int32" />
+      <Parameter Name="Specialization" Mode="In" Type="Int32" />
+      <Parameter Name="Describtion" Mode="In" Type="String" />
+      <Parameter Name="CreatorID" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
+  <EntityType Name="ServiceRequest">
+    <Key>
+      <PropertyRef Name="ServiceRequestID" />
+    </Key>
+    <Property Name="ServiceRequestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BuildingID" Type="Int32" Nullable="false" />
+    <Property Name="SpecializationID" Type="Int32" Nullable="false" />
+    <Property Name="AssignedWorkerID" Type="Int32" />
+    <Property Name="RequiestStatus" Type="Boolean" Nullable="false" />
+    <Property Name="RequestHandlingStatus" Type="Boolean" Nullable="false" />
+    <Property Name="RequestIssueDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="RequestCloseDate" Type="DateTime" Precision="0" />
+    <Property Name="ServiceDescribtion" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Building" Relationship="FMS_DatabaseEF.FK_ServiceRequest_Building" FromRole="ServiceRequest" ToRole="Building" />
+    <NavigationProperty Name="CompanyEmployee" Relationship="FMS_DatabaseEF.FK_ServiceRequest_CompanyEmployee" FromRole="ServiceRequest" ToRole="CompanyEmployee" />
+    <NavigationProperty Name="Specialization" Relationship="FMS_DatabaseEF.FK_ServiceRequest_Specialization" FromRole="ServiceRequest" ToRole="Specialization" />
+    <Property Name="RequestCreatorID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Beneficiary" Relationship="FMS_DatabaseEF.FK_ServiceRequest_Beneficiary" FromRole="ServiceRequest" ToRole="Beneficiary" />
+  </EntityType>
+  <Association Name="FK_ServiceRequest_Building">
+    <End Type="FMS_DatabaseEF.Building" Role="Building" Multiplicity="1" />
+    <End Type="FMS_DatabaseEF.ServiceRequest" Role="ServiceRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Building">
+        <PropertyRef Name="BuildingID" />
+      </Principal>
+      <Dependent Role="ServiceRequest">
+        <PropertyRef Name="BuildingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ServiceRequest_CompanyEmployee">
+    <End Type="FMS_DatabaseEF.CompanyEmployee" Role="CompanyEmployee" Multiplicity="0..1" />
+    <End Type="FMS_DatabaseEF.ServiceRequest" Role="ServiceRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CompanyEmployee">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="ServiceRequest">
+        <PropertyRef Name="AssignedWorkerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ServiceRequest_Specialization">
+    <End Type="FMS_DatabaseEF.Specialization" Role="Specialization" Multiplicity="1" />
+    <End Type="FMS_DatabaseEF.ServiceRequest" Role="ServiceRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Specialization">
+        <PropertyRef Name="SpecializationID" />
+      </Principal>
+      <Dependent Role="ServiceRequest">
+        <PropertyRef Name="SpecializationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="SP_GetAllBuildings_Result">
+    <Property Type="Int32" Name="BuildingID" Nullable="false" />
+    <Property Type="Int32" Name="NoFloors" Nullable="false" />
+    <Property Type="Int32" Name="Ownership" Nullable="false" />
+    <Property Type="Int32" Name="BuildingManagerID" Nullable="false" />
+    <Property Type="Int32" Name="LocationID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_GetAllLocations_Result">
+    <Property Type="Int32" Name="LocationID" Nullable="false" />
+    <Property Type="String" Name="City" Nullable="false" MaxLength="40" />
+  </ComplexType>
+  <ComplexType Name="SP_GetAllRoles_Result">
+    <Property Type="Int32" Name="RoleID" Nullable="false" />
+    <Property Type="String" Name="RoleName" Nullable="false" MaxLength="40" />
+  </ComplexType>
+  <ComplexType Name="SP_GetAllSpecializations_Result">
+    <Property Type="Int32" Name="SpecializationID" Nullable="false" />
+    <Property Type="String" Name="SpecializationName" Nullable="false" MaxLength="40" />
+  </ComplexType>
+  <EntityType Name="View_BuildingAndLocationInfo">
+    <Key>
+      <PropertyRef Name="BuildingID" />
+      <PropertyRef Name="NoFloors" />
+      <PropertyRef Name="Ownership" />
+      <PropertyRef Name="BuildingManagerID" />
+    </Key>
+    <Property Name="BuildingID" Type="Int32" Nullable="false" />
+    <Property Name="NoFloors" Type="Int32" Nullable="false" />
+    <Property Name="Ownership" Type="Int32" Nullable="false" />
+    <Property Name="BuildingManagerID" Type="Int32" Nullable="false" />
+    <Property Name="City" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_ServiceRequest_Beneficiary">
+    <End Type="FMS_DatabaseEF.Beneficiary" Role="Beneficiary" Multiplicity="1" />
+    <End Type="FMS_DatabaseEF.ServiceRequest" Role="ServiceRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Beneficiary">
+        <PropertyRef Name="BeneficiaryID" />
+      </Principal>
+      <Dependent Role="ServiceRequest">
+        <PropertyRef Name="RequestCreatorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="SP_GetAllServiceRequests_Result">
+    <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
+    <Property Type="String" Name="Username" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="SpecializationName" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="BuildingID" Nullable="true" />
+    <Property Type="String" Name="City" Nullable="true" MaxLength="40" />
+    <Property Type="Int32" Name="NoFloors" Nullable="true" />
+    <Property Type="Int32" Name="BuildingManagerID" Nullable="true" />
+    <Property Type="Boolean" Name="RequiestStatus" Nullable="false" />
+    <Property Type="Boolean" Name="RequestHandlingStatus" Nullable="false" />
+    <Property Type="DateTime" Name="RequestIssueDate" Nullable="false" />
+    <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
+  </ComplexType>
 </Schema>
