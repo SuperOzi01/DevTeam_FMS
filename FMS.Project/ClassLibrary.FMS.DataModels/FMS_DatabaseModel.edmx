@@ -27,7 +27,7 @@
           <Key>
             <PropertyRef Name="BuildingID" />
           </Key>
-          <Property Name="BuildingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BuildingID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="NoFloors" Type="int" Nullable="false" />
           <Property Name="Ownership" Type="int" Nullable="false" />
           <Property Name="BuildingManagerID" Type="int" Nullable="false" />
@@ -245,6 +245,7 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           <Parameter Name="BeneficiaryID" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_AddBuilding" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="BuildingID" Type="int" Mode="In" />
           <Parameter Name="NoFloors" Type="int" Mode="In" />
           <Parameter Name="Ownership" Type="int" Mode="In" />
           <Parameter Name="ManagerID" Type="int" Mode="In" />
@@ -625,6 +626,7 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
             <Parameter Name="pass" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_AddBuilding1" ReturnType="Collection(Int32)">
+            <Parameter Name="BuildingID" Mode="In" Type="Int32" />
             <Parameter Name="NoFloors" Mode="In" Type="Int32" />
             <Parameter Name="Ownership" Mode="In" Type="Int32" />
             <Parameter Name="ManagerID" Mode="In" Type="Int32" />

@@ -108,6 +108,22 @@
 			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="6" />
 		</Element>
+		<Element Type="SqlDefaultConstraint">
+			<Property Name="DefaultExpressionScript">
+				<Value><![CDATA[0]]></Value>
+			</Property>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForColumn">
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee].[AccountStatus]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="7" />
+		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
 				<Entry>
@@ -123,25 +139,6 @@
 			<Relationship Name="DefiningTable">
 				<Entry>
 					<References Name="[dbo].[Role]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="7" />
-		</Element>
-		<Element Type="SqlPrimaryKeyConstraint">
-			<Relationship Name="ColumnSpecifications">
-				<Entry>
-					<Element Type="SqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
-								<References Name="[dbo].[Building].[BuildingID]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[Building]" />
 				</Entry>
 			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="8" />
@@ -190,25 +187,6 @@
 					<Element Type="SqlIndexedColumnSpecification">
 						<Relationship Name="Column">
 							<Entry>
-								<References Name="[dbo].[CompanyEmployee].[EmployeeID]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[CompanyEmployee]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="11" />
-		</Element>
-		<Element Type="SqlPrimaryKeyConstraint">
-			<Relationship Name="ColumnSpecifications">
-				<Entry>
-					<Element Type="SqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
 								<References Name="[dbo].[ServiceRequest].[ServiceRequestID]" />
 							</Entry>
 						</Relationship>
@@ -220,7 +198,7 @@
 					<References Name="[dbo].[ServiceRequest]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="12" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="11" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -239,45 +217,26 @@
 					<References Name="[dbo].[Beneficiary]" />
 				</Entry>
 			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="12" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[CompanyEmployee].[EmployeeID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee]" />
+				</Entry>
+			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="13" />
-		</Element>
-		<Element Type="SqlUniqueConstraint">
-			<Relationship Name="ColumnSpecifications">
-				<Entry>
-					<Element Type="SqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
-								<References Name="[dbo].[CompanyEmployee].[Username]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[CompanyEmployee]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="14" />
-		</Element>
-		<Element Type="SqlUniqueConstraint">
-			<Relationship Name="ColumnSpecifications">
-				<Entry>
-					<Element Type="SqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
-								<References Name="[dbo].[CompanyEmployee].[Email]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[CompanyEmployee]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="15" />
 		</Element>
 		<Element Type="SqlUniqueConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -296,7 +255,7 @@
 					<References Name="[dbo].[Beneficiary]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="16" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="14" />
 		</Element>
 		<Element Type="SqlUniqueConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -313,6 +272,44 @@
 			<Relationship Name="DefiningTable">
 				<Entry>
 					<References Name="[dbo].[Beneficiary]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="15" />
+		</Element>
+		<Element Type="SqlUniqueConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[CompanyEmployee].[Username]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="16" />
+		</Element>
+		<Element Type="SqlUniqueConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[CompanyEmployee].[Email]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee]" />
 				</Entry>
 			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="17" />
@@ -335,7 +332,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="13" />
+						<AttachedAnnotation Disambiguator="12" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -353,11 +350,45 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="16" />
+						<AttachedAnnotation Disambiguator="14" />
 					</Element>
 				</Entry>
 				<Entry>
 					<Element Type="SqlSimpleColumn" Name="[dbo].[Beneficiary].[Password]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="40" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Beneficiary].[FirstName]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="40" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Beneficiary].[LastName]">
 						<Property Name="IsNullable" Value="False" />
 						<Relationship Name="TypeSpecifier">
 							<Entry>
@@ -388,7 +419,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="17" />
+						<AttachedAnnotation Disambiguator="15" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -455,7 +486,6 @@
 				<Entry>
 					<Element Type="SqlSimpleColumn" Name="[dbo].[Building].[BuildingID]">
 						<Property Name="IsNullable" Value="False" />
-						<Property Name="IsIdentity" Value="True" />
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
@@ -467,7 +497,6 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="8" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -542,6 +571,7 @@
 			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="20" />
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="21" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="22" />
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[CompanyEmployee]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -561,7 +591,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="11" />
+						<AttachedAnnotation Disambiguator="13" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -579,11 +609,45 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="14" />
+						<AttachedAnnotation Disambiguator="16" />
 					</Element>
 				</Entry>
 				<Entry>
 					<Element Type="SqlSimpleColumn" Name="[dbo].[CompanyEmployee].[Password]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="40" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[CompanyEmployee].[FirstName]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="40" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[CompanyEmployee].[LastName]">
 						<Property Name="IsNullable" Value="False" />
 						<Relationship Name="TypeSpecifier">
 							<Entry>
@@ -614,7 +678,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="15" />
+						<AttachedAnnotation Disambiguator="17" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -680,16 +744,33 @@
 						</Relationship>
 					</Element>
 				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[CompanyEmployee].[AccountStatus]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bit]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+						<AttachedAnnotation Disambiguator="7" />
+					</Element>
+				</Entry>
 			</Relationship>
 			<Relationship Name="Schema">
 				<Entry>
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="22" />
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="23" />
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="24" />
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="25" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="26" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_Beneficiary_Building]">
 			<Relationship Name="Columns">
@@ -804,7 +885,7 @@
 					<References Name="[dbo].[Location]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="24" />
+			<AttachedAnnotation Disambiguator="25" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_CompanyEmployee_RoleID]">
 			<Relationship Name="Columns">
@@ -827,7 +908,7 @@
 					<References Name="[dbo].[Role]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="23" />
+			<AttachedAnnotation Disambiguator="24" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_CompanyEmployee_Specialization]">
 			<Relationship Name="Columns">
@@ -850,7 +931,7 @@
 					<References Name="[dbo].[Specialization]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="25" />
+			<AttachedAnnotation Disambiguator="26" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_ServiceRequest_Beneficiary]">
 			<Relationship Name="Columns">
@@ -873,7 +954,7 @@
 					<References Name="[dbo].[Beneficiary]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="26" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="27" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_ServiceRequest_Building]">
 			<Relationship Name="Columns">
@@ -896,7 +977,7 @@
 					<References Name="[dbo].[Building]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="27" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="28" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_ServiceRequest_CompanyEmployee]">
 			<Relationship Name="Columns">
@@ -919,7 +1000,7 @@
 					<References Name="[dbo].[CompanyEmployee]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="28" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="29" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_ServiceRequest_Specialization]">
 			<Relationship Name="Columns">
@@ -942,7 +1023,7 @@
 					<References Name="[dbo].[Specialization]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="29" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="30" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_User_ManagerID]">
 			<Relationship Name="Columns">
@@ -965,7 +1046,7 @@
 					<References Name="[dbo].[CompanyEmployee]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="22" />
+			<AttachedAnnotation Disambiguator="23" />
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[Location]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -1012,6 +1093,25 @@
 				</Entry>
 			</Relationship>
 		</Element>
+		<Element Type="SqlPrimaryKeyConstraint" Name="[dbo].[PK_Building]">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[Building].[BuildingID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[Building]" />
+				</Entry>
+			</Relationship>
+			<AttachedAnnotation Disambiguator="22" />
+		</Element>
 		<Element Type="SqlTable" Name="[dbo].[Role]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="Columns">
@@ -1030,7 +1130,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="7" />
+						<AttachedAnnotation Disambiguator="8" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -1075,7 +1175,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="12" />
+						<AttachedAnnotation Disambiguator="11" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -1230,10 +1330,10 @@
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="27" />
-			<AttachedAnnotation Disambiguator="29" />
 			<AttachedAnnotation Disambiguator="28" />
-			<AttachedAnnotation Disambiguator="26" />
+			<AttachedAnnotation Disambiguator="30" />
+			<AttachedAnnotation Disambiguator="29" />
+			<AttachedAnnotation Disambiguator="27" />
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[SP_ActivateBeneficiaryAccount]">
 			<Property Name="BodyScript">
@@ -1298,13 +1398,17 @@
 		<Element Type="SqlProcedure" Name="[dbo].[SP_AddBuilding]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[
-	INSERT INTO dbo.Building(NoFloors, Ownership, BuildingManagerID, LocationID) VALUES (@NoFloors, @Ownership, @ManagerID, @LocationID)
+	INSERT INTO dbo.Building( BuildingID,NoFloors, Ownership, BuildingManagerID, LocationID)
+	VALUES (@BuildingID, @NoFloors, @Ownership, @ManagerID, @LocationID)
 	Select 1;]]></Value>
 			</Property>
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="BodyDependencies">
 				<Entry>
 					<References Name="[dbo].[Building]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Building].[BuildingID]" />
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[Building].[NoFloors]" />
@@ -1317,6 +1421,9 @@
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[Building].[LocationID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SP_AddBuilding].[@BuildingID]" />
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[SP_AddBuilding].[@NoFloors]" />
@@ -1332,6 +1439,21 @@
 				</Entry>
 			</Relationship>
 			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_AddBuilding].[@BuildingID]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
 				<Entry>
 					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_AddBuilding].[@NoFloors]">
 						<Relationship Name="Type">
@@ -1399,10 +1521,10 @@
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="263" />
+				<Property Name="Length" Value="309" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_AddBuilding]&#xD;&#xA;&#x9;@NoFloors INT,&#xD;&#xA;&#x9;@Ownership INT, &#xD;&#xA;&#x9;@ManagerID INT, &#xD;&#xA;&#x9;@LocationID INT&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_AddBuilding]&#xD;&#xA;&#x9;@BuildingID INT,&#xD;&#xA;&#x9;@NoFloors INT,&#xD;&#xA;&#x9;@Ownership INT, &#xD;&#xA;&#x9;@ManagerID INT, &#xD;&#xA;&#x9;@LocationID INT&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[SP_AddLocation]">
@@ -1744,6 +1866,78 @@
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_Employee_LoginCheck]&#xD;&#xA;&#x9;@username nchar (40),&#xD;&#xA;&#x9;@pass nchar (40)&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[SP_EmployeeResetPassAndActivateAccount]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	UPDATE dbo.CompanyEmployee SET Password = @password, AccountStatus = 1 
+	WHERE dbo.CompanyEmployee.EmployeeID = @EmployeeID]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee].[Password]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SP_EmployeeResetPassAndActivateAccount].[@password]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee].[AccountStatus]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee].[EmployeeID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SP_EmployeeResetPassAndActivateAccount].[@EmployeeID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_EmployeeResetPassAndActivateAccount].[@password]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="40" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_EmployeeResetPassAndActivateAccount].[@EmployeeID]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="235" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_EmployeeResetPassAndActivateAccount]&#xD;&#xA;&#x9;@password nchar(40),&#xD;&#xA;&#x9;@EmployeeID INT&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[SP_GetAllBuildings]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[
@@ -2006,8 +2200,8 @@
 				<Value><![CDATA[
 	IF NOT EXISTS (Select Username from dbo.Beneficiary where dbo.Beneficiary.Username = @Username)
 		Begin
-			INSERT INTO dbo.Beneficiary(Username, Password, Email, Building_BuildingID, Role_RoleID)
-			VALUES (@Username, @Password, @Email,@BuildingID, @RoleID)
+			INSERT INTO dbo.Beneficiary(Username, Password, FirstName,LastName ,Email, Building_BuildingID, Role_RoleID)
+			VALUES (@Username, @Password,@FirstName,@LastName ,@Email,@BuildingID, @RoleID)
 			SELECT 1;
 		END
 	ELSE
@@ -2036,6 +2230,12 @@
 					<References Name="[dbo].[Beneficiary].[Password]" />
 				</Entry>
 				<Entry>
+					<References Name="[dbo].[Beneficiary].[FirstName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Beneficiary].[LastName]" />
+				</Entry>
+				<Entry>
 					<References Name="[dbo].[Beneficiary].[Email]" />
 				</Entry>
 				<Entry>
@@ -2046,6 +2246,12 @@
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[SP_InsertBeneficiary].[@Password]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SP_InsertBeneficiary].[@FirstName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SP_InsertBeneficiary].[@LastName]" />
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[SP_InsertBeneficiary].[@Email]" />
@@ -2076,6 +2282,38 @@
 				</Entry>
 				<Entry>
 					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_InsertBeneficiary].[@Password]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="40" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_InsertBeneficiary].[@FirstName]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="40" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_InsertBeneficiary].[@LastName]">
 						<Relationship Name="Type">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
@@ -2143,10 +2381,10 @@
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="475" />
+				<Property Name="Length" Value="567" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_InsertBeneficiary]&#xD;&#xA;&#x9;@Username nchar (40),&#xD;&#xA;&#x9;@Password nchar (40), &#xD;&#xA;&#x9;@Email nchar (40), &#xD;&#xA;&#x9;@BuildingID INT,&#xD;&#xA;&#x9;@RoleID INT&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_InsertBeneficiary]&#xD;&#xA;&#x9;@Username nchar (40),&#xD;&#xA;&#x9;@Password nchar (40), &#xD;&#xA;&#x9;@FirstName nchar (40), &#xD;&#xA;&#x9;@LastName nchar (40), &#xD;&#xA;&#x9;@Email nchar (40), &#xD;&#xA;&#x9;@BuildingID INT,&#xD;&#xA;&#x9;@RoleID INT&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[SP_InsertCompanyEmployee]">
@@ -2154,8 +2392,8 @@
 				<Value><![CDATA[
     IF NOT EXISTS (Select Username from dbo.CompanyEmployee where dbo.CompanyEmployee.Username = @username)
 	    BEGIN
-			INSERT INTO dbo.CompanyEmployee(Username, Password, Email, Specialization_idSpecialization, Role_idRole, Location_idLocation, ManagerID)
-			VALUES (@username, @password, @Email, @SpecializationID, @RoleID, @LocationID, @ManagerID)
+			INSERT INTO dbo.CompanyEmployee(Username, Password,FirstName,LastName ,Email, Specialization_idSpecialization, Role_idRole, Location_idLocation, ManagerID)
+			VALUES (@username, @password,@FirstName,@LastName ,@Email, @SpecializationID, @RoleID, @LocationID, @ManagerID)
 			SELECT 1;
 	    END
 	ELSE
@@ -2184,6 +2422,12 @@
 					<References Name="[dbo].[CompanyEmployee].[Password]" />
 				</Entry>
 				<Entry>
+					<References Name="[dbo].[CompanyEmployee].[FirstName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee].[LastName]" />
+				</Entry>
+				<Entry>
 					<References Name="[dbo].[CompanyEmployee].[Email]" />
 				</Entry>
 				<Entry>
@@ -2200,6 +2444,12 @@
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[SP_InsertCompanyEmployee].[@password]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SP_InsertCompanyEmployee].[@FirstName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SP_InsertCompanyEmployee].[@LastName]" />
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[SP_InsertCompanyEmployee].[@Email]" />
@@ -2236,6 +2486,38 @@
 				</Entry>
 				<Entry>
 					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_InsertCompanyEmployee].[@password]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="40" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_InsertCompanyEmployee].[@FirstName]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="40" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_InsertCompanyEmployee].[@LastName]">
 						<Relationship Name="Type">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
@@ -2333,10 +2615,10 @@
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="619" />
+				<Property Name="Length" Value="706" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_InsertCompanyEmployee]&#xD;&#xA;&#x9;@username nchar(40),&#xD;&#xA;&#x9;@password nchar(40),&#xD;&#xA;&#x9;@Email nchar(40),&#xD;&#xA;&#x9;@SpecializationID INT, &#xD;&#xA;&#x9;@RoleID INT, &#xD;&#xA;&#x9;@LocationID INT, &#xD;&#xA;&#x9;@ManagerID INT&#xD;&#xA;&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_InsertCompanyEmployee]&#xD;&#xA;&#x9;@username nchar(40),&#xD;&#xA;&#x9;@password nchar(40),&#xD;&#xA;&#x9;@FirstName nchar(40),&#xD;&#xA;&#x9;@LastName nchar(40),&#xD;&#xA;&#x9;@Email nchar(40),&#xD;&#xA;&#x9;@SpecializationID INT, &#xD;&#xA;&#x9;@RoleID INT, &#xD;&#xA;&#x9;@LocationID INT, &#xD;&#xA;&#x9;@ManagerID INT&#xD;&#xA;&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[SP_InsertNewServiceRequiest]">
