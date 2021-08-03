@@ -24,10 +24,9 @@
         <AssociationConnector Association="FMS_DatabaseEF.FK_ServiceRequest_Building" />
         <AssociationConnector Association="FMS_DatabaseEF.FK_ServiceRequest_CompanyEmployee" />
         <AssociationConnector Association="FMS_DatabaseEF.FK_ServiceRequest_Specialization" />
-        <AssociationConnector Association="FMS_DatabaseEF.FK_ServiceRequest_Building" />
-        <AssociationConnector Association="FMS_DatabaseEF.FK_ServiceRequest_CompanyEmployee" />
-        <AssociationConnector Association="FMS_DatabaseEF.FK_ServiceRequest_Specialization" />
-      </Diagram>
+        <EntityTypeShape EntityType="FMS_DatabaseEF.View_BuildingAndLocationInfo" Width="1.5" PointX="0.75" PointY="7.75" />
+        <AssociationConnector Association="FMS_DatabaseEF.FK_ServiceRequest_Beneficiary" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

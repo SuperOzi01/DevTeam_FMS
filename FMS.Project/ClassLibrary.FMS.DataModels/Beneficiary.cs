@@ -14,14 +14,23 @@ namespace ClassLibrary.FMS.DataModels
     
     public partial class Beneficiary
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Beneficiary()
+        {
+            this.ServiceRequests = new HashSet<ServiceRequest>();
+        }
+    
         public int BeneficiaryID { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public int Building_BuildingID { get; set; }
         public int Role_RoleID { get; set; }
         public string Email { get; set; }
+        public bool AccountStatus { get; set; }
     
         public virtual Building Building { get; set; }
         public virtual Role Role { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ServiceRequest> ServiceRequests { get; set; }
     }
 }
