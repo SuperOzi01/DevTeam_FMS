@@ -15,8 +15,8 @@ SET NUMERIC_ROUNDABORT OFF;
 GO
 :setvar DatabaseName "FMS_Database"
 :setvar DefaultFilePrefix "FMS_Database"
-:setvar DefaultDataPath "C:\Users\zshar\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\"
-:setvar DefaultLogPath "C:\Users\zshar\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\"
+:setvar DefaultDataPath "C:\Users\Rana Alhamdan\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\"
+:setvar DefaultLogPath "C:\Users\Rana Alhamdan\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\"
 
 GO
 :on error exit
@@ -40,106 +40,67 @@ USE [$(DatabaseName)];
 
 
 GO
-PRINT N'Dropping Foreign Key [dbo].[FK_Building_Location]...';
+PRINT N'Rename refactoring operation with key 54216c98-0e05-4f33-a97e-427e17803dd2 is skipped, element [dbo].[ServiceRequest].[Id] (SqlSimpleColumn) will not be renamed to ServiceRequestID';
 
 
 GO
-ALTER TABLE [dbo].[Building] DROP CONSTRAINT [FK_Building_Location];
+PRINT N'Rename refactoring operation with key da41b11e-f0c2-459f-8fd1-76ecd12852a5 is skipped, element [dbo].[ServiceRequest].[BeneficiaryID] (SqlSimpleColumn) will not be renamed to RequiestStatus';
 
 
 GO
-PRINT N'Dropping Foreign Key [dbo].[FK_Building_CompanyEmployee]...';
+PRINT N'Altering Table [dbo].[Beneficiary]...';
 
 
 GO
-ALTER TABLE [dbo].[Building] DROP CONSTRAINT [FK_Building_CompanyEmployee];
+ALTER TABLE [dbo].[Beneficiary]
+    ADD [AccountStatus] BIT DEFAULT 0 NOT NULL;
 
 
 GO
-PRINT N'Dropping Foreign Key [dbo].[FK_Beneficiary_Building]...';
+PRINT N'Creating Table [dbo].[ServiceRequest]...';
 
 
 GO
-ALTER TABLE [dbo].[Beneficiary] DROP CONSTRAINT [FK_Beneficiary_Building];
-
-
-GO
-PRINT N'Dropping Foreign Key [dbo].[FK_ServiceRequest_Building]...';
-
-
-GO
-ALTER TABLE [dbo].[ServiceRequest] DROP CONSTRAINT [FK_ServiceRequest_Building];
-
-
-GO
-PRINT N'Starting rebuilding table [dbo].[Building]...';
-
-
-GO
-BEGIN TRANSACTION;
-
-SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
-
-SET XACT_ABORT ON;
-
-CREATE TABLE [dbo].[tmp_ms_xx_Building] (
-    [BuildingID]        INT NOT NULL,
-    [NoFloors]          INT NOT NULL,
-    [Ownership]         INT NOT NULL,
-    [BuildingManagerID] INT NOT NULL,
-    [LocationID]        INT NOT NULL,
-    CONSTRAINT [tmp_ms_xx_constraint_PK_Building1] PRIMARY KEY CLUSTERED ([BuildingID] ASC)
+CREATE TABLE [dbo].[ServiceRequest] (
+    [ServiceRequestID]      INT         IDENTITY (1, 1) NOT NULL,
+    [BuildingID]            INT         NOT NULL,
+    [SpecializationID]      INT         NOT NULL,
+    [AssignedWorkerID]      INT         NULL,
+    [RequiestStatus]        BIT         NOT NULL,
+    [RequestHandlingStatus] BIT         NOT NULL,
+    [RequestIssueDate]      DATE        NOT NULL,
+    [RequestCloseDate]      DATE        NULL,
+    [ServiceDescribtion]    NCHAR (100) NOT NULL,
+    [RequestCreatorID]      INT         NOT NULL,
+    PRIMARY KEY CLUSTERED ([ServiceRequestID] ASC)
 );
 
-IF EXISTS (SELECT TOP 1 1 
-           FROM   [dbo].[Building])
-    BEGIN
-        INSERT INTO [dbo].[tmp_ms_xx_Building] ([BuildingID], [NoFloors], [Ownership], [BuildingManagerID], [LocationID])
-        SELECT   [BuildingID],
-                 [NoFloors],
-                 [Ownership],
-                 [BuildingManagerID],
-                 [LocationID]
-        FROM     [dbo].[Building]
-        ORDER BY [BuildingID] ASC;
-    END
 
-DROP TABLE [dbo].[Building];
-
-EXECUTE sp_rename N'[dbo].[tmp_ms_xx_Building]', N'Building';
-
-EXECUTE sp_rename N'[dbo].[tmp_ms_xx_constraint_PK_Building1]', N'PK_Building', N'OBJECT';
-
-COMMIT TRANSACTION;
-
-SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+GO
+PRINT N'Creating Default Constraint unnamed constraint on [dbo].[ServiceRequest]...';
 
 
 GO
-PRINT N'Creating Foreign Key [dbo].[FK_Building_Location]...';
+ALTER TABLE [dbo].[ServiceRequest]
+    ADD DEFAULT 1 FOR [RequiestStatus];
 
 
 GO
-ALTER TABLE [dbo].[Building] WITH NOCHECK
-    ADD CONSTRAINT [FK_Building_Location] FOREIGN KEY ([LocationID]) REFERENCES [dbo].[Location] ([LocationID]);
+PRINT N'Creating Default Constraint unnamed constraint on [dbo].[ServiceRequest]...';
 
 
 GO
-PRINT N'Creating Foreign Key [dbo].[FK_Building_CompanyEmployee]...';
+ALTER TABLE [dbo].[ServiceRequest]
+    ADD DEFAULT 0 FOR [RequestHandlingStatus];
 
 
 GO
-ALTER TABLE [dbo].[Building] WITH NOCHECK
-    ADD CONSTRAINT [FK_Building_CompanyEmployee] FOREIGN KEY ([BuildingManagerID]) REFERENCES [dbo].[CompanyEmployee] ([EmployeeID]);
+PRINT N'Creating Default Constraint unnamed constraint on [dbo].[ServiceRequest]...';
 
 
 GO
-PRINT N'Creating Foreign Key [dbo].[FK_Beneficiary_Building]...';
-
-
-GO
-ALTER TABLE [dbo].[Beneficiary] WITH NOCHECK
-    ADD CONSTRAINT [FK_Beneficiary_Building] FOREIGN KEY ([Building_BuildingID]) REFERENCES [dbo].[Building] ([BuildingID]);
+ALTER TABLE [dbo].[ServiceRequest]
+    ADD DEFAULT GETDATE() FOR [RequestIssueDate];
 
 
 GO
@@ -152,43 +113,191 @@ ALTER TABLE [dbo].[ServiceRequest] WITH NOCHECK
 
 
 GO
-PRINT N'Refreshing View [dbo].[View_BuildingAndLocationInfo]...';
+PRINT N'Creating Foreign Key [dbo].[FK_ServiceRequest_Specialization]...';
 
 
 GO
-EXECUTE sp_refreshsqlmodule N'[dbo].[View_BuildingAndLocationInfo]';
+ALTER TABLE [dbo].[ServiceRequest] WITH NOCHECK
+    ADD CONSTRAINT [FK_ServiceRequest_Specialization] FOREIGN KEY ([SpecializationID]) REFERENCES [dbo].[Specialization] ([SpecializationID]);
 
 
 GO
-PRINT N'Altering Procedure [dbo].[SP_AddBuilding]...';
+PRINT N'Creating Foreign Key [dbo].[FK_ServiceRequest_CompanyEmployee]...';
 
 
 GO
-ALTER PROCEDURE [dbo].[SP_AddBuilding]
-	@BuildingID INT,
-	@NoFloors INT,
-	@Ownership INT, 
-	@ManagerID INT, 
-	@LocationID INT
+ALTER TABLE [dbo].[ServiceRequest] WITH NOCHECK
+    ADD CONSTRAINT [FK_ServiceRequest_CompanyEmployee] FOREIGN KEY ([AssignedWorkerID]) REFERENCES [dbo].[CompanyEmployee] ([EmployeeID]);
+
+
+GO
+PRINT N'Creating Foreign Key [dbo].[FK_ServiceRequest_Beneficiary]...';
+
+
+GO
+ALTER TABLE [dbo].[ServiceRequest] WITH NOCHECK
+    ADD CONSTRAINT [FK_ServiceRequest_Beneficiary] FOREIGN KEY ([RequestCreatorID]) REFERENCES [dbo].[Beneficiary] ([BeneficiaryID]);
+
+
+GO
+PRINT N'Creating View [dbo].[View_BuildingAndLocationInfo]...';
+
+
+GO
+CREATE VIEW [dbo].[View_BuildingAndLocationInfo]
+	AS SELECT [dbo].[Building].[BuildingID], [dbo].[Building].[NoFloors],
+	[dbo].[Building].[Ownership], [dbo].[Building].[BuildingManagerID],
+	[dbo].[Location].[City] FROM dbo.Building Left JOIN dbo.Location on dbo.Building.LocationID = dbo.Location.LocationID
+GO
+PRINT N'Altering Procedure [dbo].[SP_Ben_LoginCheck]...';
+
+
+GO
+ALTER PROCEDURE [dbo].[SP_Ben_LoginCheck]
+	@username nchar (40),
+	@password nchar (40)
 AS
-	INSERT INTO dbo.Building( BuildingID,NoFloors, Ownership, BuildingManagerID, LocationID)
-	VALUES (@BuildingID, @NoFloors, @Ownership, @ManagerID, @LocationID)
-	Select 1;
+		IF EXISTS ( SELECT 1 from dbo.Beneficiary where dbo.Beneficiary.Username = @username AND dbo.Beneficiary.Password = @password AND dbo.Beneficiary.AccountStatus = 1)
+			BEGIN 
+				Select 1;
+			END 
+		ELSE 
+			Begin
+				Select 0;
+			ENd
 GO
-PRINT N'Refreshing Procedure [dbo].[SP_GetAllBuildings]...';
-
-
-GO
-EXECUTE sp_refreshsqlmodule N'[dbo].[SP_GetAllBuildings]';
-
-
-GO
-PRINT N'Refreshing Procedure [dbo].[SP_GetAllServiceRequests]...';
+PRINT N'Creating Procedure [dbo].[SP_ActivateBeneficiaryAccount]...';
 
 
 GO
-EXECUTE sp_refreshsqlmodule N'[dbo].[SP_GetAllServiceRequests]';
+CREATE PROCEDURE [dbo].[SP_ActivateBeneficiaryAccount]
+	@BeneficiaryID INT
+AS
+	IF EXISTS (Select 1 From dbo.Beneficiary where dbo.Beneficiary.BeneficiaryID = @BeneficiaryID)
+		BEGIN
+			UPDATE dbo.Beneficiary SET AccountStatus = 1 WHERE dbo.Beneficiary.BeneficiaryID = @BeneficiaryID;
+			SELECT 1;
+		END
+	ELSE
+		BEGIN
+			SELECT 0;
+		END
+GO
+PRINT N'Creating Procedure [dbo].[SP_AssignWorkerToRequest]...';
 
+
+GO
+CREATE PROCEDURE [dbo].[SP_AssignWorkerToRequest]
+	@WorkerID INT,
+	@RequestID INT
+AS
+	Update dbo.ServiceRequest SET AssignedWorkerID = @WorkerID 
+	WHERE dbo.ServiceRequest.ServiceRequestID = @RequestID
+GO
+PRINT N'Creating Procedure [dbo].[SP_GetAllBuildings]...';
+
+
+GO
+CREATE PROCEDURE [dbo].[SP_GetAllBuildings]
+AS
+	Select * from dbo.Building
+GO
+PRINT N'Creating Procedure [dbo].[SP_GetAllLocations]...';
+
+
+GO
+CREATE PROCEDURE [dbo].[SP_GetAllLocations]
+AS
+	Select * from dbo.Location
+GO
+PRINT N'Creating Procedure [dbo].[SP_GetAllRoles]...';
+
+
+GO
+CREATE PROCEDURE [dbo].[SP_GetAllRoles]
+AS
+	SELECT * from dbo.Role
+GO
+PRINT N'Creating Procedure [dbo].[SP_GetAllServiceRequests]...';
+
+
+GO
+CREATE PROCEDURE [dbo].[SP_GetAllServiceRequests]
+AS
+	SELECT Req.ServiceRequestID, 
+	Ben.Username,
+	Special.SpecializationName, 
+	Req.ServiceDescribtion, 
+	BuildingInfo.BuildingID, 
+	BuildingInfo.City, 
+	BuildingInfo.NoFloors, 
+	BuildingInfo.BuildingManagerID,
+	Req.RequiestStatus,
+	Req.RequestHandlingStatus,
+	Req.RequestIssueDate,
+	Req.RequestCloseDate 
+	from dbo.ServiceRequest AS Req LEFT JOIN dbo.Specialization AS Special on Req.SpecializationID = Special.SpecializationID
+	LEFT JOIN dbo.Beneficiary AS Ben ON Req.RequestCreatorID = Ben.BeneficiaryID
+	LEFT JOIN dbo.View_BuildingAndLocationInfo AS BuildingInfo ON BuildingInfo.BuildingID = Req.BuildingID
+	-- Building Location {x} 
+	-- Creator Username {x}
+	-- Specialization Name {x}
+GO
+PRINT N'Creating Procedure [dbo].[SP_GetAllSpecializations]...';
+
+
+GO
+CREATE PROCEDURE [dbo].[SP_GetAllSpecializations]
+AS
+	Select * from dbo.Specialization
+GO
+PRINT N'Creating Procedure [dbo].[SP_HandleServiceRequestByWorker]...';
+
+
+GO
+CREATE PROCEDURE [dbo].[SP_HandleServiceRequestByWorker]
+	@BuildingNo INT,
+	@RequestID INT
+AS
+	UPDATE dbo.ServiceRequest SET RequestHandlingStatus = 1 
+	WHERE dbo.ServiceRequest.ServiceRequestID = @RequestID
+GO
+PRINT N'Creating Procedure [dbo].[SP_InsertNewServiceRequiest]...';
+
+
+GO
+CREATE PROCEDURE [dbo].[SP_InsertNewServiceRequiest]
+	@BuildinNo INT,
+	@Specialization INT,
+	@Describtion nchar(100),
+	@CreatorID INT
+AS
+	IF NOT EXISTS (SELECT 1 from dbo.ServiceRequest where dbo.ServiceRequest.BuildingID = @BuildinNo AND dbo.ServiceRequest.SpecializationID = @Specialization AND dbo.ServiceRequest.RequiestStatus = 1)
+		BEGIN
+			INSERT INTO dbo.ServiceRequest(BuildingID, SpecializationID, ServiceDescribtion,RequestCreatorID)
+			Values (@BuildinNo, @Specialization, @Describtion, @CreatorID);
+			SELECT 1;
+		END
+	ELSE
+		BEGIN
+			SELECT 0;
+		END
+GO
+PRINT N'Refreshing Procedure [dbo].[SP_InsertBeneficiary]...';
+
+
+GO
+EXECUTE sp_refreshsqlmodule N'[dbo].[SP_InsertBeneficiary]';
+
+
+GO
+-- Refactoring step to update target server with deployed transaction logs
+IF NOT EXISTS (SELECT OperationKey FROM [dbo].[__RefactorLog] WHERE OperationKey = '54216c98-0e05-4f33-a97e-427e17803dd2')
+INSERT INTO [dbo].[__RefactorLog] (OperationKey) values ('54216c98-0e05-4f33-a97e-427e17803dd2')
+IF NOT EXISTS (SELECT OperationKey FROM [dbo].[__RefactorLog] WHERE OperationKey = 'da41b11e-f0c2-459f-8fd1-76ecd12852a5')
+INSERT INTO [dbo].[__RefactorLog] (OperationKey) values ('da41b11e-f0c2-459f-8fd1-76ecd12852a5')
+
+GO
 
 GO
 PRINT N'Checking existing data against newly created constraints';
@@ -199,13 +308,13 @@ USE [$(DatabaseName)];
 
 
 GO
-ALTER TABLE [dbo].[Building] WITH CHECK CHECK CONSTRAINT [FK_Building_Location];
-
-ALTER TABLE [dbo].[Building] WITH CHECK CHECK CONSTRAINT [FK_Building_CompanyEmployee];
-
-ALTER TABLE [dbo].[Beneficiary] WITH CHECK CHECK CONSTRAINT [FK_Beneficiary_Building];
-
 ALTER TABLE [dbo].[ServiceRequest] WITH CHECK CHECK CONSTRAINT [FK_ServiceRequest_Building];
+
+ALTER TABLE [dbo].[ServiceRequest] WITH CHECK CHECK CONSTRAINT [FK_ServiceRequest_Specialization];
+
+ALTER TABLE [dbo].[ServiceRequest] WITH CHECK CHECK CONSTRAINT [FK_ServiceRequest_CompanyEmployee];
+
+ALTER TABLE [dbo].[ServiceRequest] WITH CHECK CHECK CONSTRAINT [FK_ServiceRequest_Beneficiary];
 
 
 GO

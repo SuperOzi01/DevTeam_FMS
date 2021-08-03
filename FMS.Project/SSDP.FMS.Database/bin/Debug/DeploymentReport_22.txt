@@ -1,6 +1,6 @@
 ﻿** Highlights
      Tables that will be rebuilt
-       [dbo].[Building]
+       None
      Clustered indexes that will be dropped
        None
      Clustered indexes that will be created
@@ -9,23 +9,29 @@
        None
 
 ** User actions
-     Table rebuild
-       [dbo].[Building] (Table)
      Alter
-       [dbo].[SP_AddBuilding] (Procedure)
+       [dbo].[Beneficiary] (Table)
+       [dbo].[SP_Ben_LoginCheck] (Procedure)
+     Create
+       [dbo].[ServiceRequest] (Table)
+       Default Constraint: unnamed constraint on [dbo].[ServiceRequest] (Default Constraint)
+       Default Constraint: unnamed constraint on [dbo].[ServiceRequest] (Default Constraint)
+       Default Constraint: unnamed constraint on [dbo].[ServiceRequest] (Default Constraint)
+       [dbo].[FK_ServiceRequest_Building] (Foreign Key)
+       [dbo].[FK_ServiceRequest_Specialization] (Foreign Key)
+       [dbo].[FK_ServiceRequest_CompanyEmployee] (Foreign Key)
+       [dbo].[FK_ServiceRequest_Beneficiary] (Foreign Key)
+       [dbo].[View_BuildingAndLocationInfo] (View)
+       [dbo].[SP_ActivateBeneficiaryAccount] (Procedure)
+       [dbo].[SP_AssignWorkerToRequest] (Procedure)
+       [dbo].[SP_GetAllBuildings] (Procedure)
+       [dbo].[SP_GetAllLocations] (Procedure)
+       [dbo].[SP_GetAllRoles] (Procedure)
+       [dbo].[SP_GetAllServiceRequests] (Procedure)
+       [dbo].[SP_GetAllSpecializations] (Procedure)
+       [dbo].[SP_HandleServiceRequestByWorker] (Procedure)
+       [dbo].[SP_InsertNewServiceRequiest] (Procedure)
 
 ** Supporting actions
-     Drop
-       [dbo].[FK_Building_Location] (Foreign Key)
-       [dbo].[FK_Building_CompanyEmployee] (Foreign Key)
-       [dbo].[FK_Beneficiary_Building] (Foreign Key)
-       [dbo].[FK_ServiceRequest_Building] (Foreign Key)
-     Create
-       [dbo].[FK_Building_Location] (Foreign Key)
-       [dbo].[FK_Building_CompanyEmployee] (Foreign Key)
-       [dbo].[FK_Beneficiary_Building] (Foreign Key)
-       [dbo].[FK_ServiceRequest_Building] (Foreign Key)
      Refresh
-       [dbo].[View_BuildingAndLocationInfo] (View)
-       [dbo].[SP_GetAllBuildings] (Procedure)
-       [dbo].[SP_GetAllServiceRequests] (Procedure)
+       [dbo].[SP_InsertBeneficiary] (Procedure)

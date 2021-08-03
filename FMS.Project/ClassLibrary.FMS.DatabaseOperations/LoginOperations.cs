@@ -27,9 +27,10 @@ namespace ClassLibrary.FMS.DatabaseOperations
             // RoleID of 5 is Tenent ... 6 is Outsider Employee Based on the UI 
             var result = DatabaseEntity.SP_InsertBeneficiary(BeneficiaryRegistraion.Username,
                 BeneficiaryRegistraion.Password,
+                BeneficiaryRegistraion.FirstName,
+                BeneficiaryRegistraion.LastName,
                 BeneficiaryRegistraion.Email,
-                BeneficiaryRegistraion.BuildingID,
-                BeneficiaryRegistraion.RoleID);
+                BeneficiaryRegistraion.BuildingID);
             DatabaseEntity.SaveChanges();
             if (result.FirstOrDefault() == 1)
                 return true;
@@ -43,6 +44,8 @@ namespace ClassLibrary.FMS.DatabaseOperations
             // RoleID of 5 is Tenent ... 6 is Outsider Employee Based on the UI 
             var result = DatabaseEntity.SP_InsertCompanyEmployee(EmployeeRegistraion.Username,
                 EmployeeRegistraion.Password,
+                EmployeeRegistraion.FirstName,
+                EmployeeRegistraion.LastName,
                 EmployeeRegistraion.Email,
                 EmployeeRegistraion.SpecializationID,
                 EmployeeRegistraion.RoleID,
