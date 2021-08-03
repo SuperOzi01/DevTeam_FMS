@@ -18,6 +18,8 @@
           <Property Name="BeneficiaryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Username" Type="nchar" MaxLength="40" Nullable="false" />
           <Property Name="Password" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="FirstName" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="LastName" Type="nchar" MaxLength="40" Nullable="false" />
           <Property Name="Email" Type="nchar" MaxLength="40" Nullable="false" />
           <Property Name="Building_BuildingID" Type="int" Nullable="false" />
           <Property Name="Role_RoleID" Type="int" Nullable="false" />
@@ -40,11 +42,14 @@
           <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Username" Type="nchar" MaxLength="40" Nullable="false" />
           <Property Name="Password" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="FirstName" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="LastName" Type="nchar" MaxLength="40" Nullable="false" />
           <Property Name="Email" Type="nchar" MaxLength="40" Nullable="false" />
           <Property Name="Specialization_idSpecialization" Type="int" Nullable="false" />
           <Property Name="ManagerID" Type="int" />
           <Property Name="Location_idLocation" Type="int" Nullable="false" />
           <Property Name="Role_idRole" Type="int" Nullable="false" />
+          <Property Name="AccountStatus" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Location">
           <Key>
@@ -269,6 +274,10 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           <Parameter Name="username" Type="nchar" Mode="In" />
           <Parameter Name="pass" Type="nchar" Mode="In" />
         </Function>
+        <Function Name="SP_EmployeeResetPassAndActivateAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="password" Type="nchar" Mode="In" />
+          <Parameter Name="EmployeeID" Type="int" Mode="In" />
+        </Function>
         <Function Name="SP_GetAllBuildings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_GetAllLocations" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_GetAllRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -281,13 +290,16 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
         <Function Name="SP_InsertBeneficiary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Username" Type="nchar" Mode="In" />
           <Parameter Name="Password" Type="nchar" Mode="In" />
+          <Parameter Name="FirstName" Type="nchar" Mode="In" />
+          <Parameter Name="LastName" Type="nchar" Mode="In" />
           <Parameter Name="Email" Type="nchar" Mode="In" />
           <Parameter Name="BuildingID" Type="int" Mode="In" />
-          <Parameter Name="RoleID" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_InsertCompanyEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="username" Type="nchar" Mode="In" />
           <Parameter Name="password" Type="nchar" Mode="In" />
+          <Parameter Name="FirstName" Type="nchar" Mode="In" />
+          <Parameter Name="LastName" Type="nchar" Mode="In" />
           <Parameter Name="Email" Type="nchar" Mode="In" />
           <Parameter Name="SpecializationID" Type="int" Mode="In" />
           <Parameter Name="RoleID" Type="int" Mode="In" />
@@ -391,6 +403,8 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           <Property Name="Email" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
           <Property Name="AccountStatus" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ServiceRequests" Relationship="FMS_DatabaseEF.FK_ServiceRequest_Beneficiary" FromRole="Beneficiary" ToRole="ServiceRequest" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="Building">
           <Key>
@@ -425,6 +439,9 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           <NavigationProperty Name="CompanyEmployee2" Relationship="Self.FK_User_ManagerID" FromRole="CompanyEmployee1" ToRole="CompanyEmployee" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="ServiceRequests" Relationship="FMS_DatabaseEF.FK_ServiceRequest_CompanyEmployee" FromRole="CompanyEmployee" ToRole="ServiceRequest" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="AccountStatus" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Location">
           <Key>
@@ -596,13 +613,16 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           <FunctionImport Name="SP_InsertBeneficiary" ReturnType="Collection(Int32)">
             <Parameter Name="Username" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
             <Parameter Name="Email" Mode="In" Type="String" />
             <Parameter Name="BuildingID" Mode="In" Type="Int32" />
-            <Parameter Name="RoleID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_InsertCompanyEmployee">
             <Parameter Name="username" Mode="In" Type="String" />
             <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
             <Parameter Name="Email" Mode="In" Type="String" />
             <Parameter Name="SpecializationID" Mode="In" Type="Int32" />
             <Parameter Name="RoleID" Mode="In" Type="Int32" />
@@ -669,7 +689,7 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
             <End Role="ServiceRequest" EntitySet="ServiceRequests" />
           </AssociationSet>
           <FunctionImport Name="SP_ActivateBeneficiaryAccount" ReturnType="Collection(Int32)">
-            <Parameter Name="BeneficiaryID" Mode="In" Type="Int32" />
+          <Parameter Name="BeneficiaryID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_AssignWorkerToRequest">
             <Parameter Name="WorkerID" Mode="In" Type="Int32" />
@@ -685,6 +705,10 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
             <Parameter Name="Specialization" Mode="In" Type="Int32" />
             <Parameter Name="Describtion" Mode="In" Type="String" />
             <Parameter Name="CreatorID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_EmployeeResetPassAndActivateAccount">
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="EmployeeID" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="ServiceRequest">
@@ -816,6 +840,8 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           <EntitySetMapping Name="Beneficiaries">
             <EntityTypeMapping TypeName="FMS_DatabaseEF.Beneficiary">
               <MappingFragment StoreEntitySet="Beneficiary">
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="BeneficiaryID" ColumnName="BeneficiaryID" />
@@ -840,6 +866,9 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           <EntitySetMapping Name="CompanyEmployees">
             <EntityTypeMapping TypeName="FMS_DatabaseEF.CompanyEmployee">
               <MappingFragment StoreEntitySet="CompanyEmployee">
+                <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
@@ -967,6 +996,7 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_HandleServiceRequestByWorker" FunctionName="FMS_DatabaseEF.Store.SP_HandleServiceRequestByWorker" />
           <FunctionImportMapping FunctionImportName="SP_InsertNewServiceRequiest" FunctionName="FMS_DatabaseEF.Store.SP_InsertNewServiceRequiest" />
+          <FunctionImportMapping FunctionImportName="SP_EmployeeResetPassAndActivateAccount" FunctionName="FMS_DatabaseEF.Store.SP_EmployeeResetPassAndActivateAccount" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

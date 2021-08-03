@@ -2201,7 +2201,7 @@
 	IF NOT EXISTS (Select Username from dbo.Beneficiary where dbo.Beneficiary.Username = @Username)
 		Begin
 			INSERT INTO dbo.Beneficiary(Username, Password, FirstName,LastName ,Email, Building_BuildingID, Role_RoleID)
-			VALUES (@Username, @Password,@FirstName,@LastName ,@Email,@BuildingID, @RoleID)
+			VALUES (@Username, @Password,@FirstName,@LastName ,@Email,@BuildingID, (Select RoleID from dbo.Role where dbo.Role.RoleName = 'Tenant'))
 			SELECT 1;
 		END
 	ELSE
@@ -2260,7 +2260,13 @@
 					<References Name="[dbo].[SP_InsertBeneficiary].[@BuildingID]" />
 				</Entry>
 				<Entry>
-					<References Name="[dbo].[SP_InsertBeneficiary].[@RoleID]" />
+					<References Name="[dbo].[Role]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Role].[RoleID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Role].[RoleName]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="Parameters">
@@ -2359,21 +2365,6 @@
 						</Relationship>
 					</Element>
 				</Entry>
-				<Entry>
-					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_InsertBeneficiary].[@RoleID]">
-						<Relationship Name="Type">
-							<Entry>
-								<Element Type="SqlTypeSpecifier">
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[int]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
 			</Relationship>
 			<Relationship Name="Schema">
 				<Entry>
@@ -2381,10 +2372,10 @@
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="567" />
+				<Property Name="Length" Value="609" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_InsertBeneficiary]&#xD;&#xA;&#x9;@Username nchar (40),&#xD;&#xA;&#x9;@Password nchar (40), &#xD;&#xA;&#x9;@FirstName nchar (40), &#xD;&#xA;&#x9;@LastName nchar (40), &#xD;&#xA;&#x9;@Email nchar (40), &#xD;&#xA;&#x9;@BuildingID INT,&#xD;&#xA;&#x9;@RoleID INT&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_InsertBeneficiary]&#xD;&#xA;&#x9;@Username nchar (40),&#xD;&#xA;&#x9;@Password nchar (40), &#xD;&#xA;&#x9;@FirstName nchar (40), &#xD;&#xA;&#x9;@LastName nchar (40), &#xD;&#xA;&#x9;@Email nchar (40), &#xD;&#xA;&#x9;@BuildingID INT&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[SP_InsertCompanyEmployee]">
