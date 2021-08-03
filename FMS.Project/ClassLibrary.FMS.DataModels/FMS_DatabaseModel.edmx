@@ -21,6 +21,7 @@
           <Property Name="Email" Type="nchar" MaxLength="40" Nullable="false" />
           <Property Name="Building_BuildingID" Type="int" Nullable="false" />
           <Property Name="Role_RoleID" Type="int" Nullable="false" />
+          <Property Name="AccountStatus" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Building">
           <Key>
@@ -70,8 +71,9 @@
           <Property Name="RequiestStatus" Type="bit" Nullable="false" />
           <Property Name="RequestHandlingStatus" Type="bit" Nullable="false" />
           <Property Name="RequestIssueDate" Type="date" Nullable="false" />
-          <Property Name="RequestCloseDate" Type="date" Nullable="false" />
+          <Property Name="RequestCloseDate" Type="date" />
           <Property Name="ServiceDescribtion" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="RequestCreatorID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Specialization">
           <Key>
@@ -79,6 +81,21 @@
           </Key>
           <Property Name="SpecializationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SpecializationName" Type="nchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_BuildingAndLocationInfo">
+          <Key>
+            <PropertyRef Name="BuildingID" />
+            <PropertyRef Name="NoFloors" />
+            <PropertyRef Name="Ownership" />
+            <PropertyRef Name="BuildingManagerID" />
+          </Key>
+          <Property Name="BuildingID" Type="int" Nullable="false" />
+          <Property Name="NoFloors" Type="int" Nullable="false" />
+          <Property Name="Ownership" Type="int" Nullable="false" />
+          <Property Name="BuildingManagerID" Type="int" Nullable="false" />
+          <Property Name="City" Type="nchar" MaxLength="40" />
         </EntityType>
         <Association Name="FK_Beneficiary_Building">
           <End Role="Building" Type="Self.Building" Multiplicity="1" />
@@ -164,6 +181,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ServiceRequest_Beneficiary">
+          <End Role="Beneficiary" Type="Self.Beneficiary" Multiplicity="1" />
+          <End Role="ServiceRequest" Type="Self.ServiceRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Beneficiary">
+              <PropertyRef Name="BeneficiaryID" />
+            </Principal>
+            <Dependent Role="ServiceRequest">
+              <PropertyRef Name="RequestCreatorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ServiceRequest_Building">
           <End Role="Building" Type="Self.Building" Multiplicity="1" />
           <End Role="ServiceRequest" Type="Self.ServiceRequest" Multiplicity="*" />
@@ -212,6 +241,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="SP_ActivateBeneficiaryAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="BeneficiaryID" Type="int" Mode="In" />
+        </Function>
         <Function Name="SP_AddBuilding" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="NoFloors" Type="int" Mode="In" />
           <Parameter Name="Ownership" Type="int" Mode="In" />
@@ -224,6 +256,10 @@
         <Function Name="SP_AddSpecialization" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SpecializationName" Type="nchar" Mode="In" />
         </Function>
+        <Function Name="SP_AssignWorkerToRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="WorkerID" Type="int" Mode="In" />
+          <Parameter Name="RequestID" Type="int" Mode="In" />
+        </Function>
         <Function Name="SP_Ben_LoginCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="username" Type="nchar" Mode="In" />
           <Parameter Name="password" Type="nchar" Mode="In" />
@@ -235,7 +271,12 @@
         <Function Name="SP_GetAllBuildings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_GetAllLocations" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_GetAllRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_GetAllServiceRequests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_GetAllSpecializations" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_HandleServiceRequestByWorker" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="BuildingNo" Type="int" Mode="In" />
+          <Parameter Name="RequestID" Type="int" Mode="In" />
+        </Function>
         <Function Name="SP_InsertBeneficiary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Username" Type="nchar" Mode="In" />
           <Parameter Name="Password" Type="nchar" Mode="In" />
@@ -252,6 +293,12 @@
           <Parameter Name="LocationID" Type="int" Mode="In" />
           <Parameter Name="ManagerID" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_InsertNewServiceRequiest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="BuildinNo" Type="int" Mode="In" />
+          <Parameter Name="Specialization" Type="int" Mode="In" />
+          <Parameter Name="Describtion" Type="nchar" Mode="In" />
+          <Parameter Name="CreatorID" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="FMS_DatabaseEFStoreContainer">
           <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Beneficiary" EntityType="Self.Beneficiary" Schema="dbo" store:Type="Tables" />
@@ -261,6 +308,15 @@
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ServiceRequest" EntityType="Self.ServiceRequest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Specialization" EntityType="Self.Specialization" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="View_BuildingAndLocationInfo" EntityType="Self.View_BuildingAndLocationInfo" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_BuildingAndLocationInfo].[BuildingID] AS [BuildingID], 
+    [View_BuildingAndLocationInfo].[NoFloors] AS [NoFloors], 
+    [View_BuildingAndLocationInfo].[Ownership] AS [Ownership], 
+    [View_BuildingAndLocationInfo].[BuildingManagerID] AS [BuildingManagerID], 
+    [View_BuildingAndLocationInfo].[City] AS [City]
+    FROM [dbo].[View_BuildingAndLocationInfo] AS [View_BuildingAndLocationInfo]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Beneficiary_Building" Association="Self.FK_Beneficiary_Building">
             <End Role="Building" EntitySet="Building" />
             <End Role="Beneficiary" EntitySet="Beneficiary" />
@@ -288,6 +344,10 @@
           <AssociationSet Name="FK_CompanyEmployee_Specialization" Association="Self.FK_CompanyEmployee_Specialization">
             <End Role="Specialization" EntitySet="Specialization" />
             <End Role="CompanyEmployee" EntitySet="CompanyEmployee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceRequest_Beneficiary" Association="Self.FK_ServiceRequest_Beneficiary">
+            <End Role="Beneficiary" EntitySet="Beneficiary" />
+            <End Role="ServiceRequest" EntitySet="ServiceRequest" />
           </AssociationSet>
           <AssociationSet Name="FK_ServiceRequest_Building" Association="Self.FK_ServiceRequest_Building">
             <End Role="Building" EntitySet="Building" />
@@ -328,6 +388,8 @@
           <NavigationProperty Name="Building" Relationship="Self.FK_Beneficiary_Building" FromRole="Beneficiary" ToRole="Building" />
           <NavigationProperty Name="Role" Relationship="Self.FK_Beneficiary_Role" FromRole="Beneficiary" ToRole="Role" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="AccountStatus" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ServiceRequests" Relationship="FMS_DatabaseEF.FK_ServiceRequest_Beneficiary" FromRole="Beneficiary" ToRole="ServiceRequest" />
         </EntityType>
         <EntityType Name="Building">
           <Key>
@@ -599,6 +661,29 @@
           <FunctionImport Name="SP_GetAllLocations" ReturnType="Collection(FMS_DatabaseEF.SP_GetAllLocations_Result)" />
           <FunctionImport Name="SP_GetAllRoles" ReturnType="Collection(FMS_DatabaseEF.SP_GetAllRoles_Result)" />
           <FunctionImport Name="SP_GetAllSpecializations" ReturnType="Collection(FMS_DatabaseEF.SP_GetAllSpecializations_Result)" />
+          <EntitySet Name="View_BuildingAndLocationInfo" EntityType="FMS_DatabaseEF.View_BuildingAndLocationInfo" />
+          <AssociationSet Name="FK_ServiceRequest_Beneficiary" Association="FMS_DatabaseEF.FK_ServiceRequest_Beneficiary">
+            <End Role="Beneficiary" EntitySet="Beneficiaries" />
+            <End Role="ServiceRequest" EntitySet="ServiceRequests" />
+          </AssociationSet>
+          <FunctionImport Name="SP_ActivateBeneficiaryAccount" ReturnType="Collection(Int32)">
+            <Parameter Name="BeneficiaryID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_AssignWorkerToRequest">
+            <Parameter Name="WorkerID" Mode="In" Type="Int32" />
+            <Parameter Name="RequestID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetAllServiceRequests" ReturnType="Collection(FMS_DatabaseEF.SP_GetAllServiceRequests_Result)" />
+          <FunctionImport Name="SP_HandleServiceRequestByWorker">
+            <Parameter Name="BuildingNo" Mode="In" Type="Int32" />
+            <Parameter Name="RequestID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_InsertNewServiceRequiest" ReturnType="Collection(Int32)">
+            <Parameter Name="BuildinNo" Mode="In" Type="Int32" />
+            <Parameter Name="Specialization" Mode="In" Type="Int32" />
+            <Parameter Name="Describtion" Mode="In" Type="String" />
+            <Parameter Name="CreatorID" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="ServiceRequest">
           <Key>
@@ -611,11 +696,13 @@
           <Property Name="RequiestStatus" Type="Boolean" Nullable="false" />
           <Property Name="RequestHandlingStatus" Type="Boolean" Nullable="false" />
           <Property Name="RequestIssueDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="RequestCloseDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="RequestCloseDate" Type="DateTime" Precision="0" />
           <Property Name="ServiceDescribtion" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="Building" Relationship="FMS_DatabaseEF.FK_ServiceRequest_Building" FromRole="ServiceRequest" ToRole="Building" />
           <NavigationProperty Name="CompanyEmployee" Relationship="FMS_DatabaseEF.FK_ServiceRequest_CompanyEmployee" FromRole="ServiceRequest" ToRole="CompanyEmployee" />
           <NavigationProperty Name="Specialization" Relationship="FMS_DatabaseEF.FK_ServiceRequest_Specialization" FromRole="ServiceRequest" ToRole="Specialization" />
+          <Property Name="RequestCreatorID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Beneficiary" Relationship="FMS_DatabaseEF.FK_ServiceRequest_Beneficiary" FromRole="ServiceRequest" ToRole="Beneficiary" />
         </EntityType>
         <Association Name="FK_ServiceRequest_Building">
           <End Type="FMS_DatabaseEF.Building" Role="Building" Multiplicity="1" />
@@ -672,6 +759,45 @@
           <Property Type="Int32" Name="SpecializationID" Nullable="false" />
           <Property Type="String" Name="SpecializationName" Nullable="false" MaxLength="40" />
         </ComplexType>
+        <EntityType Name="View_BuildingAndLocationInfo">
+          <Key>
+            <PropertyRef Name="BuildingID" />
+            <PropertyRef Name="NoFloors" />
+            <PropertyRef Name="Ownership" />
+            <PropertyRef Name="BuildingManagerID" />
+          </Key>
+          <Property Name="BuildingID" Type="Int32" Nullable="false" />
+          <Property Name="NoFloors" Type="Int32" Nullable="false" />
+          <Property Name="Ownership" Type="Int32" Nullable="false" />
+          <Property Name="BuildingManagerID" Type="Int32" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_ServiceRequest_Beneficiary">
+          <End Type="FMS_DatabaseEF.Beneficiary" Role="Beneficiary" Multiplicity="1" />
+          <End Type="FMS_DatabaseEF.ServiceRequest" Role="ServiceRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Beneficiary">
+              <PropertyRef Name="BeneficiaryID" />
+            </Principal>
+            <Dependent Role="ServiceRequest">
+              <PropertyRef Name="RequestCreatorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="SP_GetAllServiceRequests_Result">
+          <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
+          <Property Type="String" Name="Username" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="SpecializationName" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="BuildingID" Nullable="true" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="40" />
+          <Property Type="Int32" Name="NoFloors" Nullable="true" />
+          <Property Type="Int32" Name="BuildingManagerID" Nullable="true" />
+          <Property Type="Boolean" Name="RequiestStatus" Nullable="false" />
+          <Property Type="Boolean" Name="RequestHandlingStatus" Nullable="false" />
+          <Property Type="DateTime" Name="RequestIssueDate" Nullable="false" />
+          <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -688,6 +814,7 @@
           <EntitySetMapping Name="Beneficiaries">
             <EntityTypeMapping TypeName="FMS_DatabaseEF.Beneficiary">
               <MappingFragment StoreEntitySet="Beneficiary">
+                <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="BeneficiaryID" ColumnName="BeneficiaryID" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
@@ -757,6 +884,7 @@
           <EntitySetMapping Name="ServiceRequests">
             <EntityTypeMapping TypeName="FMS_DatabaseEF.ServiceRequest">
               <MappingFragment StoreEntitySet="ServiceRequest">
+                <ScalarProperty Name="RequestCreatorID" ColumnName="RequestCreatorID" />
                 <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
                 <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
                 <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
@@ -804,6 +932,39 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="View_BuildingAndLocationInfo">
+            <EntityTypeMapping TypeName="FMS_DatabaseEF.View_BuildingAndLocationInfo">
+              <MappingFragment StoreEntitySet="View_BuildingAndLocationInfo">
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="BuildingManagerID" ColumnName="BuildingManagerID" />
+                <ScalarProperty Name="Ownership" ColumnName="Ownership" />
+                <ScalarProperty Name="NoFloors" ColumnName="NoFloors" />
+                <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_ActivateBeneficiaryAccount" FunctionName="FMS_DatabaseEF.Store.SP_ActivateBeneficiaryAccount" />
+          <FunctionImportMapping FunctionImportName="SP_AssignWorkerToRequest" FunctionName="FMS_DatabaseEF.Store.SP_AssignWorkerToRequest" />
+          <FunctionImportMapping FunctionImportName="SP_GetAllServiceRequests" FunctionName="FMS_DatabaseEF.Store.SP_GetAllServiceRequests">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FMS_DatabaseEF.SP_GetAllServiceRequests_Result">
+                <ScalarProperty Name="ServiceRequestID" ColumnName="ServiceRequestID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="SpecializationName" ColumnName="SpecializationName" />
+                <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
+                <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="NoFloors" ColumnName="NoFloors" />
+                <ScalarProperty Name="BuildingManagerID" ColumnName="BuildingManagerID" />
+                <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
+                <ScalarProperty Name="RequestHandlingStatus" ColumnName="RequestHandlingStatus" />
+                <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
+                <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_HandleServiceRequestByWorker" FunctionName="FMS_DatabaseEF.Store.SP_HandleServiceRequestByWorker" />
+          <FunctionImportMapping FunctionImportName="SP_InsertNewServiceRequiest" FunctionName="FMS_DatabaseEF.Store.SP_InsertNewServiceRequiest" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
