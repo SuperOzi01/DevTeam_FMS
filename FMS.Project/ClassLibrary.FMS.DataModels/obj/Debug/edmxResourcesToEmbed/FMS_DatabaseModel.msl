@@ -11,6 +11,8 @@
     <EntitySetMapping Name="Beneficiaries">
       <EntityTypeMapping TypeName="FMS_DatabaseEF.Beneficiary">
         <MappingFragment StoreEntitySet="Beneficiary">
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="BeneficiaryID" ColumnName="BeneficiaryID" />
@@ -35,6 +37,9 @@
     <EntitySetMapping Name="CompanyEmployees">
       <EntityTypeMapping TypeName="FMS_DatabaseEF.CompanyEmployee">
         <MappingFragment StoreEntitySet="CompanyEmployee">
+          <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
           <ScalarProperty Name="Username" ColumnName="Username" />
@@ -162,5 +167,6 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="SP_HandleServiceRequestByWorker" FunctionName="FMS_DatabaseEF.Store.SP_HandleServiceRequestByWorker" />
     <FunctionImportMapping FunctionImportName="SP_InsertNewServiceRequiest" FunctionName="FMS_DatabaseEF.Store.SP_InsertNewServiceRequiest" />
+    <FunctionImportMapping FunctionImportName="SP_EmployeeResetPassAndActivateAccount" FunctionName="FMS_DatabaseEF.Store.SP_EmployeeResetPassAndActivateAccount" />
   </EntityContainerMapping>
 </Mapping>

@@ -20,6 +20,8 @@
     <Property Name="Email" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
     <Property Name="AccountStatus" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="ServiceRequests" Relationship="FMS_DatabaseEF.FK_ServiceRequest_Beneficiary" FromRole="Beneficiary" ToRole="ServiceRequest" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="Building">
     <Key>
@@ -54,6 +56,9 @@
     <NavigationProperty Name="CompanyEmployee2" Relationship="Self.FK_User_ManagerID" FromRole="CompanyEmployee1" ToRole="CompanyEmployee" />
     <Property Name="Email" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
     <NavigationProperty Name="ServiceRequests" Relationship="FMS_DatabaseEF.FK_ServiceRequest_CompanyEmployee" FromRole="CompanyEmployee" ToRole="ServiceRequest" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
+    <Property Name="AccountStatus" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="Location">
     <Key>
@@ -225,13 +230,16 @@
     <FunctionImport Name="SP_InsertBeneficiary" ReturnType="Collection(Int32)">
       <Parameter Name="Username" Mode="In" Type="String" />
       <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="FirstName" Mode="In" Type="String" />
+      <Parameter Name="LastName" Mode="In" Type="String" />
       <Parameter Name="Email" Mode="In" Type="String" />
       <Parameter Name="BuildingID" Mode="In" Type="Int32" />
-      <Parameter Name="RoleID" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="SP_InsertCompanyEmployee">
       <Parameter Name="username" Mode="In" Type="String" />
       <Parameter Name="password" Mode="In" Type="String" />
+      <Parameter Name="FirstName" Mode="In" Type="String" />
+      <Parameter Name="LastName" Mode="In" Type="String" />
       <Parameter Name="Email" Mode="In" Type="String" />
       <Parameter Name="SpecializationID" Mode="In" Type="Int32" />
       <Parameter Name="RoleID" Mode="In" Type="Int32" />
@@ -314,6 +322,10 @@
       <Parameter Name="Specialization" Mode="In" Type="Int32" />
       <Parameter Name="Describtion" Mode="In" Type="String" />
       <Parameter Name="CreatorID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_EmployeeResetPassAndActivateAccount">
+      <Parameter Name="password" Mode="In" Type="String" />
+      <Parameter Name="EmployeeID" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
   <EntityType Name="ServiceRequest">
