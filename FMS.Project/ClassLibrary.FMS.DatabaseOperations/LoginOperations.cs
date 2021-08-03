@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ClassLibrary.FMS.DataModels; 
+using ClassLibrary.FMS.DataModels;
 namespace ClassLibrary.FMS.DatabaseOperations
 {
     public class LoginOperations
@@ -53,6 +53,33 @@ namespace ClassLibrary.FMS.DatabaseOperations
                 return true;
             else
                 return false;
+        }
+
+        public List<Building> GetBuildingList()
+        {
+            var BuildingList = DatabaseEntity.Buildings.Select(a => a);
+            return BuildingList.ToList();
+        }
+
+        public List<Specialization> GetSpecializationList()
+        {
+            var SpecializationList = DatabaseEntity.Specializations.Select(a => a);
+            return SpecializationList.ToList();
+        }
+        public List<CompanyEmployee> GetManagerList()
+        {
+            var ManagerList = DatabaseEntity.CompanyEmployees.Select(a => a);
+            return ManagerList.ToList();
+        }
+        public List<Location> GetLocationList()
+        {
+            var LocationList = DatabaseEntity.Locations.Select(a => a);
+            return LocationList.ToList();
+        }
+        public List<Role> GetRoleList()
+        {
+            var RoleList = DatabaseEntity.Roles.Select(a => a);
+            return RoleList.ToList();
         }
 
 
