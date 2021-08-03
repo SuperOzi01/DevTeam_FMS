@@ -103,7 +103,13 @@
     <Compile Include="SP_GetAllRoles_Result.cs">
       <DependentUpon>FMS_DatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_GetAllServiceRequests_Result.cs">
+      <DependentUpon>FMS_DatabaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_GetAllSpecializations_Result.cs">
+      <DependentUpon>FMS_DatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_BuildingAndLocationInfo.cs">
       <DependentUpon>FMS_DatabaseModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

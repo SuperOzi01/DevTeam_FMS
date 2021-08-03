@@ -21,11 +21,13 @@ namespace ClassLibrary.FMS.DataModels
         public bool RequiestStatus { get; set; }
         public bool RequestHandlingStatus { get; set; }
         public System.DateTime RequestIssueDate { get; set; }
-        public System.DateTime RequestCloseDate { get; set; }
+        public Nullable<System.DateTime> RequestCloseDate { get; set; }
         public string ServiceDescribtion { get; set; }
+        public int RequestCreatorID { get; set; }
     
         public virtual Building Building { get; set; }
         public virtual CompanyEmployee CompanyEmployee { get; set; }
         public virtual Specialization Specialization { get; set; }
+        public virtual Beneficiary Beneficiary { get; set; }
     }
 }
