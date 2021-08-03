@@ -16,7 +16,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
     {
         static readonly ILog ErrorLog = LogManager.GetLogger("ErrorLog");
         static readonly ILog InfoLog = LogManager.GetLogger("InfoLog");
-        ResponseAPI res = new ResponseAPI();
+        ResponseAPI Responce = new ResponseAPI();
         LoginOperations BenLogin = new LoginOperations();
 
         [Route("Api/Fms/ping")] 
@@ -26,7 +26,9 @@ namespace WebApplication.FMS.WebAPI.Controllers
         {
             // test the api logs and exceptions   
             //throw new DivideByZeroException();
-            return Ok(("Ok" , HttpStatusCode.OK));
+            Responce.Message = "Ping is Working";
+            Responce.Result = true;
+            return Ok(Responce);
         }
 
         [Route("Api/Fms/HelthCheck")]
@@ -37,7 +39,9 @@ namespace WebApplication.FMS.WebAPI.Controllers
             // 1- JWT Working
             // 2- DB connection 
             // 3- Logs 
-            return Ok(("Ok", HttpStatusCode.OK));
+            Responce.Message = "Health Check is Working";
+            Responce.Result = true;
+            return Ok(Responce);
         }
 
         [Route("Api/Fms/Token")]
@@ -72,9 +76,9 @@ namespace WebApplication.FMS.WebAPI.Controllers
             }
             else
             {
-                res.Result = false;
-                res.Message = "Login failed";
-                return Ok(res);
+                Responce.Result = false;
+                Responce.Message = "Login failed";
+                return Ok(Responce);
             }
 
         }
@@ -88,15 +92,15 @@ namespace WebApplication.FMS.WebAPI.Controllers
 
             if (result == true)
             {
-                res.Result = true;
-                res.Message = "Beneficiary has been successfully registered";
+                Responce.Result = true;
+                Responce.Message = "Beneficiary has been successfully registered";
             }
             else
             {
-                res.Result = false;
-                res.Message = "Registration failed";
+                Responce.Result = false;
+                Responce.Message = "Registration failed";
             }
-                return Ok(res);
+                return Ok(Responce);
         }
 
         [Route("Api/Fms/EmployeeRegistraion")]
@@ -108,15 +112,15 @@ namespace WebApplication.FMS.WebAPI.Controllers
 
             if (result == true)
             {
-                res.Result = true;
-                res.Message = "Employee has been successfully registered";
+                Responce.Result = true;
+                Responce.Message = "Employee has been successfully registered";
             }
             else
             {
-                res.Result = false;
-                res.Message = "Registration failed";
+                Responce.Result = false;
+                Responce.Message = "Registration failed";
             }
-                return Ok(res);
+                return Ok(Responce);
         }
     }
 }
