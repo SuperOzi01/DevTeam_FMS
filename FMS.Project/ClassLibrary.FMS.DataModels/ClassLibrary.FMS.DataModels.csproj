@@ -94,6 +94,18 @@
     <Compile Include="Specialization.cs">
       <DependentUpon>FMS_DatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_GetAllBuildings_Result.cs">
+      <DependentUpon>FMS_DatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GetAllLocations_Result.cs">
+      <DependentUpon>FMS_DatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GetAllRoles_Result.cs">
+      <DependentUpon>FMS_DatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GetAllSpecializations_Result.cs">
+      <DependentUpon>FMS_DatabaseModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />

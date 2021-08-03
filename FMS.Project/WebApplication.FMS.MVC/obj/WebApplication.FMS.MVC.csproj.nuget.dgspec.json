@@ -4,6 +4,35 @@
     "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC\\WebApplication.FMS.MVC.csproj": {}
   },
   "projects": {
+    "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DatabaseOperations\\ClassLibrary.FMS.DatabaseOperations.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DatabaseOperations\\ClassLibrary.FMS.DatabaseOperations.csproj",
+        "projectName": "ClassLibrary.FMS.DatabaseOperations",
+        "projectPath": "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DatabaseOperations\\ClassLibrary.FMS.DatabaseOperations.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {
+              "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj": {
+                "projectPath": "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj",
+        "projectName": "ClassLibrary.FMS.DataModels",
+        "projectPath": "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj"
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
     "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC\\WebApplication.FMS.MVC.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -27,7 +56,14 @@
         "frameworks": {
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DatabaseOperations\\ClassLibrary.FMS.DatabaseOperations.csproj": {
+                "projectPath": "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DatabaseOperations\\ClassLibrary.FMS.DatabaseOperations.csproj"
+              },
+              "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj": {
+                "projectPath": "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -40,9 +76,17 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Microsoft.AspNet.WebApi.Client": {
+              "target": "Package",
+              "version": "[5.2.7, )"
+            },
             "Microsoft.Extensions.Logging.Log4Net.AspNetCore": {
               "target": "Package",
               "version": "[3.1.0, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.5, )"
             },
             "NuGet.Protocol": {
               "target": "Package",

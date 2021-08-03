@@ -90,14 +90,13 @@ namespace WebApplication.FMS.WebAPI.Controllers
             {
                 res.Result = true;
                 res.Message = "Beneficiary has been successfully registered";
-                return Ok(res);
             }
             else
             {
                 res.Result = false;
                 res.Message = "Registration failed";
-                return Ok(res);
             }
+                return Ok(res);
         }
 
         [Route("Api/Fms/EmployeeRegistraion")]
@@ -111,14 +110,13 @@ namespace WebApplication.FMS.WebAPI.Controllers
             {
                 res.Result = true;
                 res.Message = "Employee has been successfully registered";
-                return Ok(res);
             }
             else
             {
                 res.Result = false;
                 res.Message = "Registration failed";
-                return Ok(res);
             }
+                return Ok(res);
         }
     }
 }

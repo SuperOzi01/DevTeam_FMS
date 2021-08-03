@@ -7116,11 +7116,11 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\Rana Alhamdan\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DatabaseOperations\\ClassLibrary.FMS.DatabaseOperations.csproj": {
-              "projectPath": "C:\\Users\\Rana Alhamdan\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DatabaseOperations\\ClassLibrary.FMS.DatabaseOperations.csproj"
+            "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DatabaseOperations\\ClassLibrary.FMS.DatabaseOperations.csproj": {
+              "projectPath": "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DatabaseOperations\\ClassLibrary.FMS.DatabaseOperations.csproj"
             },
-            "C:\\Users\\Rana Alhamdan\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj": {
-              "projectPath": "C:\\Users\\Rana Alhamdan\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj"
+            "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj": {
+              "projectPath": "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj"
             }
           }
         }
