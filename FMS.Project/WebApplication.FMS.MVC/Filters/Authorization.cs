@@ -22,7 +22,8 @@ namespace WebApplication.FMS.MVC
         }
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            string token = context.HttpContext.Session.GetString("TokenNumber");
+            //string token = context.HttpContext.Session.GetString("TokenNumber");
+            string token = context.HttpContext.Request.Cookies["TokenNumber"];
             if (token != null)
             {
                 var Role = ValidateToken(token);
@@ -75,7 +76,7 @@ namespace WebApplication.FMS.MVC
 
         }
 
-        private string Secret = "This is the Secrit Key ERMN05OPLoDvbTTa/QkqLNMI7cPLguaRyHzyg7n5qNBVjQmtBhz4SzYh4NBVCXi3KJHlSXKP+oi2+bXr6CUYTR==";
+        private string Secret = "ERMN05OPLoDvbTTa/QkqLNMI7cPLguaRyHzyg7n5qNBVjQmtBhz4SzYh4NBVCXi3KJHlSXKP+oi2+bXr6CUYTR==";
         public string[] ValidateToken(string Token)
         {
             JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();

@@ -13,7 +13,7 @@ namespace ClassLibrary.FMS.DatabaseOperations
         {
             // TODO: Call the Employees DB to check the user to make it the log in the same page {x}
             var beneficiaryLoginCheck = DatabaseEntity.SP_Ben_LoginCheck(login.Username, login.Password);
-            var employeesLoginCheck = DatabaseEntity.SP_Employee_LoginCheck(login.Username, login.Password);            
+            var employeesLoginCheck = DatabaseEntity.SP_Employee_LoginCheck1(login.Username, login.Password);            
             if (beneficiaryLoginCheck.FirstOrDefault() == 1 || employeesLoginCheck.FirstOrDefault() == 1)
                 return true; // Beneficiary is registred 
             else

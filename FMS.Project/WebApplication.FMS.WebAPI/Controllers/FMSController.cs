@@ -50,7 +50,9 @@ namespace WebApplication.FMS.WebAPI.Controllers
         {
             // This Function Shall recieve User Model Object .. and return the token as a result.. 
             string token = new AuthinticationManager().Authinticate(username);
-            return Ok((token, HttpStatusCode.OK));
+            Responce.Result = true;
+            Responce.Message = token;
+            return Ok(Responce);
         }
 
         [AuthorizationManager(Roles = "test")]
