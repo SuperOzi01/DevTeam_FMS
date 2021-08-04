@@ -60,8 +60,8 @@ namespace WebApplication.FMS.MVC.BackOffice
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    name: "Login",
+                    pattern: "{controller=Login}/{action=EmployeeLogin}");
             });
         }
     }

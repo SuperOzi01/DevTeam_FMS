@@ -70,12 +70,35 @@ namespace WebApplication.FMS.WebAPI.Controllers
         }
 
 
-        [Route("Api/Fms/Login")]
+        [Route("Api/Fms/LoginBackOffice")]
         [HttpPost]
-        public IHttpActionResult Login(LoginModel login)
+        public IHttpActionResult LoginBackOffice(LoginModel login)
         {
             // check if the user Exists 
-            bool result = loginOperationsObject.Login(login);
+            bool result = loginOperationsObject.LoginBackOffice(login);
+
+            if (result == true)
+            {
+                string role = loginOperationsObject.GetUserRole(login);
+                login.Role = role;
+                return Token(login);
+            }
+            else
+            {
+                Responce.Result = false;
+                Responce.Message = "Login failed";
+                return Ok(Responce);
+            }
+
+        }
+
+
+        [Route("Api/Fms/LoginPortal")]
+        [HttpPost]
+        public IHttpActionResult LoginPortal(LoginModel login)
+        {
+            // check if the user Exists 
+            bool result = loginOperationsObject.LoginPortal(login);
 
             if (result == true)
             {
