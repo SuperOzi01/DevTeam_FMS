@@ -335,13 +335,13 @@ namespace ClassLibrary.FMS.DataModels
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_EmployeeResetPassAndActivateAccount", passwordParameter, employeeIDParameter);
         }
     
-        public virtual ObjectResult<string> SP_EmployeeRoleName(Nullable<int> userID)
+        public virtual ObjectResult<string> SP_GetUserRoles(string username)
         {
-            var userIDParameter = userID.HasValue ?
-                new ObjectParameter("UserID", userID) :
-                new ObjectParameter("UserID", typeof(int));
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("SP_EmployeeRoleName", userIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("SP_GetUserRoles", usernameParameter);
         }
     }
 }

@@ -9,15 +9,18 @@ using log4net;
 using WebApplication.FMS.WebAPI.AppFilters;
 using ClassLibrary.FMS.DatabaseOperations;
 using ClassLibrary.FMS.DataModels;
+using WebApplication.FMS.WebAPI.App_Start;
 
 namespace WebApplication.FMS.WebAPI.Controllers
 {
+    [ExceptionFilter]
+    [LogsFilterWebAPI]
     public class FMSController : ApiController
     {
         static readonly ILog ErrorLog = LogManager.GetLogger("ErrorLog");
         static readonly ILog InfoLog = LogManager.GetLogger("InfoLog");
         ResponseAPI Responce = new ResponseAPI();
-        LoginOperations BenLogin = new LoginOperations();
+        LoginOperations loginOperationsObject = new LoginOperations();
 
         [Route("Api/Fms/ping")] 
         [HttpGet]
@@ -46,17 +49,19 @@ namespace WebApplication.FMS.WebAPI.Controllers
 
         [Route("Api/Fms/Token")]
         [HttpPost]
-        public IHttpActionResult Token(string username)
+        public IHttpActionResult Token(LoginModel loginModel)
         {
             // This Function Shall recieve User Model Object .. and return the token as a result.. 
-            string token = new AuthinticationManager().Authinticate(username);
+            //string token = new AuthinticationManager().Authinticate(loginModel);
+            string token = new TokenManager().GenerateToken(loginModel);
             Responce.Result = true;
             Responce.Message = token;
             return Ok(Responce);
         }
 
-        [AuthorizationManager(Roles = "test")]
-        [Route("Api/Fms/validate")]
+        [AuthinticationManager]
+        [AuthorizationManager(Roles = "Tenent")]
+        [Route("Api/Fms/Validate")]
         [HttpPost]
         public IHttpActionResult Validate()
         {
@@ -69,12 +74,14 @@ namespace WebApplication.FMS.WebAPI.Controllers
         [HttpPost]
         public IHttpActionResult Login(LoginModel login)
         {
-
-            bool result = BenLogin.Login(login);
+            // check if the user Exists 
+            bool result = loginOperationsObject.Login(login);
 
             if (result == true)
             {
-                return Token(login.Username);
+                string role = loginOperationsObject.GetUserRole(login);
+                login.Role = role;
+                return Token(login);
             }
             else
             {
@@ -90,7 +97,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
         public IHttpActionResult BeneficiaryRegistraion(BeneficiaryRegistraionModel BeneficiaryRegistraion)
         {
             
-            bool result = BenLogin.BeneficiaryRegistraion(BeneficiaryRegistraion);
+            bool result = loginOperationsObject.BeneficiaryRegistraion(BeneficiaryRegistraion);
 
             if (result == true)
             {
@@ -110,7 +117,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
         public IHttpActionResult EmployeeRegistraion(EmployeeRegistraionModel EmployeeRegistraion)
         {
 
-            bool result = BenLogin.EmployeeRegistraion(EmployeeRegistraion);
+            bool result = loginOperationsObject.EmployeeRegistraion(EmployeeRegistraion);
 
             if (result == true)
             {
@@ -129,7 +136,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
         [HttpGet]
         public IHttpActionResult GetBuildingList()
         {
-            var BuildingList = BenLogin.GetBuildingList();
+            var BuildingList = loginOperationsObject.GetBuildingList();
 
                 List<System.Web.Mvc.SelectListItem> list = new List<System.Web.Mvc.SelectListItem>();
                 foreach (var item in BuildingList)
@@ -146,7 +153,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
         [HttpGet]
         public IHttpActionResult GetSpecializationList()
         {
-            var SpecializationList = BenLogin.GetSpecializationList();
+            var SpecializationList = loginOperationsObject.GetSpecializationList();
 
             List<System.Web.Mvc.SelectListItem> list = new List<System.Web.Mvc.SelectListItem>();
             foreach (var item in SpecializationList)
@@ -163,7 +170,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
         [HttpGet]
         public IHttpActionResult GetManagerList()
         {
-            var ManagerList = BenLogin.GetManagerList();
+            var ManagerList = loginOperationsObject.GetManagerList();
 
             List<System.Web.Mvc.SelectListItem> list = new List<System.Web.Mvc.SelectListItem>();
             foreach (var item in ManagerList)
@@ -180,7 +187,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
         [HttpGet]
         public IHttpActionResult GetLocationList()
         {
-            var BuildingList = BenLogin.GetLocationList();
+            var BuildingList = loginOperationsObject.GetLocationList();
 
             List<System.Web.Mvc.SelectListItem> list = new List<System.Web.Mvc.SelectListItem>();
             foreach (var item in BuildingList)
@@ -197,7 +204,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
         [HttpGet]
         public IHttpActionResult GetRoleList()
         {
-            var BuildingList = BenLogin.GetRoleList();
+            var BuildingList = loginOperationsObject.GetRoleList();
 
             List<System.Web.Mvc.SelectListItem> list = new List<System.Web.Mvc.SelectListItem>();
             foreach (var item in BuildingList)

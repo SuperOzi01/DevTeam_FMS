@@ -14,5 +14,7 @@ namespace ClassLibrary.FMS.DataModels
         [Required(ErrorMessage = "This field is required")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        public string Role { get; set; }
     }
 }

@@ -15,8 +15,8 @@ SET NUMERIC_ROUNDABORT OFF;
 GO
 :setvar DatabaseName "FMS_Database"
 :setvar DefaultFilePrefix "FMS_Database"
-:setvar DefaultDataPath "C:\Users\Rana Alhamdan\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\"
-:setvar DefaultLogPath "C:\Users\Rana Alhamdan\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\"
+:setvar DefaultDataPath "C:\Users\zshar\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\"
+:setvar DefaultLogPath "C:\Users\zshar\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\"
 
 GO
 :on error exit
@@ -40,17 +40,434 @@ USE [$(DatabaseName)];
 
 
 GO
-PRINT N'Altering Procedure [dbo].[SP_EmployeeRoleName]...';
+/*
+The column [dbo].[Beneficiary].[FirstName] on table [dbo].[Beneficiary] must be added, but the column has no default value and does not allow NULL values. If the table contains data, the ALTER script will not work. To avoid this issue you must either: add a default value to the column, mark it as allowing NULL values, or enable the generation of smart-defaults as a deployment option.
+
+The column [dbo].[Beneficiary].[LastName] on table [dbo].[Beneficiary] must be added, but the column has no default value and does not allow NULL values. If the table contains data, the ALTER script will not work. To avoid this issue you must either: add a default value to the column, mark it as allowing NULL values, or enable the generation of smart-defaults as a deployment option.
+*/
+
+IF EXISTS (select top 1 1 from [dbo].[Beneficiary])
+    RAISERROR (N'Rows were detected. The schema update is terminating because data loss might occur.', 16, 127) WITH NOWAIT
+
+GO
+/*
+The column [dbo].[CompanyEmployee].[FirstName] on table [dbo].[CompanyEmployee] must be added, but the column has no default value and does not allow NULL values. If the table contains data, the ALTER script will not work. To avoid this issue you must either: add a default value to the column, mark it as allowing NULL values, or enable the generation of smart-defaults as a deployment option.
+
+The column [dbo].[CompanyEmployee].[LastName] on table [dbo].[CompanyEmployee] must be added, but the column has no default value and does not allow NULL values. If the table contains data, the ALTER script will not work. To avoid this issue you must either: add a default value to the column, mark it as allowing NULL values, or enable the generation of smart-defaults as a deployment option.
+*/
+
+IF EXISTS (select top 1 1 from [dbo].[CompanyEmployee])
+    RAISERROR (N'Rows were detected. The schema update is terminating because data loss might occur.', 16, 127) WITH NOWAIT
+
+GO
+PRINT N'Dropping Default Constraint unnamed constraint on [dbo].[Beneficiary]...';
 
 
 GO
-ALTER PROCEDURE [dbo].[SP_EmployeeRoleName]
-	@UserID int
+ALTER TABLE [dbo].[Beneficiary] DROP CONSTRAINT [DF__Beneficia__Accou__2739D489];
+
+
+GO
+PRINT N'Dropping Foreign Key [dbo].[FK_Beneficiary_Building]...';
+
+
+GO
+ALTER TABLE [dbo].[Beneficiary] DROP CONSTRAINT [FK_Beneficiary_Building];
+
+
+GO
+PRINT N'Dropping Foreign Key [dbo].[FK_Beneficiary_Role]...';
+
+
+GO
+ALTER TABLE [dbo].[Beneficiary] DROP CONSTRAINT [FK_Beneficiary_Role];
+
+
+GO
+PRINT N'Dropping Foreign Key [dbo].[FK_ServiceRequest_Beneficiary]...';
+
+
+GO
+ALTER TABLE [dbo].[ServiceRequest] DROP CONSTRAINT [FK_ServiceRequest_Beneficiary];
+
+
+GO
+PRINT N'Dropping Foreign Key [dbo].[FK_Building_CompanyEmployee]...';
+
+
+GO
+ALTER TABLE [dbo].[Building] DROP CONSTRAINT [FK_Building_CompanyEmployee];
+
+
+GO
+PRINT N'Dropping Foreign Key [dbo].[FK_User_ManagerID]...';
+
+
+GO
+ALTER TABLE [dbo].[CompanyEmployee] DROP CONSTRAINT [FK_User_ManagerID];
+
+
+GO
+PRINT N'Dropping Foreign Key [dbo].[FK_CompanyEmployee_RoleID]...';
+
+
+GO
+ALTER TABLE [dbo].[CompanyEmployee] DROP CONSTRAINT [FK_CompanyEmployee_RoleID];
+
+
+GO
+PRINT N'Dropping Foreign Key [dbo].[FK_CompanyEmployee_Location]...';
+
+
+GO
+ALTER TABLE [dbo].[CompanyEmployee] DROP CONSTRAINT [FK_CompanyEmployee_Location];
+
+
+GO
+PRINT N'Dropping Foreign Key [dbo].[FK_CompanyEmployee_Specialization]...';
+
+
+GO
+ALTER TABLE [dbo].[CompanyEmployee] DROP CONSTRAINT [FK_CompanyEmployee_Specialization];
+
+
+GO
+PRINT N'Dropping Foreign Key [dbo].[FK_ServiceRequest_CompanyEmployee]...';
+
+
+GO
+ALTER TABLE [dbo].[ServiceRequest] DROP CONSTRAINT [FK_ServiceRequest_CompanyEmployee];
+
+
+GO
+PRINT N'Starting rebuilding table [dbo].[Beneficiary]...';
+
+
+GO
+BEGIN TRANSACTION;
+
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+
+SET XACT_ABORT ON;
+
+CREATE TABLE [dbo].[tmp_ms_xx_Beneficiary] (
+    [BeneficiaryID]       INT        IDENTITY (1, 1) NOT NULL,
+    [Username]            NCHAR (40) NOT NULL,
+    [Password]            NCHAR (40) NOT NULL,
+    [FirstName]           NCHAR (40) NOT NULL,
+    [LastName]            NCHAR (40) NOT NULL,
+    [Email]               NCHAR (40) NOT NULL,
+    [Building_BuildingID] INT        NOT NULL,
+    [Role_RoleID]         INT        NOT NULL,
+    [AccountStatus]       BIT        DEFAULT 0 NOT NULL,
+    PRIMARY KEY CLUSTERED ([BeneficiaryID] ASC),
+    UNIQUE NONCLUSTERED ([Username] ASC),
+    UNIQUE NONCLUSTERED ([Email] ASC)
+);
+
+IF EXISTS (SELECT TOP 1 1 
+           FROM   [dbo].[Beneficiary])
+    BEGIN
+        SET IDENTITY_INSERT [dbo].[tmp_ms_xx_Beneficiary] ON;
+        INSERT INTO [dbo].[tmp_ms_xx_Beneficiary] ([BeneficiaryID], [Username], [Password], [Email], [Building_BuildingID], [Role_RoleID], [AccountStatus])
+        SELECT   [BeneficiaryID],
+                 [Username],
+                 [Password],
+                 [Email],
+                 [Building_BuildingID],
+                 [Role_RoleID],
+                 [AccountStatus]
+        FROM     [dbo].[Beneficiary]
+        ORDER BY [BeneficiaryID] ASC;
+        SET IDENTITY_INSERT [dbo].[tmp_ms_xx_Beneficiary] OFF;
+    END
+
+DROP TABLE [dbo].[Beneficiary];
+
+EXECUTE sp_rename N'[dbo].[tmp_ms_xx_Beneficiary]', N'Beneficiary';
+
+COMMIT TRANSACTION;
+
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+
+
+GO
+PRINT N'Starting rebuilding table [dbo].[CompanyEmployee]...';
+
+
+GO
+BEGIN TRANSACTION;
+
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+
+SET XACT_ABORT ON;
+
+CREATE TABLE [dbo].[tmp_ms_xx_CompanyEmployee] (
+    [EmployeeID]                      INT        IDENTITY (1, 1) NOT NULL,
+    [Username]                        NCHAR (40) NOT NULL,
+    [Password]                        NCHAR (40) NOT NULL,
+    [FirstName]                       NCHAR (40) NOT NULL,
+    [LastName]                        NCHAR (40) NOT NULL,
+    [Email]                           NCHAR (40) NOT NULL,
+    [Specialization_idSpecialization] INT        NOT NULL,
+    [ManagerID]                       INT        NULL,
+    [Location_idLocation]             INT        NOT NULL,
+    [Role_idRole]                     INT        NOT NULL,
+    [AccountStatus]                   BIT        DEFAULT 0 NOT NULL,
+    PRIMARY KEY CLUSTERED ([EmployeeID] ASC),
+    UNIQUE NONCLUSTERED ([Username] ASC),
+    UNIQUE NONCLUSTERED ([Email] ASC)
+);
+
+IF EXISTS (SELECT TOP 1 1 
+           FROM   [dbo].[CompanyEmployee])
+    BEGIN
+        SET IDENTITY_INSERT [dbo].[tmp_ms_xx_CompanyEmployee] ON;
+        INSERT INTO [dbo].[tmp_ms_xx_CompanyEmployee] ([EmployeeID], [Username], [Password], [Email], [Specialization_idSpecialization], [ManagerID], [Location_idLocation], [Role_idRole])
+        SELECT   [EmployeeID],
+                 [Username],
+                 [Password],
+                 [Email],
+                 [Specialization_idSpecialization],
+                 [ManagerID],
+                 [Location_idLocation],
+                 [Role_idRole]
+        FROM     [dbo].[CompanyEmployee]
+        ORDER BY [EmployeeID] ASC;
+        SET IDENTITY_INSERT [dbo].[tmp_ms_xx_CompanyEmployee] OFF;
+    END
+
+DROP TABLE [dbo].[CompanyEmployee];
+
+EXECUTE sp_rename N'[dbo].[tmp_ms_xx_CompanyEmployee]', N'CompanyEmployee';
+
+COMMIT TRANSACTION;
+
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+
+
+GO
+PRINT N'Creating Foreign Key [dbo].[FK_Beneficiary_Building]...';
+
+
+GO
+ALTER TABLE [dbo].[Beneficiary] WITH NOCHECK
+    ADD CONSTRAINT [FK_Beneficiary_Building] FOREIGN KEY ([Building_BuildingID]) REFERENCES [dbo].[Building] ([BuildingID]);
+
+
+GO
+PRINT N'Creating Foreign Key [dbo].[FK_Beneficiary_Role]...';
+
+
+GO
+ALTER TABLE [dbo].[Beneficiary] WITH NOCHECK
+    ADD CONSTRAINT [FK_Beneficiary_Role] FOREIGN KEY ([Role_RoleID]) REFERENCES [dbo].[Role] ([RoleID]);
+
+
+GO
+PRINT N'Creating Foreign Key [dbo].[FK_ServiceRequest_Beneficiary]...';
+
+
+GO
+ALTER TABLE [dbo].[ServiceRequest] WITH NOCHECK
+    ADD CONSTRAINT [FK_ServiceRequest_Beneficiary] FOREIGN KEY ([RequestCreatorID]) REFERENCES [dbo].[Beneficiary] ([BeneficiaryID]);
+
+
+GO
+PRINT N'Creating Foreign Key [dbo].[FK_Building_CompanyEmployee]...';
+
+
+GO
+ALTER TABLE [dbo].[Building] WITH NOCHECK
+    ADD CONSTRAINT [FK_Building_CompanyEmployee] FOREIGN KEY ([BuildingManagerID]) REFERENCES [dbo].[CompanyEmployee] ([EmployeeID]);
+
+
+GO
+PRINT N'Creating Foreign Key [dbo].[FK_User_ManagerID]...';
+
+
+GO
+ALTER TABLE [dbo].[CompanyEmployee] WITH NOCHECK
+    ADD CONSTRAINT [FK_User_ManagerID] FOREIGN KEY ([ManagerID]) REFERENCES [dbo].[CompanyEmployee] ([EmployeeID]);
+
+
+GO
+PRINT N'Creating Foreign Key [dbo].[FK_CompanyEmployee_RoleID]...';
+
+
+GO
+ALTER TABLE [dbo].[CompanyEmployee] WITH NOCHECK
+    ADD CONSTRAINT [FK_CompanyEmployee_RoleID] FOREIGN KEY ([Role_idRole]) REFERENCES [dbo].[Role] ([RoleID]);
+
+
+GO
+PRINT N'Creating Foreign Key [dbo].[FK_CompanyEmployee_Location]...';
+
+
+GO
+ALTER TABLE [dbo].[CompanyEmployee] WITH NOCHECK
+    ADD CONSTRAINT [FK_CompanyEmployee_Location] FOREIGN KEY ([Location_idLocation]) REFERENCES [dbo].[Location] ([LocationID]);
+
+
+GO
+PRINT N'Creating Foreign Key [dbo].[FK_CompanyEmployee_Specialization]...';
+
+
+GO
+ALTER TABLE [dbo].[CompanyEmployee] WITH NOCHECK
+    ADD CONSTRAINT [FK_CompanyEmployee_Specialization] FOREIGN KEY ([Specialization_idSpecialization]) REFERENCES [dbo].[Specialization] ([SpecializationID]);
+
+
+GO
+PRINT N'Creating Foreign Key [dbo].[FK_ServiceRequest_CompanyEmployee]...';
+
+
+GO
+ALTER TABLE [dbo].[ServiceRequest] WITH NOCHECK
+    ADD CONSTRAINT [FK_ServiceRequest_CompanyEmployee] FOREIGN KEY ([AssignedWorkerID]) REFERENCES [dbo].[CompanyEmployee] ([EmployeeID]);
+
+
+GO
+PRINT N'Altering Procedure [dbo].[SP_InsertBeneficiary]...';
+
+
+GO
+ALTER PROCEDURE [dbo].[SP_InsertBeneficiary]
+	@Username nchar (40),
+	@Password nchar (40), 
+	@FirstName nchar (40), 
+	@LastName nchar (40), 
+	@Email nchar (40), 
+	@BuildingID INT
 AS
-	SELECT Role.RoleName
-	FROM CompanyEmployee left join Role ON CompanyEmployee.Role_idRole = Role.RoleID
-	where CompanyEmployee.EmployeeID = @UserID
-RETURN 0
+	IF NOT EXISTS (Select Username from dbo.Beneficiary where dbo.Beneficiary.Username = @Username)
+		Begin
+			INSERT INTO dbo.Beneficiary(Username, Password, FirstName,LastName ,Email, Building_BuildingID, Role_RoleID)
+			VALUES (@Username, @Password,@FirstName,@LastName ,@Email,@BuildingID, (Select RoleID from dbo.Role where dbo.Role.RoleName = 'Tenant'))
+			SELECT 1;
+		END
+	ELSE
+		BEGIN
+			SELECT 0; 
+		END
+GO
+PRINT N'Altering Procedure [dbo].[SP_InsertCompanyEmployee]...';
+
+
+GO
+ALTER PROCEDURE [dbo].[SP_InsertCompanyEmployee]
+	@username nchar(40),
+	@password nchar(40),
+	@FirstName nchar(40),
+	@LastName nchar(40),
+	@Email nchar(40),
+	@SpecializationID INT, 
+	@RoleID INT, 
+	@LocationID INT, 
+	@ManagerID INT
+
+AS
+    IF NOT EXISTS (Select Username from dbo.CompanyEmployee where dbo.CompanyEmployee.Username = @username)
+	    BEGIN
+			INSERT INTO dbo.CompanyEmployee(Username, Password,FirstName,LastName ,Email, Specialization_idSpecialization, Role_idRole, Location_idLocation, ManagerID)
+			VALUES (@username, @password,@FirstName,@LastName ,@Email, @SpecializationID, @RoleID, @LocationID, @ManagerID)
+			SELECT 1;
+	    END
+	ELSE
+		BEGIN
+			SELECT 0; 
+		END
+GO
+PRINT N'Creating Procedure [dbo].[SP_EmployeeResetPassAndActivateAccount]...';
+
+
+GO
+CREATE PROCEDURE [dbo].[SP_EmployeeResetPassAndActivateAccount]
+	@password nchar(40),
+	@EmployeeID INT
+AS
+	UPDATE dbo.CompanyEmployee SET Password = @password, AccountStatus = 1 
+	WHERE dbo.CompanyEmployee.EmployeeID = @EmployeeID
+GO
+PRINT N'Creating Procedure [dbo].[SP_GetUserRoles]...';
+
+
+GO
+CREATE PROCEDURE [dbo].[SP_GetUserRoles]
+	@username nchar(40)
+AS
+	IF EXISTS (Select 1 from dbo.Beneficiary where dbo.Beneficiary.Username = @username)
+		BEGIN
+			SELECT dbo.Role.RoleName FROM dbo.Role 
+			WHERE dbo.Role.RoleID = ( SELECT dbo.Beneficiary.Role_RoleID FROM dbo.Beneficiary
+			WHERE dbo.Beneficiary.Username = @username )
+		END
+	ELSE
+		BEGIN
+			SELECT dbo.Role.RoleName FROM dbo.Role 
+			WHERE dbo.Role.RoleID = ( SELECT dbo.CompanyEmployee.Role_idRole FROM dbo.CompanyEmployee
+			WHERE dbo.CompanyEmployee.Role_idRole = @username )
+		END
+GO
+PRINT N'Refreshing Procedure [dbo].[SP_ActivateBeneficiaryAccount]...';
+
+
+GO
+EXECUTE sp_refreshsqlmodule N'[dbo].[SP_ActivateBeneficiaryAccount]';
+
+
+GO
+PRINT N'Refreshing Procedure [dbo].[SP_Ben_LoginCheck]...';
+
+
+GO
+EXECUTE sp_refreshsqlmodule N'[dbo].[SP_Ben_LoginCheck]';
+
+
+GO
+PRINT N'Refreshing Procedure [dbo].[SP_GetAllServiceRequests]...';
+
+
+GO
+EXECUTE sp_refreshsqlmodule N'[dbo].[SP_GetAllServiceRequests]';
+
+
+GO
+PRINT N'Refreshing Procedure [dbo].[SP_Employee_LoginCheck]...';
+
+
+GO
+EXECUTE sp_refreshsqlmodule N'[dbo].[SP_Employee_LoginCheck]';
+
+
+GO
+PRINT N'Checking existing data against newly created constraints';
+
+
+GO
+USE [$(DatabaseName)];
+
+
+GO
+ALTER TABLE [dbo].[Beneficiary] WITH CHECK CHECK CONSTRAINT [FK_Beneficiary_Building];
+
+ALTER TABLE [dbo].[Beneficiary] WITH CHECK CHECK CONSTRAINT [FK_Beneficiary_Role];
+
+ALTER TABLE [dbo].[ServiceRequest] WITH CHECK CHECK CONSTRAINT [FK_ServiceRequest_Beneficiary];
+
+ALTER TABLE [dbo].[Building] WITH CHECK CHECK CONSTRAINT [FK_Building_CompanyEmployee];
+
+ALTER TABLE [dbo].[CompanyEmployee] WITH CHECK CHECK CONSTRAINT [FK_User_ManagerID];
+
+ALTER TABLE [dbo].[CompanyEmployee] WITH CHECK CHECK CONSTRAINT [FK_CompanyEmployee_RoleID];
+
+ALTER TABLE [dbo].[CompanyEmployee] WITH CHECK CHECK CONSTRAINT [FK_CompanyEmployee_Location];
+
+ALTER TABLE [dbo].[CompanyEmployee] WITH CHECK CHECK CONSTRAINT [FK_CompanyEmployee_Specialization];
+
+ALTER TABLE [dbo].[ServiceRequest] WITH CHECK CHECK CONSTRAINT [FK_ServiceRequest_CompanyEmployee];
+
+
 GO
 PRINT N'Update complete.';
 
