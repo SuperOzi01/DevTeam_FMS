@@ -20,7 +20,6 @@ namespace WebApplication.FMS.MVC.Controllers
         {
             _logger = logger;
         }
-        [Authorization]
         public IActionResult Index()
         {
             InfoLog.Info("Successful");
