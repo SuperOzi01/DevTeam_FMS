@@ -6394,19 +6394,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Rana Alhamdan\\.nuget\\packages\\": {}
+    "C:\\Users\\alano\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Rana Alhamdan\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC.BackOffice\\WebApplication.FMS.MVC.BackOffice.csproj",
+      "projectUniqueName": "C:\\Users\\alano\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC.BackOffice\\WebApplication.FMS.MVC.BackOffice.csproj",
       "projectName": "WebApplication.FMS.MVC.BackOffice",
-      "projectPath": "C:\\Users\\Rana Alhamdan\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC.BackOffice\\WebApplication.FMS.MVC.BackOffice.csproj",
-      "packagesPath": "C:\\Users\\Rana Alhamdan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Rana Alhamdan\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC.BackOffice\\obj\\",
+      "projectPath": "C:\\Users\\alano\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC.BackOffice\\WebApplication.FMS.MVC.BackOffice.csproj",
+      "packagesPath": "C:\\Users\\alano\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\alano\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC.BackOffice\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Rana Alhamdan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\alano\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6420,8 +6420,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\Rana Alhamdan\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj": {
-              "projectPath": "C:\\Users\\Rana Alhamdan\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj"
+            "C:\\Users\\alano\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj": {
+              "projectPath": "C:\\Users\\alano\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj"
             }
           }
         }
