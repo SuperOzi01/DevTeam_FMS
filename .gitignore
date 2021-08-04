@@ -2,3 +2,5 @@
 *.cache
 *.dbmdl
 *.jfm
+FMS.Project/.vs/FMS.Project/v16/.suo
+*.dll
