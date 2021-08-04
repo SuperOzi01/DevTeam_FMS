@@ -168,6 +168,5 @@
     <FunctionImportMapping FunctionImportName="SP_HandleServiceRequestByWorker" FunctionName="FMS_DatabaseEF.Store.SP_HandleServiceRequestByWorker" />
     <FunctionImportMapping FunctionImportName="SP_InsertNewServiceRequiest" FunctionName="FMS_DatabaseEF.Store.SP_InsertNewServiceRequiest" />
     <FunctionImportMapping FunctionImportName="SP_EmployeeResetPassAndActivateAccount" FunctionName="FMS_DatabaseEF.Store.SP_EmployeeResetPassAndActivateAccount" />
-    <FunctionImportMapping FunctionImportName="SP_GetUserRoles" FunctionName="FMS_DatabaseEF.Store.SP_GetUserRoles" />
   </EntityContainerMapping>
 </Mapping>

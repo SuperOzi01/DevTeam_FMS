@@ -14,20 +14,11 @@ namespace WebApplication.FMS.MVC.Controllers
     {
         string BaseUrl = Startup.GetBaseUrl();
 
-        public IActionResult LoginPortalUi()
-        {
-            return View();
-        }
-
         public IActionResult Signin() 
         {
             return View();
         }
 
-        public IActionResult Signup()
-        {
-            return View();
-        }
         public IActionResult LoginPortal()
         {
             return View();
@@ -79,11 +70,11 @@ namespace WebApplication.FMS.MVC.Controllers
                 var response = httpClient.PostAsJsonAsync("Api/Fms/BeneficiaryRegistraion", BeneficiaryRegistraion).Result;
                 if (response.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("LoginPortal", "Login");
                 }
             }
             ViewBag.BuildingList = GetBuilding();
-            return View(BeneficiaryRegistraion);
+            return View();
         }
 
         
