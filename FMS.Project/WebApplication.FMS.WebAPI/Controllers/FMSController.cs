@@ -5,17 +5,23 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using ClassLibrary.FMS.DataModels;
 using log4net;
 using WebApplication.FMS.WebAPI.AppFilters;
 using ClassLibrary.FMS.DatabaseOperations;
+using ClassLibrary.FMS.DataModels;
+using WebApplication.FMS.WebAPI.App_Start;
 
 namespace WebApplication.FMS.WebAPI.Controllers
 {
+    [ExceptionFilter]
+    [LogsFilterWebAPI]
     public class FMSController : ApiController
     {
         static readonly ILog ErrorLog = LogManager.GetLogger("ErrorLog");
         static readonly ILog InfoLog = LogManager.GetLogger("InfoLog");
+        ResponseAPI Responce = new ResponseAPI();
+        LoginOperations loginOperationsObject = new LoginOperations();
+
         [Route("Api/Fms/ping")] 
         [HttpGet]
         [ExceptionFilter]
@@ -23,7 +29,9 @@ namespace WebApplication.FMS.WebAPI.Controllers
         {
             // test the api logs and exceptions   
             //throw new DivideByZeroException();
-            return Ok(("Ok" , HttpStatusCode.OK));
+            Responce.Message = "Ping is Working";
+            Responce.Result = true;
+            return Ok(Responce);
         }
 
         [Route("Api/Fms/HelthCheck")]
@@ -34,20 +42,26 @@ namespace WebApplication.FMS.WebAPI.Controllers
             // 1- JWT Working
             // 2- DB connection 
             // 3- Logs 
-            return Ok(("Ok", HttpStatusCode.OK));
+            Responce.Message = "Health Check is Working";
+            Responce.Result = true;
+            return Ok(Responce);
         }
 
         [Route("Api/Fms/Token")]
         [HttpPost]
-        public IHttpActionResult Token(string username)
+        public IHttpActionResult Token(LoginModel loginModel)
         {
             // This Function Shall recieve User Model Object .. and return the token as a result.. 
-            string token = new AuthinticationManager().Authinticate("Username");
-            return Ok((token, HttpStatusCode.OK));
+            //string token = new AuthinticationManager().Authinticate(loginModel);
+            string token = new TokenManager().GenerateToken(loginModel);
+            Responce.Result = true;
+            Responce.Message = token;
+            return Ok(Responce);
         }
 
-        [AuthorizationManager(Roles = "test")]
-        [Route("Api/Fms/validate")]
+        [AuthinticationManager]
+        [AuthorizationManager(Roles = "Tenent")]
+        [Route("Api/Fms/Validate")]
         [HttpPost]
         public IHttpActionResult Validate()
         {
@@ -56,18 +70,152 @@ namespace WebApplication.FMS.WebAPI.Controllers
         }
 
 
-        [Route("Api/Fms/LoginBeneficiry")]
+        [Route("Api/Fms/Login")]
         [HttpPost]
-        public IHttpActionResult Login()
+        public IHttpActionResult Login(LoginModel login)
+        {
+            // check if the user Exists 
+            bool result = loginOperationsObject.Login(login);
+
+            if (result == true)
+            {
+                string role = loginOperationsObject.GetUserRole(login);
+                login.Role = role;
+                return Token(login);
+            }
+            else
+            {
+                Responce.Result = false;
+                Responce.Message = "Login failed";
+                return Ok(Responce);
+            }
+
+        }
+
+        [Route("Api/Fms/BeneficiaryRegistraion")]
+        [HttpPost]
+        public IHttpActionResult BeneficiaryRegistraion(BeneficiaryRegistraionModel BeneficiaryRegistraion)
+        {
+            
+            bool result = loginOperationsObject.BeneficiaryRegistraion(BeneficiaryRegistraion);
+
+            if (result == true)
+            {
+                Responce.Result = true;
+                Responce.Message = "Beneficiary has been successfully registered";
+            }
+            else
+            {
+                Responce.Result = false;
+                Responce.Message = "Registration failed";
+            }
+                return Ok(Responce);
+        }
+
+        [Route("Api/Fms/EmployeeRegistraion")]
+        [HttpPost]
+        public IHttpActionResult EmployeeRegistraion(EmployeeRegistraionModel EmployeeRegistraion)
         {
 
-            LoginOperations BenLogin = new LoginOperations();
-            bool result = BenLogin.Login("BenTest", "1234");
+            bool result = loginOperationsObject.EmployeeRegistraion(EmployeeRegistraion);
 
-            if( result == true )
-            return Token("BenTest"); 
+            if (result == true)
+            {
+                Responce.Result = true;
+                Responce.Message = "Employee has been successfully registered";
+            }
+            else
+            {
+                Responce.Result = false;
+                Responce.Message = "Registration failed";
+            }
+                return Ok(Responce);
+        }
 
-            return Ok((false , HttpStatusCode.Unauthorized));
+        [Route("Api/Fms/BeneficiaryRegistraion")]
+        [HttpGet]
+        public IHttpActionResult GetBuildingList()
+        {
+            var BuildingList = loginOperationsObject.GetBuildingList();
+
+                List<System.Web.Mvc.SelectListItem> list = new List<System.Web.Mvc.SelectListItem>();
+                foreach (var item in BuildingList)
+                {
+                    list.Add(new System.Web.Mvc.SelectListItem()
+                    {
+                        Text = item.BuildingID.ToString(),
+                        Value = item.BuildingID.ToString()
+                    });
+                }
+                return Ok(list);
+        }
+        [Route("Api/Fms/GetSpecializationList")]
+        [HttpGet]
+        public IHttpActionResult GetSpecializationList()
+        {
+            var SpecializationList = loginOperationsObject.GetSpecializationList();
+
+            List<System.Web.Mvc.SelectListItem> list = new List<System.Web.Mvc.SelectListItem>();
+            foreach (var item in SpecializationList)
+            {
+                list.Add(new System.Web.Mvc.SelectListItem()
+                {
+                    Text = item.SpecializationName.ToString(),
+                    Value = item.SpecializationID.ToString()
+                });
+            }
+            return Ok(list);
+        }
+        [Route("Api/Fms/GetManagerList")]
+        [HttpGet]
+        public IHttpActionResult GetManagerList()
+        {
+            var ManagerList = loginOperationsObject.GetManagerList();
+
+            List<System.Web.Mvc.SelectListItem> list = new List<System.Web.Mvc.SelectListItem>();
+            foreach (var item in ManagerList)
+            {
+                list.Add(new System.Web.Mvc.SelectListItem()
+                {
+                    Text = item.Username.ToString(),
+                    Value = item.EmployeeID.ToString()
+                });
+            }
+            return Ok(list);
+        }
+        [Route("Api/Fms/GetLocationList")]
+        [HttpGet]
+        public IHttpActionResult GetLocationList()
+        {
+            var BuildingList = loginOperationsObject.GetLocationList();
+
+            List<System.Web.Mvc.SelectListItem> list = new List<System.Web.Mvc.SelectListItem>();
+            foreach (var item in BuildingList)
+            {
+                list.Add(new System.Web.Mvc.SelectListItem()
+                {
+                    Text = item.City.ToString(),
+                    Value = item.LocationID.ToString()
+                });
+            }
+            return Ok(list);
+        }
+        [Route("Api/Fms/GetRoleList")]
+        [HttpGet]
+        public IHttpActionResult GetRoleList()
+        {
+            var BuildingList = loginOperationsObject.GetRoleList();
+
+            List<System.Web.Mvc.SelectListItem> list = new List<System.Web.Mvc.SelectListItem>();
+            foreach (var item in BuildingList)
+            {
+                list.Add(new System.Web.Mvc.SelectListItem()
+                {
+                    Text = item.RoleName.ToString(),
+                    Value = item.RoleID.ToString()
+                });
+            }
+            return Ok(list);
         }
     }
 }

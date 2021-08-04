@@ -57,6 +57,7 @@
     <Folder Include="Tables" />
     <Folder Include="StoredProcedures" />
     <Folder Include="Publish" />
+    <Folder Include="Views" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\CompanyEmployee.sql" />
@@ -72,13 +73,24 @@
     <Build Include="StoredProcedures\SP_AddLocation.sql" />
     <Build Include="StoredProcedures\SP_AddSpecialization.sql" />
     <Build Include="StoredProcedures\SP_AddBuilding.sql" />
+    <Build Include="Tables\ServiceRequest.sql" />
+    <Build Include="StoredProcedures\SP_GetAllLocations.sql" />
+    <Build Include="StoredProcedures\SP_GetAllRoles.sql" />
+    <Build Include="StoredProcedures\SP_GetAllSpecializations.sql" />
+    <Build Include="StoredProcedures\SP_GetAllBuildings.sql" />
+    <Build Include="StoredProcedures\SP_InsertNewServiceRequiest.sql" />
+    <Build Include="StoredProcedures\SP_AssignWorkerToRequest.sql" />
+    <Build Include="StoredProcedures\SP_HandleServiceRequestByWorker.sql" />
+    <Build Include="StoredProcedures\SP_GetAllServiceRequests.sql" />
+    <Build Include="Views\View_BuildingAndLocationInfo.sql" />
+    <Build Include="StoredProcedures\SP_ActivateBeneficiaryAccount.sql" />
+    <Build Include="StoredProcedures\SP_EmployeeResetPassAndActivateAccount.sql" />
+    <Build Include="StoredProcedures\SP_GetUserRoles.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SSDP.FMS.Database.refactorlog" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Publish\SSDP.FMS.Database.publish.xml" />
-    <None Include="SSDP.FMS.Database.publish.xml" />
-    <None Include="SSDP.FMS.Database2.publish.publish.xml" />
   </ItemGroup>
 </Project>

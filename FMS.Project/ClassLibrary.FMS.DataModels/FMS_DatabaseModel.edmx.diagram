@@ -4,9 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8f3ee8db3bd0432ea488a56e0418d234" Name="Diagram1">
+      <Diagram DiagramId="8f3ee8db3bd0432ea488a56e0418d234" Name="Diagram1" ZoomLevel="74">
         <EntityTypeShape EntityType="FMS_DatabaseEF.C__RefactorLog" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="FMS_DatabaseEF.Beneficiary" Width="1.5" PointX="8.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FMS_DatabaseEF.Beneficiary" Width="1.5" PointX="8.75" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="FMS_DatabaseEF.Building" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="FMS_DatabaseEF.CompanyEmployee" Width="1.5" PointX="6" PointY="3" IsExpanded="true" />
         <EntityTypeShape EntityType="FMS_DatabaseEF.Location" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
@@ -20,7 +20,13 @@
         <AssociationConnector Association="FMS_DatabaseEF.FK_CompanyEmployee_RoleID" ManuallyRouted="false" />
         <AssociationConnector Association="FMS_DatabaseEF.FK_CompanyEmployee_Specialization" ManuallyRouted="false" />
         <AssociationConnector Association="FMS_DatabaseEF.FK_User_ManagerID" ManuallyRouted="false" />
-      </Diagram>
+        <EntityTypeShape EntityType="FMS_DatabaseEF.ServiceRequest" Width="1.5" PointX="8.25" PointY="7.375" />
+        <AssociationConnector Association="FMS_DatabaseEF.FK_ServiceRequest_Building" />
+        <AssociationConnector Association="FMS_DatabaseEF.FK_ServiceRequest_CompanyEmployee" />
+        <AssociationConnector Association="FMS_DatabaseEF.FK_ServiceRequest_Specialization" />
+        <EntityTypeShape EntityType="FMS_DatabaseEF.View_BuildingAndLocationInfo" Width="1.5" PointX="0.75" PointY="7.75" />
+        <AssociationConnector Association="FMS_DatabaseEF.FK_ServiceRequest_Beneficiary" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

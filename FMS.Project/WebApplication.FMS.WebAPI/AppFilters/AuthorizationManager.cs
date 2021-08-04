@@ -12,6 +12,7 @@ using System.Text;
 using System.Web;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
+using WebApplication.FMS.WebAPI.App_Start;
 using WebApplication.FMS.WebAPI.AppFilters;
 
 namespace WebApplication
@@ -22,9 +23,7 @@ namespace WebApplication
 
         public override void OnAuthorization(HttpActionContext actionContext)
         {
-            AuthinticationManager Auth = new AuthinticationManager();
-            var result = Auth.Validate(actionContext.Request.Headers.Authorization.Parameter, Roles);
-            // Here i'm going to check the claims from the validation method in the AuthManager 
+            bool result = new TokenManager().AuthorizeToken(actionContext.Request.Headers.GetValues("Authorization").FirstOrDefault(), Roles);
             if (result == false)
                 throw new UnauthorizedAccessException();
             else

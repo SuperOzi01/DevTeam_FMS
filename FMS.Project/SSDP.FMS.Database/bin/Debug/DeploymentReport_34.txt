@@ -1,0 +1,71 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       [dbo].[Beneficiary]
+       [dbo].[CompanyEmployee]
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       The column [dbo].[Beneficiary].[FirstName] on table [dbo].[Beneficiary] must be added, but the column has no default
+         value and does not allow NULL values. If the table contains data, the ALTER script will not work. To avoid this issue
+         you must either: add a default value to the column, mark it as allowing NULL values, or enable the generation of
+         smart-defaults as a deployment option.
+       The column [dbo].[Beneficiary].[LastName] on table [dbo].[Beneficiary] must be added, but the column has no default
+         value and does not allow NULL values. If the table contains data, the ALTER script will not work. To avoid this issue
+         you must either: add a default value to the column, mark it as allowing NULL values, or enable the generation of
+         smart-defaults as a deployment option.
+       The column [dbo].[CompanyEmployee].[FirstName] on table [dbo].[CompanyEmployee] must be added, but the column has no
+         default value and does not allow NULL values. If the table contains data, the ALTER script will not work. To avoid this
+         issue you must either: add a default value to the column, mark it as allowing NULL values, or enable the generation of
+         smart-defaults as a deployment option.
+       The column [dbo].[CompanyEmployee].[LastName] on table [dbo].[CompanyEmployee] must be added, but the column has no
+         default value and does not allow NULL values. If the table contains data, the ALTER script will not work. To avoid this
+         issue you must either: add a default value to the column, mark it as allowing NULL values, or enable the generation of
+         smart-defaults as a deployment option.
+
+** User actions
+     Drop
+       unnamed constraint on [dbo].[Beneficiary] (Default Constraint)
+     Table rebuild
+       [dbo].[Beneficiary] (Table)
+       [dbo].[CompanyEmployee] (Table)
+     Alter
+       [dbo].[SP_InsertBeneficiary] (Procedure)
+       [dbo].[SP_InsertCompanyEmployee] (Procedure)
+     Create
+       [dbo].[SP_EmployeeResetPassAndActivateAccount] (Procedure)
+       [dbo].[SP_GetUserRoles] (Procedure)
+
+** Supporting actions
+     Drop
+       [dbo].[FK_Beneficiary_Building] (Foreign Key)
+       [dbo].[FK_Beneficiary_Role] (Foreign Key)
+       [dbo].[FK_ServiceRequest_Beneficiary] (Foreign Key)
+       [dbo].[FK_Building_CompanyEmployee] (Foreign Key)
+       [dbo].[FK_User_ManagerID] (Foreign Key)
+       [dbo].[FK_CompanyEmployee_RoleID] (Foreign Key)
+       [dbo].[FK_CompanyEmployee_Location] (Foreign Key)
+       [dbo].[FK_CompanyEmployee_Specialization] (Foreign Key)
+       [dbo].[FK_ServiceRequest_CompanyEmployee] (Foreign Key)
+     Create
+       [dbo].[FK_Beneficiary_Building] (Foreign Key)
+       [dbo].[FK_Beneficiary_Role] (Foreign Key)
+       [dbo].[FK_ServiceRequest_Beneficiary] (Foreign Key)
+       [dbo].[FK_Building_CompanyEmployee] (Foreign Key)
+       [dbo].[FK_User_ManagerID] (Foreign Key)
+       [dbo].[FK_CompanyEmployee_RoleID] (Foreign Key)
+       [dbo].[FK_CompanyEmployee_Location] (Foreign Key)
+       [dbo].[FK_CompanyEmployee_Specialization] (Foreign Key)
+       [dbo].[FK_ServiceRequest_CompanyEmployee] (Foreign Key)
+     Refresh
+       [dbo].[SP_ActivateBeneficiaryAccount] (Procedure)
+       [dbo].[SP_Ben_LoginCheck] (Procedure)
+       [dbo].[SP_GetAllServiceRequests] (Procedure)
+       [dbo].[SP_Employee_LoginCheck] (Procedure)
+
+The column [dbo].[Beneficiary].[FirstName] on table [dbo].[Beneficiary] must be added, but the column has no default value and does not allow NULL values. If the table contains data, the ALTER script will not work. To avoid this issue you must either: add a default value to the column, mark it as allowing NULL values, or enable the generation of smart-defaults as a deployment option.
+The column [dbo].[Beneficiary].[LastName] on table [dbo].[Beneficiary] must be added, but the column has no default value and does not allow NULL values. If the table contains data, the ALTER script will not work. To avoid this issue you must either: add a default value to the column, mark it as allowing NULL values, or enable the generation of smart-defaults as a deployment option.
+The column [dbo].[CompanyEmployee].[FirstName] on table [dbo].[CompanyEmployee] must be added, but the column has no default value and does not allow NULL values. If the table contains data, the ALTER script will not work. To avoid this issue you must either: add a default value to the column, mark it as allowing NULL values, or enable the generation of smart-defaults as a deployment option.
+The column [dbo].[CompanyEmployee].[LastName] on table [dbo].[CompanyEmployee] must be added, but the column has no default value and does not allow NULL values. If the table contains data, the ALTER script will not work. To avoid this issue you must either: add a default value to the column, mark it as allowing NULL values, or enable the generation of smart-defaults as a deployment option.
+

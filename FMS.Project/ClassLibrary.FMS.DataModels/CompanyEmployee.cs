@@ -19,6 +19,7 @@ namespace ClassLibrary.FMS.DataModels
         {
             this.Buildings = new HashSet<Building>();
             this.CompanyEmployee1 = new HashSet<CompanyEmployee>();
+            this.ServiceRequests = new HashSet<ServiceRequest>();
         }
     
         public int EmployeeID { get; set; }
@@ -28,6 +29,10 @@ namespace ClassLibrary.FMS.DataModels
         public Nullable<int> ManagerID { get; set; }
         public int Location_idLocation { get; set; }
         public int Role_idRole { get; set; }
+        public string Email { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public bool AccountStatus { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Building> Buildings { get; set; }
@@ -37,5 +42,7 @@ namespace ClassLibrary.FMS.DataModels
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CompanyEmployee> CompanyEmployee1 { get; set; }
         public virtual CompanyEmployee CompanyEmployee2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ServiceRequest> ServiceRequests { get; set; }
     }
 }
