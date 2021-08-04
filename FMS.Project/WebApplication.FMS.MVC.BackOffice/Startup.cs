@@ -1,3 +1,5 @@
+using log4net;
+using log4net.Config;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -6,18 +8,27 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace WebApplication.FMS.MVC.BackOffice
 {
     public class Startup
     {
+        public static string BaseUrl { get; private set; }
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            BaseUrl = Configuration.GetSection("BaseUrl").Value;
+            var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
+            XmlConfigurator.Configure(logRepository, new FileInfo("Log4net.config"));
         }
-
+        public static string GetBaseUrl()
+        {
+            return Startup.BaseUrl;
+        }
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
