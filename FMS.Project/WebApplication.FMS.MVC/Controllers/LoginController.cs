@@ -31,13 +31,13 @@ namespace WebApplication.FMS.MVC.Controllers
             return View();
         }
 
-        public ActionResult Login()
+        public IActionResult LoginPortal()
         {
             return View();
         }
-
+        
         [HttpPost]
-        public async Task<IActionResult> Login(LoginModel login)
+        public async Task<IActionResult> LoginPortalAsync(LoginModel login)
         {
             var securityToken = string.Empty;
             if (ModelState.IsValid)
@@ -46,7 +46,7 @@ namespace WebApplication.FMS.MVC.Controllers
                 client.BaseAddress = new Uri(BaseUrl);
 
                 
-                var response = await client.PostAsJsonAsync("Api/Fms/Login", login);
+                var response = await client.PostAsJsonAsync("Api/Fms/LoginPortal", login);
                 var resultMessage = response.Content.ReadAsAsync<ResponseAPI>().Result;
                 if (resultMessage.Result == true)
                 {
@@ -89,33 +89,7 @@ namespace WebApplication.FMS.MVC.Controllers
             return View(BeneficiaryRegistraion);
         }
 
-        public IActionResult EmployeeRegistraion()
-        {
-            ViewBag.SpecializationList = GetSpecializationList();
-            ViewBag.ManagerList = GetManagerList();
-            ViewBag.LocationList = GetLocationList();
-            ViewBag.RoleList = GetRoleList();
-            return View();
-        }
-        [HttpPost]
-        public IActionResult EmployeeRegistraion(EmployeeRegistraionModel EmployeeRegistraion)
-        {
-            if (ModelState.IsValid)
-            {
-                HttpClient httpClient = new HttpClient();
-                httpClient.BaseAddress = new Uri(BaseUrl);
-                var response = httpClient.PostAsJsonAsync("Api/Fms/EmployeeRegistraion", EmployeeRegistraion).Result;
-                if (response.IsSuccessStatusCode)
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-            }
-            ViewBag.SpecializationList = GetSpecializationList();
-            ViewBag.ManagerList = GetManagerList();
-            ViewBag.LocationList = GetLocationList();
-            ViewBag.RoleList = GetRoleList();
-            return View(EmployeeRegistraion);
-        }
+        
         private IEnumerable<SelectListItem> GetBuilding()
         {
             SelectList ListOfBuilding = null;
@@ -130,58 +104,6 @@ namespace WebApplication.FMS.MVC.Controllers
             return ListOfBuilding;
         }
 
-        private IEnumerable<SelectListItem> GetSpecializationList()
-        {
-            SelectList SpecializationName = null;
-            HttpClient httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri(BaseUrl);
-            var response = httpClient.GetAsync("Api/Fms/GetSpecializationList").Result;
-            if (response.IsSuccessStatusCode)
-            {
-                var SpecializationList = response.Content.ReadAsAsync<IEnumerable<SelectListItem>>().Result;
-                SpecializationName = new SelectList(SpecializationList, "Value", "Text");
-            }
-            return SpecializationName;
-        }
-        private IEnumerable<SelectListItem> GetManagerList()
-        {
-            SelectList ManagerName = null;
-            HttpClient httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri(BaseUrl);
-            var response = httpClient.GetAsync("Api/Fms/GetManagerList").Result;
-            if (response.IsSuccessStatusCode)
-            {
-                var ManagerList = response.Content.ReadAsAsync<IEnumerable<SelectListItem>>().Result;
-                ManagerName = new SelectList(ManagerList, "Value", "Text");
-            }
-            return ManagerName;
-        }
-        private IEnumerable<SelectListItem> GetLocationList()
-        {
-            SelectList LocationName = null;
-            HttpClient httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri(BaseUrl);
-            var response = httpClient.GetAsync("Api/Fms/GetLocationList").Result;
-            if (response.IsSuccessStatusCode)
-            {
-                var LocationList = response.Content.ReadAsAsync<IEnumerable<SelectListItem>>().Result;
-                LocationName = new SelectList(LocationList, "Value", "Text");
-            }
-            return LocationName;
-        }
-        private IEnumerable<SelectListItem> GetRoleList()
-        {
-            SelectList RolenName = null;
-            HttpClient httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri(BaseUrl);
-            var response = httpClient.GetAsync("Api/Fms/GetRoleList").Result;
-            if (response.IsSuccessStatusCode)
-            {
-                var RoleList = response.Content.ReadAsAsync<IEnumerable<SelectListItem>>().Result;
-                RolenName = new SelectList(RoleList, "Value", "Text");
-            }
-            return RolenName;
-        }
 
     }
 }

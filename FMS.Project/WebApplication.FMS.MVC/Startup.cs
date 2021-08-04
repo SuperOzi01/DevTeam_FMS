@@ -63,7 +63,7 @@ namespace WebApplication.FMS.MVC
             {
                 endpoints.MapControllerRoute(
                     name: "Login",
-                    pattern: "{controller=Login}/{action=Login}");
+                    pattern: "{controller=Login}/{action=LoginPortal}/");
             });
         }
     }
