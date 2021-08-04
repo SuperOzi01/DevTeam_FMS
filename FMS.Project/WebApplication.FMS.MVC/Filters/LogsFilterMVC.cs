@@ -13,7 +13,7 @@ namespace WebApplication.FMS.MVC.Filters
         public void OnActionExecuted(ActionExecutedContext context)
         {
             // Request Time
-            var logMessage = string.Format("MVC Controller Request Logs => { Controller: {0} | Action: {1} | Time: {2} }",
+            var logMessage = string.Format("MVC Controller Request Logs [ Controller: {0} | Action: {1} | Time: {2} ]",
                 context.Controller.ToString(),
                 context.ActionDescriptor.DisplayName,
                 DateTime.Now.ToShortTimeString());
@@ -26,7 +26,7 @@ namespace WebApplication.FMS.MVC.Filters
 
         public void OnActionExecuting(ActionExecutingContext context)
         {
-            throw new NotImplementedException();
+            //
         }
     }
 }

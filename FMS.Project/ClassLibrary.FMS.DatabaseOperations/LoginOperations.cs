@@ -9,17 +9,25 @@ namespace ClassLibrary.FMS.DatabaseOperations
     public class LoginOperations
     {
         FMS_DatabaseModel DatabaseEntity = new FMS_DatabaseModel();
-        public bool Login(LoginModel login)
+        public bool LoginBackOffice(LoginModel login)
+        {
+            // TODO: Call the Employees DB to check the user to make it the log in the same page {x}
+            var employeesLoginCheck = DatabaseEntity.SP_Employee_LoginCheck1(login.Username, login.Password);            
+            if (employeesLoginCheck.FirstOrDefault() == 1)
+                return true; // Employee is registred 
+            else
+                return false; // Employee not found 
+        }
+
+        public bool LoginPortal(LoginModel login)
         {
             // TODO: Call the Employees DB to check the user to make it the log in the same page {x}
             var beneficiaryLoginCheck = DatabaseEntity.SP_Ben_LoginCheck(login.Username, login.Password);
-            var employeesLoginCheck = DatabaseEntity.SP_Employee_LoginCheck1(login.Username, login.Password);            
-            if (beneficiaryLoginCheck.FirstOrDefault() == 1 || employeesLoginCheck.FirstOrDefault() == 1)
-                return true; // Beneficiary is registred 
+            if (beneficiaryLoginCheck.FirstOrDefault() == 1)
+                return true; // beneficiary is registred 
             else
-                return false; // Beneficiary not found 
+                return false; // beneficiary not found 
         }
-
 
 
 
