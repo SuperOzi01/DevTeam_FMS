@@ -28,10 +28,13 @@ namespace WebApplication.FMS.MVC.Controllers
         {
             return View();
         }
+        public IActionResult LoginPortal()
+        {
+            return View();
+        }
 
-        
         [HttpPost]
-        public async Task<IActionResult> LoginPortalAsync(LoginModel login)
+        public async Task<IActionResult> LoginPortal(LoginModel login)
         {
             var securityToken = string.Empty;
             if (ModelState.IsValid)
@@ -47,7 +50,7 @@ namespace WebApplication.FMS.MVC.Controllers
                     securityToken = resultMessage.Message;
                     HttpContext.Response.Cookies.Append("Username", login.Username);
                     HttpContext.Response.Cookies.Append("securityToken", securityToken);
-                    return RedirectToAction("Index", "Login");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -55,7 +58,7 @@ namespace WebApplication.FMS.MVC.Controllers
                     return View();
                 }
             }
-            return Content(securityToken);
+            return View();
         }
 
         // On Validation use this line 
