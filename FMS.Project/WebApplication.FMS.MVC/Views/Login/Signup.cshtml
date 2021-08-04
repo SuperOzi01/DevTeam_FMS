@@ -1,0 +1,94 @@
+﻿@{
+    ViewData["Title"] = "Login";
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/js/fontawesome/css/all.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/css/StyleSheet.css" rel="stylesheet" />
+
+    <title>Create Account</title>
+</head>
+<body>
+    <div class="container">
+        <div class="card1">
+            <div class="row">
+
+                <div class="col-md-4">
+                    <div class="CardRight">
+                        <div class="box">
+                            <header>Welcome Back!</header>
+                            <p>To keep connected with us please login with your personal info</p>
+                            <input asp-action="Index" type="submit" class="btnSignupCard" value="SIGN IN" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-7">
+                    <div class="cardLeft">
+                        <form class="myform text-center">
+
+                            <header>Crate Acount </header>
+
+                            <div class="form-group">
+                                <i class="far fa-user"></i>
+                                <input type="text" placeholder="User Name" class="input" required />
+                                <div class="invalid-feedback">Please fill out this field </div>
+                            </div>
+
+                            <div class="form-group">
+                                <i class="far fa-user"></i>
+                                <input type="text" placeholder="First Name" class="input" required />
+                                <div class="invalid-feedback">Please fill out this field </div>
+                            </div>
+
+                            <div class="form-group">
+                                <i class="far fa-user"></i>
+                                <input type="text" placeholder="Last Name" class="input" required />
+                                <div class="invalid-feedback">Please fill out this field </div>
+                            </div>
+
+                            <div class="form-group">
+                                <i class="far fa-envelope"></i>
+                                <input type="text" placeholder="Email" class="input" required />
+                                <div class="invalid-feedback">Please fill out this field </div>
+                            </div>
+
+                            <div class="form-group">
+                                <i class="fas fa-lock"></i>
+                                <input type="text" placeholder="Password" class="input" required />
+                                <div class="invalid-feedback">Please fill out this field </div>
+                            </div>
+                            <div class="form-group">
+                                <select id="select" name="cours" class="input">
+                                    <option value="bulding ">Building NO</option>
+                                    <option value="bulding 1">1</option>
+                                    <option value="bulding 2">2</option>
+                                    <option value="bulding 3">3</option>
+                                    <option value="bulding 4">4</option>
+                                </select>
+                            </div>
+
+                            <input type="submit" class="btnSignInCard" value="SIGN UP" />
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js"></script>
+
+

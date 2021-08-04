@@ -9,34 +9,40 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link href="~/js/fontawesome/css/all.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link href="~/css/StyleSheet.css" rel="stylesheet" />
+    <link href="~/css/StyleSheet1.css" rel="stylesheet" />
 
     <title>Create Account</title>
 </head>
 <body>
-   <form class="myform text-center">
-                            <header>Welcome Dear Employee! </header>
-                            <p>Please Update password so you can enter your acount</p>
+    <div></div>
 
-                            <div class="form-group">
-                                <input type="text" placeholder="New Password" class="input" required />
-                                <div class="invalid-feedback">Please fill out this field </div>
-                            </div>
+    <form class="myform  ">
+        <img class="logo2" src="~/icon/maintra logo white png.png" alt="logo icon" />
+
+        <div class="text-center">
+            <h1>Welcome Dear Employee! </h1>
+            <p>Please Update password so you can enter your acount</p>
+
+            <div class="form-group ">
+                <i class="far fas fa-lock"></i>
+                <input class="btnpass" type="password" placeholder="Password" />
+            </div>
 
 
-                            <div class="form-group">
-                                <input type="text" placeholder="Conferm Password" class="input" required />
-                                <div class="invalid-feedback">Please fill out this field </div>
-                            </div>
-                            <input type="submit" class="btnSignInCard" value="SIGN IN" />
-                        </form>
-                    </div>
-                </div>
+            <div class="form-group">
+                <i class="far fas fa-lock"></i>
+                <input class="btnpass" type="password" placeholder="Conferm Password" />
+            </div>
+
+            <button class="ghost" id="signUp">Sign Up</button>
+        </div>
+    </form>
+
 </body>
 </html>
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
+<script src="~/js/site.js"></script>
