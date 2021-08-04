@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using ClassLibrary.FMS.DataModels;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -11,21 +12,21 @@ namespace WebApplication.FMS.WebAPI.App_Start
 {
     public class TokenManager
     {
-        //private static string Secret = "ERMN05OPLoDvbTTa/QkqLNMI7cPLguaRyHzyg7n5qNBVjQmtBhz4SzYh4NBVCXi3KJHlSXKP+oi2+bXr6CUYTR==";
-        private const string secretKey = "This is the Secrit Key";
-        public static string GenerateToken()
+        
+        private const string secretKey = "This is the Secrit Key ERMN05OPLoDvbTTa/QkqLNMI7cPLguaRyHzyg7n5qNBVjQmtBhz4SzYh4NBVCXi3KJHlSXKP+oi2+bXr6CUYTR==";
+        public string GenerateToken(LoginModel loginModel)
         {
-           // Book_StoreEntities Con = new Book_StoreEntities();
-            //var nameRole = Con.RoleName(id).ToList();
-            byte[] key = Encoding.ASCII.GetBytes(secretKey);
-            SymmetricSecurityKey securityKey = new SymmetricSecurityKey(key);
+            // Encrypt the Secret Key 
+            var tokenKey = Encoding.ASCII.GetBytes(secretKey);
+            SymmetricSecurityKey securityKey = new SymmetricSecurityKey(tokenKey);
 
+            // Create Token Claims 
             List<Claim> claims = new List<Claim>();
-            //foreach (var item in nameRole)
-            //{
-             //   claims.Add(new Claim(ClaimTypes.Role, item));
-            //}
-
+            // Add Username And Role into the Token Claims
+            claims.Add(new Claim(ClaimTypes.Name, loginModel.Username));
+            claims.Add(new Claim(ClaimTypes.Role, loginModel.Role));
+           
+            // Create the token Discriptor
             SecurityTokenDescriptor descriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
@@ -38,5 +39,46 @@ namespace WebApplication.FMS.WebAPI.App_Start
             JwtSecurityToken token = handler.CreateJwtSecurityToken(descriptor);
             return handler.WriteToken(token);
         }
+
+        public bool ValidateToken(string tokenValue)
+        {
+            SecurityToken validatedToken;
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var validationParameters = GetValidationParameters();
+            tokenHandler.ValidateToken(tokenValue, validationParameters, out validatedToken);
+            return true;
+
+        }
+
+        public bool AuthorizeToken(string tokenValue , string roles)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var token = tokenHandler.ReadJwtToken(tokenValue);
+            var userClaims = token.Claims.ToList();
+
+            string[] controllerRoles = roles.Split(',');
+
+            foreach(Claim item in userClaims)
+            {
+                if (controllerRoles.Contains(item.Value))
+                    return true;
+            }
+            // this mean the token is valid but no roles matched the user 
+            return false;
+        }
+
+        private TokenValidationParameters GetValidationParameters()
+        {
+            return new TokenValidationParameters()
+            {
+                ValidateLifetime = true, // Because there is no expiration in the generated token
+                ValidateAudience = false, // Because there is no audiance in the generated token
+                ValidateIssuer = false,   // Because there is no issuer in the generated token
+                //ValidIssuer = "Sample",
+                //ValidAudience = "Sample",
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey)), // The same key as the one that generate the token
+            };
+        }
+
     }
 }

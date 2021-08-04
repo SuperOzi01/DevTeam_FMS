@@ -21,6 +21,8 @@ namespace ClassLibrary.FMS.DatabaseOperations
         }
 
 
+
+
         public bool BeneficiaryRegistraion(BeneficiaryRegistraionModel BeneficiaryRegistraion)
         {
             // RoleID is  set by the Developers Based on the registration page { System Admin , Beneficary Portal} pages
@@ -85,6 +87,11 @@ namespace ClassLibrary.FMS.DatabaseOperations
             return RoleList.ToList();
         }
 
+        public string GetUserRole(LoginModel loginModel)
+        {
+            var Role = DatabaseEntity.SP_GetUserRoles(loginModel.Username);
+            return Role.FirstOrDefault().Trim();
+        }
 
     }
 }

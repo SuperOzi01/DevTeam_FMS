@@ -62,7 +62,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
                 return new ResponseAPI
                     {
                         Result = true,
-                        Message = TokenManager.GenerateToken()
+                       // Message = TokenManager.GenerateToken()
                     };
             }
             catch (Exception ex)
