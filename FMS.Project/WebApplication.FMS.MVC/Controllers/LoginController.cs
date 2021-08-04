@@ -5,10 +5,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using WebApplication.FMS.MVC.Filters;
 
 namespace WebApplication.FMS.MVC.Controllers
 {
+    [LogsFilterMVC]
     public class LoginController : Controller
     {
         string BaseUrl = Startup.GetBaseUrl();
@@ -27,28 +30,30 @@ namespace WebApplication.FMS.MVC.Controllers
         {
             return View();
         }
+
         public ActionResult Login()
         {
             return View();
         }
+
         [HttpPost]
-        public ActionResult Login(LoginModel login)
+        public async Task<IActionResult> Login(LoginModel login)
         {
-            var tokenBased = string.Empty;
+            var securityToken = string.Empty;
             if (ModelState.IsValid)
             {
-                HttpClient c = new HttpClient();
-                c.BaseAddress = new Uri(BaseUrl);
-                var response = c.PostAsJsonAsync("UserLogin", login);
-                response.Wait();
-                var result = response.Result;
-                var resultMessage = result.Content.ReadAsAsync<ResponseAPI>().Result;
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(BaseUrl);
+
+                
+                var response = await client.PostAsJsonAsync("Api/Fms/Login", login);
+                var resultMessage = response.Content.ReadAsAsync<ResponseAPI>().Result;
                 if (resultMessage.Result == true)
                 {
-                    tokenBased = resultMessage.Message;
+                    securityToken = resultMessage.Message;
                     HttpContext.Response.Cookies.Append("Username", login.Username);
-                    HttpContext.Response.Cookies.Append("TokenNumber", tokenBased);
-                    return RedirectToAction("Index", "Home");
+                    HttpContext.Response.Cookies.Append("securityToken", securityToken);
+                    return RedirectToAction("Index", "Login");
                 }
                 else
                 {
@@ -56,8 +61,12 @@ namespace WebApplication.FMS.MVC.Controllers
                     return View();
                 }
             }
-            return Content(tokenBased);
+            return Content(securityToken);
         }
+
+        // On Validation use this line 
+        //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", this.HttpContext.Request.Cookies["securityToken"]);
+
         public IActionResult BeneficiaryRegistraion()
         {
             ViewBag.BuildingList = GetBuilding();

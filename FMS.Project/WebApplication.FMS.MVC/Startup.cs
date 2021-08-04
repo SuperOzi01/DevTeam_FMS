@@ -62,8 +62,8 @@ namespace WebApplication.FMS.MVC
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Login}/{action=Login}/{id?}");
+                    name: "Login",
+                    pattern: "{controller=Login}/{action=Login}");
             });
         }
     }

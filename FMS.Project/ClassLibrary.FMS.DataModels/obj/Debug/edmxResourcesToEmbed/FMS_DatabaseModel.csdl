@@ -327,8 +327,8 @@
       <Parameter Name="password" Mode="In" Type="String" />
       <Parameter Name="EmployeeID" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="SP_EmployeeRoleName" ReturnType="Collection(String)">
-      <Parameter Name="UserID" Mode="In" Type="Int32" />
+    <FunctionImport Name="SP_GetUserRoles" ReturnType="Collection(String)">
+      <Parameter Name="username" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
   <EntityType Name="ServiceRequest">
