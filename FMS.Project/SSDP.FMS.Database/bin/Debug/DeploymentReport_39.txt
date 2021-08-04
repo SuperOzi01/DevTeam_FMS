@@ -1,0 +1,57 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Create
+       [dbo].[Beneficiary] (Table)
+       [dbo].[Building] (Table)
+       [dbo].[CompanyEmployee] (Table)
+       [dbo].[Location] (Table)
+       [dbo].[Role] (Table)
+       [dbo].[ServiceRequest] (Table)
+       [dbo].[Specialization] (Table)
+       Default Constraint: unnamed constraint on [dbo].[Beneficiary] (Default Constraint)
+       Default Constraint: unnamed constraint on [dbo].[CompanyEmployee] (Default Constraint)
+       Default Constraint: unnamed constraint on [dbo].[ServiceRequest] (Default Constraint)
+       Default Constraint: unnamed constraint on [dbo].[ServiceRequest] (Default Constraint)
+       Default Constraint: unnamed constraint on [dbo].[ServiceRequest] (Default Constraint)
+       [dbo].[FK_Beneficiary_Building] (Foreign Key)
+       [dbo].[FK_Beneficiary_Role] (Foreign Key)
+       [dbo].[FK_Building_CompanyEmployee] (Foreign Key)
+       [dbo].[FK_Building_Location] (Foreign Key)
+       [dbo].[FK_User_ManagerID] (Foreign Key)
+       [dbo].[FK_CompanyEmployee_RoleID] (Foreign Key)
+       [dbo].[FK_CompanyEmployee_Location] (Foreign Key)
+       [dbo].[FK_CompanyEmployee_Specialization] (Foreign Key)
+       [dbo].[FK_ServiceRequest_Building] (Foreign Key)
+       [dbo].[FK_ServiceRequest_Specialization] (Foreign Key)
+       [dbo].[FK_ServiceRequest_CompanyEmployee] (Foreign Key)
+       [dbo].[FK_ServiceRequest_Beneficiary] (Foreign Key)
+       [dbo].[View_BuildingAndLocationInfo] (View)
+       [dbo].[SP_ActivateBeneficiaryAccount] (Procedure)
+       [dbo].[SP_AddBuilding] (Procedure)
+       [dbo].[SP_AddLocation] (Procedure)
+       [dbo].[SP_AddSpecialization] (Procedure)
+       [dbo].[SP_AssignWorkerToRequest] (Procedure)
+       [dbo].[SP_Ben_LoginCheck] (Procedure)
+       [dbo].[SP_Employee_LoginCheck] (Procedure)
+       [dbo].[SP_EmployeeResetPassAndActivateAccount] (Procedure)
+       [dbo].[SP_GetAllBuildings] (Procedure)
+       [dbo].[SP_GetAllLocations] (Procedure)
+       [dbo].[SP_GetAllRoles] (Procedure)
+       [dbo].[SP_GetAllServiceRequests] (Procedure)
+       [dbo].[SP_GetAllSpecializations] (Procedure)
+       [dbo].[SP_GetUserRoles] (Procedure)
+       [dbo].[SP_HandleServiceRequestByWorker] (Procedure)
+       [dbo].[SP_InsertBeneficiary] (Procedure)
+       [dbo].[SP_InsertCompanyEmployee] (Procedure)
+       [dbo].[SP_InsertNewServiceRequiest] (Procedure)
+
+** Supporting actions
