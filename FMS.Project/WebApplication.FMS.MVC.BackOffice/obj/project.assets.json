@@ -6394,19 +6394,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\zshar\\.nuget\\packages\\": {}
+    "C:\\Users\\Rana Alhamdan\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC.BackOffice\\WebApplication.FMS.MVC.BackOffice.csproj",
+      "projectUniqueName": "C:\\Users\\Rana Alhamdan\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC.BackOffice\\WebApplication.FMS.MVC.BackOffice.csproj",
       "projectName": "WebApplication.FMS.MVC.BackOffice",
-      "projectPath": "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC.BackOffice\\WebApplication.FMS.MVC.BackOffice.csproj",
-      "packagesPath": "C:\\Users\\zshar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC.BackOffice\\obj\\",
+      "projectPath": "C:\\Users\\Rana Alhamdan\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC.BackOffice\\WebApplication.FMS.MVC.BackOffice.csproj",
+      "packagesPath": "C:\\Users\\Rana Alhamdan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Rana Alhamdan\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC.BackOffice\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\zshar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Rana Alhamdan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6420,8 +6420,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj": {
-              "projectPath": "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj"
+            "C:\\Users\\Rana Alhamdan\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj": {
+              "projectPath": "C:\\Users\\Rana Alhamdan\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj"
             }
           }
         }
@@ -6471,7 +6471,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }
