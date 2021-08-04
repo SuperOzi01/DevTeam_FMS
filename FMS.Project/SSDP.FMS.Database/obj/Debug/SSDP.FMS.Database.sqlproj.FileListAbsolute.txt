@@ -22,9 +22,5 @@ C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\bin\De
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\bin\Debug\SSDP.FMS.Database.dll
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\bin\Debug\SSDP.FMS.Database.pdb
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\SSDP.FMS.Database.sqlproj.AssemblyReference.cache
-C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\Model.xml
-C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\refactor.xml
-C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\postdeploy.sql
-C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\predeploy.sql
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\SSDP.FMS.Database.dll
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\SSDP.FMS.Database.pdb

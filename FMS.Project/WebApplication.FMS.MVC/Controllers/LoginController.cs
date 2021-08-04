@@ -8,7 +8,7 @@ namespace WebApplication.FMS.MVC.Controllers
 {
     public class LoginController : Controller
     {
-        public IActionResult Index()
+        public IActionResult LoginPortalUi()
         {
             return View();
         }
@@ -17,7 +17,6 @@ namespace WebApplication.FMS.MVC.Controllers
         {
             return View();
         }
-
         public IActionResult Signup()
         {
             return View();
