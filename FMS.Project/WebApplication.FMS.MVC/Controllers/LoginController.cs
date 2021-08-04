@@ -16,7 +16,7 @@ namespace WebApplication.FMS.MVC.Controllers
     {
         string BaseUrl = Startup.GetBaseUrl();
 
-        public IActionResult Index()
+        public IActionResult LoginPortalUi()
         {
             return View();
         }
@@ -31,10 +31,6 @@ namespace WebApplication.FMS.MVC.Controllers
             return View();
         }
 
-        public IActionResult LoginPortal()
-        {
-            return View();
-        }
         
         [HttpPost]
         public async Task<IActionResult> LoginPortalAsync(LoginModel login)

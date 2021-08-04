@@ -18,11 +18,18 @@ namespace WebApplication.FMS.MVC
 {
     public class Startup
     {
+        public static string BaseUrl { get; private set; }
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            BaseUrl = Configuration.GetSection("BaseUrl").Value;
             var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
             XmlConfigurator.Configure(logRepository, new FileInfo("Log4net.config"));
+        }
+
+        public static string GetBaseUrl()
+        {
+            return Startup.BaseUrl;
         }
 
         public IConfiguration Configuration { get; }
@@ -57,7 +64,7 @@ namespace WebApplication.FMS.MVC
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Login}/{action=LoginPortalUi}/{id?}");
+                    pattern: "{controller=Login}/{action=LoginPortalUi}");
             });
         }
     }

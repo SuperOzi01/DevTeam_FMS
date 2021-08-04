@@ -1,20 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\alano\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC.BackOffice\\WebApplication.FMS.MVC.BackOffice.csproj": {}
+    "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC.BackOffice\\WebApplication.FMS.MVC.BackOffice.csproj": {}
   },
   "projects": {
-    "C:\\Users\\alano\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC.BackOffice\\WebApplication.FMS.MVC.BackOffice.csproj": {
+    "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj",
+        "projectName": "ClassLibrary.FMS.DataModels",
+        "projectPath": "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj"
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC.BackOffice\\WebApplication.FMS.MVC.BackOffice.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\alano\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC.BackOffice\\WebApplication.FMS.MVC.BackOffice.csproj",
+        "projectUniqueName": "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC.BackOffice\\WebApplication.FMS.MVC.BackOffice.csproj",
         "projectName": "WebApplication.FMS.MVC.BackOffice",
-        "projectPath": "C:\\Users\\alano\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC.BackOffice\\WebApplication.FMS.MVC.BackOffice.csproj",
-        "packagesPath": "C:\\Users\\alano\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\alano\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC.BackOffice\\obj\\",
+        "projectPath": "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC.BackOffice\\WebApplication.FMS.MVC.BackOffice.csproj",
+        "packagesPath": "C:\\Users\\zshar\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC.BackOffice\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\alano\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\zshar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -27,7 +37,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj": {
+                "projectPath": "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -40,6 +54,18 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Microsoft.AspNet.WebApi.Client": {
+              "target": "Package",
+              "version": "[5.2.7, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.5, )"
+            },
+            "System.Net.Http": {
+              "target": "Package",
+              "version": "[4.3.4, )"
+            },
             "log4net": {
               "target": "Package",
               "version": "[2.0.12, )"
@@ -63,7 +89,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }
