@@ -26,10 +26,12 @@ namespace WebApplication.FMS.MVC
             var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
             XmlConfigurator.Configure(logRepository, new FileInfo("Log4net.config"));
         }
+
         public static string GetBaseUrl()
         {
             return Startup.BaseUrl;
         }
+
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -62,7 +64,7 @@ namespace WebApplication.FMS.MVC
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Login}/{action=LoginPortalUi}/{id?}");
+                    pattern: "{controller=Login}/{action=LoginPortalUi}");
             });
         }
     }
