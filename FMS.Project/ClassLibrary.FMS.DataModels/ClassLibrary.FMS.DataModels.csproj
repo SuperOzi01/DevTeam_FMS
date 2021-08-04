@@ -57,7 +57,7 @@
     <Compile Include="Beneficiary.cs">
       <DependentUpon>FMS_DatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="BeneficiaryRegistraionModel.cs" />
+    <Compile Include="Models\BeneficiaryRegistraionModel.cs" />
     <Compile Include="Building.cs">
       <DependentUpon>FMS_DatabaseModel.tt</DependentUpon>
     </Compile>
@@ -67,7 +67,7 @@
     <Compile Include="C__RefactorLog.cs">
       <DependentUpon>FMS_DatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="EmployeeRegistraionModel.cs" />
+    <Compile Include="Models\EmployeeRegistraionModel.cs" />
     <Compile Include="FMS_DatabaseModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -86,9 +86,9 @@
     <Compile Include="Location.cs">
       <DependentUpon>FMS_DatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="LoginModel.cs" />
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ResponseAPI.cs" />
+    <Compile Include="Models\ResponseAPI.cs" />
     <Compile Include="Role.cs">
       <DependentUpon>FMS_DatabaseModel.tt</DependentUpon>
     </Compile>
@@ -116,7 +116,7 @@
     <Compile Include="View_BuildingAndLocationInfo.cs">
       <DependentUpon>FMS_DatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="WebCookies.cs" />
+    <Compile Include="Models\WebCookies.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
