@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[SP_Employee_LoginCheck]
-	@username nchar (40),
-	@pass nchar (40)
+	@username varchar (40),
+	@pass varchar (40)
 AS
 	IF EXISTS (SELECT 1 from dbo.CompanyEmployee where dbo.CompanyEmployee.Username = @username AND dbo.CompanyEmployee.Password = @pass) 
 		BEGIN

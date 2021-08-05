@@ -1,0 +1,105 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       The type for column Email in table [dbo].[Beneficiary] is currently  NCHAR (40) NOT NULL but is being changed to 
+         VARCHAR (40) NOT NULL. Data loss could occur and deployment may fail if the column contains data that is incompatible
+         with type  VARCHAR (40) NOT NULL.
+       The type for column FirstName in table [dbo].[Beneficiary] is currently  NCHAR (40) NOT NULL but is being changed to 
+         VARCHAR (40) NOT NULL. Data loss could occur and deployment may fail if the column contains data that is incompatible
+         with type  VARCHAR (40) NOT NULL.
+       The type for column LastName in table [dbo].[Beneficiary] is currently  NCHAR (40) NOT NULL but is being changed to 
+         VARCHAR (40) NOT NULL. Data loss could occur and deployment may fail if the column contains data that is incompatible
+         with type  VARCHAR (40) NOT NULL.
+       The type for column Password in table [dbo].[Beneficiary] is currently  NCHAR (40) NOT NULL but is being changed to 
+         VARCHAR (40) NOT NULL. Data loss could occur and deployment may fail if the column contains data that is incompatible
+         with type  VARCHAR (40) NOT NULL.
+       The type for column Username in table [dbo].[Beneficiary] is currently  NCHAR (40) NOT NULL but is being changed to 
+         VARCHAR (40) NOT NULL. Data loss could occur and deployment may fail if the column contains data that is incompatible
+         with type  VARCHAR (40) NOT NULL.
+       The type for column Email in table [dbo].[CompanyEmployee] is currently  NCHAR (40) NOT NULL but is being changed to 
+         VARCHAR (40) NOT NULL. Data loss could occur and deployment may fail if the column contains data that is incompatible
+         with type  VARCHAR (40) NOT NULL.
+       The type for column FirstName in table [dbo].[CompanyEmployee] is currently  NCHAR (40) NOT NULL but is being changed to
+          VARCHAR (40) NOT NULL. Data loss could occur and deployment may fail if the column contains data that is incompatible
+         with type  VARCHAR (40) NOT NULL.
+       The type for column LastName in table [dbo].[CompanyEmployee] is currently  NCHAR (40) NOT NULL but is being changed to 
+         VARCHAR (40) NOT NULL. Data loss could occur and deployment may fail if the column contains data that is incompatible
+         with type  VARCHAR (40) NOT NULL.
+       The type for column Password in table [dbo].[CompanyEmployee] is currently  NCHAR (40) NOT NULL but is being changed to 
+         VARCHAR (40) NOT NULL. Data loss could occur and deployment may fail if the column contains data that is incompatible
+         with type  VARCHAR (40) NOT NULL.
+       The type for column Username in table [dbo].[CompanyEmployee] is currently  NCHAR (40) NOT NULL but is being changed to 
+         VARCHAR (40) NOT NULL. Data loss could occur and deployment may fail if the column contains data that is incompatible
+         with type  VARCHAR (40) NOT NULL.
+       The type for column City in table [dbo].[Location] is currently  NCHAR (40) NOT NULL but is being changed to  VARCHAR
+         (40) NOT NULL. Data loss could occur and deployment may fail if the column contains data that is incompatible with type 
+         VARCHAR (40) NOT NULL.
+       The type for column RoleName in table [dbo].[Role] is currently  NCHAR (40) NOT NULL but is being changed to  VARCHAR
+         (40) NOT NULL. Data loss could occur and deployment may fail if the column contains data that is incompatible with type 
+         VARCHAR (40) NOT NULL.
+       The type for column ServiceDescribtion in table [dbo].[ServiceRequest] is currently  NCHAR (100) NOT NULL but is being
+         changed to  VARCHAR (100) NOT NULL. Data loss could occur and deployment may fail if the column contains data that is
+         incompatible with type  VARCHAR (100) NOT NULL.
+       The type for column SpecializationName in table [dbo].[Specialization] is currently  NCHAR (40) NOT NULL but is being
+         changed to  VARCHAR (40) NOT NULL. Data loss could occur and deployment may fail if the column contains data that is
+         incompatible with type  VARCHAR (40) NOT NULL.
+
+** User actions
+     Drop
+       unnamed constraint on [dbo].[Beneficiary] (Unique Constraint)
+       unnamed constraint on [dbo].[Beneficiary] (Unique Constraint)
+       unnamed constraint on [dbo].[CompanyEmployee] (Unique Constraint)
+       unnamed constraint on [dbo].[CompanyEmployee] (Unique Constraint)
+     Alter
+       [dbo].[Beneficiary] (Table)
+       [dbo].[CompanyEmployee] (Table)
+       [dbo].[Location] (Table)
+       [dbo].[Role] (Table)
+       [dbo].[ServiceRequest] (Table)
+       [dbo].[Specialization] (Table)
+
+** Supporting actions
+     Create
+       Unique Constraint: unnamed constraint on [dbo].[Beneficiary] (Unique Constraint)
+       Unique Constraint: unnamed constraint on [dbo].[Beneficiary] (Unique Constraint)
+       Unique Constraint: unnamed constraint on [dbo].[CompanyEmployee] (Unique Constraint)
+       Unique Constraint: unnamed constraint on [dbo].[CompanyEmployee] (Unique Constraint)
+     Refresh
+       [dbo].[View_BuildingAndLocationInfo] (View)
+       [dbo].[SP_ActivateBeneficiaryAccount] (Procedure)
+       [dbo].[SP_Ben_LoginCheck] (Procedure)
+       [dbo].[SP_GetAllServiceRequests] (Procedure)
+       [dbo].[SP_GetUserRoles] (Procedure)
+       [dbo].[SP_InsertBeneficiary] (Procedure)
+       [dbo].[SP_Employee_LoginCheck] (Procedure)
+       [dbo].[SP_EmployeeResetPassAndActivateAccount] (Procedure)
+       [dbo].[SP_InsertCompanyEmployee] (Procedure)
+       [dbo].[SP_AddLocation] (Procedure)
+       [dbo].[SP_GetAllLocations] (Procedure)
+       [dbo].[SP_GetAllRoles] (Procedure)
+       [dbo].[SP_AssignWorkerToRequest] (Procedure)
+       [dbo].[SP_HandleServiceRequestByWorker] (Procedure)
+       [dbo].[SP_InsertNewServiceRequiest] (Procedure)
+       [dbo].[SP_AddSpecialization] (Procedure)
+       [dbo].[SP_GetAllSpecializations] (Procedure)
+
+The type for column Email in table [dbo].[Beneficiary] is currently  NCHAR (40) NOT NULL but is being changed to  VARCHAR (40) NOT NULL. Data loss could occur and deployment may fail if the column contains data that is incompatible with type  VARCHAR (40) NOT NULL.
+The type for column FirstName in table [dbo].[Beneficiary] is currently  NCHAR (40) NOT NULL but is being changed to  VARCHAR (40) NOT NULL. Data loss could occur and deployment may fail if the column contains data that is incompatible with type  VARCHAR (40) NOT NULL.
+The type for column LastName in table [dbo].[Beneficiary] is currently  NCHAR (40) NOT NULL but is being changed to  VARCHAR (40) NOT NULL. Data loss could occur and deployment may fail if the column contains data that is incompatible with type  VARCHAR (40) NOT NULL.
+The type for column Password in table [dbo].[Beneficiary] is currently  NCHAR (40) NOT NULL but is being changed to  VARCHAR (40) NOT NULL. Data loss could occur and deployment may fail if the column contains data that is incompatible with type  VARCHAR (40) NOT NULL.
+The type for column Username in table [dbo].[Beneficiary] is currently  NCHAR (40) NOT NULL but is being changed to  VARCHAR (40) NOT NULL. Data loss could occur and deployment may fail if the column contains data that is incompatible with type  VARCHAR (40) NOT NULL.
+The type for column Email in table [dbo].[CompanyEmployee] is currently  NCHAR (40) NOT NULL but is being changed to  VARCHAR (40) NOT NULL. Data loss could occur and deployment may fail if the column contains data that is incompatible with type  VARCHAR (40) NOT NULL.
+The type for column FirstName in table [dbo].[CompanyEmployee] is currently  NCHAR (40) NOT NULL but is being changed to  VARCHAR (40) NOT NULL. Data loss could occur and deployment may fail if the column contains data that is incompatible with type  VARCHAR (40) NOT NULL.
+The type for column LastName in table [dbo].[CompanyEmployee] is currently  NCHAR (40) NOT NULL but is being changed to  VARCHAR (40) NOT NULL. Data loss could occur and deployment may fail if the column contains data that is incompatible with type  VARCHAR (40) NOT NULL.
+The type for column Password in table [dbo].[CompanyEmployee] is currently  NCHAR (40) NOT NULL but is being changed to  VARCHAR (40) NOT NULL. Data loss could occur and deployment may fail if the column contains data that is incompatible with type  VARCHAR (40) NOT NULL.
+The type for column Username in table [dbo].[CompanyEmployee] is currently  NCHAR (40) NOT NULL but is being changed to  VARCHAR (40) NOT NULL. Data loss could occur and deployment may fail if the column contains data that is incompatible with type  VARCHAR (40) NOT NULL.
+The type for column City in table [dbo].[Location] is currently  NCHAR (40) NOT NULL but is being changed to  VARCHAR (40) NOT NULL. Data loss could occur and deployment may fail if the column contains data that is incompatible with type  VARCHAR (40) NOT NULL.
+The type for column RoleName in table [dbo].[Role] is currently  NCHAR (40) NOT NULL but is being changed to  VARCHAR (40) NOT NULL. Data loss could occur and deployment may fail if the column contains data that is incompatible with type  VARCHAR (40) NOT NULL.
+The type for column ServiceDescribtion in table [dbo].[ServiceRequest] is currently  NCHAR (100) NOT NULL but is being changed to  VARCHAR (100) NOT NULL. Data loss could occur and deployment may fail if the column contains data that is incompatible with type  VARCHAR (100) NOT NULL.
+The type for column SpecializationName in table [dbo].[Specialization] is currently  NCHAR (40) NOT NULL but is being changed to  VARCHAR (40) NOT NULL. Data loss could occur and deployment may fail if the column contains data that is incompatible with type  VARCHAR (40) NOT NULL.
+

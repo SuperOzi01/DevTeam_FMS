@@ -25,9 +25,9 @@ namespace ClassLibrary.FMS.DataModels
         public string ServiceDescribtion { get; set; }
         public int RequestCreatorID { get; set; }
     
+        public virtual Beneficiary Beneficiary { get; set; }
         public virtual Building Building { get; set; }
         public virtual CompanyEmployee CompanyEmployee { get; set; }
         public virtual Specialization Specialization { get; set; }
-        public virtual Beneficiary Beneficiary { get; set; }
     }
 }

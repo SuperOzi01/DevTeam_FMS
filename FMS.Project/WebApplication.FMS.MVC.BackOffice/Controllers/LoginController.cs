@@ -1,4 +1,5 @@
 ﻿using ClassLibrary.FMS.DataModels;
+using ClassLibrary.FMS.DataModels.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -15,12 +16,42 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
     {
         string BaseUrl = Startup.GetBaseUrl();
         // GET: LoginController
-        public ActionResult Index()
+
+        
+        public ActionResult UpdatePasswordPage()
         {
             return View();
         }
 
-        
+        [HttpPost]
+        public async Task<IActionResult> UpdatePasswordPageAsync(UpdatePasswordModel updatePasswordModel)
+        {
+            if (ModelState.IsValid)
+            {
+                if(updatePasswordModel.RePassword != updatePasswordModel.Password)
+                {
+                    ViewBag.ValidationMessage = "Password fields does not match";
+                    return View();
+                }
+                
+                if(Request.Cookies["Username"] != null)
+                updatePasswordModel.Username = Request.Cookies["Username"].ToString();
+
+
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(BaseUrl);
+                var response = await client.PostAsJsonAsync("Api/Fms/BackOfficeUpdatePasswordAndStatus", updatePasswordModel);
+                var resultMessage = response.Content.ReadAsAsync<ResponseAPI>().Result;
+                if (resultMessage.Result == true)
+                {
+                    return Content("Worked");
+                }
+            }
+            return RedirectToAction("Index","Home");
+        }
+
+
+
         public ActionResult EmployeeLogin()
         {
             return View();
@@ -43,11 +74,21 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                     securityToken = resultMessage.Message;
                     HttpContext.Response.Cookies.Append("Username", loginModel.Username);
                     HttpContext.Response.Cookies.Append("securityToken", securityToken);
-                    return RedirectToAction("Index", "Home");
+
+                    var statusRequest = await client.PostAsJsonAsync("Api/Fms/BackOfficeAccountStatus", loginModel);
+                    var statusResponce = statusRequest.Content.ReadAsAsync<ResponseAPI>().Result;
+                    if(statusResponce.Result == true)
+                    {
+                        // the account is active and user does not need to update password
+                        return RedirectToAction("Index", "Home");
+                    }
+                    // take the user to update password page
+                    return RedirectToAction("UpdatePasswordPage", "Login");
+
                 }
                 else
                 {
-                    ViewBag.message = "Wrong Username or Password";
+                    ViewBag.message = "Wrong Username or Password - or Account is not active";
                     return View();
                 }
             }
