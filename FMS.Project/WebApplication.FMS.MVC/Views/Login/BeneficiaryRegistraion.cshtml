@@ -17,11 +17,11 @@
     <title>Create Account</title>
 </head>
 <body>
-    <div class="container1">
-        <div class="card1">
-            <div class="row">
+    <div class="container pb-80">
+        <div class="card">
+            <div class="row w-100">
 
-                <div class="col-md-6">
+                <div class="col-lg-6 p-0">
                     <div class="CardRight">
                         <img class="logo" src="~/icon/maintra logo white png.png" />
                         <div class="box1">
@@ -34,42 +34,42 @@
                     </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-lg-6 p-0">
                     <div class="cardLeft">
                         <form asp-action="BeneficiaryRegistraion" class="myform1 text-center">
 
                             <header>Create Account </header>
 
-                            <div class="form-groupInput">
+                            <div class="form-group">
                                 <i class="far fa-user"></i>
                                 <input asp-for="Username" placeholder="Username" class="input" />
                                 <span asp-validation-for="Username" class="text-danger"></span>
                             </div>
 
-                            <div class="form-groupInput">
+                            <div class="form-group">
                                 <i class="far fa-user"></i>
                                 <input asp-for="FirstName" placeholder="First Name" class="input" />
                                 <span asp-validation-for="FirstName" class="text-danger"></span>
                             </div>
 
-                            <div class="form-groupInput">
+                            <div class="form-group">
                                 <i class="far fa-user"></i>
                                 <input asp-for="LastName" placeholder="Last Name" class="input" />
                                 <span asp-validation-for="LastName" class="text-danger"></span>
                             </div>
 
-                            <div class="form-groupInput">
+                            <div class="form-group">
                                 <i class="far fa-envelope"></i>
                                 <input asp-for="Email" placeholder="Email" class="input" />
                                 <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
 
-                            <div class="form-groupInput">
+                            <div class="form-group">
                                 <i class="fas fa-lock"></i>
                                 <input asp-for="Password" placeholder="Password" class="input" />
                                 <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
-                            <div class="form-groupInput">
+                            <div class="form-group">
                                 @Html.DropDownListFor(model => model.BuildingID, (IEnumerable<SelectListItem>)ViewBag.BuildingList, "--Select--", new { id = "select", name = "cours", @class = "input" })
                                 <span asp-validation-for="BuildingID" class="text-danger"></span>
                             </div>
