@@ -41,7 +41,7 @@
                                 <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
                             <div class="form-groupInput">
-                                @Html.HiddenFor(model => model.Role)
+                                @ViewBag.message
                             </div>
                             <input type="submit" class="btnSignInCard" value="SIGN IN" />
                         </form>

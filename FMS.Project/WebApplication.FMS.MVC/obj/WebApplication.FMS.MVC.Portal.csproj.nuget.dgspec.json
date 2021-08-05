@@ -1,19 +1,19 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\alano\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC\\WebApplication.FMS.MVC.Portal.csproj": {}
+    "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC\\WebApplication.FMS.MVC.Portal.csproj": {}
   },
   "projects": {
-    "C:\\Users\\alano\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DatabaseOperations\\ClassLibrary.FMS.DatabaseOperations.csproj": {
+    "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DatabaseOperations\\ClassLibrary.FMS.DatabaseOperations.csproj": {
       "restore": {
-        "projectUniqueName": "C:\\Users\\alano\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DatabaseOperations\\ClassLibrary.FMS.DatabaseOperations.csproj",
+        "projectUniqueName": "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DatabaseOperations\\ClassLibrary.FMS.DatabaseOperations.csproj",
         "projectName": "ClassLibrary.FMS.DatabaseOperations",
-        "projectPath": "C:\\Users\\alano\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DatabaseOperations\\ClassLibrary.FMS.DatabaseOperations.csproj",
+        "projectPath": "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DatabaseOperations\\ClassLibrary.FMS.DatabaseOperations.csproj",
         "frameworks": {
           "net472": {
             "projectReferences": {
-              "C:\\Users\\alano\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj": {
-                "projectPath": "C:\\Users\\alano\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj"
+              "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj": {
+                "projectPath": "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj"
               }
             }
           }
@@ -23,27 +23,27 @@
         "net472": {}
       }
     },
-    "C:\\Users\\alano\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj": {
+    "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj": {
       "restore": {
-        "projectUniqueName": "C:\\Users\\alano\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj",
+        "projectUniqueName": "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj",
         "projectName": "ClassLibrary.FMS.DataModels",
-        "projectPath": "C:\\Users\\alano\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj"
+        "projectPath": "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj"
       },
       "frameworks": {
         "net472": {}
       }
     },
-    "C:\\Users\\alano\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC\\WebApplication.FMS.MVC.Portal.csproj": {
+    "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC\\WebApplication.FMS.MVC.Portal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\alano\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC\\WebApplication.FMS.MVC.Portal.csproj",
+        "projectUniqueName": "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC\\WebApplication.FMS.MVC.Portal.csproj",
         "projectName": "WebApplication.FMS.MVC.Portal",
-        "projectPath": "C:\\Users\\alano\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC\\WebApplication.FMS.MVC.Portal.csproj",
-        "packagesPath": "C:\\Users\\alano\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\alano\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC\\obj\\",
+        "projectPath": "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC\\WebApplication.FMS.MVC.Portal.csproj",
+        "packagesPath": "C:\\Users\\zshar\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\alano\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\zshar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -57,11 +57,11 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\alano\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DatabaseOperations\\ClassLibrary.FMS.DatabaseOperations.csproj": {
-                "projectPath": "C:\\Users\\alano\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DatabaseOperations\\ClassLibrary.FMS.DatabaseOperations.csproj"
+              "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DatabaseOperations\\ClassLibrary.FMS.DatabaseOperations.csproj": {
+                "projectPath": "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DatabaseOperations\\ClassLibrary.FMS.DatabaseOperations.csproj"
               },
-              "C:\\Users\\alano\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj": {
-                "projectPath": "C:\\Users\\alano\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj"
+              "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj": {
+                "projectPath": "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj"
               }
             }
           }
@@ -79,6 +79,12 @@
             "Microsoft.AspNet.WebApi.Client": {
               "target": "Package",
               "version": "[5.2.7, )"
+            },
+            "Microsoft.CodeAnalysis.Analyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.3.2, )"
             },
             "Microsoft.Extensions.Logging.Log4Net.AspNetCore": {
               "target": "Package",
@@ -123,7 +129,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }

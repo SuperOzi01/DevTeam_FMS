@@ -1,0 +1,214 @@
+﻿@font-face {
+    font-family: 'Dubai-Bold';
+    src: url('file:///C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\wwwroot\font\Dubai-Bold.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Dubai-Light';
+    src: url('file:///C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\wwwroot\font\Dubai-Light.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Dubai-Medium';
+    src: url('file:///C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\wwwroot\font\Dubai-Medium.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Dubai-Regular';
+    src: url('file:///C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\wwwroot\font\Dubai-Regular.ttf') format('truetype');
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    font-family: Dubai-Bold;
+}
+
+.container {
+    position: absolute;
+    height: 600px;
+    width: 800px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.container1 {
+    position: absolute;
+    height: 600px;
+    width: 800px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.CardRight {
+    position: relative;
+    background-image: linear-gradient(#652572,#922B6B,#C43264);
+    border-radius: 25px;
+    height: 100%;
+    width: 100%;
+    padding: 25px;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardLeft {
+    position: relative;
+    background: #fff;
+    border-radius: 25px;
+    height: 100%;
+    padding: 25px;
+}
+
+    .cardLeft header {
+        color: #652572;
+        font-size: 34px;
+        font-weight: bold;
+    }
+
+.row1 {
+    height: 100%;
+    border-radius: 20px;
+}
+
+.card1 {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 25px
+}
+
+.CardRight header {
+    color: #fff;
+    font-size: 34px;
+    font-weight: bold;
+}
+
+
+.box {
+    position: relative;
+    margin: 20px;
+    margin-bottom: 100px;
+    padding-top: 140px;
+}
+.box1 {
+    position: relative;
+    margin: 20px;
+    margin-bottom: 100px;
+    padding-top:90px;
+}
+.cardLeft .input {
+    width: 100%;
+    padding: 10px;
+    padding-left: 40px;
+    border: none;
+    background-color: #F5F8F9;
+    margin: 10px;
+    outline: none;
+}
+
+.input:focus {
+    box-shadow: 0 0 5px 2px #922B6B;
+}
+
+.cardLeft .btnSignInCard {
+    background: linear-gradient(#652572,#922B6B,#C43264);
+    color: #fff;
+    width: 150px;
+    border: none;
+    border-radius: 25px;
+    padding: 10px;
+    margin: 20px;
+}
+
+    .cardLeft .btnSignInCard:hover {
+        background: linear-gradient( #C43264,#922B6B,#652572);
+    }
+
+P {
+    color: #fff;
+    font-size: 15px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.CardRight .btnSignupCard {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 25px;
+    padding: 10px;
+    margin: 90px;
+    -webkit-box-shadow: 0px 10px 40px -10px rgba(0,0,0,0.7);
+    -moz-box-shadow: 0px 10px 40px -10px rgba(0,0,0,0.7);
+    box-shadow: 0px 10px 40px -10px rgba(0,0,0,0.7);
+}
+
+.far {
+    position: absolute;
+    padding: 25px 25px;
+    top: auto;
+    color: #B1B0AF;
+}
+
+.fas {
+    position: absolute;
+    padding: 25px 25px;
+    top: auto;
+    color: #B1B0AF;
+}
+
+.logo2 {
+    width: 60px;
+    height: 70px;
+}
+.logo {
+    width: 50px;
+    height: 60px;
+}
+
+select {
+    background-color: #F5F8F9;
+    color: #B1B0AF;
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+    border-radius: 5px;
+    border-color: #C7C6C6;
+}
+.myform{
+    padding-top: 60px;
+}
+
+
+
+
+@media screen and (max-width: 900px) {
+    .container {
+        width: 370px;
+        height: 700px;
+    }
+
+    .container1 {
+        height: 650px;
+        width: 400px;
+    }
+
+    .CardRight .btnSignupCard {
+        margin: 60px;
+    }
+    }
+
+
+
+
+
+
+

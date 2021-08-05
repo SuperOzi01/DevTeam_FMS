@@ -1,0 +1,23 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Alter
+       [dbo].[SP_AddLocation] (Procedure)
+       [dbo].[SP_AddSpecialization] (Procedure)
+       [dbo].[SP_Ben_LoginCheck] (Procedure)
+       [dbo].[SP_Employee_LoginCheck] (Procedure)
+       [dbo].[SP_EmployeeResetPassAndActivateAccount] (Procedure)
+       [dbo].[SP_GetUserRoles] (Procedure)
+       [dbo].[SP_InsertBeneficiary] (Procedure)
+       [dbo].[SP_InsertCompanyEmployee] (Procedure)
+       [dbo].[SP_InsertNewServiceRequiest] (Procedure)
+
+** Supporting actions

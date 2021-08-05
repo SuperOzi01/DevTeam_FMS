@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[SP_GetUserRoles]
-	@username nchar(40)
+	@username varchar(40)
 AS
 	IF EXISTS (Select 1 from dbo.Beneficiary WHERE dbo.Beneficiary.Username = @username)
 		BEGIN

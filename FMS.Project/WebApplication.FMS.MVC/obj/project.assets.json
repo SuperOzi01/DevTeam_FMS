@@ -73,10 +73,11 @@
           "lib/netstandard2.0/Microsoft.AspNetCore.Razor.Runtime.dll": {}
         }
       },
-      "Microsoft.CodeAnalysis.Analyzers/2.9.4": {
+      "Microsoft.CodeAnalysis.Analyzers/3.3.2": {
         "type": "package",
         "build": {
-          "build/_._": {}
+          "build/Microsoft.CodeAnalysis.Analyzers.props": {},
+          "build/Microsoft.CodeAnalysis.Analyzers.targets": {}
         }
       },
       "Microsoft.CodeAnalysis.Common/3.3.1": {
@@ -2311,14 +2312,15 @@
         "microsoft.aspnetcore.razor.runtime.nuspec"
       ]
     },
-    "Microsoft.CodeAnalysis.Analyzers/2.9.4": {
-      "sha512": "alIJhS0VUg/7x5AsHEoovh/wRZ0RfCSS7k5pDSqpRLTyuMTtRgj6OJJPRApRhJHOGYYsLakf1hKeXFoDwKwNkg==",
+    "Microsoft.CodeAnalysis.Analyzers/3.3.2": {
+      "sha512": "7xt6zTlIEizUgEsYAIgm37EbdkiMmr6fP6J9pDoKEpiGM4pi32BCPGr/IczmSJI9Zzp0a6HOzpr9OvpMP+2veA==",
       "type": "package",
-      "path": "microsoft.codeanalysis.analyzers/2.9.4",
+      "path": "microsoft.codeanalysis.analyzers/3.3.2",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "EULA.rtf",
         "ThirdPartyNotices.rtf",
         "analyzers/dotnet/cs/Microsoft.CodeAnalysis.Analyzers.dll",
         "analyzers/dotnet/cs/Microsoft.CodeAnalysis.CSharp.Analyzers.dll",
@@ -2351,9 +2353,45 @@
         "analyzers/dotnet/vb/zh-Hans/Microsoft.CodeAnalysis.Analyzers.resources.dll",
         "analyzers/dotnet/vb/zh-Hant/Microsoft.CodeAnalysis.Analyzers.resources.dll",
         "build/Microsoft.CodeAnalysis.Analyzers.props",
+        "build/Microsoft.CodeAnalysis.Analyzers.targets",
+        "build/config/AnalysisLevel_2_9_8_AllDisabledByDefault.editorconfig",
+        "build/config/AnalysisLevel_2_9_8_AllEnabledByDefault.editorconfig",
+        "build/config/AnalysisLevel_2_9_8_Default.editorconfig",
+        "build/config/AnalysisLevel_3_3_AllDisabledByDefault.editorconfig",
+        "build/config/AnalysisLevel_3_3_AllEnabledByDefault.editorconfig",
+        "build/config/AnalysisLevel_3_3_Default.editorconfig",
+        "build/config/AnalysisLevel_3_AllDisabledByDefault.editorconfig",
+        "build/config/AnalysisLevel_3_AllEnabledByDefault.editorconfig",
+        "build/config/AnalysisLevel_3_Default.editorconfig",
+        "documentation/Analyzer Configuration.md",
         "documentation/Microsoft.CodeAnalysis.Analyzers.md",
         "documentation/Microsoft.CodeAnalysis.Analyzers.sarif",
-        "microsoft.codeanalysis.analyzers.2.9.4.nupkg.sha512",
+        "editorconfig/AllRulesDefault/.editorconfig",
+        "editorconfig/AllRulesDisabled/.editorconfig",
+        "editorconfig/AllRulesEnabled/.editorconfig",
+        "editorconfig/CorrectnessRulesDefault/.editorconfig",
+        "editorconfig/CorrectnessRulesEnabled/.editorconfig",
+        "editorconfig/DataflowRulesDefault/.editorconfig",
+        "editorconfig/DataflowRulesEnabled/.editorconfig",
+        "editorconfig/LibraryRulesDefault/.editorconfig",
+        "editorconfig/LibraryRulesEnabled/.editorconfig",
+        "editorconfig/MicrosoftCodeAnalysisCompatibilityRulesDefault/.editorconfig",
+        "editorconfig/MicrosoftCodeAnalysisCompatibilityRulesEnabled/.editorconfig",
+        "editorconfig/MicrosoftCodeAnalysisCorrectnessRulesDefault/.editorconfig",
+        "editorconfig/MicrosoftCodeAnalysisCorrectnessRulesEnabled/.editorconfig",
+        "editorconfig/MicrosoftCodeAnalysisDesignRulesDefault/.editorconfig",
+        "editorconfig/MicrosoftCodeAnalysisDesignRulesEnabled/.editorconfig",
+        "editorconfig/MicrosoftCodeAnalysisDocumentationRulesDefault/.editorconfig",
+        "editorconfig/MicrosoftCodeAnalysisDocumentationRulesEnabled/.editorconfig",
+        "editorconfig/MicrosoftCodeAnalysisLocalizationRulesDefault/.editorconfig",
+        "editorconfig/MicrosoftCodeAnalysisLocalizationRulesEnabled/.editorconfig",
+        "editorconfig/MicrosoftCodeAnalysisPerformanceRulesDefault/.editorconfig",
+        "editorconfig/MicrosoftCodeAnalysisPerformanceRulesEnabled/.editorconfig",
+        "editorconfig/MicrosoftCodeAnalysisReleaseTrackingRulesDefault/.editorconfig",
+        "editorconfig/MicrosoftCodeAnalysisReleaseTrackingRulesEnabled/.editorconfig",
+        "editorconfig/PortedFromFxCopRulesDefault/.editorconfig",
+        "editorconfig/PortedFromFxCopRulesEnabled/.editorconfig",
+        "microsoft.codeanalysis.analyzers.3.3.2.nupkg.sha512",
         "microsoft.codeanalysis.analyzers.nuspec",
         "rulesets/AllRulesDefault.ruleset",
         "rulesets/AllRulesDisabled.ruleset",
@@ -2376,6 +2414,8 @@
         "rulesets/MicrosoftCodeAnalysisLocalizationRulesEnabled.ruleset",
         "rulesets/MicrosoftCodeAnalysisPerformanceRulesDefault.ruleset",
         "rulesets/MicrosoftCodeAnalysisPerformanceRulesEnabled.ruleset",
+        "rulesets/MicrosoftCodeAnalysisReleaseTrackingRulesDefault.ruleset",
+        "rulesets/MicrosoftCodeAnalysisReleaseTrackingRulesEnabled.ruleset",
         "rulesets/PortedFromFxCopRulesDefault.ruleset",
         "rulesets/PortedFromFxCopRulesEnabled.ruleset",
         "tools/install.ps1",
@@ -7244,6 +7284,7 @@
       "ClassLibrary.FMS.DataModels >= 1.0.0",
       "ClassLibrary.FMS.DatabaseOperations >= 1.0.0",
       "Microsoft.AspNet.WebApi.Client >= 5.2.7",
+      "Microsoft.CodeAnalysis.Analyzers >= 3.3.2",
       "Microsoft.Extensions.Logging.Log4Net.AspNetCore >= 3.1.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 3.1.5",
       "NuGet.Protocol >= 5.10.0",
@@ -7253,19 +7294,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\alano\\.nuget\\packages\\": {}
+    "C:\\Users\\zshar\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\alano\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC\\WebApplication.FMS.MVC.Portal.csproj",
+      "projectUniqueName": "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC\\WebApplication.FMS.MVC.Portal.csproj",
       "projectName": "WebApplication.FMS.MVC.Portal",
-      "projectPath": "C:\\Users\\alano\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC\\WebApplication.FMS.MVC.Portal.csproj",
-      "packagesPath": "C:\\Users\\alano\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\alano\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC\\obj\\",
+      "projectPath": "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC\\WebApplication.FMS.MVC.Portal.csproj",
+      "packagesPath": "C:\\Users\\zshar\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\WebApplication.FMS.MVC\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\alano\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\zshar\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7279,11 +7320,11 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\alano\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DatabaseOperations\\ClassLibrary.FMS.DatabaseOperations.csproj": {
-              "projectPath": "C:\\Users\\alano\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DatabaseOperations\\ClassLibrary.FMS.DatabaseOperations.csproj"
+            "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DatabaseOperations\\ClassLibrary.FMS.DatabaseOperations.csproj": {
+              "projectPath": "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DatabaseOperations\\ClassLibrary.FMS.DatabaseOperations.csproj"
             },
-            "C:\\Users\\alano\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj": {
-              "projectPath": "C:\\Users\\alano\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj"
+            "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj": {
+              "projectPath": "C:\\Users\\zshar\\Documents\\GitHub\\DevTeam_FMS\\FMS.Project\\ClassLibrary.FMS.DataModels\\ClassLibrary.FMS.DataModels.csproj"
             }
           }
         }
@@ -7301,6 +7342,12 @@
           "Microsoft.AspNet.WebApi.Client": {
             "target": "Package",
             "version": "[5.2.7, )"
+          },
+          "Microsoft.CodeAnalysis.Analyzers": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[3.3.2, )"
           },
           "Microsoft.Extensions.Logging.Log4Net.AspNetCore": {
             "target": "Package",
@@ -7345,7 +7392,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }

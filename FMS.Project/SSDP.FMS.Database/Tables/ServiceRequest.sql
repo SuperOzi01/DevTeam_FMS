@@ -8,7 +8,7 @@
     [RequestHandlingStatus] BIT NOT NULL DEFAULT 0, 
     [RequestIssueDate] DATE NOT NULL DEFAULT GETDATE(), 
     [RequestCloseDate] DATE NULL, 
-    [ServiceDescribtion] NCHAR(100) NOT NULL, 
+    [ServiceDescribtion] VARCHAR(100) NOT NULL, 
     [RequestCreatorID] INT NOT NULL, 
     CONSTRAINT [FK_ServiceRequest_Building] FOREIGN KEY ([BuildingID]) REFERENCES [Building]([BuildingID]), 
     CONSTRAINT [FK_ServiceRequest_Specialization] FOREIGN KEY ([SpecializationID]) REFERENCES [Specialization]([SpecializationID]), 

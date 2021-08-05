@@ -1,11 +1,11 @@
 ﻿CREATE TABLE [dbo].[Beneficiary]
 (
 	[BeneficiaryID] INT NOT NULL PRIMARY KEY IDENTITY, 
-    [Username] NCHAR(40) NOT NULL Unique, 
-    [Password] NCHAR(40) NOT NULL, 
-    [FirstName] NCHAR(40) NOT NULL,
-    [LastName] NCHAR(40) NOT NULL,
-    [Email] NCHAR(40) NOT NULL Unique, 
+    [Username] VARCHAR(40) NOT NULL Unique, 
+    [Password] VARCHAR(40) NOT NULL, 
+    [FirstName] VARCHAR(40) NOT NULL,
+    [LastName] VARCHAR(40) NOT NULL,
+    [Email] VARCHAR(40) NOT NULL Unique, 
     [Building_BuildingID] INT NOT NULL, 
     [Role_RoleID] INT NOT NULL, 
     [AccountStatus] BIT NOT NULL DEFAULT 0, 

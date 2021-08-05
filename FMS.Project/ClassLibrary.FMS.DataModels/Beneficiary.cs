@@ -23,12 +23,12 @@ namespace ClassLibrary.FMS.DataModels
         public int BeneficiaryID { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        public int Building_BuildingID { get; set; }
-        public int Role_RoleID { get; set; }
-        public string Email { get; set; }
-        public bool AccountStatus { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string Email { get; set; }
+        public int Building_BuildingID { get; set; }
+        public int Role_RoleID { get; set; }
+        public bool AccountStatus { get; set; }
     
         public virtual Building Building { get; set; }
         public virtual Role Role { get; set; }
