@@ -8,10 +8,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-
+using WebApplication.FMS.MVC.Filters;
 
 namespace WebApplication.FMS.MVC.BackOffice.Controllers
 {
+    [LogsFilterMVC]
+    [ExceptionFilterMVC]
     public class LoginController : Controller
     {
         string BaseUrl = Startup.GetBaseUrl();
@@ -57,7 +59,7 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
             return View();
         }
 
-        [HttpPost]
+        //[HttpPost]
         public async Task<IActionResult> EmployeeLogin(LoginModel loginModel)
         {
             var securityToken = string.Empty;

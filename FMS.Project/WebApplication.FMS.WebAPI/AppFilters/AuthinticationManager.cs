@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Text;
 using System.Web;
@@ -17,7 +19,14 @@ namespace WebApplication.FMS.WebAPI.AppFilters
     {
         public override void OnAuthorization(HttpActionContext actionContext)
         {
-            new TokenManager().ValidateToken(actionContext.Request.Headers.GetValues("Authorization").FirstOrDefault());
+            bool result = new TokenManager().ValidateToken(actionContext.Request.Headers.GetValues("Authorization").FirstOrDefault());
+            if(result)
+            {
+                actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.OK, "Welcome");
+                return;
+            }
+            actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized, "Unable to validate the token");
+           
         }
 
     }
