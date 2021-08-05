@@ -25,5 +25,7 @@ namespace ClassLibrary.FMS.DataModels
         [Required(ErrorMessage = "This field is required")]
         [Display(Name = "Building Number")]
         public int BuildingID { get; set; }
+
+
     }
 }

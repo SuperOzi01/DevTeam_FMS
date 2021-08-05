@@ -4,15 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ClassLibrary.FMS.DataModels;
+using ClassLibrary.FMS.DataModels.Models;
+
 namespace ClassLibrary.FMS.DatabaseOperations
 {
     public class LoginOperations
     {
-        FMS_DatabaseModel DatabaseEntity = new FMS_DatabaseModel();
+        FMS_DataEntity DatabaseEntity = new FMS_DataEntity();
         public bool LoginBackOffice(LoginModel login)
         {
             // TODO: Call the Employees DB to check the user to make it the log in the same page {x}
-            var employeesLoginCheck = DatabaseEntity.SP_Employee_LoginCheck1(login.Username, login.Password);            
+            var employeesLoginCheck = DatabaseEntity.SP_Employee_LoginCheck(login.Username, login.Password);            
             if (employeesLoginCheck.FirstOrDefault() == 1)
                 return true; // Employee is registred 
             else
@@ -61,8 +63,7 @@ namespace ClassLibrary.FMS.DatabaseOperations
                 EmployeeRegistraion.RoleID,
                 EmployeeRegistraion.LocationID,
                 EmployeeRegistraion.ManagerID);
-            DatabaseEntity.SaveChanges();
-            if (result == 1)
+            if (result.FirstOrDefault() == 1)
                 return true;
             else
                 return false;
@@ -70,6 +71,7 @@ namespace ClassLibrary.FMS.DatabaseOperations
 
         public List<Building> GetBuildingList()
         {
+            
             var BuildingList = DatabaseEntity.Buildings.Select(a => a);
             return BuildingList.ToList();
         }
@@ -99,6 +101,31 @@ namespace ClassLibrary.FMS.DatabaseOperations
         {
             var Role = DatabaseEntity.SP_GetUserRoles(loginModel.Username);
             return Role.FirstOrDefault().Trim();
+        }
+        public bool GetBeneficiaryAccountStatus(LoginModel loginModel)
+        {
+            bool status = DatabaseEntity.Beneficiaries.Where( x => x.Username == loginModel.Username).Select(a => a.AccountStatus).FirstOrDefault();
+            return status;
+        }
+
+        public bool GetCompanyEmployeeAccountStatus(LoginModel loginModel)
+        {
+            bool status = DatabaseEntity.CompanyEmployees.Where(x => x.Username == loginModel.Username).Select(a => a.AccountStatus).FirstOrDefault();
+            return status;
+        }
+
+        public bool UpdateBackOfficeAccountPasswordAndStatus(UpdatePasswordModel updateModel)
+        {
+            bool status = false;
+            var Employee = DatabaseEntity.CompanyEmployees.Where(x => x.Username == updateModel.Username).Select(a => a).FirstOrDefault();
+            if (Employee == null)
+                return status;
+
+            Employee.Password = updateModel.Password;
+            Employee.AccountStatus = true;
+            DatabaseEntity.SaveChanges();
+            status = true; 
+            return status;
         }
 
     }

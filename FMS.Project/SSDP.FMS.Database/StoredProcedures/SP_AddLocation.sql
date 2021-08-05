@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[SP_AddLocation]
-	@CityName nchar (40)
+	@CityName varchar (40)
 AS
 	IF NOT EXISTS (select 1 from dbo.Location where dbo.Location.City like @CityName)
 		BEGIN

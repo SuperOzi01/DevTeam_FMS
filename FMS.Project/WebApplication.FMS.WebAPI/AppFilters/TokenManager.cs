@@ -45,8 +45,14 @@ namespace WebApplication.FMS.WebAPI.App_Start
             SecurityToken validatedToken;
             var tokenHandler = new JwtSecurityTokenHandler();
             var validationParameters = GetValidationParameters();
+            try
+            {
             tokenHandler.ValidateToken(tokenValue, validationParameters, out validatedToken);
             return true;
+            }catch(Exception)
+            {
+                return false;
+            }
 
         }
 

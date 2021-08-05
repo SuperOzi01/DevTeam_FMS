@@ -10,6 +10,7 @@ using WebApplication.FMS.WebAPI.AppFilters;
 using ClassLibrary.FMS.DatabaseOperations;
 using ClassLibrary.FMS.DataModels;
 using WebApplication.FMS.WebAPI.App_Start;
+using ClassLibrary.FMS.DataModels.Models;
 
 namespace WebApplication.FMS.WebAPI.Controllers
 {
@@ -50,7 +51,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
         [Route("Api/Fms/Token")]
         [HttpPost]
         public IHttpActionResult Token(LoginModel loginModel)
-        {
+        {  
             // This Function Shall recieve User Model Object .. and return the token as a result.. 
             //string token = new AuthinticationManager().Authinticate(loginModel);
             string token = new TokenManager().GenerateToken(loginModel);
@@ -76,6 +77,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
         {
             // check if the user Exists 
             bool result = loginOperationsObject.LoginBackOffice(login);
+            
 
             if (result == true)
             {
@@ -91,6 +93,44 @@ namespace WebApplication.FMS.WebAPI.Controllers
             }
 
         }
+        
+        [Route("Api/Fms/BackOfficeAccountStatus")]
+        [HttpPost]
+        public IHttpActionResult BackOfficeAccountStatus(LoginModel login)
+        {
+            Responce.Result = loginOperationsObject.GetCompanyEmployeeAccountStatus(login);
+
+            if (Responce.Result == true)
+            {
+                Responce.Message = "Active";
+            }
+            else
+            {
+                Responce.Message = "Not Active"; 
+            }
+            return Ok(Responce);
+
+        }
+
+        [Route("Api/Fms/BackOfficeUpdatePasswordAndStatus")]
+        [HttpPost]
+        public IHttpActionResult BackOfficeUpdatePasswordAndStatus(UpdatePasswordModel login)
+        {
+            Responce.Result = loginOperationsObject.UpdateBackOfficeAccountPasswordAndStatus(login);
+
+            if (Responce.Result == true)
+            {
+                Responce.Message = "Active";
+            }
+            else
+            {
+                Responce.Message = "Not Active";
+            }
+            return Ok(Responce);
+
+        }
+
+
 
 
         [Route("Api/Fms/LoginPortal")]
@@ -99,8 +139,9 @@ namespace WebApplication.FMS.WebAPI.Controllers
         {
             // check if the user Exists 
             bool result = loginOperationsObject.LoginPortal(login);
+            bool status = loginOperationsObject.GetBeneficiaryAccountStatus(login);
 
-            if (result == true)
+            if (result == true && status == true)
             {
                 string role = loginOperationsObject.GetUserRole(login);
                 login.Role = role;
@@ -155,7 +196,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
                 return Ok(Responce);
         }
 
-        [Route("Api/Fms/BeneficiaryRegistraion")]
+        [Route("Api/Fms/GetBuildingList")]
         [HttpGet]
         public IHttpActionResult GetBuildingList()
         {

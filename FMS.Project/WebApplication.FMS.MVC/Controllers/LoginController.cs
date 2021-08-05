@@ -10,6 +10,7 @@ using WebApplication.FMS.MVC.Filters;
 namespace WebApplication.FMS.MVC.Controllers
 {
     [LogsFilterMVC]
+    [ExceptionFilterMVC]
     public class LoginController : Controller
     {
         string BaseUrl = Startup.GetBaseUrl();
@@ -45,7 +46,7 @@ namespace WebApplication.FMS.MVC.Controllers
                 }
                 else
                 {
-                    ViewBag.message = "Wrong Username or Password";
+                    ViewBag.message = "Wrong Username or Password - or Account is not active";
                     return View();
                 }
             }
@@ -64,7 +65,7 @@ namespace WebApplication.FMS.MVC.Controllers
         public IActionResult BeneficiaryRegistraion(BeneficiaryRegistraionModel BeneficiaryRegistraion)
         {
             if (ModelState.IsValid)
-            {
+            { 
                 HttpClient httpClient = new HttpClient();
                 httpClient.BaseAddress = new Uri(BaseUrl);
                 var response = httpClient.PostAsJsonAsync("Api/Fms/BeneficiaryRegistraion", BeneficiaryRegistraion).Result;
