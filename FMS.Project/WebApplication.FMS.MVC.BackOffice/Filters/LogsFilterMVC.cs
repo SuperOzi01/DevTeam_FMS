@@ -26,7 +26,7 @@ namespace WebApplication.FMS.MVC.Filters
 
         public void OnActionExecuting(ActionExecutingContext context)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

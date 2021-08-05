@@ -10,6 +10,7 @@ using WebApplication.FMS.MVC.Filters;
 namespace WebApplication.FMS.MVC.Controllers
 {
     [LogsFilterMVC]
+    [ExceptionFilterMVC]
     public class LoginController : Controller
     {
         string BaseUrl = Startup.GetBaseUrl();
