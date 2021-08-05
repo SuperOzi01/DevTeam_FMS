@@ -17,14 +17,14 @@
     <title>Create Account</title>
 </head>
 <body>
-    <div class="container pb-80">
+    <div class="container pb-10">
         <div class="card">
             <div class="row w-100">
 
                 <div class="col-lg-6 p-0">
                     <div class="CardRight">
                         <img class="logo" src="~/icon/maintra logo white png.png" />
-                        <div class="box1">
+                        <div class="text-center">
 
                             <header>Welcome Back!</header>
                             <p>To keep connected with us please login with your personal info</p>
@@ -46,16 +46,21 @@
                                 <span asp-validation-for="Username" class="text-danger"></span>
                             </div>
 
-                            <div class="form-group">
-                                <i class="far fa-user"></i>
-                                <input asp-for="FirstName" placeholder="First Name" class="input" />
-                                <span asp-validation-for="FirstName" class="text-danger"></span>
-                            </div>
-
-                            <div class="form-group">
-                                <i class="far fa-user"></i>
-                                <input asp-for="LastName" placeholder="Last Name" class="input" />
-                                <span asp-validation-for="LastName" class="text-danger"></span>
+                            <div class="form-group ">
+                                <ul>
+                                    <li class=" d-flex flex-nowrap">
+                                        <div class="  firstname">
+                                            <i class="far fa-user"></i>
+                                            <input asp-for="FirstName" placeholder="First Name" class="  inputsiz" />
+                                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                                        </div>
+                                        <div class="lastname">
+                                            <i class="far fa-user"></i>
+                                            <input asp-for="LastName" placeholder="Last Name" class="  inputsiz" />
+                                            <span asp-validation-for="LastName" class="text-danger"></span>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
 
                             <div class="form-group">
@@ -70,21 +75,59 @@
                                 <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                @Html.DropDownListFor(model => model.BuildingID, (IEnumerable<SelectListItem>)ViewBag.BuildingList, "--Select--", new { id = "select", name = "cours", @class = "input" })
+                                @Html.DropDownListFor(model => model.BuildingID, (IEnumerable<SelectListItem>)ViewBag.BuildingList, "Bulding No", new { id = "select", name = "cours", @class = "input" })
                                 <span asp-validation-for="BuildingID" class="text-danger"></span>
                             </div>
+                            @if ((string)TempData["Ref"] == "Save")
+                            {
+                                <div class="message-model" id="open">
+                                    <div class="message-content text-center">
+                                        <img class="checkicon" src="~/icon/check_icon.png" alt="check icon" />
 
-                            <input  type="submit" class="btnSignInCard" data-bs-toggle="modal" data-bs-target="#myModal" value="SIGN UP" />
-                        </form>
+                                        <div class="message">
+                                            <h1 class="TextColor3">Thank you</h1>
+                                            <p class="PupMesage">
+                                                You have been succfully registered,
+                                                please wati for your account to be
+                                                activated by the administrator
+                                            </p>
+
+
+                                        </div>
+
+                                        <button class="gotit-btn" asp-action="/Login/LoginPortal">GOT IT</button>
+                                    </div>
+                                </div>
+                                }
+                                <input type="submit" class="btnSignInCard" id="button" value="SIGN UP" />
+
+                            </form>
                     </div>
                 </div>
 
             </div>
         </div>
     </div>
+
+   
+
 </body>
+
 </html>
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js"></script>
+
+
+<script>
+    document.getElementById("button").addEventListener("click",
+        function () {
+            document.getElementById("open").style.visibility = "visible";
+            document.querySelector('.message-model').style.display = 'flex';
+        });
+
+   
+    
+</script>
+
