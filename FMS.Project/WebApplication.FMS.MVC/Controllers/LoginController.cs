@@ -84,7 +84,7 @@ namespace WebApplication.FMS.MVC.Controllers
             SelectList ListOfBuilding = null;
             HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(BaseUrl);
-            var response = httpClient.GetAsync("Api/Fms/BeneficiaryRegistraion").Result;
+            var response = httpClient.GetAsync("Api/Fms/GetBuildingList").Result;
             if (response.IsSuccessStatusCode)
             {
                 var BuildingList = response.Content.ReadAsAsync<IEnumerable<SelectListItem>>().Result;
