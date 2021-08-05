@@ -59,7 +59,7 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
             return View();
         }
 
-        //[HttpPost]
+        [HttpPost]
         public async Task<IActionResult> EmployeeLogin(LoginModel loginModel)
         {
             var securityToken = string.Empty;
