@@ -24,7 +24,10 @@ namespace WebApplication.FMS.MVC.Controllers
         {
             return View();
         }
-
+        public IActionResult PopUp()
+        {
+            return View();
+        }
         [HttpPost]
         public async Task<IActionResult> LoginPortal(LoginModel login)
         {
@@ -71,7 +74,9 @@ namespace WebApplication.FMS.MVC.Controllers
                 var response = httpClient.PostAsJsonAsync("Api/Fms/BeneficiaryRegistraion", BeneficiaryRegistraion).Result;
                 if (response.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("LoginPortal", "Login");
+                    TempData["Ref"] = "Save";
+
+                    //  return RedirectToAction("PopUp", "Login");
                 }
             }
             ViewBag.BuildingList = GetBuilding();
