@@ -88,6 +88,8 @@
     <Build Include="StoredProcedures\SP_GetUserRoles.sql" />
     <Build Include="Tables\RequestStatus.sql" />
     <Build Include="StoredProcedures\SP_ChangeServiceRequestStatus.sql" />
+    <Build Include="StoredProcedures\SP_GetMMOpenRequests.sql" />
+    <Build Include="Views\RequestView.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SSDP.FMS.Database.refactorlog" />

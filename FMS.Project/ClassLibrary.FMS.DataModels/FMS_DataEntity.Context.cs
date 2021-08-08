@@ -37,6 +37,7 @@ namespace ClassLibrary.FMS.DataModels
         public virtual DbSet<ServiceRequest> ServiceRequests { get; set; }
         public virtual DbSet<Specialization> Specializations { get; set; }
         public virtual DbSet<View_BuildingAndLocationInfo> View_BuildingAndLocationInfo { get; set; }
+        public virtual DbSet<RequestView> RequestViews { get; set; }
     
         public virtual ObjectResult<Nullable<int>> SP_ActivateBeneficiaryAccount(string beneficiaryUsername)
         {
@@ -291,6 +292,11 @@ namespace ClassLibrary.FMS.DataModels
                 new ObjectParameter("CreatorID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_InsertNewServiceRequiest", buildinNoParameter, specializationParameter, describtionParameter, creatorIDParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetMMOpenRequests_Result> SP_GetMMOpenRequests()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetMMOpenRequests_Result>("SP_GetMMOpenRequests");
         }
     }
 }

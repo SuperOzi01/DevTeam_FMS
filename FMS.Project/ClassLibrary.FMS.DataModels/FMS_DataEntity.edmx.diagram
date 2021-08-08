@@ -27,6 +27,7 @@
         <AssociationConnector Association="FMS_DatabaseModel.FK_ServiceRequest_CompanyEmployee" ManuallyRouted="false" />
         <AssociationConnector Association="FMS_DatabaseModel.FK_User_ManagerID" ManuallyRouted="false" />
         <AssociationConnector Association="FMS_DatabaseModel.FK_ServiceRequest_Specialization" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="FMS_DatabaseModel.RequestView" Width="1.5" PointX="0.75" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

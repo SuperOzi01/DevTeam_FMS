@@ -51,13 +51,13 @@ namespace WebApplication.FMS.WebAPI.Controllers
         }
 
         [Route("Api/Fms/BackOffice/MMOpenRequests")]
-        [HttpPost]
-        public IHttpActionResult BackOfficeGetMMOpenRequestsList(LoginModel login)
+        [HttpGet]
+        public IHttpActionResult BackOfficeGetMMOpenRequestsList()
         {
 
-            var response = BackOfficeOperationsObject.BackOfficeGetMaintananceManagerOpenRequests();
+            List<SP_GetMMOpenRequests_Result> RequestsList = BackOfficeOperationsObject.BackOfficeGetMaintananceManagerOpenRequests();
             
-            return Ok(response);
+            return Ok(RequestsList);
         }
 
 
