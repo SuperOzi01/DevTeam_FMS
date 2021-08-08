@@ -94,6 +94,7 @@ C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.F
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\bin\Debug\netcoreapp3.1\ClassLibrary.FMS.DataModels.dll.config
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\bin\Debug\netcoreapp3.1\EntityFramework.xml
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.BackOffice.csproj.AssemblyReference.cache
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.BackOffice.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.BackOffice.AssemblyInfoInputs.cache
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.BackOffice.AssemblyInfo.cs
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.BackOffice.csproj.CoreCompileInputs.cache
@@ -106,10 +107,13 @@ C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.F
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.BackOffice.TagHelpers.input.cache
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.BackOffice.TagHelpers.output.cache
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.BackOffice.RazorCoreGenerate.cache
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\Razor\Views\BackOffice\MaintananceManagerDashboard.cshtml.g.cs
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\Razor\Views\Login\EmployeeLogin.cshtml.g.cs
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\Razor\Views\Login\UpdatePasswordPage.cshtml.g.cs
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\Razor\Views\Shared\ErrorView.cshtml.g.cs
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
@@ -121,6 +125,3 @@ C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.F
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.BackOffice.dll
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.BackOffice.pdb
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.BackOffice.genruntimeconfig.cache
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.BackOffice.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\Razor\Views\Login\UpdatePasswordPage.cshtml.g.cs
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\Razor\Views\Shared\ErrorView.cshtml.g.cs

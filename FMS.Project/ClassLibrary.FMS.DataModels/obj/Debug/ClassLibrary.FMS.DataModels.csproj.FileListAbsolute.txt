@@ -4,18 +4,6 @@ C:\Users\Rawan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataMod
 C:\Users\Rawan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.csproj.CoreCompileInputs.cache
 C:\Users\Rawan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.dll
 C:\Users\Rawan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.pdb
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\ClassLibrary.FMS.DataModels.dll.config
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\ClassLibrary.FMS.DataModels.dll
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\ClassLibrary.FMS.DataModels.pdb
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\EntityFramework.dll
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\EntityFramework.xml
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.csproj.AssemblyReference.cache
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.csproj.CoreCompileInputs.cache
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.csproj.CopyComplete
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.dll
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.pdb
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\ClassLibrary.FMS.DataModels.dll.config
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\ClassLibrary.FMS.DataModels.dll
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\ClassLibrary.FMS.DataModels.pdb
@@ -28,3 +16,14 @@ C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataMod
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.csproj.CopyComplete
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.dll
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.pdb
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\ClassLibrary.FMS.DataModels.dll.config
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\ClassLibrary.FMS.DataModels.dll
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\ClassLibrary.FMS.DataModels.pdb
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\EntityFramework.dll
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\EntityFramework.xml
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.csproj.CoreCompileInputs.cache
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.csproj.CopyComplete
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.dll
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.pdb
