@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<ClassLibrary.FMS.DataModels.SP_GetMMOpenRequests_Result>
 @{
     ViewData["Title"] = "Login BackOffice";
 }
@@ -20,6 +20,50 @@
 <div class="jumbotron  jumbotron-fluid " style="border-radius: 25px; background:white;">
     <div class="container">
         <h5 class="opentext">Opened request</h5>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ServiceRequestID)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BuildingID)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Specialization_Type)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Assigned_Worker)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RequestIssueDate)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ServiceRequestID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BuildingID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Specialization_Type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Assigned_Worker)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RequestIssueDate)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
 </div>
 
@@ -29,5 +73,4 @@
     </div>
 </div>
 
-</div>
 <!-- End demo content -->
