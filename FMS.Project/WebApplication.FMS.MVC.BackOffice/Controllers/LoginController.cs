@@ -81,6 +81,25 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                     var statusResponce = statusRequest.Content.ReadAsAsync<ResponseAPI>().Result;
                     if(statusResponce.Result == true)
                     {
+                        // Check what page to redirect to based on the role. 
+                        var userRoleRequest = await client.PostAsJsonAsync("Api/Fms/GetUserRole", loginModel);
+                        var userRoleResponce = statusRequest.Content.ReadAsAsync<ResponseAPI>().Result;
+                        if(userRoleResponce.Result == false)
+                        {
+                            return Content("This user Is Not Found");
+                        }
+
+                        if(userRoleResponce.Message.Equals("Maintenance Manager"))
+                        {
+                            
+                            var OpenRListRequest = await client.PostAsJsonAsync("Api/Fms/BackOffice/MMOpenRequests", loginModel);
+                            var OpenRListResponce = statusRequest.Content.ReadAsAsync<List<ServiceRequest>>().Result;
+                            if(OpenRListResponce != null)
+                            return View("MaintananceManagerDashboard","BackOffice", ,OpenRListResponce);
+                        }
+
+
+
                         // the account is active and user does not need to update password
                         return RedirectToAction("Index", "Home");
                     }

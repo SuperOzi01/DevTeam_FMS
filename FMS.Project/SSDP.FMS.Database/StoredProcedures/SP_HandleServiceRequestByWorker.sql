@@ -2,5 +2,5 @@
 	@BuildingNo INT,
 	@RequestID INT
 AS
-	UPDATE dbo.ServiceRequest SET RequestHandlingStatus = 1 
+	UPDATE dbo.ServiceRequest SET RequiestStatus = 4 
 	WHERE dbo.ServiceRequest.ServiceRequestID = @RequestID

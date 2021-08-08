@@ -1,0 +1,26 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Drop
+       unnamed constraint on [dbo].[ServiceRequest] (Default Constraint)
+     Alter
+       [dbo].[ServiceRequest] (Table)
+       [dbo].[SP_ActivateBeneficiaryAccount] (Procedure)
+       [dbo].[SP_EmployeeResetPassAndActivateAccount] (Procedure)
+
+** Supporting actions
+     Create
+       Default Constraint: unnamed constraint on [dbo].[ServiceRequest] (Default Constraint)
+     Refresh
+       [dbo].[SP_AssignWorkerToRequest] (Procedure)
+       [dbo].[SP_GetAllServiceRequests] (Procedure)
+       [dbo].[SP_HandleServiceRequestByWorker] (Procedure)
+       [dbo].[SP_InsertNewServiceRequiest] (Procedure)

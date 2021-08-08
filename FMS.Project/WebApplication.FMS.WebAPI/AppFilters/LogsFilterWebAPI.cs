@@ -29,7 +29,7 @@ namespace WebApplication.FMS.WebAPI.AppFilters
             log.Info(logMessage);
 
             // Responce Message
-            logMessage = string.Format("Web API Responce Logs => Controller: {0} | Action: {1} | Time: {2} ",
+            logMessage = string.Format("Web API Responce Logs [ Controller: {0} | Action: {1} | Time: {2} ]",
                 actionContext.ControllerContext.ControllerDescriptor.ControllerName,
                 actionContext.ActionDescriptor.ActionName,
                 DateTime.Now.ToShortTimeString());

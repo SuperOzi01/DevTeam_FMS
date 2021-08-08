@@ -1,0 +1,27 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       The column [dbo].[ServiceRequest].[RequestHandlingStatus] is being dropped, data loss could occur.
+
+** User actions
+     Drop
+       unnamed constraint on [dbo].[ServiceRequest] (Default Constraint)
+     Alter
+       [dbo].[ServiceRequest] (Table)
+       [dbo].[SP_GetAllServiceRequests] (Procedure)
+       [dbo].[SP_HandleServiceRequestByWorker] (Procedure)
+     Create
+       [dbo].[RequestStatus] (Table)
+
+** Supporting actions
+     Refresh
+       [dbo].[SP_AssignWorkerToRequest] (Procedure)
+       [dbo].[SP_InsertNewServiceRequiest] (Procedure)
+
+The column [dbo].[ServiceRequest].[RequestHandlingStatus] is being dropped, data loss could occur.
+
