@@ -92,10 +92,11 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                         if(userRoleResponce.Message.Equals("Maintenance Manager"))
                         {
                             
-                           // var OpenRListRequest = await client.PostAsJsonAsync("Api/Fms/BackOffice/MMOpenRequests", loginModel);
-                            // var OpenRListResponce = OpenRListRequest.Content.ReadAsAsync<List<ServiceRequest>>().Result;
-                            // if(OpenRListResponce != null)
-                            return View("MaintananceManagerDashboard","BackOffice");
+                           var OpenRListRequest = await client.PostAsJsonAsync("Api/Fms/BackOffice/MMOpenRequests", loginModel);
+                            var OpenRListResponce = OpenRListRequest.Content.ReadAsAsync<List<ServiceRequest>>().Result;
+                            int num = 1;
+                            if(OpenRListResponce != null)
+                            return RedirectToAction("MaintananceManagerDashboard","BackOffice", new { OpenRListResponce , num });
                         }
 
 
