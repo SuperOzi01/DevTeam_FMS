@@ -148,8 +148,6 @@ C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.F
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.Portal.dll
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.Portal.pdb
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.Portal.genruntimeconfig.cache
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.Portal.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\ErrorView.cshtml.g.cs
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\bin\Debug\netcoreapp3.1\Log4net.config
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\bin\Debug\netcoreapp3.1\appsettings.json
@@ -272,7 +270,6 @@ C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\b
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\bin\Debug\netcoreapp3.1\ClassLibrary.FMS.DataModels.pdb
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\bin\Debug\netcoreapp3.1\ClassLibrary.FMS.DataModels.dll.config
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.Portal.csproj.AssemblyReference.cache
-C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.Portal.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.Portal.AssemblyInfoInputs.cache
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.Portal.AssemblyInfo.cs
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.Portal.csproj.CoreCompileInputs.cache
@@ -289,9 +286,8 @@ C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\o
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Login\BeneficiaryRegistraion.cshtml.g.cs
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Login\LoginPortal.cshtml.g.cs
-C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Login\PopUp.cshtml.g.cs
+C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Login\signin.cshtml.g.cs
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
-C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\ErrorView.cshtml.g.cs
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
@@ -303,3 +299,5 @@ C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\o
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.Portal.dll
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.Portal.pdb
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.Portal.genruntimeconfig.cache
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.Portal.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\ErrorView.cshtml.g.cs

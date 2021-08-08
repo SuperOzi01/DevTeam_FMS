@@ -15,10 +15,10 @@ namespace ClassLibrary.FMS.DataModels
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class FMS_DataEntity : DbContext
+    public partial class FMS_DatabaseEntities : DbContext
     {
-        public FMS_DataEntity()
-            : base("name=FMS_DataEntity")
+        public FMS_DatabaseEntities()
+            : base("name=FMS_DatabaseEntities")
         {
         }
     
@@ -32,18 +32,19 @@ namespace ClassLibrary.FMS.DataModels
         public virtual DbSet<Building> Buildings { get; set; }
         public virtual DbSet<CompanyEmployee> CompanyEmployees { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
+        public virtual DbSet<RequestStatu> RequestStatus { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<ServiceRequest> ServiceRequests { get; set; }
         public virtual DbSet<Specialization> Specializations { get; set; }
         public virtual DbSet<View_BuildingAndLocationInfo> View_BuildingAndLocationInfo { get; set; }
     
-        public virtual ObjectResult<Nullable<int>> SP_ActivateBeneficiaryAccount(Nullable<int> beneficiaryID)
+        public virtual ObjectResult<Nullable<int>> SP_ActivateBeneficiaryAccount(string beneficiaryUsername)
         {
-            var beneficiaryIDParameter = beneficiaryID.HasValue ?
-                new ObjectParameter("BeneficiaryID", beneficiaryID) :
-                new ObjectParameter("BeneficiaryID", typeof(int));
+            var beneficiaryUsernameParameter = beneficiaryUsername != null ?
+                new ObjectParameter("BeneficiaryUsername", beneficiaryUsername) :
+                new ObjectParameter("BeneficiaryUsername", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_ActivateBeneficiaryAccount", beneficiaryIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_ActivateBeneficiaryAccount", beneficiaryUsernameParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> SP_AddBuilding(Nullable<int> buildingID, Nullable<int> noFloors, Nullable<int> ownership, Nullable<int> managerID, Nullable<int> locationID)
@@ -115,6 +116,19 @@ namespace ClassLibrary.FMS.DataModels
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_Ben_LoginCheck", usernameParameter, passwordParameter);
         }
     
+        public virtual ObjectResult<Nullable<int>> SP_ChangeServiceRequestStatus(string username, Nullable<int> requestID)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            var requestIDParameter = requestID.HasValue ?
+                new ObjectParameter("RequestID", requestID) :
+                new ObjectParameter("RequestID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_ChangeServiceRequestStatus", usernameParameter, requestIDParameter);
+        }
+    
         public virtual ObjectResult<Nullable<int>> SP_Employee_LoginCheck(string username, string pass)
         {
             var usernameParameter = username != null ?
@@ -128,17 +142,17 @@ namespace ClassLibrary.FMS.DataModels
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_Employee_LoginCheck", usernameParameter, passParameter);
         }
     
-        public virtual int SP_EmployeeResetPassAndActivateAccount(string password, Nullable<int> employeeID)
+        public virtual int SP_EmployeeResetPassAndActivateAccount(string password, string employeeUsername)
         {
             var passwordParameter = password != null ?
                 new ObjectParameter("password", password) :
                 new ObjectParameter("password", typeof(string));
     
-            var employeeIDParameter = employeeID.HasValue ?
-                new ObjectParameter("EmployeeID", employeeID) :
-                new ObjectParameter("EmployeeID", typeof(int));
+            var employeeUsernameParameter = employeeUsername != null ?
+                new ObjectParameter("EmployeeUsername", employeeUsername) :
+                new ObjectParameter("EmployeeUsername", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_EmployeeResetPassAndActivateAccount", passwordParameter, employeeIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_EmployeeResetPassAndActivateAccount", passwordParameter, employeeUsernameParameter);
         }
     
         public virtual ObjectResult<SP_GetAllBuildings_Result> SP_GetAllBuildings()

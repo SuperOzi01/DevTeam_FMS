@@ -10,7 +10,7 @@ namespace ClassLibrary.FMS.DatabaseOperations
 {
     public class LoginOperations
     {
-        FMS_DataEntity DatabaseEntity = new FMS_DataEntity();
+        FMS_DatabaseEntities DatabaseEntity = new FMS_DatabaseEntities();
         public bool LoginBackOffice(LoginModel login)
         {
             // TODO: Call the Employees DB to check the user to make it the log in the same page {x}
@@ -100,7 +100,7 @@ namespace ClassLibrary.FMS.DatabaseOperations
         public string GetUserRole(LoginModel loginModel)
         {
             var Role = DatabaseEntity.SP_GetUserRoles(loginModel.Username);
-            return Role.FirstOrDefault().Trim();
+            return Role.FirstOrDefault();
         }
         public bool GetBeneficiaryAccountStatus(LoginModel loginModel)
         {
@@ -116,17 +116,18 @@ namespace ClassLibrary.FMS.DatabaseOperations
 
         public bool UpdateBackOfficeAccountPasswordAndStatus(UpdatePasswordModel updateModel)
         {
-            bool status = false;
-            var Employee = DatabaseEntity.CompanyEmployees.Where(x => x.Username == updateModel.Username).Select(a => a).FirstOrDefault();
-            if (Employee == null)
-                return status;
-
-            Employee.Password = updateModel.Password;
-            Employee.AccountStatus = true;
-            DatabaseEntity.SaveChanges();
-            status = true; 
-            return status;
+            int result = DatabaseEntity.SP_EmployeeResetPassAndActivateAccount(updateModel.Password, updateModel.Username);
+            if (result == 1)
+                return true;
+            return false; 
         }
+
+        public bool PortalActivateBeneficiaryAccount(LoginModel login)
+        {
+            DatabaseEntity.SP_ActivateBeneficiaryAccount(login.Username);
+            return true;
+        }
+
 
     }
 }

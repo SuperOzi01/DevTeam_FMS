@@ -62,6 +62,11 @@ namespace WebApplication.FMS.MVC.BackOffice
                 endpoints.MapControllerRoute(
                     name: "Login",
                     pattern: "{controller=Login}/{action=EmployeeLogin}");
+
+                endpoints.MapControllerRoute(
+                    name: "BackOffice",
+                    pattern: "{controller=BackOffice}/{action=MaintananceManagerDashboard}");
+
             });
         }
     }

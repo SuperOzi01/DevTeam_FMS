@@ -18,8 +18,7 @@ namespace ClassLibrary.FMS.DataModels
         public int BuildingID { get; set; }
         public int SpecializationID { get; set; }
         public Nullable<int> AssignedWorkerID { get; set; }
-        public bool RequiestStatus { get; set; }
-        public bool RequestHandlingStatus { get; set; }
+        public int RequiestStatus { get; set; }
         public System.DateTime RequestIssueDate { get; set; }
         public Nullable<System.DateTime> RequestCloseDate { get; set; }
         public string ServiceDescribtion { get; set; }

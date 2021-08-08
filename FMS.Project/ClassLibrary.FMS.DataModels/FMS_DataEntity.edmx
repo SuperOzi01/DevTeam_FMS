@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="FMS_DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="FMS_DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__RefactorLog">
           <Key>
             <PropertyRef Name="OperationKey" />
@@ -58,6 +58,13 @@
           <Property Name="LocationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="City" Type="varchar" MaxLength="40" Nullable="false" />
         </EntityType>
+        <EntityType Name="RequestStatus">
+          <Key>
+            <PropertyRef Name="RequestStatusID" />
+          </Key>
+          <Property Name="RequestStatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusName" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="RoleID" />
@@ -73,8 +80,7 @@
           <Property Name="BuildingID" Type="int" Nullable="false" />
           <Property Name="SpecializationID" Type="int" Nullable="false" />
           <Property Name="AssignedWorkerID" Type="int" />
-          <Property Name="RequiestStatus" Type="bit" Nullable="false" />
-          <Property Name="RequestHandlingStatus" Type="bit" Nullable="false" />
+          <Property Name="RequiestStatus" Type="int" Nullable="false" />
           <Property Name="RequestIssueDate" Type="date" Nullable="false" />
           <Property Name="RequestCloseDate" Type="date" />
           <Property Name="ServiceDescribtion" Type="varchar" MaxLength="100" Nullable="false" />
@@ -247,7 +253,7 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           </ReferentialConstraint>
         </Association>
         <Function Name="SP_ActivateBeneficiaryAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="BeneficiaryID" Type="int" Mode="In" />
+          <Parameter Name="BeneficiaryUsername" Type="varchar" Mode="In" />
         </Function>
         <Function Name="SP_AddBuilding" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="BuildingID" Type="int" Mode="In" />
@@ -270,13 +276,17 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           <Parameter Name="username" Type="varchar" Mode="In" />
           <Parameter Name="password" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="SP_ChangeServiceRequestStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Username" Type="varchar" Mode="In" />
+          <Parameter Name="RequestID" Type="int" Mode="In" />
+        </Function>
         <Function Name="SP_Employee_LoginCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="username" Type="varchar" Mode="In" />
           <Parameter Name="pass" Type="varchar" Mode="In" />
         </Function>
         <Function Name="SP_EmployeeResetPassAndActivateAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="password" Type="varchar" Mode="In" />
-          <Parameter Name="EmployeeID" Type="int" Mode="In" />
+          <Parameter Name="EmployeeUsername" Type="varchar" Mode="In" />
         </Function>
         <Function Name="SP_GetAllBuildings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_GetAllLocations" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -321,6 +331,7 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           <EntitySet Name="Building" EntityType="Self.Building" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CompanyEmployee" EntityType="Self.CompanyEmployee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RequestStatus" EntityType="Self.RequestStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ServiceRequest" EntityType="Self.ServiceRequest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Specialization" EntityType="Self.Specialization" Schema="dbo" store:Type="Tables" />
@@ -382,7 +393,8 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
             <End Role="CompanyEmployee1" EntitySet="CompanyEmployee" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FMS_DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -455,6 +467,13 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           <NavigationProperty Name="Buildings" Relationship="Self.FK_Building_Location" FromRole="Location" ToRole="Building" />
           <NavigationProperty Name="CompanyEmployees" Relationship="Self.FK_CompanyEmployee_Location" FromRole="Location" ToRole="CompanyEmployee" />
         </EntityType>
+        <EntityType Name="RequestStatu">
+          <Key>
+            <PropertyRef Name="RequestStatusID" />
+          </Key>
+          <Property Name="RequestStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="RoleID" />
@@ -472,8 +491,7 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           <Property Name="BuildingID" Type="Int32" Nullable="false" />
           <Property Name="SpecializationID" Type="Int32" Nullable="false" />
           <Property Name="AssignedWorkerID" Type="Int32" />
-          <Property Name="RequiestStatus" Type="Boolean" Nullable="false" />
-          <Property Name="RequestHandlingStatus" Type="Boolean" Nullable="false" />
+          <Property Name="RequiestStatus" Type="Int32" Nullable="false" />
           <Property Name="RequestIssueDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="RequestCloseDate" Type="DateTime" Precision="0" />
           <Property Name="ServiceDescribtion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
@@ -649,12 +667,13 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="FMS_DataEntity" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="FMS_DatabaseEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
           <EntitySet Name="Beneficiaries" EntityType="Self.Beneficiary" />
           <EntitySet Name="Buildings" EntityType="Self.Building" />
           <EntitySet Name="CompanyEmployees" EntityType="Self.CompanyEmployee" />
           <EntitySet Name="Locations" EntityType="Self.Location" />
+          <EntitySet Name="RequestStatus" EntityType="Self.RequestStatu" />
           <EntitySet Name="Roles" EntityType="Self.Role" />
           <EntitySet Name="ServiceRequests" EntityType="Self.ServiceRequest" />
           <EntitySet Name="Specializations" EntityType="Self.Specialization" />
@@ -708,7 +727,7 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
             <End Role="ServiceRequest" EntitySet="ServiceRequests" />
           </AssociationSet>
           <FunctionImport Name="SP_ActivateBeneficiaryAccount" ReturnType="Collection(Int32)">
-          <Parameter Name="BeneficiaryID" Mode="In" Type="Int32" />
+            <Parameter Name="BeneficiaryUsername" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_AddBuilding" ReturnType="Collection(Int32)">
             <Parameter Name="BuildingID" Mode="In" Type="Int32" />
@@ -718,10 +737,10 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
             <Parameter Name="LocationID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_AddLocation" ReturnType="Collection(Int32)">
-          <Parameter Name="CityName" Mode="In" Type="String" />
+            <Parameter Name="CityName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_AddSpecialization" ReturnType="Collection(Int32)">
-          <Parameter Name="SpecializationName" Mode="In" Type="String" />
+            <Parameter Name="SpecializationName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_AssignWorkerToRequest">
             <Parameter Name="WorkerID" Mode="In" Type="Int32" />
@@ -731,13 +750,17 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
             <Parameter Name="username" Mode="In" Type="String" />
             <Parameter Name="password" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="SP_ChangeServiceRequestStatus" ReturnType="Collection(Int32)">
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="RequestID" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="SP_Employee_LoginCheck" ReturnType="Collection(Int32)">
             <Parameter Name="username" Mode="In" Type="String" />
             <Parameter Name="pass" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_EmployeeResetPassAndActivateAccount">
             <Parameter Name="password" Mode="In" Type="String" />
-            <Parameter Name="EmployeeID" Mode="In" Type="Int32" />
+            <Parameter Name="EmployeeUsername" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_GetAllBuildings" ReturnType="Collection(FMS_DatabaseModel.SP_GetAllBuildings_Result)" />
           <FunctionImport Name="SP_GetAllLocations" ReturnType="Collection(FMS_DatabaseModel.SP_GetAllLocations_Result)" />
@@ -745,7 +768,7 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           <FunctionImport Name="SP_GetAllServiceRequests" ReturnType="Collection(FMS_DatabaseModel.SP_GetAllServiceRequests_Result)" />
           <FunctionImport Name="SP_GetAllSpecializations" ReturnType="Collection(FMS_DatabaseModel.SP_GetAllSpecializations_Result)" />
           <FunctionImport Name="SP_GetUserRoles" ReturnType="Collection(String)">
-          <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="username" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_HandleServiceRequestByWorker">
             <Parameter Name="BuildingNo" Mode="In" Type="Int32" />
@@ -801,8 +824,7 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           <Property Type="String" Name="City" Nullable="true" MaxLength="40" />
           <Property Type="Int32" Name="NoFloors" Nullable="true" />
           <Property Type="Int32" Name="BuildingManagerID" Nullable="true" />
-          <Property Type="Boolean" Name="RequiestStatus" Nullable="false" />
-          <Property Type="Boolean" Name="RequestHandlingStatus" Nullable="false" />
+          <Property Type="Int32" Name="RequiestStatus" Nullable="false" />
           <Property Type="DateTime" Name="RequestIssueDate" Nullable="false" />
           <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
         </ComplexType>
@@ -815,7 +837,7 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="FMS_DatabaseModelStoreContainer" CdmEntityContainer="FMS_DataEntity">
+        <EntityContainerMapping StorageEntityContainer="FMS_DatabaseModelStoreContainer" CdmEntityContainer="FMS_DatabaseEntities">
           <EntitySetMapping Name="C__RefactorLog">
             <EntityTypeMapping TypeName="FMS_DatabaseModel.C__RefactorLog">
               <MappingFragment StoreEntitySet="__RefactorLog">
@@ -874,6 +896,14 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="RequestStatus">
+            <EntityTypeMapping TypeName="FMS_DatabaseModel.RequestStatu">
+              <MappingFragment StoreEntitySet="RequestStatus">
+                <ScalarProperty Name="RequestStatusID" ColumnName="RequestStatusID" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Roles">
             <EntityTypeMapping TypeName="FMS_DatabaseModel.Role">
               <MappingFragment StoreEntitySet="Role">
@@ -890,7 +920,6 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
                 <ScalarProperty Name="SpecializationID" ColumnName="SpecializationID" />
                 <ScalarProperty Name="AssignedWorkerID" ColumnName="AssignedWorkerID" />
                 <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
-                <ScalarProperty Name="RequestHandlingStatus" ColumnName="RequestHandlingStatus" />
                 <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
                 <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
                 <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
@@ -923,6 +952,7 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           <FunctionImportMapping FunctionImportName="SP_AddSpecialization" FunctionName="FMS_DatabaseModel.Store.SP_AddSpecialization" />
           <FunctionImportMapping FunctionImportName="SP_AssignWorkerToRequest" FunctionName="FMS_DatabaseModel.Store.SP_AssignWorkerToRequest" />
           <FunctionImportMapping FunctionImportName="SP_Ben_LoginCheck" FunctionName="FMS_DatabaseModel.Store.SP_Ben_LoginCheck" />
+          <FunctionImportMapping FunctionImportName="SP_ChangeServiceRequestStatus" FunctionName="FMS_DatabaseModel.Store.SP_ChangeServiceRequestStatus" />
           <FunctionImportMapping FunctionImportName="SP_Employee_LoginCheck" FunctionName="FMS_DatabaseModel.Store.SP_Employee_LoginCheck" />
           <FunctionImportMapping FunctionImportName="SP_EmployeeResetPassAndActivateAccount" FunctionName="FMS_DatabaseModel.Store.SP_EmployeeResetPassAndActivateAccount" />
           <FunctionImportMapping FunctionImportName="SP_GetAllBuildings" FunctionName="FMS_DatabaseModel.Store.SP_GetAllBuildings">
@@ -964,7 +994,6 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
                 <ScalarProperty Name="NoFloors" ColumnName="NoFloors" />
                 <ScalarProperty Name="BuildingManagerID" ColumnName="BuildingManagerID" />
                 <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
-                <ScalarProperty Name="RequestHandlingStatus" ColumnName="RequestHandlingStatus" />
                 <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
                 <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
               </ComplexTypeMapping>

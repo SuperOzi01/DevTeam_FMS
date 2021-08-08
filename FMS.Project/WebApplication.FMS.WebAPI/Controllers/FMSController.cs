@@ -20,8 +20,8 @@ namespace WebApplication.FMS.WebAPI.Controllers
     {
         static readonly ILog ErrorLog = LogManager.GetLogger("ErrorLog");
         static readonly ILog InfoLog = LogManager.GetLogger("InfoLog");
-        ResponseAPI Responce = new ResponseAPI();
-        LoginOperations loginOperationsObject = new LoginOperations();
+        ResponseAPI Response = new ResponseAPI();
+        private LoginOperations loginOperationsObject = new LoginOperations();
 
         [Route("Api/Fms/ping")] 
         [HttpGet]
@@ -30,9 +30,9 @@ namespace WebApplication.FMS.WebAPI.Controllers
         {
             // test the api logs and exceptions   
             //throw new DivideByZeroException();
-            Responce.Message = "Ping is Working";
-            Responce.Result = true;
-            return Ok(Responce);
+            Response.Message = "Ping is Working";
+            Response.Result = true;
+            return Ok(Response);
         }
 
         [Route("Api/Fms/HelthCheck")]
@@ -43,9 +43,9 @@ namespace WebApplication.FMS.WebAPI.Controllers
             // 1- JWT Working
             // 2- DB connection 
             // 3- Logs 
-            Responce.Message = "Health Check is Working";
-            Responce.Result = true;
-            return Ok(Responce);
+            Response.Message = "Health Check is Working";
+            Response.Result = true;
+            return Ok(Response);
         }
 
         [Route("Api/Fms/Token")]
@@ -55,13 +55,12 @@ namespace WebApplication.FMS.WebAPI.Controllers
             // This Function Shall recieve User Model Object .. and return the token as a result.. 
             //string token = new AuthinticationManager().Authinticate(loginModel);
             string token = new TokenManager().GenerateToken(loginModel);
-            Responce.Result = true;
-            Responce.Message = token;
-            return Ok(Responce);
+            Response.Result = true;
+            Response.Message = token;
+            return Ok(Response);
         }
 
         [AuthinticationManager]
-        [AuthorizationManager(Roles = "Tenent")]
         [Route("Api/Fms/Validate")]
         [HttpPost]
         public IHttpActionResult Validate()
@@ -87,9 +86,9 @@ namespace WebApplication.FMS.WebAPI.Controllers
             }
             else
             {
-                Responce.Result = false;
-                Responce.Message = "Login failed";
-                return Ok(Responce);
+                Response.Result = false;
+                Response.Message = "Login failed";
+                return Ok(Response);
             }
 
         }
@@ -98,17 +97,17 @@ namespace WebApplication.FMS.WebAPI.Controllers
         [HttpPost]
         public IHttpActionResult BackOfficeAccountStatus(LoginModel login)
         {
-            Responce.Result = loginOperationsObject.GetCompanyEmployeeAccountStatus(login);
+            Response.Result = loginOperationsObject.GetCompanyEmployeeAccountStatus(login);
 
-            if (Responce.Result == true)
+            if (Response.Result == true)
             {
-                Responce.Message = "Active";
+                Response.Message = "Active";
             }
             else
             {
-                Responce.Message = "Not Active"; 
+                Response.Message = "Not Active"; 
             }
-            return Ok(Responce);
+            return Ok(Response);
 
         }
 
@@ -116,17 +115,17 @@ namespace WebApplication.FMS.WebAPI.Controllers
         [HttpPost]
         public IHttpActionResult BackOfficeUpdatePasswordAndStatus(UpdatePasswordModel login)
         {
-            Responce.Result = loginOperationsObject.UpdateBackOfficeAccountPasswordAndStatus(login);
+            Response.Result = loginOperationsObject.UpdateBackOfficeAccountPasswordAndStatus(login);
 
-            if (Responce.Result == true)
+            if (Response.Result == true)
             {
-                Responce.Message = "Active";
+                Response.Message = "Active";
             }
             else
             {
-                Responce.Message = "Not Active";
+                Response.Message = "Not Active";
             }
-            return Ok(Responce);
+            return Ok(Response);
 
         }
 
@@ -149,9 +148,9 @@ namespace WebApplication.FMS.WebAPI.Controllers
             }
             else
             {
-                Responce.Result = false;
-                Responce.Message = "Login failed";
-                return Ok(Responce);
+                Response.Result = false;
+                Response.Message = "Login failed";
+                return Ok(Response);
             }
 
         }
@@ -165,15 +164,15 @@ namespace WebApplication.FMS.WebAPI.Controllers
 
             if (result == true)
             {
-                Responce.Result = true;
-                Responce.Message = "Beneficiary has been successfully registered";
+                Response.Result = true;
+                Response.Message = "Beneficiary has been successfully registered";
             }
             else
             {
-                Responce.Result = false;
-                Responce.Message = "Registration failed";
+                Response.Result = false;
+                Response.Message = "Registration failed";
             }
-                return Ok(Responce);
+                return Ok(Response);
         }
 
         [Route("Api/Fms/EmployeeRegistraion")]
@@ -185,15 +184,15 @@ namespace WebApplication.FMS.WebAPI.Controllers
 
             if (result == true)
             {
-                Responce.Result = true;
-                Responce.Message = "Employee has been successfully registered";
+                Response.Result = true;
+                Response.Message = "Employee has been successfully registered";
             }
             else
             {
-                Responce.Result = false;
-                Responce.Message = "Registration failed";
+                Response.Result = false;
+                Response.Message = "Registration failed";
             }
-                return Ok(Responce);
+                return Ok(Response);
         }
 
         [Route("Api/Fms/GetBuildingList")]
@@ -281,5 +280,21 @@ namespace WebApplication.FMS.WebAPI.Controllers
             }
             return Ok(list);
         }
+
+
+        [Route("Api/Fms/GetUserRole")]
+        [HttpPost]
+        public IHttpActionResult GetUserRole(LoginModel login)
+        {
+            Response.Message =  this.loginOperationsObject.GetUserRole(login);
+            if (Response.Message != null)
+                Response.Result = true;
+            else
+                Response.Result = false;
+            return Ok(Response);
+        }
+
+
+
     }
 }
