@@ -95,6 +95,9 @@
     <Compile Include="RequestStatu.cs">
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="RequestView.cs">
+      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Role.cs">
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
@@ -117,6 +120,9 @@
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_GetAllSpecializations_Result.cs">
+      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GetMMOpenRequests_Result.cs">
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="View_BuildingAndLocationInfo.cs">

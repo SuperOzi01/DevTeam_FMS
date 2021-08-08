@@ -91,17 +91,13 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
 
                         if(userRoleResponce.Message.Equals("Maintenance Manager"))
                         {
-                            
-                           // var OpenRListRequest = await client.PostAsJsonAsync("Api/Fms/BackOffice/MMOpenRequests", loginModel);
-                            // var OpenRListResponce = OpenRListRequest.Content.ReadAsAsync<List<ServiceRequest>>().Result;
-                            // if(OpenRListResponce != null)
-                            return View("MaintananceManagerDashboard","BackOffice");
+                            return RedirectToAction("MaintananceManagerDashboard","BackOffice");
                         }
 
 
 
                         // the account is active and user does not need to update password
-                        return RedirectToAction("MaintananceManagerDashboard","BackOffice");
+                        return RedirectToAction("Index", "Home");
                     }
                     // take the user to update password page
                     return RedirectToAction("UpdatePasswordPage", "Login");

@@ -12,7 +12,7 @@
 		</CustomData>
 		<CustomData Category="Reference" Type="Assembly">
 			<Metadata Name="LogicalName" Value="SSDP.FMS.Database.dll" />
-			<Metadata Name="FileName" Value="C:\USERS\RANA ALHAMDAN\DOCUMENTS\GITHUB\DEVTEAM_FMS\FMS.PROJECT\SSDP.FMS.DATABASE\OBJ\DEBUG\SSDP.FMS.DATABASE.DLL" />
+			<Metadata Name="FileName" Value="C:\USERS\ZSHAR\DOCUMENTS\GITHUB\DEVTEAM_FMS\FMS.PROJECT\SSDP.FMS.DATABASE\OBJ\DEBUG\SSDP.FMS.DATABASE.DLL" />
 			<Metadata Name="AssemblyName" Value="SSDP.FMS.Database" />
 			<Metadata Name="PermissionSet" Value="SAFE" />
 			<Metadata Name="Owner" Value="" />
@@ -20,7 +20,7 @@
 			<Metadata Name="IsVisible" Value="True" />
 			<Metadata Name="IsModelAware" Value="True" />
 			<Metadata Name="SkipCreationIfEmpty" Value="True" />
-			<Metadata Name="AssemblySymbolsName" Value="C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\SSDP.FMS.Database.pdb" />
+			<Metadata Name="AssemblySymbolsName" Value="C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\SSDP.FMS.Database.pdb" />
 		</CustomData>
 		<CustomData Category="SqlCmdVariables" Type="SqlCmdVariable" />
 	</Header>
@@ -46,38 +46,6 @@
 		</Element>
 		<Element Type="SqlDefaultConstraint">
 			<Property Name="DefaultExpressionScript">
-				<Value><![CDATA[1]]></Value>
-			</Property>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[ServiceRequest]" />
-				</Entry>
-			</Relationship>
-			<Relationship Name="ForColumn">
-				<Entry>
-					<References Name="[dbo].[ServiceRequest].[RequiestStatus]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="3" />
-		</Element>
-		<Element Type="SqlDefaultConstraint">
-			<Property Name="DefaultExpressionScript">
-				<Value><![CDATA[GETDATE()]]></Value>
-			</Property>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[ServiceRequest]" />
-				</Entry>
-			</Relationship>
-			<Relationship Name="ForColumn">
-				<Entry>
-					<References Name="[dbo].[ServiceRequest].[RequestIssueDate]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="4" />
-		</Element>
-		<Element Type="SqlDefaultConstraint">
-			<Property Name="DefaultExpressionScript">
 				<Value><![CDATA[0]]></Value>
 			</Property>
 			<Relationship Name="DefiningTable">
@@ -90,7 +58,7 @@
 					<References Name="[dbo].[Beneficiary].[AccountStatus]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="5" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="3" />
 		</Element>
 		<Element Type="SqlDefaultConstraint">
 			<Property Name="DefaultExpressionScript">
@@ -106,45 +74,39 @@
 					<References Name="[dbo].[CompanyEmployee].[AccountStatus]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="6" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="4" />
 		</Element>
-		<Element Type="SqlPrimaryKeyConstraint">
-			<Relationship Name="ColumnSpecifications">
-				<Entry>
-					<Element Type="SqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
-								<References Name="[dbo].[ServiceRequest].[ServiceRequestID]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
+		<Element Type="SqlDefaultConstraint">
+			<Property Name="DefaultExpressionScript">
+				<Value><![CDATA[1]]></Value>
+			</Property>
 			<Relationship Name="DefiningTable">
 				<Entry>
 					<References Name="[dbo].[ServiceRequest]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="7" />
-		</Element>
-		<Element Type="SqlPrimaryKeyConstraint">
-			<Relationship Name="ColumnSpecifications">
+			<Relationship Name="ForColumn">
 				<Entry>
-					<Element Type="SqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
-								<References Name="[dbo].[Role].[RoleID]" />
-							</Entry>
-						</Relationship>
-					</Element>
+					<References Name="[dbo].[ServiceRequest].[RequiestStatus]" />
 				</Entry>
 			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="5" />
+		</Element>
+		<Element Type="SqlDefaultConstraint">
+			<Property Name="DefaultExpressionScript">
+				<Value><![CDATA[GETDATE()]]></Value>
+			</Property>
 			<Relationship Name="DefiningTable">
 				<Entry>
-					<References Name="[dbo].[Role]" />
+					<References Name="[dbo].[ServiceRequest]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="8" />
+			<Relationship Name="ForColumn">
+				<Entry>
+					<References Name="[dbo].[ServiceRequest].[RequestIssueDate]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="6" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -163,7 +125,7 @@
 					<References Name="[dbo].[Beneficiary]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="9" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="7" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -171,7 +133,7 @@
 					<Element Type="SqlIndexedColumnSpecification">
 						<Relationship Name="Column">
 							<Entry>
-								<References Name="[dbo].[Specialization].[SpecializationID]" />
+								<References Name="[dbo].[CompanyEmployee].[EmployeeID]" />
 							</Entry>
 						</Relationship>
 					</Element>
@@ -179,10 +141,10 @@
 			</Relationship>
 			<Relationship Name="DefiningTable">
 				<Entry>
-					<References Name="[dbo].[Specialization]" />
+					<References Name="[dbo].[CompanyEmployee]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="10" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="8" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -201,6 +163,44 @@
 					<References Name="[dbo].[Location]" />
 				</Entry>
 			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="9" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[Role].[RoleID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[Role]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="10" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[ServiceRequest].[ServiceRequestID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[ServiceRequest]" />
+				</Entry>
+			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="11" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
@@ -209,7 +209,7 @@
 					<Element Type="SqlIndexedColumnSpecification">
 						<Relationship Name="Column">
 							<Entry>
-								<References Name="[dbo].[CompanyEmployee].[EmployeeID]" />
+								<References Name="[dbo].[Specialization].[SpecializationID]" />
 							</Entry>
 						</Relationship>
 					</Element>
@@ -217,7 +217,7 @@
 			</Relationship>
 			<Relationship Name="DefiningTable">
 				<Entry>
-					<References Name="[dbo].[CompanyEmployee]" />
+					<References Name="[dbo].[Specialization]" />
 				</Entry>
 			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="12" />
@@ -335,7 +335,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="9" />
+						<AttachedAnnotation Disambiguator="7" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -471,7 +471,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="5" />
+						<AttachedAnnotation Disambiguator="3" />
 					</Element>
 				</Entry>
 			</Relationship>
@@ -594,7 +594,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="12" />
+						<AttachedAnnotation Disambiguator="8" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -761,7 +761,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="6" />
+						<AttachedAnnotation Disambiguator="4" />
 					</Element>
 				</Entry>
 			</Relationship>
@@ -1069,7 +1069,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="11" />
+						<AttachedAnnotation Disambiguator="9" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -1160,6 +1160,177 @@
 				</Entry>
 			</Relationship>
 		</Element>
+		<Element Type="SqlView" Name="[dbo].[RequestView]">
+			<Property Name="QueryScript">
+				<Value><![CDATA[ 
+	Select [ServiceRequestID],
+	[BuildingID],
+	dbo.Specialization.SpecializationName AS Specialization_Type,
+	dbo.CompanyEmployee.Username AS Assigned_Worker,
+	[RequiestStatus],
+	[RequestIssueDate],
+	[RequestCloseDate],
+	[ServiceDescribtion],
+	dbo.Beneficiary.Username AS Request_Creator
+	FROM dbo.ServiceRequest LEFT JOIN dbo.CompanyEmployee ON dbo.ServiceRequest.AssignedWorkerID = dbo.CompanyEmployee.EmployeeID 
+	LEFT JOIN dbo.Specialization ON dbo.Specialization.SpecializationID = dbo.ServiceRequest.SpecializationID
+	LEFT JOIN dbo.Beneficiary ON dbo.ServiceRequest.RequestCreatorID = dbo.Beneficiary.BeneficiaryID]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[RequestView].[ServiceRequestID]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[ServiceRequest].[ServiceRequestID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[RequestView].[BuildingID]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[ServiceRequest].[BuildingID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[RequestView].[Specialization_Type]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[Specialization].[SpecializationName]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[RequestView].[Assigned_Worker]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[CompanyEmployee].[Username]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[RequestView].[RequiestStatus]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[ServiceRequest].[RequiestStatus]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[RequestView].[RequestIssueDate]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[ServiceRequest].[RequestIssueDate]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[RequestView].[RequestCloseDate]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[ServiceRequest].[RequestCloseDate]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[RequestView].[ServiceDescribtion]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[ServiceRequest].[ServiceDescribtion]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[RequestView].[Request_Creator]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[Beneficiary].[Username]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="QueryDependencies">
+				<Entry>
+					<References Name="[dbo].[ServiceRequest]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[ServiceRequest].[AssignedWorkerID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee].[EmployeeID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Specialization]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Specialization].[SpecializationID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[ServiceRequest].[SpecializationID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Beneficiary]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[ServiceRequest].[RequestCreatorID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Beneficiary].[BeneficiaryID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[ServiceRequest].[ServiceRequestID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[ServiceRequest].[BuildingID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Specialization].[SpecializationName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee].[Username]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[ServiceRequest].[RequiestStatus]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[ServiceRequest].[RequestIssueDate]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[ServiceRequest].[RequestCloseDate]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[ServiceRequest].[ServiceDescribtion]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Beneficiary].[Username]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="667" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE VIEW [dbo].[RequestView]&#xD;&#xA;&#x9;AS" />
+			</Annotation>
+		</Element>
 		<Element Type="SqlTable" Name="[dbo].[Role]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="Columns">
@@ -1178,7 +1349,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="8" />
+						<AttachedAnnotation Disambiguator="10" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -1223,7 +1394,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="7" />
+						<AttachedAnnotation Disambiguator="11" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -1287,7 +1458,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="3" />
+						<AttachedAnnotation Disambiguator="5" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -1304,7 +1475,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="4" />
+						<AttachedAnnotation Disambiguator="6" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -2274,6 +2445,33 @@
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_GetAllSpecializations]&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[SP_GetMMOpenRequests]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	Select * FROM RequestView
+	WHERE RequestView.RequiestStatus = 2]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[RequestView]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[RequestView].[RequiestStatus]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="116" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_GetMMOpenRequests]&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[SP_GetUserRoles]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[
@@ -2984,7 +3182,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="10" />
+						<AttachedAnnotation Disambiguator="12" />
 					</Element>
 				</Entry>
 				<Entry>

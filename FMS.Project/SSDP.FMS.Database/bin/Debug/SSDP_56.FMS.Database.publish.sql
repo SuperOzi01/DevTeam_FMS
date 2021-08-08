@@ -15,8 +15,8 @@ SET NUMERIC_ROUNDABORT OFF;
 GO
 :setvar DatabaseName "FMS_Database"
 :setvar DefaultFilePrefix "FMS_Database"
-:setvar DefaultDataPath "C:\Users\Rana Alhamdan\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\"
-:setvar DefaultLogPath "C:\Users\Rana Alhamdan\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\"
+:setvar DefaultDataPath "C:\Users\zshar\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\"
+:setvar DefaultLogPath "C:\Users\zshar\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\"
 
 GO
 :on error exit
@@ -40,179 +40,24 @@ USE [$(DatabaseName)];
 
 
 GO
-/*
-The column [dbo].[ServiceRequest].[RequestHandlingStatus] is being dropped, data loss could occur.
-*/
-
-IF EXISTS (select top 1 1 from [dbo].[ServiceRequest])
-    RAISERROR (N'Rows were detected. The schema update is terminating because data loss might occur.', 16, 127) WITH NOWAIT
-
-GO
-PRINT N'Rename refactoring operation with key d13ece68-84c2-46a3-ba56-79d5e0f2c061 is skipped, element [dbo].[RequestStatus].[Id] (SqlSimpleColumn) will not be renamed to RequestStatusID';
+PRINT N'Creating Procedure [dbo].[SP_GetMMOpenRequests]...';
 
 
 GO
-PRINT N'Dropping Default Constraint unnamed constraint on [dbo].[ServiceRequest]...';
-
-
-GO
-ALTER TABLE [dbo].[ServiceRequest] DROP CONSTRAINT [DF__ServiceRe__Requi__5DCAEF64];
-
-
-GO
-PRINT N'Dropping Default Constraint unnamed constraint on [dbo].[ServiceRequest]...';
-
-
-GO
-ALTER TABLE [dbo].[ServiceRequest] DROP CONSTRAINT [DF__ServiceRe__Reque__5EBF139D];
-
-
-GO
-PRINT N'Altering Table [dbo].[ServiceRequest]...';
-
-
-GO
-ALTER TABLE [dbo].[ServiceRequest] DROP COLUMN [RequestHandlingStatus];
-
-
-GO
-ALTER TABLE [dbo].[ServiceRequest] ALTER COLUMN [RequiestStatus] INT NOT NULL;
-
-
-GO
-PRINT N'Creating Table [dbo].[RequestStatus]...';
-
-
-GO
-CREATE TABLE [dbo].[RequestStatus] (
-    [RequestStatusID] INT          IDENTITY (1, 1) NOT NULL,
-    [StatusName]      VARCHAR (25) NOT NULL,
-    PRIMARY KEY CLUSTERED ([RequestStatusID] ASC)
-);
-
-
-GO
-PRINT N'Creating Default Constraint unnamed constraint on [dbo].[ServiceRequest]...';
-
-
-GO
-ALTER TABLE [dbo].[ServiceRequest]
-    ADD DEFAULT 1 FOR [RequiestStatus];
-
-
-GO
-PRINT N'Altering Procedure [dbo].[SP_GetAllServiceRequests]...';
-
-
-GO
-ALTER PROCEDURE [dbo].[SP_GetAllServiceRequests]
+CREATE PROCEDURE [dbo].[SP_GetMMOpenRequests]
 AS
-	SELECT Req.ServiceRequestID, 
-	Ben.Username,
-	Special.SpecializationName, 
-	Req.ServiceDescribtion, 
-	BuildingInfo.BuildingID, 
-	BuildingInfo.City, 
-	BuildingInfo.NoFloors, 
-	BuildingInfo.BuildingManagerID,
-	Req.RequiestStatus,
-	Req.RequestIssueDate,
-	Req.RequestCloseDate 
-	from dbo.ServiceRequest AS Req LEFT JOIN dbo.Specialization AS Special on Req.SpecializationID = Special.SpecializationID
-	LEFT JOIN dbo.Beneficiary AS Ben ON Req.RequestCreatorID = Ben.BeneficiaryID
-	LEFT JOIN dbo.View_BuildingAndLocationInfo AS BuildingInfo ON BuildingInfo.BuildingID = Req.BuildingID
-GO
-PRINT N'Altering Procedure [dbo].[SP_HandleServiceRequestByWorker]...';
-
-
-GO
-ALTER PROCEDURE [dbo].[SP_HandleServiceRequestByWorker]
-	@BuildingNo INT,
-	@RequestID INT
-AS
-	UPDATE dbo.ServiceRequest SET RequiestStatus = 4 
-	WHERE dbo.ServiceRequest.ServiceRequestID = @RequestID
-GO
-PRINT N'Altering Procedure [dbo].[SP_ActivateBeneficiaryAccount]...';
-
-
-GO
-ALTER PROCEDURE [dbo].[SP_ActivateBeneficiaryAccount]
-	@BeneficiaryUsername varchar(40)
-AS
-	IF EXISTS (Select 1 From dbo.Beneficiary where dbo.Beneficiary.Username = @BeneficiaryUsername)
-		BEGIN
-			UPDATE dbo.Beneficiary SET AccountStatus = 1 WHERE dbo.Beneficiary.Username = @BeneficiaryUsername;
-			SELECT 1;
-		END
-	ELSE
-		BEGIN
-			SELECT 0;
-		END
-GO
-PRINT N'Altering Procedure [dbo].[SP_EmployeeResetPassAndActivateAccount]...';
-
-
-GO
-ALTER PROCEDURE [dbo].[SP_EmployeeResetPassAndActivateAccount]
-	@password varchar(40),
-	@EmployeeUsername varchar(40)
-AS
-	UPDATE dbo.CompanyEmployee SET Password = @password, AccountStatus = 1 
-	WHERE dbo.CompanyEmployee.Username = @EmployeeUsername
-GO
-PRINT N'Creating Procedure [dbo].[SP_ChangeServiceRequestStatus]...';
-
-
-GO
-CREATE PROCEDURE [dbo].[SP_ChangeServiceRequestStatus]
-	@Username varchar(40),
-	@RequestID INT
-AS
-	DECLARE @Role AS Varchar(40)
-
-
-	SELECT @Role = dbo.Role.RoleName FROM dbo.Role 
-	Where dbo.Role.RoleID = (SELECT dbo.CompanyEmployee.Role_idRole FROM dbo.CompanyEmployee WHERE dbo.CompanyEmployee.Username = @Username)
-
-	IF (@Role like 'Maintenance Manager')
-		BEGIN
-			UPDATE dbo.ServiceRequest SET RequiestStatus = 3 WHERE dbo.ServiceRequest.ServiceRequestID = @RequestID
-			SELECT CAST(1 AS INT)
-		END
-	ELSE IF (@Role like 'Building Manager')
-		BEGIN
-			UPDATE dbo.ServiceRequest SET RequiestStatus = 2 WHERE dbo.ServiceRequest.ServiceRequestID = @RequestID
-			SELECT CAST(1 AS INT)
-		END
-	ELSE
-		BEGIN
-			UPDATE dbo.ServiceRequest SET RequiestStatus = 4 WHERE dbo.ServiceRequest.ServiceRequestID = @RequestID
-			SELECT CAST(1 AS INT)
-		END
-GO
-PRINT N'Refreshing Procedure [dbo].[SP_AssignWorkerToRequest]...';
-
-
-GO
-EXECUTE sp_refreshsqlmodule N'[dbo].[SP_AssignWorkerToRequest]';
-
-
-GO
-PRINT N'Refreshing Procedure [dbo].[SP_InsertNewServiceRequiest]...';
-
-
-GO
-EXECUTE sp_refreshsqlmodule N'[dbo].[SP_InsertNewServiceRequiest]';
-
-
-GO
--- Refactoring step to update target server with deployed transaction logs
-IF NOT EXISTS (SELECT OperationKey FROM [dbo].[__RefactorLog] WHERE OperationKey = 'd13ece68-84c2-46a3-ba56-79d5e0f2c061')
-INSERT INTO [dbo].[__RefactorLog] (OperationKey) values ('d13ece68-84c2-46a3-ba56-79d5e0f2c061')
-
-GO
-
+	Select [ServiceRequestID],
+	[BuildingID],
+	dbo.Specialization.SpecializationName,
+	dbo.CompanyEmployee.Username,
+	[RequiestStatus],
+	[RequestIssueDate],
+	[RequestCloseDate],
+	[ServiceDescribtion],
+	[RequestCreatorID]
+	from dbo.ServiceRequest LEFT JOIN dbo.CompanyEmployee ON dbo.ServiceRequest.AssignedWorkerID = dbo.CompanyEmployee.EmployeeID 
+	LEFT JOIN dbo.Specialization ON dbo.Specialization.SpecializationID = dbo.ServiceRequest.SpecializationID
+	WHERE dbo.ServiceRequest.RequiestStatus = 2
 GO
 PRINT N'Update complete.';
 

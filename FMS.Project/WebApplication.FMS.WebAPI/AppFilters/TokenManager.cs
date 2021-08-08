@@ -30,7 +30,7 @@ namespace WebApplication.FMS.WebAPI.App_Start
             SecurityTokenDescriptor descriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.UtcNow.AddMinutes(30),
+                Expires = DateTime.UtcNow.AddMinutes(60),
                 SigningCredentials = new SigningCredentials(securityKey,
                 SecurityAlgorithms.HmacSha256Signature)
             };
@@ -84,6 +84,11 @@ namespace WebApplication.FMS.WebAPI.App_Start
                 //ValidAudience = "Sample",
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey)), // The same key as the one that generate the token
             };
+        }
+
+        public string GetUserName(string userToken)
+        {
+            return "";
         }
 
     }
