@@ -112,3 +112,10 @@ body {
             width: calc(100% - 17rem);
         }
 }
+.closetext {
+    color: black;
+}
+
+.canseltext {
+    color: #C43264;
+}
