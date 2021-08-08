@@ -9,14 +9,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="~/css/style.css" rel="stylesheet" />
     <style>
-        nav-link.active {
+        ul.nav li.active a {
             color: #C43264;
             background: #fff;
         }
-       
-
-          
-
     </style>
 </head>
 <body>
@@ -33,8 +29,8 @@
             </div>
         </div>
         <ul class="nav flex-column mb-0">
-            <li class="nav-item">
-                <a asp-controller="BackOffice" asp-action="MaintananceManagerDashboard" class="nav-link  @(ViewContext.RouteData.Values["Action"].ToString()=="MaintananceManagerDashboard"?"active":"") ">
+            <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString()=="MaintananceManagerDashboard"?"active":"")">
+                <a asp-controller="BackOffice" asp-action="MaintananceManagerDashboard" class="nav-link ">
                     <i class="fa fa-th-large mr-3 fa-fw"></i>
                     DashBoard
                 </a>
