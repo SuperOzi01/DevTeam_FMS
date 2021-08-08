@@ -35,8 +35,8 @@
                     DashBoard
                 </a>
             </li>
-            <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString()=="Index"?"active":"")">
-                <a asp-controller="Home" asp-action="Index" class="nav-link ">
+            <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString()=="MaintananceManagerRequests"?"active":"")">
+                <a asp-controller="BackOffice" asp-action="MaintananceManagerRequests" class="nav-link ">
                     <i class="fa fa-cubes mr-3 fa-fw"></i>
                     Maintenance requests
                 </a>
