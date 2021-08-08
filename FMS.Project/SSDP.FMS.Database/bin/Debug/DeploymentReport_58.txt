@@ -10,6 +10,8 @@
 
 ** User actions
      Create
+       [dbo].[RequestView] (View)
+     Alter
        [dbo].[SP_GetMMOpenRequests] (Procedure)
 
 ** Supporting actions

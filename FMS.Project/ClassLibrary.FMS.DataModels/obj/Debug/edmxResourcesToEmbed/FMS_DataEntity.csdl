@@ -401,6 +401,8 @@
       <Parameter Name="Describtion" Mode="In" Type="String" />
       <Parameter Name="CreatorID" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="SP_GetMMOpenRequests" ReturnType="Collection(FMS_DatabaseModel.SP_GetMMOpenRequests_Result)" />
+    <EntitySet Name="RequestViews" EntityType="FMS_DatabaseModel.RequestView" />
   </EntityContainer>
   <ComplexType Name="SP_GetAllBuildings_Result">
     <Property Type="Int32" Name="BuildingID" Nullable="false" />
@@ -434,4 +436,33 @@
     <Property Type="Int32" Name="SpecializationID" Nullable="false" />
     <Property Type="String" Name="SpecializationName" Nullable="false" MaxLength="40" />
   </ComplexType>
+  <ComplexType Name="SP_GetMMOpenRequests_Result">
+    <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
+    <Property Type="Int32" Name="BuildingID" Nullable="false" />
+    <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="Assigned_Worker" Nullable="true" MaxLength="40" />
+    <Property Type="Int32" Name="RequiestStatus" Nullable="false" />
+    <Property Type="DateTime" Name="RequestIssueDate" Nullable="false" />
+    <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
+    <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
+  </ComplexType>
+  <EntityType Name="RequestView">
+    <Key>
+      <PropertyRef Name="ServiceRequestID" />
+      <PropertyRef Name="BuildingID" />
+      <PropertyRef Name="RequiestStatus" />
+      <PropertyRef Name="RequestIssueDate" />
+      <PropertyRef Name="ServiceDescribtion" />
+    </Key>
+    <Property Name="ServiceRequestID" Type="Int32" Nullable="false" />
+    <Property Name="BuildingID" Type="Int32" Nullable="false" />
+    <Property Name="Specialization_Type" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="Assigned_Worker" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="RequiestStatus" Type="Int32" Nullable="false" />
+    <Property Name="RequestIssueDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="RequestCloseDate" Type="DateTime" Precision="0" />
+    <Property Name="ServiceDescribtion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Request_Creator" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

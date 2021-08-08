@@ -9,7 +9,7 @@
        None
 
 ** User actions
-     Create
+     Alter
        [dbo].[SP_GetMMOpenRequests] (Procedure)
 
 ** Supporting actions

@@ -89,6 +89,26 @@
     <Property Name="SpecializationName" Type="varchar" MaxLength="40" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
+warning 6002: The table/view 'FMS_Database.dbo.RequestView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="RequestView">
+    <Key>
+      <PropertyRef Name="ServiceRequestID" />
+      <PropertyRef Name="BuildingID" />
+      <PropertyRef Name="RequiestStatus" />
+      <PropertyRef Name="RequestIssueDate" />
+      <PropertyRef Name="ServiceDescribtion" />
+    </Key>
+    <Property Name="ServiceRequestID" Type="int" Nullable="false" />
+    <Property Name="BuildingID" Type="int" Nullable="false" />
+    <Property Name="Specialization_Type" Type="varchar" MaxLength="40" />
+    <Property Name="Assigned_Worker" Type="varchar" MaxLength="40" />
+    <Property Name="RequiestStatus" Type="int" Nullable="false" />
+    <Property Name="RequestIssueDate" Type="date" Nullable="false" />
+    <Property Name="RequestCloseDate" Type="date" />
+    <Property Name="ServiceDescribtion" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Request_Creator" Type="varchar" MaxLength="40" />
+  </EntityType>
+  <!--Errors Found During Generation:
 warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="View_BuildingAndLocationInfo">
     <Key>
@@ -288,6 +308,7 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
   <Function Name="SP_GetAllRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="SP_GetAllServiceRequests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="SP_GetAllSpecializations" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_GetMMOpenRequests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="SP_GetUserRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="username" Type="varchar" Mode="In" />
   </Function>
@@ -330,6 +351,19 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
     <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ServiceRequest" EntityType="Self.ServiceRequest" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Specialization" EntityType="Self.Specialization" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RequestView" EntityType="Self.RequestView" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [RequestView].[ServiceRequestID] AS [ServiceRequestID], 
+    [RequestView].[BuildingID] AS [BuildingID], 
+    [RequestView].[Specialization_Type] AS [Specialization_Type], 
+    [RequestView].[Assigned_Worker] AS [Assigned_Worker], 
+    [RequestView].[RequiestStatus] AS [RequiestStatus], 
+    [RequestView].[RequestIssueDate] AS [RequestIssueDate], 
+    [RequestView].[RequestCloseDate] AS [RequestCloseDate], 
+    [RequestView].[ServiceDescribtion] AS [ServiceDescribtion], 
+    [RequestView].[Request_Creator] AS [Request_Creator]
+    FROM [dbo].[RequestView] AS [RequestView]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="View_BuildingAndLocationInfo" EntityType="Self.View_BuildingAndLocationInfo" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [View_BuildingAndLocationInfo].[BuildingID] AS [BuildingID], 

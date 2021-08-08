@@ -175,5 +175,35 @@
     <FunctionImportMapping FunctionImportName="SP_InsertBeneficiary" FunctionName="FMS_DatabaseModel.Store.SP_InsertBeneficiary" />
     <FunctionImportMapping FunctionImportName="SP_InsertCompanyEmployee" FunctionName="FMS_DatabaseModel.Store.SP_InsertCompanyEmployee" />
     <FunctionImportMapping FunctionImportName="SP_InsertNewServiceRequiest" FunctionName="FMS_DatabaseModel.Store.SP_InsertNewServiceRequiest" />
+    <FunctionImportMapping FunctionImportName="SP_GetMMOpenRequests" FunctionName="FMS_DatabaseModel.Store.SP_GetMMOpenRequests">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_GetMMOpenRequests_Result">
+          <ScalarProperty Name="ServiceRequestID" ColumnName="ServiceRequestID" />
+          <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+          <ScalarProperty Name="Specialization_Type" ColumnName="Specialization_Type" />
+          <ScalarProperty Name="Assigned_Worker" ColumnName="Assigned_Worker" />
+          <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
+          <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
+          <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
+          <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
+          <ScalarProperty Name="Request_Creator" ColumnName="Request_Creator" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="RequestViews">
+      <EntityTypeMapping TypeName="FMS_DatabaseModel.RequestView">
+        <MappingFragment StoreEntitySet="RequestView">
+          <ScalarProperty Name="Request_Creator" ColumnName="Request_Creator" />
+          <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
+          <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
+          <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
+          <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
+          <ScalarProperty Name="Assigned_Worker" ColumnName="Assigned_Worker" />
+          <ScalarProperty Name="Specialization_Type" ColumnName="Specialization_Type" />
+          <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+          <ScalarProperty Name="ServiceRequestID" ColumnName="ServiceRequestID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

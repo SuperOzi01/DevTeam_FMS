@@ -99,8 +99,8 @@ namespace ClassLibrary.FMS.DatabaseOperations
 
         public string GetUserRole(LoginModel loginModel)
         {
-            var Role = DatabaseEntity.SP_GetUserRoles(loginModel.Username);
-            return Role.FirstOrDefault();
+            var Role = DatabaseEntity.SP_GetUserRoles(loginModel.Username).FirstOrDefault().ToString();
+            return Role;
         }
         public bool GetBeneficiaryAccountStatus(LoginModel loginModel)
         {

@@ -40,23 +40,24 @@ USE [$(DatabaseName)];
 
 
 GO
-PRINT N'Creating Procedure [dbo].[SP_GetMMOpenRequests]...';
+PRINT N'Altering Procedure [dbo].[SP_GetMMOpenRequests]...';
 
 
 GO
-CREATE PROCEDURE [dbo].[SP_GetMMOpenRequests]
+ALTER PROCEDURE [dbo].[SP_GetMMOpenRequests]
 AS
 	Select [ServiceRequestID],
 	[BuildingID],
-	dbo.Specialization.SpecializationName,
-	dbo.CompanyEmployee.Username,
+	dbo.Specialization.SpecializationName AS Specialization_Type,
+	dbo.CompanyEmployee.Username AS Assigned_Worker,
 	[RequiestStatus],
 	[RequestIssueDate],
 	[RequestCloseDate],
 	[ServiceDescribtion],
-	[RequestCreatorID]
-	from dbo.ServiceRequest LEFT JOIN dbo.CompanyEmployee ON dbo.ServiceRequest.AssignedWorkerID = dbo.CompanyEmployee.EmployeeID 
+	dbo.Beneficiary.Username AS Request_Creator
+	FROM dbo.ServiceRequest LEFT JOIN dbo.CompanyEmployee ON dbo.ServiceRequest.AssignedWorkerID = dbo.CompanyEmployee.EmployeeID 
 	LEFT JOIN dbo.Specialization ON dbo.Specialization.SpecializationID = dbo.ServiceRequest.SpecializationID
+	LEFT JOIN dbo.Beneficiary ON dbo.ServiceRequest.RequestCreatorID = dbo.Beneficiary.BeneficiaryID
 	WHERE dbo.ServiceRequest.RequiestStatus = 2
 GO
 PRINT N'Update complete.';
