@@ -9,33 +9,39 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="~/css/style.css" rel="stylesheet" />
     <style>
-        ul.nav li.active {
-            background-color: #6c757d;
+        nav-link.active {
+            color: #C43264;
+            background: #fff;
         }
+       
+
+          
+
     </style>
 </head>
 <body>
 
     <!-- Vertical navbar -->
     <div class="vertical-nav bg-white" id="sidebar">
-        <div class="py-4 px-3 mb-4 bg-light">
+        <div class="py-4 px-3 mb-4 ">
             <div class="media d-flex align-items-center">
-                <img src="~/icon/maintra logo colored.png" alt="..." width="80" height="80" class="text-center">
+                
+                <img src="~/icon/maintra logo 2.png" alt="..." width="200" height="100" class="text-center">
                 <div class="media-body">
 
                 </div>
             </div>
         </div>
-        <ul class="nav flex-column bg-white mb-0">
-            <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString()=="MaintananceManagerDashboard"?"active":"")">
-                <a asp-controller="BackOffice" asp-action="MaintananceManagerDashboard" class="nav-link text-dark">
-                    <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+        <ul class="nav flex-column mb-0">
+            <li class="nav-item">
+                <a asp-controller="BackOffice" asp-action="MaintananceManagerDashboard" class="nav-link  @(ViewContext.RouteData.Values["Action"].ToString()=="MaintananceManagerDashboard"?"active":"") ">
+                    <i class="fa fa-th-large mr-3 fa-fw"></i>
                     DashBoard
                 </a>
             </li>
             <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString()=="Index"?"active":"")">
-                <a asp-controller="Home" asp-action="Index" class="nav-link text-dark">
-                    <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+                <a asp-controller="Home" asp-action="Index" class="nav-link ">
+                    <i class="fa fa-cubes mr-3 fa-fw"></i>
                     Maintenance requests
                 </a>
             </li>
