@@ -90,6 +90,9 @@
     <Build Include="StoredProcedures\SP_ChangeServiceRequestStatus.sql" />
     <Build Include="StoredProcedures\SP_GetMMOpenRequests.sql" />
     <Build Include="Views\RequestView.sql" />
+    <Build Include="StoredProcedures\SP_GetMMClosedRequests.sql" />
+    <Build Include="StoredProcedures\SP_CanceledServiceRequests.sql" />
+    <Build Include="StoredProcedures\SP_GetSpecificServiceRequestInfo.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SSDP.FMS.Database.refactorlog" />

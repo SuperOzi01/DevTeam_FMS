@@ -22,8 +22,10 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
             {
             var OpenRListRequest = await client.GetAsync("Api/Fms/BackOffice/MMOpenRequests");
             var OpenRListResponce = OpenRListRequest.Content.ReadAsAsync<List<SP_GetMMOpenRequests_Result>>().Result;
+            var closeRListRequest = await client.GetAsync("Api/Fms/BackOffice/MMCloseRequests");
+            var closeRListResponce = closeRListRequest.Content.ReadAsAsync<List<SP_GetMMOpenRequests_Result>>().Result;
             // Worker Username 
-            return View(OpenRListResponce);
+            return View(new { OpenRListResponce , closeRListResponce });
             }
             return Content("username not found");
             // Open Requests ... New Requests... 

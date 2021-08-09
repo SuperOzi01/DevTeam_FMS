@@ -298,5 +298,24 @@ namespace ClassLibrary.FMS.DataModels
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetMMOpenRequests_Result>("SP_GetMMOpenRequests");
         }
+    
+        public virtual ObjectResult<SP_GetMMClosedRequests_Result> SP_GetMMClosedRequests()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetMMClosedRequests_Result>("SP_GetMMClosedRequests");
+        }
+    
+        public virtual ObjectResult<SP_CanceledServiceRequests_Result> SP_CanceledServiceRequests()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_CanceledServiceRequests_Result>("SP_CanceledServiceRequests");
+        }
+    
+        public virtual ObjectResult<SP_GetSpecificServiceRequestInfo_Result> SP_GetSpecificServiceRequestInfo(Nullable<int> requestID)
+        {
+            var requestIDParameter = requestID.HasValue ?
+                new ObjectParameter("RequestID", requestID) :
+                new ObjectParameter("RequestID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetSpecificServiceRequestInfo_Result>("SP_GetSpecificServiceRequestInfo", requestIDParameter);
+        }
     }
 }

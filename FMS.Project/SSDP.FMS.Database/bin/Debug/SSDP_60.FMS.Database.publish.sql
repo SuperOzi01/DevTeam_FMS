@@ -40,14 +40,22 @@ USE [$(DatabaseName)];
 
 
 GO
-PRINT N'Creating Procedure [dbo].[SP_GetMMClosedRequests]...';
+PRINT N'Creating Procedure [dbo].[SP_CanceledServiceRequests]...';
 
 
 GO
-CREATE PROCEDURE [dbo].[SP_GetMMClosedRequests]
-	
+CREATE PROCEDURE [dbo].[SP_CanceledServiceRequests]
 AS
-	Select * FROM RequestView Where dbo.RequestView.RequiestStatus = 4
+	Select * FROM RequestView Where dbo.RequestView.RequiestStatus = 5
+GO
+PRINT N'Creating Procedure [dbo].[SP_GetSpecificServiceRequestInfo]...';
+
+
+GO
+CREATE PROCEDURE [dbo].[SP_GetSpecificServiceRequestInfo]
+	@RequestID INT
+AS
+	Select * from dbo.RequestView where dbo.RequestView.ServiceRequestID = @RequestID
 GO
 PRINT N'Update complete.';
 

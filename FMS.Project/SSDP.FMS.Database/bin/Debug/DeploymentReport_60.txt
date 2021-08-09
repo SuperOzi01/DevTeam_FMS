@@ -10,6 +10,7 @@
 
 ** User actions
      Create
-       [dbo].[SP_GetMMClosedRequests] (Procedure)
+       [dbo].[SP_CanceledServiceRequests] (Procedure)
+       [dbo].[SP_GetSpecificServiceRequestInfo] (Procedure)
 
 ** Supporting actions

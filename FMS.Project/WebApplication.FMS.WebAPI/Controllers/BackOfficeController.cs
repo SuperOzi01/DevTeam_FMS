@@ -60,6 +60,16 @@ namespace WebApplication.FMS.WebAPI.Controllers
             return Ok(RequestsList);
         }
 
+        [Route("Api/Fms/BackOffice/MMCloseRequests")]
+        [HttpGet]
+        public IHttpActionResult BackOfficeGetMMCloseRequestsList()
+        {
+
+            var RequestsList = BackOfficeOperationsObject.BackOfficeGetMaintananceManagerCloseRequests();
+
+            return Ok(RequestsList);
+        }
+
 
     }
 }
