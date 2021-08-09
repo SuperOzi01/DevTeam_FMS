@@ -408,6 +408,14 @@
     <FunctionImport Name="SP_GetSpecificServiceRequestInfo" ReturnType="Collection(FMS_DatabaseModel.SP_GetSpecificServiceRequestInfo_Result)">
       <Parameter Name="RequestID" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="SP_Cancel_OpenedServiceRequest" ReturnType="Collection(Int32)">
+      <Parameter Name="RequestID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_CloseServiceRequest" ReturnType="Collection(Int32)">
+      <Parameter Name="RequestID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_GetAllCanceledRequests" ReturnType="Collection(FMS_DatabaseModel.SP_GetAllCanceledRequests_Result)" />
+    <FunctionImport Name="SP_GetMMApprovedRequests" ReturnType="Collection(FMS_DatabaseModel.SP_GetMMApprovedRequests_Result)" />
   </EntityContainer>
   <ComplexType Name="SP_GetAllBuildings_Result">
     <Property Type="Int32" Name="BuildingID" Nullable="false" />
@@ -493,6 +501,28 @@
     <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
   </ComplexType>
   <ComplexType Name="SP_GetSpecificServiceRequestInfo_Result">
+    <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
+    <Property Type="Int32" Name="BuildingID" Nullable="false" />
+    <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="Assigned_Worker" Nullable="true" MaxLength="40" />
+    <Property Type="Int32" Name="RequiestStatus" Nullable="false" />
+    <Property Type="DateTime" Name="RequestIssueDate" Nullable="false" />
+    <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
+    <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
+  </ComplexType>
+  <ComplexType Name="SP_GetAllCanceledRequests_Result">
+    <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
+    <Property Type="Int32" Name="BuildingID" Nullable="false" />
+    <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="Assigned_Worker" Nullable="true" MaxLength="40" />
+    <Property Type="Int32" Name="RequiestStatus" Nullable="false" />
+    <Property Type="DateTime" Name="RequestIssueDate" Nullable="false" />
+    <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
+    <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
+  </ComplexType>
+  <ComplexType Name="SP_GetMMApprovedRequests_Result">
     <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
     <Property Type="Int32" Name="BuildingID" Nullable="false" />
     <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />

@@ -16,61 +16,148 @@
         <p>We wish you a happy working day ! </p>
     </div>
 </div>
+<!-- Box info -->
+<div class="content">
+    <div class="row ">
+        <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="card card-stats" style="border-radius: 25px; margin-bottom: 20px;">
+                <div class="card-body ">
+                    <div class="row ">
+                        <div class="col-5 col-md-4 ">
+                            <div class="icon-big text-center icon-warning">
+                                <img src="~/icon/plus.png" width="50px" height="50px" style="margin-top: 10px;">
+                            </div>
+                        </div>
+                        <div class="col-7 col-md-8">
+                            <div class="numbers">
+                                <p class="newtext1 card-category">New request</p>
+                                <p class="card-title">150GB<p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<div class="jumbotron  jumbotron-fluid " style="border-radius: 25px; background:white;">
-    <div class="container">
-        <h5 class="opentext">Opened request</h5>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ServiceRequestID)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.BuildingID)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Specialization_Type)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Assigned_Worker)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.RequestIssueDate)
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ServiceRequestID)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.BuildingID)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Specialization_Type)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Assigned_Worker)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.RequestIssueDate)
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+        <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="card card-stats" style="border-radius: 25px; margin-bottom: 20px;">
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-5 col-md-4">
+                            <div class="icon-big text-center icon-warning">
+                                <img src="~/icon/time-left.png" width="50px" height="50px" style="margin-top: 10px;">
+                            </div>
+                        </div>
+                        <div class="col-7 col-md-8">
+                            <div class="numbers">
+                                <p class="opentext card-category">Opened request</p>
+                                <p class="card-title">$ 1,345<p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="card card-stats" style="border-radius: 25px; margin-bottom: 20px;">
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-5 col-md-4">
+                            <div class="icon-big text-center icon-warning">
+                                <img src="~/icon/sign-check-icon.png" width="60px" height="60px" style="margin-top: 5px;">
+                            </div>
+                        </div>
+                        <div class="col-7 col-md-8">
+
+                            <div class="numbers">
+                                <p class="closetext card-category">Closed request</p>
+                                <p class="card-title">23<p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 
-<div class="jumbotron jumbotron-fluid " style="border-radius: 25px; background:white;">
-    <div class="container">
-        <h5 class="newtext">New request</h5>
+<!-- End Box info -->
+
+
+<div class="container ">
+    <div class="row">
+        <div class="col-md-12 main-datatable">
+            <div class="card_body">
+                <div class="row d-flex">
+                    <h5 class="newtext">New request</h5>
+                    <div class="col-sm-8 add_flex">
+                        <div class="form-group searchInput">
+                            <label for="email">Search:</label>
+                            <input type="search" class=" form-control" id="filterbox" placeholder=" ">
+                        </div>
+                    </div>
+                </div>
+                <div class="overflow-x">
+                    <table style="width:100%;" id="filtertable" class="table cust-datatable dataTable no-footer">
+                        <thead>
+                            <tr>
+                                <th style="min-width:50px;">
+                                    @Html.DisplayNameFor(model => model.ServiceRequestID)
+                                </th>
+                                <th style="min-width:150px;">
+                                    @Html.DisplayNameFor(model => model.BuildingID)
+                                </th>
+                                <th style="min-width:150px;">
+                                    @Html.DisplayNameFor(model => model.Specialization_Type)
+                                </th>
+                                <th style="min-width:100px;">
+                                    @Html.DisplayNameFor(model => model.Assigned_Worker)
+                                </th>
+                                <th style="min-width:150px;">
+                                    @Html.DisplayNameFor(model => model.RequestIssueDate)
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ServiceRequestID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.BuildingID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Specialization_Type)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Assigned_Worker)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.RequestIssueDate)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
-<!-- End demo content -->
+<link href="~/js/DataTables/datatables.min.css" rel="stylesheet" />
+<link href="~/js/DataTables/DataTables-1.10.25/css/jquery.dataTables.min.css" rel="stylesheet" />
+@section scripts{
+    <script src="~/js/DataTables/datatables.min.js"></script>
+    <script src="~/js/DataTables/DataTables-1.10.25/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+}

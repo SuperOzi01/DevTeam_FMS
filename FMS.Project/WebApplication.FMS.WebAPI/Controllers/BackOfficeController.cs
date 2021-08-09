@@ -65,7 +65,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
         public IHttpActionResult BackOfficeGetMMCloseRequestsList()
         {
 
-            var RequestsList = BackOfficeOperationsObject.BackOfficeGetMaintananceManagerCloseRequests();
+            List<SP_GetMMClosedRequests_Result> RequestsList = BackOfficeOperationsObject.BackOfficeGetMaintananceManagerCloseRequests();
 
             return Ok(RequestsList);
         }
