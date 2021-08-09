@@ -87,7 +87,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
         }
 
         [Route("Api/Fms/BackOffice/CancelRequest")]
-        [HttpPost]
+        [HttpGet]
         public IHttpActionResult BackOfficeCancelRequest(ServiceRequestAssignmentModel request)
         {
             Response.Result = BackOfficeOperationsObject.Cancel_ServiceRequest(request.RequestID);

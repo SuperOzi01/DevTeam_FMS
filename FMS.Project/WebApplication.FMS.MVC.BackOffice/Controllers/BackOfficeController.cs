@@ -41,12 +41,16 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
             {
                 var OpenRListRequest = await client.GetAsync("Api/Fms/BackOffice/MMOpenRequests");
                 var OpenRListResponce = OpenRListRequest.Content.ReadAsAsync<List<SP_GetMMOpenRequests_Result>>().Result;
+
                 var closeRListRequest = await client.GetAsync("Api/Fms/BackOffice/MMCloseRequests");
                 var closeRListResponce = closeRListRequest.Content.ReadAsAsync<List<SP_GetMMClosedRequests_Result>>().Result;
+
                 var ApprovedListRequest = await client.GetAsync("Api/Fms/BackOffice/MMApprovedRequests");
                 var ApprovedListResponce = ApprovedListRequest.Content.ReadAsAsync<List<SP_GetMMApprovedRequests_Result>>().Result;
-                var CanceledListRequest = await client.GetAsync("Api/Fms/BackOffice/CancelRequest");
-                var CanceledListResponce = ApprovedListRequest.Content.ReadAsAsync<List<SP_CanceledServiceRequests_Result>>().Result;
+
+                var CanceledListRequest = await client.GetAsync("Api/Fms/BackOffice/CanceledRequests");
+                var CanceledListResponce = CanceledListRequest.Content.ReadAsAsync<List<SP_CanceledServiceRequests_Result>>().Result;
+
                 MaintenanceManagerModel mymodel = new MaintenanceManagerModel();
                 mymodel.OpenRequests = OpenRListResponce;
                 mymodel.ClosedRequests = closeRListResponce;
