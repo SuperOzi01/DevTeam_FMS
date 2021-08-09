@@ -10,5 +10,7 @@ namespace ClassLibrary.FMS.DataModels.Models
     {
         public List<SP_GetMMOpenRequests_Result> OpenRequests { get; set;}
         public List<SP_GetMMClosedRequests_Result> ClosedRequests { get; set; }
+        public List<SP_GetMMApprovedRequests_Result> ApprovedRequests { get; set; }
+        public List<SP_CanceledServiceRequests_Result> CanceledRequests { get; set; }
     }
 }

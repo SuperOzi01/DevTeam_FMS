@@ -226,8 +226,6 @@ C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAP
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\obj\Debug\WebApplication.FMS.WebAPI.csproj.CopyComplete
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\obj\Debug\WebApplication.FMS.WebAPI.dll
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\obj\Debug\WebApplication.FMS.WebAPI.pdb
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\obj\Debug\WebApplication.FMS.WebAPI.csproj.AssemblyReference.cache
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\obj\Debug\WebApplication.FMS.WebAPI.csproj.CoreCompileInputs.cache
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\WebApplication.FMS.WebAPI.dll.config
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\WebApplication.FMS.WebAPI.dll
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\WebApplication.FMS.WebAPI.pdb
@@ -354,6 +352,8 @@ C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.F
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\System.Web.WebPages.Razor.xml
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\Antlr3.Runtime.pdb
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\obj\Debug\WebApplication.FMS.WebAPI.csproj.AssemblyReference.cache
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\obj\Debug\WebApplication.FMS.WebAPI.csproj.CoreCompileInputs.cache
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\obj\Debug\WebApplication.FMS.WebAPI.csproj.CopyComplete
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\obj\Debug\WebApplication.FMS.WebAPI.dll
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.WebAPI\obj\Debug\WebApplication.FMS.WebAPI.pdb
