@@ -1,20 +1,4 @@
-﻿@font-face {
-    font-family: 'Dubai-Bold';
-    src: url('file:///C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\wwwroot\font\Dubai-Bold.ttf') format('truetype');
-}
-@font-face {
-    font-family: 'Dubai-Light';
-    src: url('file:///C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\wwwroot\font\Dubai-Light.ttf') format('truetype');
-}
-@font-face {
-    font-family: 'Dubai-Medium';
-    src: url('file:///C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\wwwroot\font\Dubai-Medium.ttf') format('truetype');
-}
-@font-face {
-    font-family: 'Dubai-Regular';
-    src: url('file:///C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\wwwroot\font\Dubai-Regular.ttf') format('truetype');
-}
-* {
+﻿* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -24,7 +8,6 @@ html{
 }
 body {
     width: 100%;
-    font-family: Dubai-Bold;
     height: 100%;
     padding-top: 10px;
     background-color: #F5F8F9;
@@ -58,9 +41,6 @@ body {
         padding-bottom: 10px;
       
     }
-
-
-
 .CardRight header {
     color: #fff;
     font-size: 40px;
