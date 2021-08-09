@@ -318,13 +318,32 @@ namespace ClassLibrary.FMS.DataModels
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetSpecificServiceRequestInfo_Result>("SP_GetSpecificServiceRequestInfo", requestIDParameter);
         }
     
-        public virtual ObjectResult<string> SP_EmployeeRoleName(Nullable<int> userID)
+        public virtual ObjectResult<Nullable<int>> SP_Cancel_OpenedServiceRequest(Nullable<int> requestID)
         {
-            var userIDParameter = userID.HasValue ?
-                new ObjectParameter("UserID", userID) :
-                new ObjectParameter("UserID", typeof(int));
+            var requestIDParameter = requestID.HasValue ?
+                new ObjectParameter("RequestID", requestID) :
+                new ObjectParameter("RequestID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("SP_EmployeeRoleName", userIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_Cancel_OpenedServiceRequest", requestIDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_CloseServiceRequest(Nullable<int> requestID)
+        {
+            var requestIDParameter = requestID.HasValue ?
+                new ObjectParameter("RequestID", requestID) :
+                new ObjectParameter("RequestID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_CloseServiceRequest", requestIDParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetAllCanceledRequests_Result> SP_GetAllCanceledRequests()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetAllCanceledRequests_Result>("SP_GetAllCanceledRequests");
+        }
+    
+        public virtual ObjectResult<SP_GetMMApprovedRequests_Result> SP_GetMMApprovedRequests()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetMMApprovedRequests_Result>("SP_GetMMApprovedRequests");
         }
     }
 }

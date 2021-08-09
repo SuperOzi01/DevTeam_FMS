@@ -15,8 +15,8 @@ SET NUMERIC_ROUNDABORT OFF;
 GO
 :setvar DatabaseName "FMS_Database"
 :setvar DefaultFilePrefix "FMS_Database"
-:setvar DefaultDataPath "C:\Users\Rana Alhamdan\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\"
-:setvar DefaultLogPath "C:\Users\Rana Alhamdan\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\"
+:setvar DefaultDataPath "C:\Users\zshar\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\"
+:setvar DefaultLogPath "C:\Users\zshar\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\"
 
 GO
 :on error exit
@@ -40,31 +40,39 @@ USE [$(DatabaseName)];
 
 
 GO
-PRINT N'Creating Procedure [dbo].[SP_CanceledServiceRequests]...';
+PRINT N'Altering Procedure [dbo].[SP_GetMMClosedRequests]...';
 
 
 GO
-CREATE PROCEDURE [dbo].[SP_CanceledServiceRequests]
-AS
-	Select * FROM RequestView Where dbo.RequestView.RequiestStatus = 5
-GO
-PRINT N'Creating Procedure [dbo].[SP_GetMMClosedRequests]...';
-
-
-GO
-CREATE PROCEDURE [dbo].[SP_GetMMClosedRequests]
+ALTER PROCEDURE [dbo].[SP_GetMMClosedRequests]
 	
 AS
-	Select * FROM RequestView Where dbo.RequestView.RequiestStatus = 4
+	Select * FROM RequestView Where dbo.RequestView.RequiestStatus = (select dbo.RequestStatus.RequestStatusID from dbo.RequestStatus Where dbo.RequestStatus.StatusName like 'Closed')
 GO
-PRINT N'Creating Procedure [dbo].[SP_GetSpecificServiceRequestInfo]...';
+PRINT N'Altering Procedure [dbo].[SP_GetMMOpenRequests]...';
 
 
 GO
-CREATE PROCEDURE [dbo].[SP_GetSpecificServiceRequestInfo]
-	@RequestID INT
+ALTER PROCEDURE [dbo].[SP_GetMMOpenRequests]
 AS
-	Select * from dbo.RequestView where dbo.RequestView.ServiceRequestID = @RequestID
+	Select * FROM RequestView
+	WHERE RequestView.RequiestStatus = (select dbo.RequestStatus.RequestStatusID from dbo.RequestStatus Where dbo.RequestStatus.StatusName like 'BM Approve')
+GO
+PRINT N'Creating Procedure [dbo].[SP_GetAllCanceledRequests]...';
+
+
+GO
+CREATE PROCEDURE [dbo].[SP_GetAllCanceledRequests]
+AS
+	Select * FROM RequestView Where dbo.RequestView.RequiestStatus = (select dbo.RequestStatus.RequestStatusID from dbo.RequestStatus Where dbo.RequestStatus.StatusName like 'Canceled')
+GO
+PRINT N'Creating Procedure [dbo].[SP_GetMMApprovedRequests]...';
+
+
+GO
+CREATE PROCEDURE [dbo].[SP_GetMMApprovedRequests]
+AS
+	Select * FROM RequestView Where dbo.RequestView.RequiestStatus = (select dbo.RequestStatus.RequestStatusID from dbo.RequestStatus Where dbo.RequestStatus.StatusName like 'MM Approve')
 GO
 PRINT N'Update complete.';
 
