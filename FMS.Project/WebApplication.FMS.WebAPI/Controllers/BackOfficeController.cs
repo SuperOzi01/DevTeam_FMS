@@ -98,6 +98,13 @@ namespace WebApplication.FMS.WebAPI.Controllers
             return Ok(Response);
         }
 
+        [Route("Api/Fms/BackOffice/GetRequestInfo")]
+        [HttpPost]
+        public IHttpActionResult GetRequestInfo(ServiceRequestAssignmentModel request)
+        {
+            var response = BackOfficeOperationsObject.GetServiceRequestInfo(request.RequestID);
+            return Ok(response);
+        }
 
     }
 }
