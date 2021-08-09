@@ -10,16 +10,16 @@ AS
 
 	IF (@Role like 'Maintenance Manager')
 		BEGIN
-			UPDATE dbo.ServiceRequest SET RequiestStatus = 3 WHERE dbo.ServiceRequest.ServiceRequestID = @RequestID
+			UPDATE dbo.ServiceRequest SET RequiestStatus = ( Select dbo.RequestStatus.RequestStatusID From dbo.RequestStatus WHERE dbo.RequestStatus.StatusName like '%MM Approve%') WHERE dbo.ServiceRequest.ServiceRequestID = @RequestID
 			SELECT CAST(1 AS INT)
 		END
 	ELSE IF (@Role like 'Building Manager')
 		BEGIN
-			UPDATE dbo.ServiceRequest SET RequiestStatus = 2 WHERE dbo.ServiceRequest.ServiceRequestID = @RequestID
+			UPDATE dbo.ServiceRequest SET RequiestStatus = ( Select dbo.RequestStatus.RequestStatusID From dbo.RequestStatus WHERE dbo.RequestStatus.StatusName like '%BM Approve%') WHERE dbo.ServiceRequest.ServiceRequestID = @RequestID
 			SELECT CAST(1 AS INT)
 		END
 	ELSE
 		BEGIN
-			UPDATE dbo.ServiceRequest SET RequiestStatus = 4 WHERE dbo.ServiceRequest.ServiceRequestID = @RequestID
+			UPDATE dbo.ServiceRequest SET RequiestStatus = ( Select dbo.RequestStatus.RequestStatusID From dbo.RequestStatus WHERE dbo.RequestStatus.StatusName like '%Close%') WHERE dbo.ServiceRequest.ServiceRequestID = @RequestID
 			SELECT CAST(1 AS INT)
 		END

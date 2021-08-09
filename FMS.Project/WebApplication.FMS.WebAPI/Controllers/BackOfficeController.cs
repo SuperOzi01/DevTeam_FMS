@@ -70,6 +70,34 @@ namespace WebApplication.FMS.WebAPI.Controllers
             return Ok(RequestsList);
         }
 
+        [Route("Api/Fms/BackOffice/MMApprovedRequests")]
+        [HttpGet]
+        public IHttpActionResult BackOfficeGetMMApprovedRequests()
+        {
+            var ApprovedList = BackOfficeOperationsObject.BackOfficeMaintananceManagerApprovedRequests();
+            return Ok(ApprovedList);
+        }
+
+        [Route("Api/Fms/BackOffice/CanceledRequests")]
+        [HttpGet]
+        public IHttpActionResult BackOfficeCanceledRequests()
+        {
+            var CanceledList = BackOfficeOperationsObject.BackOfficeOverAllCanceledRequests();
+            return Ok(CanceledList);
+        }
+
+        [Route("Api/Fms/BackOffice/CancelRequest")]
+        [HttpPost]
+        public IHttpActionResult BackOfficeCancelRequest(ServiceRequestAssignmentModel request)
+        {
+            Response.Result = BackOfficeOperationsObject.Cancel_ServiceRequest(request.RequestID);
+            if (Response.Result)
+                Response.Message = "Request No. " + request.RequestID + " is Canceld.";
+            else
+                Response.Message = "Request No. " + request.RequestID + " Faced Error - Not Canceld.";
+            return Ok(Response);
+        }
+
 
     }
 }
