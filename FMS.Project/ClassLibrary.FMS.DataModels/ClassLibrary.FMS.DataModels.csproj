@@ -107,6 +107,9 @@
     <Compile Include="Specialization.cs">
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_CanceledServiceRequests_Result.cs">
+      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_GetAllBuildings_Result.cs">
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
@@ -122,7 +125,13 @@
     <Compile Include="SP_GetAllSpecializations_Result.cs">
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_GetMMClosedRequests_Result.cs">
+      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_GetMMOpenRequests_Result.cs">
+      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GetSpecificServiceRequestInfo_Result.cs">
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="View_BuildingAndLocationInfo.cs">

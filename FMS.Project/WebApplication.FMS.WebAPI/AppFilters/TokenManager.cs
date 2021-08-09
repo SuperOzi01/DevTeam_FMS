@@ -88,6 +88,9 @@ namespace WebApplication.FMS.WebAPI.App_Start
 
         public string GetUserName(string userToken)
         {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var token = tokenHandler.ReadJwtToken(userToken);
+            string username = token.Claims.Select(x => x.Type == ClaimTypes.Name).FirstOrDefault().ToString();
             return "";
         }
 

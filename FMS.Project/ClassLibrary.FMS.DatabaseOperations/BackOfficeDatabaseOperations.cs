@@ -35,7 +35,7 @@ namespace ClassLibrary.FMS.DatabaseOperations
 
         public List<ServiceRequest> BackOfficeGetBuildingManagerOpenRequests()
         {
-            List<ServiceRequest> BuildingManagerRequestsList = (List<ServiceRequest>)DatabaseEntity.ServiceRequests.Where(x => x.RequiestStatus == 1).Select(a => a).ToList();
+            List<ServiceRequest> BuildingManagerRequestsList = DatabaseEntity.ServiceRequests.Where(x => x.RequiestStatus == 1).Select(a => a).ToList();
             return BuildingManagerRequestsList;
         }
 
@@ -44,6 +44,12 @@ namespace ClassLibrary.FMS.DatabaseOperations
             int workerID = DatabaseEntity.CompanyEmployees.Where(x => x.Username == workerUsername).Select(a => a.EmployeeID).FirstOrDefault();
             List<ServiceRequest> WorkerRequestsList = (List<ServiceRequest>)DatabaseEntity.ServiceRequests.Where(x => x.AssignedWorkerID == workerID && x.RequiestStatus == 3).Select(a => a).ToList();
             return WorkerRequestsList;
+        }
+
+        public List<SP_GetMMClosedRequests_Result> BackOfficeGetMaintananceManagerCloseRequests()
+        {
+            List<SP_GetMMClosedRequests_Result> MMClosedRequests = DatabaseEntity.SP_GetMMClosedRequests().ToList();
+            return MMClosedRequests;
         }
     }
 }
