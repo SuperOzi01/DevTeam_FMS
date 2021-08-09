@@ -48,19 +48,16 @@ namespace ClassLibrary.FMS.DatabaseOperations
 
         public List<SP_GetMMClosedRequests_Result> BackOfficeGetMaintananceManagerCloseRequests()
         {
-            List<SP_GetMMClosedRequests_Result> MMClosedRequests = DatabaseEntity.SP_GetMMClosedRequests().ToList();
-            return MMClosedRequests;
+            return DatabaseEntity.SP_GetMMClosedRequests().ToList();
         }
 
         public List<SP_GetMMApprovedRequests_Result> BackOfficeMaintananceManagerApprovedRequests()
         {
-            List<SP_GetMMApprovedRequests_Result> ApprovedRequests = DatabaseEntity.SP_GetMMApprovedRequests().ToList();
-            return ApprovedRequests;
+            return DatabaseEntity.SP_GetMMApprovedRequests().ToList();
         }
         public List<SP_GetAllCanceledRequests_Result> BackOfficeOverAllCanceledRequests()
         {
-            List<SP_GetAllCanceledRequests_Result> CanceledList = DatabaseEntity.SP_GetAllCanceledRequests().ToList();
-            return CanceledList;
+            return DatabaseEntity.SP_GetAllCanceledRequests().ToList();
         }
 
         public bool Cancel_ServiceRequest(int RequestID)
@@ -69,6 +66,11 @@ namespace ClassLibrary.FMS.DatabaseOperations
             if(result == 1)
                 return true;
             return false;
+        }
+
+        public SP_GetSpecificServiceRequestInfo_Result GetServiceRequestInfo(int RequestID)
+        {
+            return DatabaseEntity.SP_GetSpecificServiceRequestInfo(RequestID).FirstOrDefault();
         }
 
     }
