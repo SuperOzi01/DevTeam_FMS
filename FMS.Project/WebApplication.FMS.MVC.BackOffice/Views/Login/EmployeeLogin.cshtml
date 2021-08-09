@@ -14,14 +14,14 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link href="~/css/StyleSheet.css" rel="stylesheet" />
 
-    <title>Create Account</title>
+    <title>Sign In</title>
 </head>
-<body>
-    <div class="container">
-        <div class="card1">
+<body class="BodyEmployeeLogin">
+    <div class="container pb-80">
+        <div class="card">
             <div class="row">
 
-                <div class="col-md-6">
+                <div class="col-lg-6">
                     <div class="cardLeft ">
 
                         <img class="logo2" src="~/icon/maintra logo colored.png" />
@@ -29,13 +29,13 @@
                         <form asp-action="EmployeeLogin" class="myform text-center">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <header>Sign In </header>
-                            <div class="form-groupInput">
+                            <div class="form-group">
                                 <i class="far fa-envelope"></i>
                                 <input asp-for="Username" placeholder="Username" class="input" />
                                 <span asp-validation-for="Username" class="text-danger"></span>
                             </div>
 
-                            <div class="form-groupInput">
+                            <div class="form-group">
                                 <i class="fas fa-lock"></i>
                                 <input asp-for="Password" placeholder="Password" class="input" />
                                 <span asp-validation-for="Password" class="text-danger"></span>
@@ -43,28 +43,28 @@
                             <div class="form-groupInput">
                                 @Html.HiddenFor(model => model.Role)
                             </div>
-                                @ViewBag.message
+                            @ViewBag.message
+
                             <input type="submit" class="btnSignInCard" value="SIGN IN" />
                         </form>
                     </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-lg-6">
                     <div class="CardRight">
-                        <div class="box">
-                            <header>Back Office</header>
+                        <div class="text-center">
+                            <header>Hello,Employee!</header>
                             <p>
                                 Enter your personal Details and Start
                                 journey with us
                             </p>
-                            
+                      
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </body>
 </html>
 
