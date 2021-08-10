@@ -60,6 +60,11 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
             // Open Requests ... New Requests... 
         }
 
+        public async Task<IActionResult> RequestsInfo()
+        {
+            return View();
+        }
 
-    }
+
+        }
 }

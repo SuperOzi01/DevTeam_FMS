@@ -11,7 +11,7 @@
 <!-- Demo content -->
 <!--New Request-->
 
-<div class="container ">
+<div class="container " style="margin-bottom: 30px;">
     <div class="row">
         <div class="col-md-12 main-datatable">
             <div class="card_body">
@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <div class="overflow-x">
-                    <table style="width:100%;" id="filtertable" class="table cust-datatable dataTable no-footer ">
+                    <table style="width:100%;" id="newtable" class="table cust-datatable dataTable no-footer ">
                         <thead>
                             @foreach (var item in Model.OpenRequests)
                             {
@@ -88,7 +88,7 @@
 
 <!--Open Request-->
 
-<div class="container ">
+<div class="container "style="margin-bottom: 30px;">
     <div class="row">
         <div class="col-md-12 main-datatable">
             <div class="card_body">
@@ -102,7 +102,7 @@
                     </div>
                 </div>
                 <div class="overflow-x">
-                    <table style="width:100%;" id="filtertable" class="table cust-datatable dataTable no-footer ">
+                    <table style="width:100%;" id="Opentable" class="table cust-datatable dataTable no-footer ">
                         <thead>
                             @foreach (var item in Model.ApprovedRequests)
                             {
@@ -163,7 +163,7 @@
 </div>
 <!--End Open Request-->
 <!--Closed Request-->
-<div class="container ">
+<div class="container " style="margin-bottom: 30px;">
     <div class="row">
         <div class="col-md-12 main-datatable">
             <div class="card_body">
@@ -177,7 +177,7 @@
                     </div>
                 </div>
                 <div class="overflow-x">
-                    <table style="width:100%;" id="filtertable" class="table cust-datatable dataTable no-footer">
+                    <table style="width:100%;" id="Closedtable" class="table cust-datatable dataTable no-footer">
                         <thead>
                             @foreach (var item in Model.ClosedRequests)
                             {
@@ -233,8 +233,8 @@
 
 
 <div class="jumbotron  jumbotron-fluid " style="border-radius: 25px; background:white;">
-    <div class="container">
-        <h5 class="canseltext">Canseled request</h5>
+    <div class="container" style="margin-bottom: 30px;">
+        <h5 class="canseltext">Canceled request</h5>
     </div>
 </div>
 
