@@ -9,7 +9,5 @@
        None
 
 ** User actions
-     Create
-       [dbo].[SP_GetWorkersOfSpecialization] (Procedure)
 
 ** Supporting actions

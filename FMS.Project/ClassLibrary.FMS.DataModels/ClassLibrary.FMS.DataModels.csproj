@@ -88,6 +88,7 @@
     <Compile Include="Models\EmployeeRegistraionModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\MaintenanceManagerModel.cs" />
+    <Compile Include="Models\RequestInfoModel.cs" />
     <Compile Include="Models\ServiceRequestAssignmentModel.cs" />
     <Compile Include="Models\UpdatePasswordModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
