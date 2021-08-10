@@ -282,5 +282,14 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GetWorkersOfSpecialization" FunctionName="FMS_DatabaseModel.Store.SP_GetWorkersOfSpecialization">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_GetWorkersOfSpecialization_Result">
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

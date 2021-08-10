@@ -2,6 +2,7 @@
 using ClassLibrary.FMS.DataModels.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -84,16 +85,31 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
             client.BaseAddress = new Uri(BaseUrl);
             var ReqInformation = await client.PostAsJsonAsync("Api/Fms/BackOffice/GetRequestInfo", serviceRequest);
             var ReqInforamationResponce = ReqInformation.Content.ReadAsAsync<SP_GetSpecificServiceRequestInfo_Result>().Result;
-            
-            var WorkersListRequest = await client.PostAsJsonAsync("Api/Fms/BackOffice/GetWorkersList", serviceRequest);
-            var WorkersListResponse = WorkersListRequest.Content.ReadAsAsync<List<SP_GetWorkersOfSpecialization_Result>>().Result;
 
+            var WorkersListRequest = await client.PostAsJsonAsync("Api/Fms/BackOffice/GetWorkersList", serviceRequest);
+            var WorkersListResponce = WorkersListRequest.Content.ReadAsAsync<List<SP_GetWorkersOfSpecialization_Result>>().Result;
+            ViewBag.EmployeeList = GetEmployeeList(WorkersListResponce);
             // New Model List , RequestInfo
-            //Model.ReqInfo = ReqInforamationResponce
-            //Model.WorkersList = WorkersListResponse
-            return View(ReqInforamationResponce);
+            RequestInfoModel Model = new RequestInfoModel();
+            Model.ReqInfo = ReqInforamationResponce;
+            Model.WorkersList = WorkersListResponce;
+            return View(Model);
         }
 
+        private IEnumerable<SelectListItem> GetEmployeeList(List<SP_GetWorkersOfSpecialization_Result> list)
+        {
+            List<SelectListItem> responceItems = new List<SelectListItem>();
+            foreach (var item in list)
+            {
+                responceItems.Add(new SelectListItem()
+                {
+                    Text = item.FirstName.ToString() + " " + item.LastName.ToString(),
+                    Value = item.EmployeeID.ToString()
+                });
+            }
+            SelectList EmployeeList = new SelectList(responceItems,"Value", "Text");
+            return EmployeeList;
+        }
 
 
 

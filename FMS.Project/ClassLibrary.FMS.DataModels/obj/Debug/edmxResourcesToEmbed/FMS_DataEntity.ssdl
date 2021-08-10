@@ -325,6 +325,9 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
   <Function Name="SP_GetUserRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="username" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="SP_GetWorkersOfSpecialization" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SpecializationName" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="SP_HandleServiceRequestByWorker" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="BuildingNo" Type="int" Mode="In" />
     <Parameter Name="RequestID" Type="int" Mode="In" />
