@@ -10,6 +10,9 @@
 
 ** User actions
      Create
-       [dbo].[SP_GetWorkerOpenRequests] (Procedure)
+       [dbo].[SP_BMCanceledRequests] (Procedure)
+       [dbo].[SP_BMClosedRequests] (Procedure)
+       [dbo].[SP_BMOpenRequests] (Procedure)
+       [dbo].[SP_GetWorkerClosedRequests] (Procedure)
 
 ** Supporting actions

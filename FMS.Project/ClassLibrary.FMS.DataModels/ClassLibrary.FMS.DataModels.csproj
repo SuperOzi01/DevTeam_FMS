@@ -109,6 +109,15 @@
     <Compile Include="Specialization.cs">
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_BMCanceledRequests_Result.cs">
+      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_BMClosedRequests_Result.cs">
+      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_BMOpenRequests_Result.cs">
+      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_CanceledServiceRequests_Result.cs">
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
@@ -140,6 +149,12 @@
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_GetSpecificServiceRequestInfo_Result.cs">
+      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GetWorkerClosedRequests_Result.cs">
+      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GetWorkerOpenRequests_Result.cs">
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_GetWorkersOfSpecialization_Result.cs">

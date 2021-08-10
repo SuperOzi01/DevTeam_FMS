@@ -40,14 +40,14 @@ USE [$(DatabaseName)];
 
 
 GO
-PRINT N'Creating Procedure [dbo].[SP_GetWorkerOpenRequests]...';
+PRINT N'Altering Procedure [dbo].[SP_GetWorkerOpenRequests]...';
 
 
 GO
-CREATE PROCEDURE [dbo].[SP_GetWorkerOpenRequests]
+ALTER PROCEDURE [dbo].[SP_GetWorkerOpenRequests]
 	@username varchar(40)
 AS
-	Select * FROM dbo.RequestView WHERE dbo.RequestView.Assigned_Worker like @username AND dbo.RequestView.RequiestStatus like '%MM Approve%'
+	Select * FROM dbo.RequestView WHERE dbo.RequestView.Assigned_Worker like @username AND dbo.RequestView.RequiestStatus = (Select dbo.RequestStatus.RequestStatusID From dbo.RequestStatus Where dbo.RequestStatus.StatusName like '%MM Approve%')
 GO
 PRINT N'Update complete.';
 

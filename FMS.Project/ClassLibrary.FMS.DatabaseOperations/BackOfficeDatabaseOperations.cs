@@ -78,5 +78,10 @@ namespace ClassLibrary.FMS.DatabaseOperations
             return DatabaseEntity.SP_GetWorkersOfSpecialization(SpecializationName).ToList();
         }
 
+        public List<SP_GetWorkerOpenRequests_Result> GetWorkerOpenedServiceRequests(string Username)
+        {
+            return DatabaseEntity.SP_GetWorkerOpenRequests(Username).ToList();
+        }
+
     }
 }

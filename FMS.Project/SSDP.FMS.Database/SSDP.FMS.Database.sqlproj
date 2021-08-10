@@ -98,6 +98,11 @@
     <Build Include="StoredProcedures\SP_CloseServiceRequest.sql" />
     <Build Include="StoredProcedures\SP_Cancel_OpenedServiceRequest.sql" />
     <Build Include="StoredProcedures\SP_GetWorkersOfSpecialization.sql" />
+    <Build Include="StoredProcedures\SP_GetWorkerOpenRequests.sql" />
+    <Build Include="StoredProcedures\SP_GetWorkerClosedRequests.sql" />
+    <Build Include="StoredProcedures\SP_BMOpenRequests.sql" />
+    <Build Include="StoredProcedures\SP_BMClosedRequests.sql" />
+    <Build Include="StoredProcedures\SP_BMCanceledRequests.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SSDP.FMS.Database.refactorlog" />

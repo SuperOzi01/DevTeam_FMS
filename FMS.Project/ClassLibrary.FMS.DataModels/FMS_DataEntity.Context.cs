@@ -354,5 +354,50 @@ namespace ClassLibrary.FMS.DataModels
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetWorkersOfSpecialization_Result>("SP_GetWorkersOfSpecialization", specializationNameParameter);
         }
+    
+        public virtual ObjectResult<SP_GetWorkerOpenRequests_Result> SP_GetWorkerOpenRequests(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetWorkerOpenRequests_Result>("SP_GetWorkerOpenRequests", usernameParameter);
+        }
+    
+        public virtual ObjectResult<SP_BMCanceledRequests_Result> SP_BMCanceledRequests(Nullable<int> buildingID)
+        {
+            var buildingIDParameter = buildingID.HasValue ?
+                new ObjectParameter("BuildingID", buildingID) :
+                new ObjectParameter("BuildingID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_BMCanceledRequests_Result>("SP_BMCanceledRequests", buildingIDParameter);
+        }
+    
+        public virtual ObjectResult<SP_BMClosedRequests_Result> SP_BMClosedRequests(Nullable<int> buildingID)
+        {
+            var buildingIDParameter = buildingID.HasValue ?
+                new ObjectParameter("BuildingID", buildingID) :
+                new ObjectParameter("BuildingID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_BMClosedRequests_Result>("SP_BMClosedRequests", buildingIDParameter);
+        }
+    
+        public virtual ObjectResult<SP_BMOpenRequests_Result> SP_BMOpenRequests(Nullable<int> buildingID)
+        {
+            var buildingIDParameter = buildingID.HasValue ?
+                new ObjectParameter("BuildingID", buildingID) :
+                new ObjectParameter("BuildingID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_BMOpenRequests_Result>("SP_BMOpenRequests", buildingIDParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetWorkerClosedRequests_Result> SP_GetWorkerClosedRequests(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetWorkerClosedRequests_Result>("SP_GetWorkerClosedRequests", usernameParameter);
+        }
     }
 }

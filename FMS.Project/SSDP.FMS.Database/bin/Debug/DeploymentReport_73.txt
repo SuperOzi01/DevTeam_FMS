@@ -9,7 +9,5 @@
        None
 
 ** User actions
-     Create
-       [dbo].[SP_GetWorkerOpenRequests] (Procedure)
 
 ** Supporting actions
