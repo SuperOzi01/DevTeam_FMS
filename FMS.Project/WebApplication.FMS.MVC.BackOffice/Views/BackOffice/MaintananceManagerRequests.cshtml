@@ -69,7 +69,7 @@
                                     @Html.DisplayFor(modelItem => item.RequestIssueDate)
                                 </td>
                                 <td>
-                                   <i class="fa fa-edit"> @Html.ActionLink("","RequestsInfo","BackOffice", new ServiceRequestAssignmentModel {RequestID = item.ServiceRequestID , EmployeeUsername = item.Specialization_Type}) </i>
+                                   @Html.ActionLink("","RequestsInfo","BackOffice", new ServiceRequestAssignmentModel {RequestID = item.ServiceRequestID , EmployeeUsername = item.Specialization_Type} , new {@class= "fa fa-edit" }) 
                                 </td>
                             </tr>
                             }
