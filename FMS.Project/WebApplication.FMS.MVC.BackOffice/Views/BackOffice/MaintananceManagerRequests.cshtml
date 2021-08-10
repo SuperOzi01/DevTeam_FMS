@@ -16,7 +16,7 @@
         <div class="col-md-12 main-datatable">
             <div class="card_body">
                 <div class="row d-flex">
-                    <h5 class="newtext">New request</h5>
+                    <h5 class="newtext">New Requests</h5>
                     <div class="col-sm-8 add_flex">
                         <div class="form-group searchInput">
                             <label for="email">Search:</label>
@@ -27,55 +27,51 @@
                 <div class="overflow-x">
                     <table style="width:100%;" id="newtable" class="table cust-datatable dataTable no-footer ">
                         <thead>
-                            @foreach (var item in Model.OpenRequests)
-                            {
-                                <tr>
-                                    <th style="min-width:50px;">
-                                        @Html.DisplayNameFor(model => item.ServiceRequestID)
-                                    </th>
-                                    <th style="min-width:150px;">
-                                        @Html.DisplayNameFor(model => item.BuildingID)
-                                    </th>
-                                    <th style="min-width:150px;">
-                                        @Html.DisplayNameFor(model => item.Specialization_Type)
-                                    </th>
-                                    <th style="min-width:100px;">
-                                        @Html.DisplayNameFor(model => item.Assigned_Worker)
-                                    </th>
-                                    <th style="min-width:150px;">
-                                        @Html.DisplayNameFor(model => item.RequestIssueDate)
-                                    </th>
-                                    <th style="min-width:150px;">
-                                        Details
-                                    </th>
-
-                                </tr>
-                            }
+                            <tr>
+                                <th style="min-width:50px;">
+                                    Service Request No.
+                                </th>
+                                <th style="min-width:150px;">
+                                    Building No.
+                                </th>
+                                <th style="min-width:150px;">
+                                    Specialization Type
+                                </th>
+                                <th style="min-width:100px;">
+                                    Assigned Worker
+                                </th>
+                                <th style="min-width:150px;">
+                                    Request Issue Date
+                                </th>
+                                <th style="min-width:150px;">
+                                    Request Information
+                                </th>
+                            </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in Model.OpenRequests)
                             {
 
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.ServiceRequestID)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.BuildingID)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Specialization_Type)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Assigned_Worker)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.RequestIssueDate)
-                                    </td>
-                                    <td>
-                                        <a asp-controller="Home" asp-action="Index" class="btn btn-primary"><i class="fa fa-edit"></i> </a>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ServiceRequestID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BuildingID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Specialization_Type)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Assigned_Worker)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RequestIssueDate)
+                                </td>
+                                <td>
+                                   <i class="fa fa-edit"> @Html.ActionLink("","RequestsInfo","BackOffice", new ServiceRequestAssignmentModel {RequestID = item.ServiceRequestID , EmployeeUsername = item.Specialization_Type}) </i>
+                                </td>
+                            </tr>
                             }
                         </tbody>
                     </table>
@@ -85,15 +81,14 @@
     </div>
 </div>
 <!--End New Request-->
-
 <!--Open Request-->
 
-<div class="container "style="margin-bottom: 30px;">
+<div class="container " style="margin-bottom: 30px;">
     <div class="row">
         <div class="col-md-12 main-datatable">
             <div class="card_body">
                 <div class="row d-flex">
-                    <h5 class="newtext">Open request</h5>
+                    <h5 class="newtext">Opened Requests</h5>
                     <div class="col-sm-8 add_flex">
                         <div class="form-group searchInput">
                             <label for="email">Search:</label>
@@ -104,30 +99,23 @@
                 <div class="overflow-x">
                     <table style="width:100%;" id="Opentable" class="table cust-datatable dataTable no-footer ">
                         <thead>
-                            @foreach (var item in Model.ApprovedRequests)
-                            {
-                                <tr>
-                                    <th style="min-width:50px;">
-                                        @Html.DisplayNameFor(model => item.ServiceRequestID)
-                                    </th>
-                                    <th style="min-width:150px;">
-                                        @Html.DisplayNameFor(model => item.BuildingID)
-                                    </th>
-                                    <th style="min-width:150px;">
-                                        @Html.DisplayNameFor(model => item.Specialization_Type)
-                                    </th>
-                                    <th style="min-width:100px;">
-                                        @Html.DisplayNameFor(model => item.Assigned_Worker)
-                                    </th>
-                                    <th style="min-width:150px;">
-                                        @Html.DisplayNameFor(model => item.RequestIssueDate)
-                                    </th>
-                                    <th style="min-width:150px;">
-                                        Details
-                                    </th>
-
-                                </tr>
-                            }
+                            <tr>
+                                <th style="min-width:50px;">
+                                    Service Request No.
+                                </th>
+                                <th style="min-width:150px;">
+                                    Building No.
+                                </th>
+                                <th style="min-width:150px;">
+                                    Specialization Type
+                                </th>
+                                <th style="min-width:100px;">
+                                    Assigned Worker
+                                </th>
+                                <th style="min-width:150px;">
+                                    Request Issue Date
+                                </th>
+                            </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in Model.ApprovedRequests)
@@ -149,9 +137,7 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.RequestIssueDate)
                                     </td>
-                                    <td>
-                                        <a asp-controller="Home" asp-action="Index" class="btn btn-primary"><i class="fa fa-edit"></i> </a>
-                                    </td>
+                                    
                                 </tr>
                             }
                         </tbody>
@@ -168,7 +154,7 @@
         <div class="col-md-12 main-datatable">
             <div class="card_body">
                 <div class="row d-flex">
-                    <h5 class="newtext">Closed request</h5>
+                    <h5 class="newtext">Closed Requests</h5>
                     <div class="col-sm-8 add_flex">
                         <div class="form-group searchInput">
                             <label for="email">Search:</label>
@@ -179,27 +165,23 @@
                 <div class="overflow-x">
                     <table style="width:100%;" id="Closedtable" class="table cust-datatable dataTable no-footer">
                         <thead>
-                            @foreach (var item in Model.ClosedRequests)
-                            {
-                                <tr>
-                                    <th style="min-width:50px;">
-                                        @Html.DisplayNameFor(model => item.ServiceRequestID)
-                                    </th>
-                                    <th style="min-width:150px;">
-                                        @Html.DisplayNameFor(model => item.BuildingID)
-                                    </th>
-                                    <th style="min-width:150px;">
-                                        @Html.DisplayNameFor(model => item.Specialization_Type)
-                                    </th>
-                                    <th style="min-width:100px;">
-                                        @Html.DisplayNameFor(model => item.Assigned_Worker)
-                                    </th>
-                                    <th style="min-width:150px;">
-                                        @Html.DisplayNameFor(model => item.RequestIssueDate)
-                                    </th>
-
-                                </tr>
-                            }
+                            <tr>
+                                <th style="min-width:50px;">
+                                    Service Request No.
+                                </th>
+                                <th style="min-width:150px;">
+                                    Building No.
+                                </th>
+                                <th style="min-width:150px;">
+                                    Specialization Type
+                                </th>
+                                <th style="min-width:100px;">
+                                    Assigned Worker
+                                </th>
+                                <th style="min-width:150px;">
+                                    Request Issue Date
+                                </th>
+                            </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in Model.ClosedRequests)
@@ -232,12 +214,70 @@
 <!--End Closed Request-->
 
 
-<div class="jumbotron  jumbotron-fluid " style="border-radius: 25px; background:white;">
-    <div class="container" style="margin-bottom: 30px;">
-        <h5 class="canseltext">Canceled request</h5>
+<!--Canceled Request-->
+<div class="container " style="margin-bottom: 30px;">
+    <div class="row">
+        <div class="col-md-12 main-datatable">
+            <div class="card_body">
+                <div class="row d-flex">
+                    <h5 class="newtext">Canceled Requests</h5>
+                    <div class="col-sm-8 add_flex">
+                        <div class="form-group searchInput">
+                            <label for="email">Search:</label>
+                            <input type="search" class=" form-control" id="filterbox" placeholder=" ">
+                        </div>
+                    </div>
+                </div>
+                <div class="overflow-x">
+                    <table style="width:100%;" id="Closedtable" class="table cust-datatable dataTable no-footer">
+                        <thead>
+                            <tr>
+                                <th style="min-width:50px;">
+                                    Service Request No.
+                                </th>
+                                <th style="min-width:150px;">
+                                    Building No.
+                                </th>
+                                <th style="min-width:150px;">
+                                    Specialization Type
+                                </th>
+                                <th style="min-width:100px;">
+                                    Assigned Worker
+                                </th>
+                                <th style="min-width:150px;">
+                                    Request Issue Date
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.CanceledRequests)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ServiceRequestID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.BuildingID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Specialization_Type)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Assigned_Worker)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.RequestIssueDate)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
+<!--End Canceled Request-->
 <!-- End demo content -->
 
 <link href="~/js/DataTables/datatables.min.css" rel="stylesheet" />

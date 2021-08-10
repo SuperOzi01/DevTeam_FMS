@@ -2886,6 +2886,88 @@
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_GetUserRoles]&#xD;&#xA;&#x9;@username varchar(40)&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[SP_GetWorkersOfSpecialization]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[	
+	Select [EmployeeID], [FirstName], [LastName] From dbo.CompanyEmployee 
+	Where dbo.CompanyEmployee.AccountStatus = 1 AND dbo.CompanyEmployee.Specialization_idSpecialization = ( SELECt dbo.Specialization.SpecializationID From Dbo.Specialization Where dbo.Specialization.SpecializationName like @SpecializationName)
+	AND dbo.CompanyEmployee.Role_idRole = ( Select dbo.Role.RoleID From Dbo.Role Where dbo.Role.RoleName like '%Maintenance Worker%')]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee].[EmployeeID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee].[FirstName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee].[LastName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee].[AccountStatus]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee].[Specialization_idSpecialization]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Specialization]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Specialization].[SpecializationID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Specialization].[SpecializationName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SP_GetWorkersOfSpecialization].[@SpecializationName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee].[Role_idRole]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Role]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Role].[RoleID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Role].[RoleName]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_GetWorkersOfSpecialization].[@SpecializationName]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="40" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="541" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_GetWorkersOfSpecialization]&#xD;&#xA;&#x9;@SpecializationName varchar(40)&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[SP_HandleServiceRequestByWorker]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[

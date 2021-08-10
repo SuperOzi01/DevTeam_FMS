@@ -106,5 +106,14 @@ namespace WebApplication.FMS.WebAPI.Controllers
             return Ok(response);
         }
 
+        [Route("Api/Fms/BackOffice/GetWorkersList")]
+        [HttpPost]
+        public IHttpActionResult GetWorkersList(ServiceRequestAssignmentModel request)
+        {
+            // the username here will contain the Service Request Type 
+            var response = BackOfficeOperationsObject.GetWorkersListSpecializationBased(request.EmployeeUsername);
+            return Ok(response);
+        }
+
     }
 }

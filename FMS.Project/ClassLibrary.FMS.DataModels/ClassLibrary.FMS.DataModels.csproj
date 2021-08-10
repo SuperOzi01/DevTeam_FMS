@@ -141,6 +141,9 @@
     <Compile Include="SP_GetSpecificServiceRequestInfo_Result.cs">
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_GetWorkersOfSpecialization_Result.cs">
+      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="View_BuildingAndLocationInfo.cs">
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>

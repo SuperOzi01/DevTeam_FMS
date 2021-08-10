@@ -382,3 +382,4 @@ C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.B
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.BackOffice.dll
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.BackOffice.pdb
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.BackOffice.genruntimeconfig.cache
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\Razor\Views\BackOffice\RequestsInfo.cshtml.g.cs

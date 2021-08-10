@@ -345,5 +345,14 @@ namespace ClassLibrary.FMS.DataModels
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetMMApprovedRequests_Result>("SP_GetMMApprovedRequests");
         }
+    
+        public virtual ObjectResult<SP_GetWorkersOfSpecialization_Result> SP_GetWorkersOfSpecialization(string specializationName)
+        {
+            var specializationNameParameter = specializationName != null ?
+                new ObjectParameter("SpecializationName", specializationName) :
+                new ObjectParameter("SpecializationName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetWorkersOfSpecialization_Result>("SP_GetWorkersOfSpecialization", specializationNameParameter);
+        }
     }
 }
