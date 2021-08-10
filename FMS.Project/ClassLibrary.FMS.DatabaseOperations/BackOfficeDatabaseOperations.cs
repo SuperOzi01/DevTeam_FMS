@@ -73,5 +73,10 @@ namespace ClassLibrary.FMS.DatabaseOperations
             return DatabaseEntity.SP_GetSpecificServiceRequestInfo(RequestID).FirstOrDefault();
         }
 
+        public List<SP_GetWorkersOfSpecialization_Result> GetWorkersListSpecializationBased(string SpecializationName)
+        {
+            return DatabaseEntity.SP_GetWorkersOfSpecialization(SpecializationName).ToList();
+        }
+
     }
 }

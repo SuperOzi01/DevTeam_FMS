@@ -12,7 +12,7 @@
 		</CustomData>
 		<CustomData Category="Reference" Type="Assembly">
 			<Metadata Name="LogicalName" Value="SSDP.FMS.Database.dll" />
-			<Metadata Name="FileName" Value="C:\USERS\ALANO\DOCUMENTS\GITHUB\DEVTEAM_FMS\FMS.PROJECT\SSDP.FMS.DATABASE\OBJ\DEBUG\SSDP.FMS.DATABASE.DLL" />
+			<Metadata Name="FileName" Value="C:\USERS\ZSHAR\DOCUMENTS\GITHUB\DEVTEAM_FMS\FMS.PROJECT\SSDP.FMS.DATABASE\OBJ\DEBUG\SSDP.FMS.DATABASE.DLL" />
 			<Metadata Name="AssemblyName" Value="SSDP.FMS.Database" />
 			<Metadata Name="PermissionSet" Value="SAFE" />
 			<Metadata Name="Owner" Value="" />
@@ -20,7 +20,7 @@
 			<Metadata Name="IsVisible" Value="True" />
 			<Metadata Name="IsModelAware" Value="True" />
 			<Metadata Name="SkipCreationIfEmpty" Value="True" />
-			<Metadata Name="AssemblySymbolsName" Value="C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\SSDP.FMS.Database.pdb" />
+			<Metadata Name="AssemblySymbolsName" Value="C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\SSDP.FMS.Database.pdb" />
 		</CustomData>
 		<CustomData Category="SqlCmdVariables" Type="SqlCmdVariable" />
 	</Header>
@@ -2884,6 +2884,88 @@
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_GetUserRoles]&#xD;&#xA;&#x9;@username varchar(40)&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[SP_GetWorkersOfSpecialization]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[	
+	Select [EmployeeID], [FirstName], [LastName] From dbo.CompanyEmployee 
+	Where dbo.CompanyEmployee.AccountStatus = 1 AND dbo.CompanyEmployee.Specialization_idSpecialization = ( SELECt dbo.Specialization.SpecializationID From Dbo.Specialization Where dbo.Specialization.SpecializationName like @SpecializationName)
+	AND dbo.CompanyEmployee.Role_idRole = ( Select dbo.Role.RoleID From Dbo.Role Where dbo.Role.RoleName like '%Maintenance Worker%')]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee].[EmployeeID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee].[FirstName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee].[LastName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee].[AccountStatus]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee].[Specialization_idSpecialization]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Specialization]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Specialization].[SpecializationID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Specialization].[SpecializationName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SP_GetWorkersOfSpecialization].[@SpecializationName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee].[Role_idRole]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Role]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Role].[RoleID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Role].[RoleName]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_GetWorkersOfSpecialization].[@SpecializationName]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="40" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="541" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_GetWorkersOfSpecialization]&#xD;&#xA;&#x9;@SpecializationName varchar(40)&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[SP_HandleServiceRequestByWorker]">

@@ -9,17 +9,5 @@
        None
 
 ** User actions
-     Alter
-       [dbo].[SP_CanceledServiceRequests] (Procedure)
-       [dbo].[SP_ChangeServiceRequestStatus] (Procedure)
-       [dbo].[SP_GetMMClosedRequests] (Procedure)
-       [dbo].[SP_GetMMOpenRequests] (Procedure)
-       [dbo].[SP_InsertBeneficiary] (Procedure)
-       [dbo].[SP_InsertNewServiceRequiest] (Procedure)
-     Create
-       [dbo].[SP_Cancel_OpenedServiceRequest] (Procedure)
-       [dbo].[SP_CloseServiceRequest] (Procedure)
-       [dbo].[SP_GetAllCanceledRequests] (Procedure)
-       [dbo].[SP_GetMMApprovedRequests] (Procedure)
 
 ** Supporting actions

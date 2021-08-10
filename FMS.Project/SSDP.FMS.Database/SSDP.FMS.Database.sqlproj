@@ -97,6 +97,7 @@
     <Build Include="StoredProcedures\SP_GetAllCanceledRequests.sql" />
     <Build Include="StoredProcedures\SP_CloseServiceRequest.sql" />
     <Build Include="StoredProcedures\SP_Cancel_OpenedServiceRequest.sql" />
+    <Build Include="StoredProcedures\SP_GetWorkersOfSpecialization.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SSDP.FMS.Database.refactorlog" />

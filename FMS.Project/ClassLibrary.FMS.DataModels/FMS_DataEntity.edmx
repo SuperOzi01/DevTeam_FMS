@@ -330,6 +330,9 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
         <Function Name="SP_GetUserRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="username" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="SP_GetWorkersOfSpecialization" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SpecializationName" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="SP_HandleServiceRequestByWorker" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="BuildingNo" Type="int" Mode="In" />
           <Parameter Name="RequestID" Type="int" Mode="In" />
@@ -860,6 +863,9 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           </FunctionImport>
           <FunctionImport Name="SP_GetAllCanceledRequests" ReturnType="Collection(FMS_DatabaseModel.SP_GetAllCanceledRequests_Result)" />
           <FunctionImport Name="SP_GetMMApprovedRequests" ReturnType="Collection(FMS_DatabaseModel.SP_GetMMApprovedRequests_Result)" />
+          <FunctionImport Name="SP_GetWorkersOfSpecialization" ReturnType="Collection(FMS_DatabaseModel.SP_GetWorkersOfSpecialization_Result)">
+            <Parameter Name="SpecializationName" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="SP_GetAllBuildings_Result">
           <Property Type="Int32" Name="BuildingID" Nullable="false" />
@@ -976,6 +982,11 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
           <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="SP_GetWorkersOfSpecialization_Result">
+          <Property Type="Int32" Name="EmployeeID" Nullable="false" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="40" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1261,6 +1272,15 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
                 <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
                 <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
                 <ScalarProperty Name="Request_Creator" ColumnName="Request_Creator" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetWorkersOfSpecialization" FunctionName="FMS_DatabaseModel.Store.SP_GetWorkersOfSpecialization">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_GetWorkersOfSpecialization_Result">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
