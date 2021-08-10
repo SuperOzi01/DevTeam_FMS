@@ -1,0 +1,12 @@
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Release\ClassLibrary.FMS.DataModels.dll.config
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Release\ClassLibrary.FMS.DataModels.dll
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Release\ClassLibrary.FMS.DataModels.pdb
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Release\EntityFramework.dll
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Release\EntityFramework.xml
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Release\ClassLibrary.FMS.DataModels.csproj.AssemblyReference.cache
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Release\ClassLibrary.FMS.DataModels.csproj.CoreCompileInputs.cache
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Release\ClassLibrary.FMS.DataModels.csproj.CopyComplete
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Release\ClassLibrary.FMS.DataModels.dll
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Release\ClassLibrary.FMS.DataModels.pdb

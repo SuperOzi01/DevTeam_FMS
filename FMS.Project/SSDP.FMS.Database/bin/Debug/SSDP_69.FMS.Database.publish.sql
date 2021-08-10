@@ -15,8 +15,8 @@ SET NUMERIC_ROUNDABORT OFF;
 GO
 :setvar DatabaseName "FMS_Database"
 :setvar DefaultFilePrefix "FMS_Database"
-:setvar DefaultDataPath "C:\Users\Rana Alhamdan\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\"
-:setvar DefaultLogPath "C:\Users\Rana Alhamdan\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\"
+:setvar DefaultDataPath "C:\Users\zshar\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\"
+:setvar DefaultLogPath "C:\Users\zshar\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\"
 
 GO
 :on error exit
@@ -39,6 +39,17 @@ GO
 USE [$(DatabaseName)];
 
 
+GO
+PRINT N'Creating Procedure [dbo].[SP_GetWorkersOfSpecialization]...';
+
+
+GO
+CREATE PROCEDURE [dbo].[SP_GetWorkersOfSpecialization]
+	@SpecializationName varchar(40)
+AS	
+	Select [EmployeeID], [FirstName], [LastName] From dbo.CompanyEmployee 
+	Where dbo.CompanyEmployee.AccountStatus = 1 AND dbo.CompanyEmployee.Specialization_idSpecialization = ( SELECt dbo.Specialization.SpecializationID From Dbo.Specialization Where dbo.Specialization.SpecializationName like @SpecializationName)
+	AND dbo.CompanyEmployee.Role_idRole = ( Select dbo.Role.RoleID From Dbo.Role Where dbo.Role.RoleName like '%Maintenance Worker%')
 GO
 PRINT N'Update complete.';
 
