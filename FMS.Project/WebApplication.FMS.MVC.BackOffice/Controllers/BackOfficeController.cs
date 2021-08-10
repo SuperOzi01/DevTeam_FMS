@@ -94,6 +94,13 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
             return View(ReqInforamationResponce);
         }
 
+        public async Task<IActionResult> MaintananceWorkerDashboard()
+        {
+            ViewBag.username = Request.Cookies["Username"];
+            //var OpenRequestsList = 
+            return View();
+        }
+
 
 
 
