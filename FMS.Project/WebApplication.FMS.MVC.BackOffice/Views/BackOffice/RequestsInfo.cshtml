@@ -1,7 +1,11 @@
-﻿@using ClassLibrary.FMS.DataModels.Models
-@model RequestInfoModel
+﻿@model ClassLibrary.FMS.DataModels.Models.MM_RequestInfo_Model
 @{
     ViewData["Title"] = "Login BackOffice";
+    List<SelectListItem> workersList = new List<SelectListItem>();
+    foreach (var item in Model.WorkersList)
+    {
+        workersList.Add(new SelectListItem { Text = item.FirstName + " " + item.LastName, Value = item.EmployeeID.ToString() });
+    }
 }
 
 <!-- Toggle button -->
@@ -10,87 +14,83 @@
 <!-- Demo content -->
 <div class="jumbotron jumbotron-fluid " style="border-radius: 25px; background:white;">
     <div class="container">
-            <h5 class="reqestNotext">request NO. @Model.ReqInfo.ServiceRequestID.</h5>
+        <h5 class="reqestNotext">request NO. @Model.RequestInfo.ServiceRequestID</h5>
 
 
-            <div class="container " style="margin-bottom: 30px;">
-                <div class="row">
-                    <div class="col-md-12 main-datatable">
-                        <div class="card_body">
-                            <div class="row d-flex">
-                                <h5 class="newtext">New Requests</h5>
-                                <div class="col-sm-8 add_flex">
-                                    <div class="form-group searchInput">
-                                        <label for="email">Search:</label>
-                                        <input type="search" class=" form-control" id="filterbox" placeholder=" ">
-                                    </div>
+        <div class="container " style="margin-bottom: 30px;">
+            <div class="row">
+                <div class="col-md-12 main-datatable">
+                    <div class="card_body">
+                        <div class="row d-flex">
+                            <h5 class="newtext">New Requests</h5>
+                            <div class="col-sm-8 add_flex">
+                                <div class="form-group searchInput">
+                                    <label for="email">Search:</label>
+                                    <input type="search" class=" form-control" id="filterbox" placeholder=" ">
                                 </div>
                             </div>
-                            <div class="overflow-x">
-                                <table style="width:100%;" id="newtable" class="table cust-datatable dataTable no-footer ">
-                                    <thead>
-                                        <tr>
-                                            <th style="min-width:50px;">
-                                                Request Creator
-                                            </th>
-                                            <th style="min-width:150px;">
-                                                Request Issue Date
-                                            </th>
-                                            <th style="min-width:150px;">
-                                                Building No.
-                                            </th>
-                                            <th style="min-width:100px;">
-                                                Service Type
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                @Model.ReqInfo.Request_Creator
-                                            </td>
-                                            <td>
-                                                @Model.ReqInfo.RequestIssueDate
-                                            </td>
-                                            <td>
-                                                @Model.ReqInfo.BuildingID
-                                            </td>
-                                            <td>
-                                                @Model.ReqInfo.Specialization_Type
-                                            </td>
-                                        </tr>
+                        </div>
+                        <div class="overflow-x">
+                            <table style="width:100%;" id="newtable" class="table cust-datatable dataTable no-footer ">
+                                <thead>
+                                    <tr>
+                                        <th style="min-width:50px;">
+                                            Request Creator
+                                        </th>
+                                        <th style="min-width:150px;">
+                                            Request Issue Date
+                                        </th>
+                                        <th style="min-width:150px;">
+                                            Building No.
+                                        </th>
+                                        <th style="min-width:100px;">
+                                            Service Type
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            @Model.RequestInfo.Request_Creator
+                                        </td>
+                                        <td>
+                                            @Model.RequestInfo.RequestIssueDate
+                                        </td>
+                                        <td>
+                                            @Model.RequestInfo.BuildingID
+                                        </td>
+                                        <td>
+                                            @Model.RequestInfo.Specialization_Type
+                                        </td>
+                                    </tr>
 
-                                    </tbody>
-                                </table>
-                            </div>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
 
 
 
 
 
-            <!--Brife Description -->
-            <p class=" colorB">Brife Description </p>
-            <p>
-                @Model.ReqInfo.ServiceDescribtion
-            </p>
+        <!--Brife Description -->
+        <p class=" colorB">Brife Description </p>
+        <p>
+            @Model.RequestInfo.ServiceDescribtion
+        </p>
         <h5>Assign Worker</h5>
         <!--Select Worker -->
-        @foreach (var item in Model.WorkersList)
-        {
-            <div class="form-group mlr">
-                @Html.DropDownListFor(model => item.EmployeeID, (IEnumerable<SelectListItem>)ViewBag.EmployeeList, "Employee Name", new { @class = "form-control input", id = "exampleFormControlSelect1" })
-            </div>
-        }
+        <div class="form-group mlr">
+            @Html.DropDownList("Workers List", workersList, "Select Worker", new { @class = "form-control input", id = "WorkersDropDown" })
+        </div>
+
         <div class=" text-center">
-            <button type="submit" class="btnSignInCardgreen " data-toggle="modal" data-target="#loginModalAccept" value="Accept">Accept</button>
-            <button type="submit" class="btnSignInCard " data-toggle="modal" data-target="#loginModalReject" value="Accept">Reject</button>
-
-
+            <button type="submit" class="btnSignInCardgreen "  data-toggle="modal" data-target="#loginModalAccept" value="Accept">Accept</button>
+            <button type="submit" class="btnSignInCard "  data-toggle="modal" data-target="#loginModalReject" value="Reject">Reject</button>
         </div>
 
     </div>
