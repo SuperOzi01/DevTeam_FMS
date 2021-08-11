@@ -52,43 +52,44 @@
                             @foreach (var item in Model.OpenRequests)
                             {
 
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ServiceRequestID)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.BuildingID)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Specialization_Type)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Assigned_Worker)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.RequestIssueDate)
-                                </td>
-                                <td>
-                                   @Html.ActionLink("","RequestsInfo","BackOffice", new ServiceRequestAssignmentModel {RequestID = item.ServiceRequestID , EmployeeUsername = item.Specialization_Type} , new {@class= "fa fa-edit" }) 
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ServiceRequestID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.BuildingID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Specialization_Type)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Assigned_Worker)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.RequestIssueDate)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("", "RequestsInfo", "BackOffice", new ServiceRequestAssignmentModel { RequestID = item.ServiceRequestID, EmployeeUsername = item.Specialization_Type }, new { @class = "fa-edit fa fa-edit" })
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
 <!--End New Request-->
-<!--Open Request-->
 
+<!--Open Request-->
 <div class="container " style="margin-bottom: 30px;">
     <div class="row">
         <div class="col-md-12 main-datatable">
             <div class="card_body">
                 <div class="row d-flex">
-                    <h5 class="newtext">Opened Requests</h5>
+                    <h5 class="opentext1">Opened Requests</h5>
                     <div class="col-sm-8 add_flex">
                         <div class="form-group searchInput">
                             <label for="email">Search:</label>
@@ -137,11 +138,12 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.RequestIssueDate)
                                     </td>
-                                    
+
                                 </tr>
                             }
                         </tbody>
                     </table>
+
                 </div>
             </div>
         </div>
@@ -154,7 +156,7 @@
         <div class="col-md-12 main-datatable">
             <div class="card_body">
                 <div class="row d-flex">
-                    <h5 class="newtext">Closed Requests</h5>
+                    <h5 class="closetext1">Closed Requests</h5>
                     <div class="col-sm-8 add_flex">
                         <div class="form-group searchInput">
                             <label for="email">Search:</label>
@@ -212,15 +214,13 @@
     </div>
 </div>
 <!--End Closed Request-->
-
-
 <!--Canceled Request-->
 <div class="container " style="margin-bottom: 30px;">
     <div class="row">
         <div class="col-md-12 main-datatable">
             <div class="card_body">
                 <div class="row d-flex">
-                    <h5 class="newtext">Canceled Requests</h5>
+                    <h5 class="canseltext1">Canceled Requests</h5>
                     <div class="col-sm-8 add_flex">
                         <div class="form-group searchInput">
                             <label for="email">Search:</label>
@@ -229,7 +229,7 @@
                     </div>
                 </div>
                 <div class="overflow-x">
-                    <table style="width:100%;" id="Closedtable" class="table cust-datatable dataTable no-footer">
+                    <table style="width:100%;" id="Canceltable" class="table cust-datatable dataTable no-footer">
                         <thead>
                             <tr>
                                 <th style="min-width:50px;">

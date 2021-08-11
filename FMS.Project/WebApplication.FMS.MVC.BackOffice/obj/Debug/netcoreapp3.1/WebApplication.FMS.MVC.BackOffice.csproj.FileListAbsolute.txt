@@ -126,6 +126,9 @@ C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.B
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.BackOffice.dll
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.BackOffice.pdb
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.BackOffice.genruntimeconfig.cache
+<<<<<<< HEAD
+C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\Razor\Views\BackOffice\RequestsInfo.cshtml.g.cs
+=======
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\bin\Debug\netcoreapp3.1\log4net.config
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\bin\Debug\netcoreapp3.1\appsettings.json
@@ -391,3 +394,11 @@ C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.B
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\bin\Debug\netcoreapp3.1\System.Web.WebPages.Razor.dll
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\bin\Debug\netcoreapp3.1\System.Web.WebPages.dll
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\bin\Debug\netcoreapp3.1\Microsoft.Web.Infrastructure.dll
+>>>>>>> main
+C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\bin\Debug\netcoreapp3.1\System.Web.Mvc.dll
+C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\bin\Debug\netcoreapp3.1\System.Web.Razor.dll
+C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\bin\Debug\netcoreapp3.1\System.Web.Helpers.dll
+C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\bin\Debug\netcoreapp3.1\System.Web.WebPages.Deployment.dll
+C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\bin\Debug\netcoreapp3.1\System.Web.WebPages.Razor.dll
+C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\bin\Debug\netcoreapp3.1\System.Web.WebPages.dll
+C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\bin\Debug\netcoreapp3.1\Microsoft.Web.Infrastructure.dll

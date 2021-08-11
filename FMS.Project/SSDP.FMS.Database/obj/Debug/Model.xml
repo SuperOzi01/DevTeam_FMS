@@ -12,7 +12,7 @@
 		</CustomData>
 		<CustomData Category="Reference" Type="Assembly">
 			<Metadata Name="LogicalName" Value="SSDP.FMS.Database.dll" />
-			<Metadata Name="FileName" Value="C:\USERS\ZSHAR\DOCUMENTS\GITHUB\DEVTEAM_FMS\FMS.PROJECT\SSDP.FMS.DATABASE\OBJ\DEBUG\SSDP.FMS.DATABASE.DLL" />
+			<Metadata Name="FileName" Value="C:\USERS\ALANO\DOCUMENTS\GITHUB\DEVTEAM_FMS\FMS.PROJECT\SSDP.FMS.DATABASE\OBJ\DEBUG\SSDP.FMS.DATABASE.DLL" />
 			<Metadata Name="AssemblyName" Value="SSDP.FMS.Database" />
 			<Metadata Name="PermissionSet" Value="SAFE" />
 			<Metadata Name="Owner" Value="" />
@@ -20,7 +20,7 @@
 			<Metadata Name="IsVisible" Value="True" />
 			<Metadata Name="IsModelAware" Value="True" />
 			<Metadata Name="SkipCreationIfEmpty" Value="True" />
-			<Metadata Name="AssemblySymbolsName" Value="C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\SSDP.FMS.Database.pdb" />
+			<Metadata Name="AssemblySymbolsName" Value="C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\SSDP.FMS.Database.pdb" />
 		</CustomData>
 		<CustomData Category="SqlCmdVariables" Type="SqlCmdVariable" />
 	</Header>
