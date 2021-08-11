@@ -12,7 +12,7 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    var dataTable = $('#newtable').DataTable({
+    var dataTable1 = $('#newtable').DataTable({
         "pageLength": 5,
         'aoColumnDefs': [{
             'bSortable': false,
