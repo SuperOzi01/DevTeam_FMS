@@ -80,29 +80,46 @@ body {
 .nav-link {
     color: #B1B0AF;
 }
-
     .nav-link:hover {
         color: #C43264;
         background: #fff;
     }
-
-
 .closetext {
     font-weight: bold;
-    font-size: 18px;
+    font-size: 17px;
     color: black;
 }
-
+.closetext1 {
+    font-weight: bold;
+    font-size: 16px;
+    color: black;
+    margin-left: 45px;
+    margin-top: 10px;
+}
 .canseltext {
     color: #C43264;
+    font-weight: bold;
+    font-size: 15px;
 }
-
+.canseltext1 {
+    color: #C43264;
+    font-weight: bold;
+    font-size: 16px;
+    margin-left: 45px;
+    margin-top: 10px;
+}
 .opentext {
     color: #94C11F;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 16px;
 }
-
+.opentext1 {
+    color: #94C11F;
+    font-weight: bold;
+    font-size: 16px;
+    margin-left: 45px;
+    margin-top: 10px;
+}
 .newtext1 {
     color: #922b6b;
     font-weight: bold;
@@ -112,27 +129,29 @@ body {
 .newtext {
     color: #922b6b;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 16px;
     margin-left: 45px;
     margin-top: 10px;
 }
-
+.card-title{
+    font-weight:bold;
+}
 
 @media (max-width: 768px) {
     #sidebar {
         margin-left: -17rem;
     }
 
-        #sidebar.active {
+ #sidebar.active {
             margin-left: 0;
         }
 
-    #content {
+#content {
         width: 100%;
         margin: 0;
     }
 
-        #content.active {
+#content.active {
             margin-left: 17rem;
             width: calc(100% - 17rem);
         }
@@ -141,7 +160,10 @@ body {
 
 
 
-
+.fa-edit {
+    color: #C43264;
+    font-size: 16px;
+}
 .p-30 {
     padding: 30px;
 }
@@ -182,7 +204,7 @@ body {
     padding: 0px 4px;
 }
 
-    .searchInput input {
+.searchInput input {
         border: 1px solid #e5e5e5;
         border-radius: 50px;
         margin-left: 8px;
@@ -192,12 +214,12 @@ body {
         transition: all .6s ease;
     }
 
-    .searchInput label {
+.searchInput label {
         color: #767676;
         font-weight: normal;
     }
 
-    .searchInput input:placeholder-shown {
+.searchInput input:placeholder-shown {
         width: 13%;
     }
 
@@ -469,7 +491,6 @@ body {
 }
 .input {
     width: 100%;
-    padding: 10px;
     padding-left: 5%;
     border: none;
     background-color: #F5F8F9;
@@ -539,6 +560,11 @@ body {
 }
 .reqestNotext {
     color: #C43264;
+    margin-bottom: 37px;
+    margin-top: 20px;
+}
+.table {
+    margin-bottom: 37px;
 }
 .nav-link {
     color: #B1B0AF;

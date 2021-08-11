@@ -1,3 +1,13 @@
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\bin\Debug\SSDP.FMS.Database.dacpac
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\bin\Debug\SSDP.FMS.Database.dll
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\bin\Debug\SSDP.FMS.Database.pdb
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\SSDP.FMS.Database.sqlproj.AssemblyReference.cache
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\SSDP.FMS.Database.dll
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\SSDP.FMS.Database.pdb
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\Model.xml
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\refactor.xml
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\postdeploy.sql
+C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\predeploy.sql
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\bin\Debug\SSDP.FMS.Database.dacpac
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\bin\Debug\SSDP.FMS.Database.dll
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\bin\Debug\SSDP.FMS.Database.pdb
@@ -7,19 +17,9 @@ C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\De
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\predeploy.sql
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\SSDP.FMS.Database.dll
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\SSDP.FMS.Database.pdb
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\bin\Debug\SSDP.FMS.Database.dacpac
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\bin\Debug\SSDP.FMS.Database.dll
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\bin\Debug\SSDP.FMS.Database.pdb
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\Model.xml
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\refactor.xml
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\postdeploy.sql
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\predeploy.sql
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\SSDP.FMS.Database.dll
-C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\SSDP.FMS.Database.pdb
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\bin\Debug\SSDP.FMS.Database.dacpac
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\bin\Debug\SSDP.FMS.Database.dll
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\bin\Debug\SSDP.FMS.Database.pdb
-C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\SSDP.FMS.Database.sqlproj.AssemblyReference.cache
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\Model.xml
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\refactor.xml
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\postdeploy.sql

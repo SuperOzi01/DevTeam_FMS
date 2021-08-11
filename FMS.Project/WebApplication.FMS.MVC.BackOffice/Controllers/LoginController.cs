@@ -141,7 +141,7 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
         }
 
 
-        private IEnumerable<SelectListItem> GetSpecializationList()
+        public IEnumerable<SelectListItem> GetSpecializationList()
         {
             SelectList SpecializationName = null;
             HttpClient httpClient = new HttpClient();

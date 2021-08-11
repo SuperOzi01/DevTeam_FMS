@@ -2,6 +2,7 @@
 using ClassLibrary.FMS.DataModels.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,13 +19,27 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
         {
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(BaseUrl);
-            string username = Request.Cookies["Username"];
-            if(username != null)
+            ViewBag.username = Request.Cookies["Username"];
+            if (ViewBag.username != null)
             {
-            var OpenRListRequest = await client.GetAsync("Api/Fms/BackOffice/MMOpenRequests");
-            var OpenRListResponce = OpenRListRequest.Content.ReadAsAsync<List<SP_GetMMOpenRequests_Result>>().Result;
+                var OpenRListRequest = await client.GetAsync("Api/Fms/BackOffice/MMOpenRequests");
+                var OpenRListResponce = OpenRListRequest.Content.ReadAsAsync<List<SP_GetMMOpenRequests_Result>>().Result;
 
-            // Worker Username 
+                var closeRListRequest = await client.GetAsync("Api/Fms/BackOffice/MMCloseRequests");
+                var closeRListResponce = closeRListRequest.Content.ReadAsAsync<List<SP_GetMMClosedRequests_Result>>().Result;
+
+                var ApprovedListRequest = await client.GetAsync("Api/Fms/BackOffice/MMApprovedRequests");
+                var ApprovedListResponce = ApprovedListRequest.Content.ReadAsAsync<List<SP_GetMMApprovedRequests_Result>>().Result;
+
+                var CanceledListRequest = await client.GetAsync("Api/Fms/BackOffice/CanceledRequests");
+                var CanceledListResponce = CanceledListRequest.Content.ReadAsAsync<List<SP_CanceledServiceRequests_Result>>().Result;
+
+                ViewBag.NoNewRequests = OpenRListResponce.Count;
+                ViewBag.NoOpenedRequests = ApprovedListResponce.Count;
+                ViewBag.NoClosedRequests = closeRListResponce.Count;
+                ViewBag.NoCanceledRequests = CanceledListResponce.Count;
+
+                // Worker Username 
                 return View(OpenRListResponce);
             }
             return Content("username not found");
@@ -41,12 +56,16 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
             {
                 var OpenRListRequest = await client.GetAsync("Api/Fms/BackOffice/MMOpenRequests");
                 var OpenRListResponce = OpenRListRequest.Content.ReadAsAsync<List<SP_GetMMOpenRequests_Result>>().Result;
+
                 var closeRListRequest = await client.GetAsync("Api/Fms/BackOffice/MMCloseRequests");
                 var closeRListResponce = closeRListRequest.Content.ReadAsAsync<List<SP_GetMMClosedRequests_Result>>().Result;
+
                 var ApprovedListRequest = await client.GetAsync("Api/Fms/BackOffice/MMApprovedRequests");
                 var ApprovedListResponce = ApprovedListRequest.Content.ReadAsAsync<List<SP_GetMMApprovedRequests_Result>>().Result;
-                var CanceledListRequest = await client.GetAsync("Api/Fms/BackOffice/CancelRequest");
-                var CanceledListResponce = ApprovedListRequest.Content.ReadAsAsync<List<SP_CanceledServiceRequests_Result>>().Result;
+
+                var CanceledListRequest = await client.GetAsync("Api/Fms/BackOffice/CanceledRequests");
+                var CanceledListResponce = CanceledListRequest.Content.ReadAsAsync<List<SP_CanceledServiceRequests_Result>>().Result;
+
                 MaintenanceManagerModel mymodel = new MaintenanceManagerModel();
                 mymodel.OpenRequests = OpenRListResponce;
                 mymodel.ClosedRequests = closeRListResponce;
@@ -60,11 +79,46 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
             // Open Requests ... New Requests... 
         }
 
-        public async Task<IActionResult> RequestsInfo()
+        public async Task<IActionResult> RequestsInfo(ServiceRequestAssignmentModel serviceRequest)
         {
-            return View();
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(BaseUrl);
+            var ReqInformation = await client.PostAsJsonAsync("Api/Fms/BackOffice/GetRequestInfo", serviceRequest);
+            var ReqInforamationResponce = ReqInformation.Content.ReadAsAsync<SP_GetSpecificServiceRequestInfo_Result>().Result;
+
+            var WorkersListRequest = await client.PostAsJsonAsync("Api/Fms/BackOffice/GetWorkersList", serviceRequest);
+            var WorkersListResponse = WorkersListRequest.Content.ReadAsAsync<List<SP_GetWorkersOfSpecialization_Result>>().Result;
+
+            // New Model List , RequestInfo
+            MM_RequestInfo_Model PageModel = new MM_RequestInfo_Model();
+            PageModel.RequestInfo = ReqInforamationResponce;
+            PageModel.WorkersList = WorkersListResponse;
+            return View(PageModel);
+        }
+
+        public void ChangeRequestStatus(ServiceRequestAssignmentModel serviceRequest)
+        {
+            ViewBag.username = Request.Cookies["Username"];
+            //var OpenRequestsList = 
+            //return View();
+        }
+
+        private List<SelectListItem> GetEmployeeList(List<SP_GetWorkersOfSpecialization_Result> list)
+        {
+            List<SelectListItem> responceItems = new List<SelectListItem>();
+            foreach (var item in list)
+            {
+                responceItems.Add(new SelectListItem()
+                {
+                    Text = item.FirstName.ToString() + " " + item.LastName.ToString(),
+                    Value = item.EmployeeID.ToString()
+                });
+            }
+            return responceItems;
         }
 
 
-        }
+
+
+    }
 }

@@ -87,7 +87,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
         }
 
         [Route("Api/Fms/BackOffice/CancelRequest")]
-        [HttpPost]
+        [HttpGet]
         public IHttpActionResult BackOfficeCancelRequest(ServiceRequestAssignmentModel request)
         {
             Response.Result = BackOfficeOperationsObject.Cancel_ServiceRequest(request.RequestID);
@@ -105,6 +105,17 @@ namespace WebApplication.FMS.WebAPI.Controllers
             var response = BackOfficeOperationsObject.GetServiceRequestInfo(request.RequestID);
             return Ok(response);
         }
+
+        [Route("Api/Fms/BackOffice/GetWorkersList")]
+        [HttpPost]
+        public IHttpActionResult GetWorkersList(ServiceRequestAssignmentModel request)
+        {
+            // the username here will contain the Service Request Type 
+            var response = BackOfficeOperationsObject.GetWorkersListSpecializationBased(request.EmployeeUsername);
+            return Ok(response);
+        }
+
+
 
     }
 }
