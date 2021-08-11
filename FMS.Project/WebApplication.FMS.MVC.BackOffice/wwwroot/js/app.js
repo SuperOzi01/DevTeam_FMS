@@ -1,6 +1,6 @@
-$(function () {
-    $('#sidebarCollapse').on('click', function () {
-        $('#sidebar, #content').toggleClass('active');
+$(function() { 
+    $('#sidebarCollapse').on('click', function() {
+      $('#sidebar, #content').toggleClass('active');
     });
 });
 
@@ -12,7 +12,7 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    var dataTable = $('#newtable').DataTable({
+    var dataTable1 = $('#newtable').DataTable({
         "pageLength": 5,
         'aoColumnDefs': [{
             'bSortable': false,
@@ -30,7 +30,7 @@ $(document).ready(function () {
             null
 
         ],
-
+   
         "bLengthChange": false,
         "dom": '<"top">ct<"top"p><"clear">'
     });

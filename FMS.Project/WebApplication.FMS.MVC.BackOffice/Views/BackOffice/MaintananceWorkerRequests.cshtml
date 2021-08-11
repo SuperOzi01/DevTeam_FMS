@@ -1,0 +1,149 @@
+﻿@{
+    ViewData["Title"] = "Login BackOffice";
+}
+
+
+<!-- Toggle button -->
+<button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Maintenance requests</small></button>
+
+<!-- Demo content -->
+
+<!--Open Request-->
+<div class="content " style="margin-bottom: 30px;">
+    <div class="row">
+        <div class="col-md-12 main-datatable">
+            <div class="card_body">
+                <div class="row d-flex">
+                    <h5 class="opentext1">Opened Requests</h5>
+                    <div class="col-sm-8 add_flex">
+                        <div class="form-group searchInput">
+                            <label for="email">Search:</label>
+                            <input type="search" class=" form-control" id="filterbox" placeholder=" ">
+                        </div>
+                    </div>
+                </div>
+                <div class="overflow-x">
+                    <table style="width:100%;" id="Opentable" class="table cust-datatable dataTable no-footer ">
+                        <thead>
+                            <tr>
+                                <th style="min-width:50px;">
+                                    Service Request No.
+                                </th>
+                                <th style="min-width:150px;">
+                                    Building No.
+                                </th>
+                                <th style="min-width:150px;">
+                                    Specialization Type
+                                </th>
+                                <th style="min-width:100px;">
+                                    Assigned Worker
+                                </th>
+                                <th style="min-width:150px;">
+                                    Request Issue Date
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.ApprovedRequests)
+                            {
+
+                                <tr>
+                                    <td>
+                                    
+                                    </td>
+                                    <td>
+                                      
+                                    </td>
+                                    <td>
+                                        
+                                    </td>
+                                    <td>
+                                        
+                                    </td>
+                                    <td>
+                                       
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Open Request-->
+<!--Closed Request-->
+<div class="content " style="margin-bottom: 30px;">
+    <div class="row">
+        <div class="col-md-12 main-datatable">
+            <div class="card_body">
+                <div class="row d-flex">
+                    <h5 class="closetext1">Closed Requests</h5>
+                    <div class="col-sm-8 add_flex">
+                        <div class="form-group searchInput">
+                            <label for="email">Search:</label>
+                            <input type="search" class=" form-control" id="filterbox" placeholder=" ">
+                        </div>
+                    </div>
+                </div>
+                <div class="overflow-x">
+                    <table style="width:100%;" id="Closedtable" class="table cust-datatable dataTable no-footer">
+                        <thead>
+                            <tr>
+                                <th style="min-width:50px;">
+                                    Service Request No.
+                                </th>
+                                <th style="min-width:150px;">
+                                    Building No.
+                                </th>
+                                <th style="min-width:150px;">
+                                    Specialization Type
+                                </th>
+                                <th style="min-width:100px;">
+                                    Assigned Worker
+                                </th>
+                                <th style="min-width:150px;">
+                                    Request Issue Date
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.ClosedRequests)
+                            {
+                                <tr>
+                                    <td>
+                                       
+                                    </td>
+                                    <td>
+                                        
+                                    </td>
+                                    <td>
+                                        
+                                    </td>
+                                    <td>
+                                        
+                                    </td>
+                                    <td>
+                                       
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Closed Request-->
+
+<!-- End demo content -->
+
+<link href="~/js/DataTables/datatables.min.css" rel="stylesheet" />
+<link href="~/js/DataTables/DataTables-1.10.25/css/jquery.dataTables.min.css" rel="stylesheet" />
+@section scripts{
+    <script src="~/js/DataTables/datatables.min.js"></script>
+    <script src="~/js/DataTables/DataTables-1.10.25/js/jquery.dataTables.min.js"></script>
+
+}

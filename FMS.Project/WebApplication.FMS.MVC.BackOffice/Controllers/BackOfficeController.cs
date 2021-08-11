@@ -146,8 +146,56 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
             return responceItems;
         }
 
+        // worker Dashboard 
+        public async Task<IActionResult> MaintananceWorkerDashboard()
+        {
+            return View();
+        }
+
+        //worker Maintanance Requests
+        public async Task<IActionResult> MaintananceWorkerRequests()
+        {
+            return View();
+        }
+        //worker Maintanance Requests Information
+        public async Task<IActionResult> WorkerRequestsInfo()
+        {
+            return View();
+        }
 
 
+        // Building manager Dashboard
+        public async Task<IActionResult> BuildingManagerDashboard()
+        {
+            return View();
+        }
 
+        // Building manager Requests
+        public async Task<IActionResult> BuildingManagerMaintananceRequests()
+        {
+            return View();
+        }
+        // Building manager Requests Information
+        public async Task<IActionResult>  BuildingManagerRequestsInfo()
+        {
+            return View();
+        }
+
+        // Beneficiaries Dashboard
+        public async Task<IActionResult> BeneficiariesDashboard()
+        {
+            return View();
+        }
+
+        // Beneficiaries Requests
+        public async Task<IActionResult> BeneficiariesMaintananceRequests()
+        {
+            return View();
+        }
+        // Beneficiaries New Requests 
+        public async Task<IActionResult> CreateNewRequests()
+        {
+            return View();
+        }
     }
 }

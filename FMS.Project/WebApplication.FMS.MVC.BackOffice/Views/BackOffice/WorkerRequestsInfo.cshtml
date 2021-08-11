@@ -1,0 +1,74 @@
+﻿@{
+    ViewData["Title"] = "Login BackOffice";
+    List<SelectListItem> workersList = new List<SelectListItem>();
+    foreach (var item in Model.WorkersList)
+    {
+        workersList.Add(new SelectListItem { Text = item.FirstName + " " + item.LastName, Value = item.EmployeeID.ToString() });
+    }
+}
+
+<!-- Toggle button -->
+<button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Maintenance requests</small></button>
+
+<!-- Demo content -->
+<div class="jumbotron jumbotron-fluid " style="border-radius: 25px; background:white;">
+    <div class="container">
+        <h5 class="reqestNotext">Request NO. </h5>
+        <!-- Start Table info -->
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Request Creator</th>
+                        <th scope="col">Request Issue Date</th>
+                        <th scope="col">Building No.</th>
+                        <th scope="col"> Service Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <td></td>
+                        <td>@Model.RequestInfo.BuildingID</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--  End Table info -->
+        <!-- Start Brife Description -->
+        <p class=" colorB">Brife Description </p>
+        <p>
+     
+        </p>
+        <!-- End Brife Description -->
+        <!-- Select Worker -->
+        <div class="form-group mlr">
+           
+        </div>
+        <!-- End Select Worker -->
+        <!-- Start button -->
+        <div class=" text-center">
+            <button type="submit" class="btnSignInCard " data-toggle="modal" data-target="#loginModalReject" >Close</button>
+        </div>
+        <!-- End button -->
+    </div>
+</div>
+<!-- End Demo content -->
+
+<!--  demo PopUp Reject -->
+<div class="modal fade pt-60" role="dialog" id="loginModalReject">
+    <div class="modal-dialog">
+        <div class="modal-content W-300">
+            <div class="modal-body  text-center">
+                <img class="imgcheck" src="check_icon.png">
+                <h3 class="modal-title mbtc">Thank you</h3>
+                <p class="p-pup">
+                    The request has been closed successfully
+                </p>
+                <button class="gotit-btn">GOT IT</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--  End PopUp Reject -->
