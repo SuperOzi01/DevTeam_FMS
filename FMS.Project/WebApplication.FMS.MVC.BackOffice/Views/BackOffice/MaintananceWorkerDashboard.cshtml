@@ -1,5 +1,4 @@
-﻿@model IEnumerable<ClassLibrary.FMS.DataModels.SP_GetMMOpenRequests_Result>
-@{
+﻿@{
     ViewData["Title"] = "Login BackOffice";
 }
 
@@ -12,7 +11,7 @@
 <div class="jumbotron  jumbotron-fluid " style="border-radius: 25px; background:white;">
     <div class="container">
 
-        <h1 class="helloWorker">Hello @ViewBag.username !</h1>
+        <h1 class="helloWorker">Hello Worker !</h1>
         <p>We wish you a happy working day ! </p>
     </div>
 </div>
@@ -31,7 +30,7 @@
                         <div class="col-7 col-md-8">
                             <div class="numbers">
                                 <p class="newtext1 card-category">New Requests</p>
-                                <p class="card-title">@ViewBag.NoNewRequests<p>
+                                <p class="card-title"><p>
                             </div>
                         </div>
                     </div>
@@ -51,7 +50,7 @@
                         <div class="col-7 col-md-8">
                             <div class="numbers">
                                 <p class="opentext card-category">Opened Requests</p>
-                                <p class="card-title">@ViewBag.NoOpenedRequests<p>
+                                <p class="card-title"><p>
                             </div>
                         </div>
                     </div>
@@ -73,7 +72,7 @@
 
                             <div class="numbers">
                                 <p class="closetext card-category">Closed Requests</p>
-                                <p class="card-title">@ViewBag.NoClosedRequests<p>
+                                <p class="card-title"><p>
                             </div>
                         </div>
                     </div>
@@ -94,7 +93,7 @@
 
                             <div class="numbers">
                                 <p class="canseltext card-category">Canceled Requests</p>
-                                <p class="card-title">@ViewBag.NoCanceledRequests<p>
+                                <p class="card-title"><p>
                             </div>
                         </div>
                     </div>
@@ -106,14 +105,13 @@
 </div>
 
 <!-- End Box info -->
-
-<!--Start New Request-->
-<div class="content "style=" margin-bottom: 20px;">
+<!--Start open Request-->
+<div class="content " style=" margin-bottom: 20px;">
     <div class="row">
         <div class="col-md-12 main-datatable">
             <div class="card_body">
                 <div class="row d-flex">
-                    <h5 class="newtext">New Request</h5>
+                    <h5 class="opentext1">Opened Request</h5>
                     <div class="col-sm-8 add_flex">
                         <div class="form-group searchInput">
                             <label for="email">Search:</label>
@@ -122,25 +120,24 @@
                     </div>
                 </div>
                 <div class="overflow-x">
-                    <table style="width:100%;" id="Newtable" class="table cust-datatable dataTable no-footer">
+                    <table style="width:100%;" id="Opentable" class="table cust-datatable dataTable no-footer">
                         <thead>
                             <tr>
                                 <th style="min-width:50px;">
-                                    @Html.DisplayNameFor(model => model.ServiceRequestID)
+                                    Service Request No.
                                 </th>
                                 <th style="min-width:150px;">
-                                    @Html.DisplayNameFor(model => model.BuildingID)
+                                    Building No.
                                 </th>
                                 <th style="min-width:150px;">
-                                    @Html.DisplayNameFor(model => model.Specialization_Type)
+                                    Specialization Type
                                 </th>
                                 <th style="min-width:100px;">
-                                    @Html.DisplayNameFor(model => model.Assigned_Worker)
+                                    Assigned Worker
                                 </th>
                                 <th style="min-width:150px;">
-                                    @Html.DisplayNameFor(model => model.RequestIssueDate)
+                                    Request Issue Date
                                 </th>
-
                             </tr>
                         </thead>
                         <tbody>
@@ -148,19 +145,19 @@
                             {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.ServiceRequestID)
+                                       
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.BuildingID)
+                                       
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Specialization_Type)
+                                       
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Assigned_Worker)
+                                        
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.RequestIssueDate)
+                                      
                                     </td>
                                 </tr>
                             }
@@ -171,15 +168,10 @@
         </div>
     </div>
 </div>
-<!--End New Request-->
+<!--End open Request-->
 <link href="~/js/DataTables/datatables.min.css" rel="stylesheet" />
 <link href="~/js/DataTables/DataTables-1.10.25/css/jquery.dataTables.min.css" rel="stylesheet" />
 @section scripts{
     <script src="~/js/DataTables/datatables.min.js"></script>
     <script src="~/js/DataTables/DataTables-1.10.25/js/jquery.dataTables.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#myTable').DataTable();
-        });
-    </script>
-}
+    }

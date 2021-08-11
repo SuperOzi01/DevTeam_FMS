@@ -402,3 +402,9 @@ C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.B
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\bin\Debug\netcoreapp3.1\System.Web.WebPages.Razor.dll
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\bin\Debug\netcoreapp3.1\System.Web.WebPages.dll
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\bin\Debug\netcoreapp3.1\Microsoft.Web.Infrastructure.dll
+C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\Razor\Views\BackOffice\BuildingManagerDashboard.cshtml.g.cs
+C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\Razor\Views\BackOffice\BuildingManagerMaintananceRequests.cshtml.g.cs
+C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\Razor\Views\BackOffice\BuildingManagerRequestsInfo.cshtml.g.cs
+C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\Razor\Views\BackOffice\MaintananceWorkerDashboard.cshtml.g.cs
+C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\Razor\Views\BackOffice\MaintananceWorkerRequests.cshtml.g.cs
+C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\Razor\Views\BackOffice\WorkerRequestsInfo.cshtml.g.cs
