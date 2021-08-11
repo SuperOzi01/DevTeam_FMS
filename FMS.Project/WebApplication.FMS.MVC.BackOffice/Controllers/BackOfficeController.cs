@@ -96,11 +96,40 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
             return View(PageModel);
         }
 
-        public void ChangeRequestStatus(ServiceRequestAssignmentModel serviceRequest)
+        [HttpPost]
+        public async Task<IActionResult> AcceptRequest(ServiceRequestAssignmentModel serviceRequest)
         {
-            ViewBag.username = Request.Cookies["Username"];
-            //var OpenRequestsList = 
-            //return View();
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(BaseUrl);
+            var httpRequest = await client.PostAsJsonAsync("Api/Fms/BackOffice/AcceptServiceRequest", serviceRequest);
+            var httpResponce = httpRequest.Content.ReadAsAsync<ResponseAPI>().Result;
+            if (httpResponce.Result)
+            {
+                if (serviceRequest.MaintenanceWorkerID == 0) // this request made by BM
+                    return RedirectToAction("MaintananceManagerRequests");
+                else
+                    return RedirectToAction("");
+            }
+            return Content("This Request Fails");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CancelRequestAsync(ServiceRequestAssignmentModel serviceRequest)
+        {
+            //Api/Fms/BackOffice/CancelRequest
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(BaseUrl);
+            var httpRequest = await client.PostAsJsonAsync("Api/Fms/BackOffice/CancelRequest", serviceRequest);
+            var httpResponce = httpRequest.Content.ReadAsAsync<ResponseAPI>().Result;
+            
+            if(httpResponce.Result)
+            {
+                if (serviceRequest.EmployeeUsername == string.Empty)
+                    return RedirectToAction(); // From The View Dont Add Username to the serviceRequest Object to know that this request is made by BM
+                else
+                    return RedirectToAction("MaintananceManagerRequests");
+            }
+            return Content("This Request Fails");
         }
 
         private List<SelectListItem> GetEmployeeList(List<SP_GetWorkersOfSpecialization_Result> list)

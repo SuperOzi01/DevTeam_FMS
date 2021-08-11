@@ -103,6 +103,11 @@
     <Build Include="StoredProcedures\SP_BMOpenRequests.sql" />
     <Build Include="StoredProcedures\SP_BMClosedRequests.sql" />
     <Build Include="StoredProcedures\SP_BMCanceledRequests.sql" />
+    <Build Include="StoredProcedures\SP_TestDB.sql" />
+    <Build Include="StoredProcedures\SP_GetBMOpenedRequests.sql" />
+    <Build Include="StoredProcedures\SP_GetBeneficiaryOpenRequests.sql" />
+    <Build Include="StoredProcedures\SP_GetBeneficiaryCloseedRequest.sql" />
+    <Build Include="StoredProcedures\SP_GetBeneficiaryCanceledRequests.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SSDP.FMS.Database.refactorlog" />

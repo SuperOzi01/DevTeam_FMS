@@ -1,0 +1,19 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Create
+       [dbo].[SP_GetBeneficiaryCanceledRequests] (Procedure)
+       [dbo].[SP_GetBeneficiaryCloseedRequest] (Procedure)
+       [dbo].[SP_GetBeneficiaryOpenRequests] (Procedure)
+       [dbo].[SP_GetBMOpenedRequests] (Procedure)
+       [dbo].[SP_TestDB] (Procedure)
+
+** Supporting actions

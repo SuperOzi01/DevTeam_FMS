@@ -2826,6 +2826,228 @@
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_GetAllSpecializations]&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[SP_GetBeneficiaryCanceledRequests]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	Select * FROM RequestView
+	WHERE RequestView.RequiestStatus = (select dbo.RequestStatus.RequestStatusID
+										from dbo.RequestStatus Where dbo.RequestStatus.StatusName like '%Cancel%') 
+	AND RequestView.Request_Creator = @username]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[RequestView]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[RequestView].[RequiestStatus]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[RequestStatus]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[RequestStatus].[RequestStatusID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[RequestStatus].[StatusName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[RequestView].[Request_Creator]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SP_GetBeneficiaryCanceledRequests].[@username]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_GetBeneficiaryCanceledRequests].[@username]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="40" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="327" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_GetBeneficiaryCanceledRequests]&#xD;&#xA;&#x9;&#x9;@username varchar(40)&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[SP_GetBeneficiaryCloseedRequest]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	Select * FROM RequestView
+	WHERE RequestView.RequiestStatus = (select dbo.RequestStatus.RequestStatusID
+										from dbo.RequestStatus Where dbo.RequestStatus.StatusName like '%Close%') 
+	AND RequestView.Request_Creator = @username]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[RequestView]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[RequestView].[RequiestStatus]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[RequestStatus]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[RequestStatus].[RequestStatusID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[RequestStatus].[StatusName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[RequestView].[Request_Creator]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SP_GetBeneficiaryCloseedRequest].[@username]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_GetBeneficiaryCloseedRequest].[@username]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="40" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="324" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_GetBeneficiaryCloseedRequest]&#xD;&#xA;&#x9;&#x9;@username varchar(40)&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[SP_GetBeneficiaryOpenRequests]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	Select * FROM RequestView
+	WHERE RequestView.RequiestStatus = (select dbo.RequestStatus.RequestStatusID
+										from dbo.RequestStatus Where dbo.RequestStatus.StatusName like '%Open%') 
+	AND RequestView.Request_Creator = @username]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[RequestView]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[RequestView].[RequiestStatus]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[RequestStatus]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[RequestStatus].[RequestStatusID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[RequestStatus].[StatusName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[RequestView].[Request_Creator]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SP_GetBeneficiaryOpenRequests].[@username]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_GetBeneficiaryOpenRequests].[@username]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="40" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="320" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_GetBeneficiaryOpenRequests]&#xD;&#xA;&#x9;@username varchar(40)&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[SP_GetBMOpenedRequests]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	Select * FROM RequestView
+	WHERE RequestView.RequiestStatus = (select dbo.RequestStatus.RequestStatusID from dbo.RequestStatus Where dbo.RequestStatus.StatusName like '%Open%')]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[RequestView]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[RequestView].[RequiestStatus]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[RequestStatus]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[RequestStatus].[RequestStatusID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[RequestStatus].[StatusName]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="232" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_GetBMOpenedRequests]&#xD;&#xA;&#x9;AS" />
+			</Annotation>
+		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[SP_GetMMApprovedRequests]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[
@@ -3889,6 +4111,24 @@
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_InsertNewServiceRequiest]&#xD;&#xA;&#x9;@BuildinNo INT,&#xD;&#xA;&#x9;@Specialization INT,&#xD;&#xA;&#x9;@Describtion varchar(100),&#xD;&#xA;&#x9;@CreatorID INT&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[SP_TestDB]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	Select 1;]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="50" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_TestDB]&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[Specialization]">

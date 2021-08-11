@@ -399,5 +399,42 @@ namespace ClassLibrary.FMS.DataModels
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetWorkerClosedRequests_Result>("SP_GetWorkerClosedRequests", usernameParameter);
         }
+    
+        public virtual ObjectResult<SP_GetBeneficiaryCanceledRequests_Result> SP_GetBeneficiaryCanceledRequests(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetBeneficiaryCanceledRequests_Result>("SP_GetBeneficiaryCanceledRequests", usernameParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetBeneficiaryCloseedRequest_Result> SP_GetBeneficiaryCloseedRequest(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetBeneficiaryCloseedRequest_Result>("SP_GetBeneficiaryCloseedRequest", usernameParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetBeneficiaryOpenRequests_Result> SP_GetBeneficiaryOpenRequests(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetBeneficiaryOpenRequests_Result>("SP_GetBeneficiaryOpenRequests", usernameParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetBMOpenedRequests_Result> SP_GetBMOpenedRequests()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetBMOpenedRequests_Result>("SP_GetBMOpenedRequests");
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_TestDB()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_TestDB");
+        }
     }
 }

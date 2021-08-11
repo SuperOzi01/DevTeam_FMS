@@ -23,6 +23,8 @@ namespace WebApplication.FMS.WebAPI.Controllers
         ResponseAPI Response = new ResponseAPI();
         private LoginOperations loginOperationsObject = new LoginOperations();
 
+        public FMSController() { }
+
         [Route("Api/Fms/ping")] 
         [HttpGet]
         [ExceptionFilter]

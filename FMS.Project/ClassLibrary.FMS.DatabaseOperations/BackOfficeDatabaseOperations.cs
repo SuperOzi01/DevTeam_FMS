@@ -1,4 +1,5 @@
 ﻿using ClassLibrary.FMS.DataModels;
+using ClassLibrary.FMS.DataModels.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,21 +11,24 @@ namespace ClassLibrary.FMS.DatabaseOperations
     public class BackOfficeDatabaseOperations
     {
         FMS_DatabaseEntities DatabaseEntity = new FMS_DatabaseEntities();
-        public bool BackOfficeChangeRequestStatus(string EmployeeUserName, int RequestID)
+        public bool AcceptRequestAndAssignWorker(ServiceRequestAssignmentModel serviceRequestAssignment)
         {
-            var result = DatabaseEntity.SP_ChangeServiceRequestStatus(EmployeeUserName, RequestID);
-            if (result.FirstOrDefault() == 1)
-                return true;
+            var result = DatabaseEntity.SP_ChangeServiceRequestStatus(serviceRequestAssignment.EmployeeUsername, serviceRequestAssignment.RequestID).FirstOrDefault();
+            if (result == 1)
+            {
+                if(serviceRequestAssignment.MaintenanceWorkerID == 0)
+                {
+                    return true;
+                }
+                    result = DatabaseEntity.SP_AssignWorkerToRequest(serviceRequestAssignment.MaintenanceWorkerID, serviceRequestAssignment.RequestID);
+                if (result == 1)
+                    return true;
+                return false;
+            }
+            
             return false;
         }
 
-        public bool BackOfficeAssignWorkerToRequest(int WorkerID, int RequestID)
-        {
-            int result = DatabaseEntity.SP_AssignWorkerToRequest(WorkerID, RequestID);
-            if (result == 1)
-                return true;
-            return false;
-        }
 
         public List<SP_GetMMOpenRequests_Result> BackOfficeGetMaintananceManagerOpenRequests()
         {
@@ -39,12 +43,6 @@ namespace ClassLibrary.FMS.DatabaseOperations
             return BuildingManagerRequestsList;
         }
 
-        public List<ServiceRequest> BackOfficeGetWorkerOpenRequests(string workerUsername)
-        {
-            int workerID = DatabaseEntity.CompanyEmployees.Where(x => x.Username == workerUsername).Select(a => a.EmployeeID).FirstOrDefault();
-            List<ServiceRequest> WorkerRequestsList = (List<ServiceRequest>)DatabaseEntity.ServiceRequests.Where(x => x.AssignedWorkerID == workerID && x.RequiestStatus == 3).Select(a => a).ToList();
-            return WorkerRequestsList;
-        }
 
         public List<SP_GetMMClosedRequests_Result> BackOfficeGetMaintananceManagerCloseRequests()
         {
@@ -83,5 +81,9 @@ namespace ClassLibrary.FMS.DatabaseOperations
             return DatabaseEntity.SP_GetWorkerOpenRequests(Username).ToList();
         }
 
+        public List<SP_GetWorkerClosedRequests_Result> GetWorkerClosedRequests(string username)
+        {
+            return DatabaseEntity.SP_GetWorkerClosedRequests(username).ToList();
+        }
     }
 }

@@ -4,7 +4,6 @@ C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.Databas
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\bin\Release\ClassLibrary.FMS.DataModels.dll
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\bin\Release\ClassLibrary.FMS.DataModels.pdb
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\bin\Release\ClassLibrary.FMS.DataModels.dll.config
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\bin\Release\EntityFramework.xml
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Release\ClassLibrary.FMS.DatabaseOperations.csproj.AssemblyReference.cache
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Release\ClassLibrary.FMS.DatabaseOperations.csproj.CoreCompileInputs.cache
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DatabaseOperations\obj\Release\ClassLibrary.FMS.DatabaseOperations.csproj.CopyComplete

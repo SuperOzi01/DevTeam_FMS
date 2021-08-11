@@ -89,18 +89,44 @@ body {
 
 .closetext {
     font-weight: bold;
-    font-size: 18px;
+    font-size: 17px;
     color: black;
+}
+
+.closetext1 {
+    font-weight: bold;
+    font-size: 16px;
+    color: black;
+    margin-left: 45px;
+    margin-top: 10px;
 }
 
 .canseltext {
     color: #C43264;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.canseltext1 {
+    color: #C43264;
+    font-weight: bold;
+    font-size: 16px;
+    margin-left: 45px;
+    margin-top: 10px;
 }
 
 .opentext {
     color: #94C11F;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 16px;
+}
+
+.opentext1 {
+    color: #94C11F;
+    font-weight: bold;
+    font-size: 16px;
+    margin-left: 45px;
+    margin-top: 10px;
 }
 
 .newtext1 {
@@ -112,9 +138,13 @@ body {
 .newtext {
     color: #922b6b;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 16px;
     margin-left: 45px;
     margin-top: 10px;
+}
+
+.card-title {
+    font-weight: bold;
 }
 
 

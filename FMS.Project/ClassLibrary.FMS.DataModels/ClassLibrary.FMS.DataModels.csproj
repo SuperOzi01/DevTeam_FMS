@@ -160,6 +160,18 @@
     <Compile Include="SP_GetAllSpecializations_Result.cs">
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_GetBeneficiaryCanceledRequests_Result.cs">
+      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GetBeneficiaryCloseedRequest_Result.cs">
+      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GetBeneficiaryOpenRequests_Result.cs">
+      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GetBMOpenedRequests_Result.cs">
+      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_GetMMApprovedRequests_Result.cs">
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>

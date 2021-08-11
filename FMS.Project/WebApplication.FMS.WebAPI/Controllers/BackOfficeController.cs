@@ -24,31 +24,20 @@ namespace WebApplication.FMS.WebAPI.Controllers
         BackOfficeDatabaseOperations BackOfficeOperationsObject = new BackOfficeDatabaseOperations();
 
 
-        [Route("Api/Fms/BackOffice/ChangeServiceRequestStatus")]
+        [Route("Api/Fms/BackOffice/AcceptServiceRequest")]
         [HttpPost]
         public IHttpActionResult BackOfficeChangeServiceRequestStatus(ServiceRequestAssignmentModel serviceModel)
         {
-            Response.Result = BackOfficeOperationsObject.BackOfficeChangeRequestStatus(serviceModel.EmployeeUsername, serviceModel.RequestID);
-
+            Response.Result = BackOfficeOperationsObject.AcceptRequestAndAssignWorker(serviceModel);
             if (Response.Result)
+            {
                 Response.Message = "Request Status Changed";
+            }
             else
                 Response.Message = "Request Status Not Changed";
             return Ok(Response);
         }
 
-        [Route("Api/Fms/BackOffice/AssignWorkerToRequest")]
-        [HttpPost]
-        public IHttpActionResult BackOfficeAssignWorkerToRequest(ServiceRequestAssignmentModel serviceModel)
-        {
-            Response.Result = BackOfficeOperationsObject.BackOfficeAssignWorkerToRequest(serviceModel.MaintenanceWorkerID, serviceModel.RequestID);
-
-            if (Response.Result)
-                Response.Message = "Worker Been Assigned";
-            else
-                Response.Message = "Worker Not Assigned";
-            return Ok(Response);
-        }
 
         [Route("Api/Fms/BackOffice/MMOpenRequests")]
         [HttpGet]
@@ -87,7 +76,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
         }
 
         [Route("Api/Fms/BackOffice/CancelRequest")]
-        [HttpGet]
+        [HttpPost]
         public IHttpActionResult BackOfficeCancelRequest(ServiceRequestAssignmentModel request)
         {
             Response.Result = BackOfficeOperationsObject.Cancel_ServiceRequest(request.RequestID);
@@ -114,6 +103,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
             var response = BackOfficeOperationsObject.GetWorkersListSpecializationBased(request.EmployeeUsername);
             return Ok(response);
         }
+
 
 
 
