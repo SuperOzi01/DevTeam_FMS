@@ -4,7 +4,6 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
 }
-
 .vertical-nav {
     min-width: 17rem;
     width: 17rem;
@@ -15,14 +14,11 @@ body {
     box-shadow: 3px 3px 10px rgb(0 0 0 / 10%);
     transition: all 0.4s;
 }
-
 .page-content {
     width: calc(100% - 17rem);
     margin-left: 17rem;
     transition: all 0.4s;
 }
-
-
 #sidebar.active {
     margin-left: -22rem;
 }
@@ -160,10 +156,7 @@ body {
 
 
 
-.fa-edit {
-    color: #C43264;
-    font-size: 16px;
-}
+
 .p-30 {
     padding: 30px;
 }
@@ -591,4 +584,7 @@ body {
             margin-left: 17rem;
             width: calc(100% - 17rem);
         }
+}
+.modal {
+    left: 130px;
 }
