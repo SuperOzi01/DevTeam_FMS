@@ -113,8 +113,8 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CancelRequestAsync(ServiceRequestAssignmentModel serviceRequest)
-        {
+        public async Task<IActionResult> CancelRequest(ServiceRequestAssignmentModel serviceRequest)
+        { 
             //Api/Fms/BackOffice/CancelRequest
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(BaseUrl);
@@ -252,7 +252,7 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                 var ApprovedListResponce = ApprovedListRequest.Content.ReadAsAsync<List<SP_GetBM_MM_ApprovedRequesets_Result>>().Result;
 
                 var CanceledListRequest = await client.PostAsJsonAsync("Api/Fms/BackOffice/BuildingManagerCanceledServiceRequests", request);
-                var CanceledListResponce = CanceledListRequest.Content.ReadAsAsync<List<SP_GetBMCanceledRequests_Result>>().Result;
+                var CanceledListResponce = CanceledListRequest.Content.ReadAsAsync<List<SP_BMCanceledRequests_Result>>().Result;
 
                 ViewBag.NoNewRequests = OpenRListResponce.Count;
                 ViewBag.NoOpenedRequests = ApprovedListResponce.Count;

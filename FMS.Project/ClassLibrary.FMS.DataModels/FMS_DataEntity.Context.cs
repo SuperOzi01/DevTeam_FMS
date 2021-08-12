@@ -364,13 +364,13 @@ namespace ClassLibrary.FMS.DataModels
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetWorkerOpenRequests_Result>("SP_GetWorkerOpenRequests", usernameParameter);
         }
     
-        public virtual ObjectResult<SP_BMCanceledRequests_Result> SP_BMCanceledRequests(Nullable<int> buildingID)
+        public virtual ObjectResult<SP_GetBMCanceledRequests_Result> SP_BMCanceledRequests(Nullable<int> buildingID)
         {
             var buildingIDParameter = buildingID.HasValue ?
                 new ObjectParameter("BuildingID", buildingID) :
                 new ObjectParameter("BuildingID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_BMCanceledRequests_Result>("SP_BMCanceledRequests", buildingIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetBMCanceledRequests_Result>("SP_GetBMCanceledRequests", buildingIDParameter);
         }
     
         public virtual ObjectResult<SP_BMClosedRequests_Result> SP_BMClosedRequests(Nullable<int> buildingID)
