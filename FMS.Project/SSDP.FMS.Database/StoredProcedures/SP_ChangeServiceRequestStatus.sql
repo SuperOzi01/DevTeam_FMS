@@ -1,12 +1,12 @@
 ﻿CREATE PROCEDURE [dbo].[SP_ChangeServiceRequestStatus]
-	@Username varchar(40),
+	@WorkerID INT,
 	@RequestID INT
 AS
 	DECLARE @Role AS Varchar(40)
 
 
 	SELECT @Role = dbo.Role.RoleName FROM dbo.Role 
-	Where dbo.Role.RoleID = (SELECT dbo.CompanyEmployee.Role_idRole FROM dbo.CompanyEmployee WHERE dbo.CompanyEmployee.Username = @Username)
+	Where dbo.Role.RoleID = (SELECT dbo.CompanyEmployee.Role_idRole FROM dbo.CompanyEmployee WHERE dbo.CompanyEmployee.EmployeeID = @WorkerID)
 
 	IF (@Role like 'Maintenance Manager')
 		BEGIN

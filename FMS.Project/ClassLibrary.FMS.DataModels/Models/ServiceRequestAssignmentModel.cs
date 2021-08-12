@@ -11,5 +11,6 @@ namespace ClassLibrary.FMS.DataModels.Models
         public string EmployeeUsername { get; set; }
         public int MaintenanceWorkerID { get; set; }
         public int RequestID { get; set; }
+        public int BuildingID { get; set; }
     }
 }

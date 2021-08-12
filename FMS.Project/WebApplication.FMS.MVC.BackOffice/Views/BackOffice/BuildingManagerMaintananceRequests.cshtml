@@ -1,4 +1,6 @@
-﻿@{
+﻿@using ClassLibrary.FMS.DataModels.Models
+@model MaintenanceManagerModel
+@{
     ViewData["Title"] = "Login BackOffice";
 }
 
@@ -52,22 +54,22 @@
 
                                 <tr>
                                     <td>
-                                       
+                                        @Html.DisplayFor(modelItem => item.ServiceRequestID)
                                     </td>
                                     <td>
-                                        
+                                        @Html.DisplayFor(modelItem => item.BuildingID)
                                     </td>
                                     <td>
-                                     
+                                        @Html.DisplayFor(modelItem => item.Specialization_Type)
                                     </td>
                                     <td>
-                                        
+                                        @Html.DisplayFor(modelItem => item.Assigned_Worker)
                                     </td>
                                     <td>
-                                        
+                                        @Html.DisplayFor(modelItem => item.RequestIssueDate)
                                     </td>
                                     <td>
-                                        @Html.ActionLink("", "RequestsInfo", "BackOffice", new ServiceRequestAssignmentModel { RequestID = item.ServiceRequestID, EmployeeUsername = item.Specialization_Type }, new { @class = "fa-edit fa fa-edit" })
+                                        @Html.ActionLink("", "BuildingManagerRequestsInfo", "BackOffice", new ServiceRequestAssignmentModel { RequestID = item.ServiceRequestID, EmployeeUsername = item.Specialization_Type }, new { @class = "fa-edit fa fa-edit" })
                                     </td>
                                 </tr>
                             }
@@ -121,19 +123,19 @@
 
                                 <tr>
                                     <td>
-                                       
+                                        @Html.DisplayFor(modelItem => item.ServiceRequestID)
                                     </td>
                                     <td>
-                                       
+                                        @Html.DisplayFor(modelItem => item.BuildingID)
                                     </td>
                                     <td>
-                                       
+                                        @Html.DisplayFor(modelItem => item.Specialization_Type)
                                     </td>
                                     <td>
-                                       
+                                        @Html.DisplayFor(modelItem => item.Assigned_Worker)
                                     </td>
                                     <td>
-                                       
+                                        @Html.DisplayFor(modelItem => item.RequestIssueDate)
                                     </td>
                                 </tr>
                             }
@@ -185,19 +187,19 @@
                             {
                                 <tr>
                                     <td>
-                                       
+                                        @Html.DisplayFor(modelItem => item.ServiceRequestID)
                                     </td>
                                     <td>
-                                    
+                                        @Html.DisplayFor(modelItem => item.BuildingID)
                                     </td>
                                     <td>
-                                       
+                                        @Html.DisplayFor(modelItem => item.Specialization_Type)
                                     </td>
                                     <td>
-                                     
+                                        @Html.DisplayFor(modelItem => item.Assigned_Worker)
                                     </td>
                                     <td>
-                                       
+                                        @Html.DisplayFor(modelItem => item.RequestIssueDate)
                                     </td>
                                 </tr>
                             }
@@ -249,19 +251,19 @@
                             {
                                 <tr>
                                     <td>
-                                       
+                                        @Html.DisplayFor(modelItem => item.ServiceRequestID)
                                     </td>
                                     <td>
-                                        
+                                        @Html.DisplayFor(modelItem => item.BuildingID)
                                     </td>
                                     <td>
-                                     
+                                        @Html.DisplayFor(modelItem => item.Specialization_Type)
                                     </td>
                                     <td>
-                                        
+                                        @Html.DisplayFor(modelItem => item.Assigned_Worker)
                                     </td>
                                     <td>
-                                     
+                                        @Html.DisplayFor(modelItem => item.RequestIssueDate)
                                     </td>
                                 </tr>
                             }
