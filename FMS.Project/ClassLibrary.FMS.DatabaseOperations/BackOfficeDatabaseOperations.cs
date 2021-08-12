@@ -52,9 +52,9 @@ namespace ClassLibrary.FMS.DatabaseOperations
             return DatabaseEntity.SP_GetBMClosedRequests(BuildingID).ToList();
         }
 
-        public List<SP_BMCanceledRequests_Result> BuildingManagerCanceledRequests(int BuildingID)
+        public List<SP_GetBMCanceledRequests_Result> BuildingManagerCanceledRequests(int BuildingID)
         {
-            return DatabaseEntity.SP_BMCanceledRequests(BuildingID).ToList();
+            return DatabaseEntity.SP_GetBMCanceledRequests(BuildingID).ToList();
         }
 
         public List<SP_GetBM_MM_ApprovedRequesets_Result> BuildingManagerApprovedByMM_Requests(int BuildingID)

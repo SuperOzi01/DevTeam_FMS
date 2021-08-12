@@ -1,0 +1,26 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Alter
+       [dbo].[SP_ChangeServiceRequestStatus] (Procedure)
+     Create
+       [dbo].[SP_GetBeneficiaryCanceledRequests] (Procedure)
+       [dbo].[SP_GetBeneficiaryCloseedRequest] (Procedure)
+       [dbo].[SP_GetBeneficiaryOpenRequests] (Procedure)
+       [dbo].[SP_GetBM_MM_ApprovedRequesets] (Procedure)
+       [dbo].[SP_GetBMCanceledRequests] (Procedure)
+       [dbo].[SP_GetBMClosedRequests] (Procedure)
+       [dbo].[SP_GetBMOpenedRequests] (Procedure)
+       [dbo].[SP_GetWorkerClosedRequests] (Procedure)
+       [dbo].[SP_GetWorkerOpenRequests] (Procedure)
+       [dbo].[SP_TestDB] (Procedure)
+
+** Supporting actions
