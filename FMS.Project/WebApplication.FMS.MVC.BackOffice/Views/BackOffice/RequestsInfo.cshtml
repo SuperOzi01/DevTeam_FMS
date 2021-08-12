@@ -63,7 +63,7 @@
             <!-- End button -->
         }
 
-        @using (Html.BeginForm("CancelRequestAsync", "BackOffice", FormMethod.Post))
+        @using (Html.BeginForm("CancelRequest", "BackOffice", FormMethod.Post))
         {
             @Html.HiddenFor(x => x.RequestID, requestID);
             <button type="submit" class="btnSignInCard " data-toggle="modal" data-target="#loginModalAccept" value="Accept">Reject</button>
