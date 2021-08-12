@@ -1,0 +1,223 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    height:100%;
+}
+body {
+    width: 100%;
+    height: 100%;
+    padding-top: 10px;
+    background-color: #F5F8F9;
+}
+.CardRight {
+    position: relative;
+    background-image: linear-gradient(#652572,#922B6B,#C43264);
+    border-radius: 25px;
+    height: 100%;
+    width: 100%;
+    padding: 25px;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardLeft {
+    position: relative;
+    background: #fff;
+    border-radius: 25px;
+    height: 100%;
+    padding: 25px;
+    padding: 50px;
+    padding-bottom: 90px;
+}
+
+    .cardLeft header {
+        color: #652572;
+        font-size: 34px;
+        font-weight: bold;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      
+    }
+.CardRight header {
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    padding-top: 150px;
+}
+
+.cardLeft .input {
+    width: 100%;
+    padding: 10px;
+    padding-left: 40px;
+    border: none;
+    background-color: #F5F8F9;
+    margin: 10px;
+    outline: none;
+}
+
+.inputsiz {
+    width: 100%;
+    padding: 10px;
+    padding-left: 40px;
+    border: none;
+    background-color: #F5F8F9;
+    margin: 10px;
+    outline: none;
+}
+.cardLeft:focus-visible {
+    outline: unset !important;
+}
+    .input:focus {
+    box-shadow: 0 0 5px 2px #922B6B;
+}
+
+.cardLeft .btnSignInCard {
+    background: linear-gradient(#652572,#922B6B,#C43264);
+    color: #fff;
+    width: 150px;
+    border: none;
+    border-radius: 25px;
+    padding: 10px;
+    margin: 20px;
+}
+
+    .cardLeft .btnSignInCard:hover {
+        background: linear-gradient( #C43264,#922B6B,#652572);
+    }
+
+P {
+    color: #fff;
+    font-size: 20px;
+    padding-top: 31px;
+    padding-bottom: 48px;
+}
+
+.CardRight .btnSignupCard {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 25px;
+    padding: 10px 31px;
+    margin: 55px;
+    box-shadow: 0px 10px 40px -10px rgba(0,0,0,0.7);
+}
+.btnSignupCard:hover {
+    text-decoration: unset;
+}
+.far {
+    position: absolute;
+    padding: 25px 25px;
+    top: auto;
+    color: #B1B0AF;
+}
+
+.fas {
+    position: absolute;
+    padding: 25px 25px;
+    top: auto;
+    color: #B1B0AF;
+}
+
+.logo2 {
+    width: 60px;
+    height: 75px;
+}
+.logo {
+    width: 60px;
+    height: 75px;
+}
+
+select {
+    background-color: #F5F8F9;
+    color: #B1B0AF;
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+    border-radius: 5px;
+    border-color: #C7C6C6;
+}
+.myform{
+    padding-top: 60px;
+}
+
+.card{
+    border-radius:25px;
+}
+.pb-10{
+    padding-bottom:10px;
+}
+.firstname {
+    margin-right: 10px;
+}
+
+
+
+
+.message-model {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    position: absolute;
+    top: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.message-content {
+    width: 300px;
+    height: 400px;
+    background-color: #fff;
+    border-radius: 10px;
+    position: relative;
+}
+
+.PupMesage {
+    color: #B1B0AF;
+    padding-left: 15px;
+    padding-bottom: 20px;
+}
+
+.message h1 {
+    padding-left: 70px;
+    padding-top: 15px;
+}
+
+.checkicon {
+    padding-left: 120px;
+    padding-top: 40px;
+    width: 200px;
+    color: #922B6B
+}
+
+button {
+    border-radius: 20px;
+    border: 1px solid;
+    background: linear-gradient(#652572,#922B6B,#C43264);
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    margin: 10px;
+}
+
+    button:active {
+        transform: scale(0.95);
+    }
+
+    button:focus {
+        outline: none;
+    }
+
+
+
+
+

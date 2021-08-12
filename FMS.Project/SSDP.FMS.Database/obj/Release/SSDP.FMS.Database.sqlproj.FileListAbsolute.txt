@@ -1,0 +1,9 @@
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\bin\Release\SSDP.FMS.Database.dacpac
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\bin\Release\SSDP.FMS.Database.dll
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\bin\Release\SSDP.FMS.Database.pdb
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Release\Model.xml
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Release\refactor.xml
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Release\postdeploy.sql
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Release\predeploy.sql
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Release\SSDP.FMS.Database.dll
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Release\SSDP.FMS.Database.pdb

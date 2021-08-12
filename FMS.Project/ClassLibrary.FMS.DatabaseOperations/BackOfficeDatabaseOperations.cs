@@ -1,4 +1,5 @@
 ﻿using ClassLibrary.FMS.DataModels;
+using ClassLibrary.FMS.DataModels.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,21 +11,8 @@ namespace ClassLibrary.FMS.DatabaseOperations
     public class BackOfficeDatabaseOperations
     {
         FMS_DatabaseEntities DatabaseEntity = new FMS_DatabaseEntities();
-        public bool BackOfficeChangeRequestStatus(string EmployeeUserName, int RequestID)
-        {
-            var result = DatabaseEntity.SP_ChangeServiceRequestStatus(EmployeeUserName, RequestID);
-            if (result.FirstOrDefault() == 1)
-                return true;
-            return false;
-        }
-
-        public bool BackOfficeAssignWorkerToRequest(int WorkerID, int RequestID)
-        {
-            int result = DatabaseEntity.SP_AssignWorkerToRequest(WorkerID, RequestID);
-            if (result == 1)
-                return true;
-            return false;
-        }
+       
+        /// Maintenance Manager 
 
         public List<SP_GetMMOpenRequests_Result> BackOfficeGetMaintananceManagerOpenRequests()
         {
@@ -33,31 +21,82 @@ namespace ClassLibrary.FMS.DatabaseOperations
             return MaintananceManagerRequestsList;
         }
 
-        public List<ServiceRequest> BackOfficeGetBuildingManagerOpenRequests()
+
+        public List<SP_GetMMApprovedRequests_Result> BackOfficeMaintananceManagerApprovedRequests()
         {
-            List<ServiceRequest> BuildingManagerRequestsList = DatabaseEntity.ServiceRequests.Where(x => x.RequiestStatus == 1).Select(a => a).ToList();
-            return BuildingManagerRequestsList;
+            return DatabaseEntity.SP_GetMMApprovedRequests().ToList();
         }
 
-        public List<ServiceRequest> BackOfficeGetWorkerOpenRequests(string workerUsername)
+
+        public List<SP_GetAllCanceledRequests_Result> BackOfficeOverAllCanceledRequests()
         {
-            int workerID = DatabaseEntity.CompanyEmployees.Where(x => x.Username == workerUsername).Select(a => a.EmployeeID).FirstOrDefault();
-            List<ServiceRequest> WorkerRequestsList = (List<ServiceRequest>)DatabaseEntity.ServiceRequests.Where(x => x.AssignedWorkerID == workerID && x.RequiestStatus == 3).Select(a => a).ToList();
-            return WorkerRequestsList;
+            return DatabaseEntity.SP_GetAllCanceledRequests().ToList();
         }
+
 
         public List<SP_GetMMClosedRequests_Result> BackOfficeGetMaintananceManagerCloseRequests()
         {
             return DatabaseEntity.SP_GetMMClosedRequests().ToList();
         }
 
-        public List<SP_GetMMApprovedRequests_Result> BackOfficeMaintananceManagerApprovedRequests()
+        /// Building Manager 
+
+        public List<SP_GetBMOpenedRequests_Result> BackOfficeGetBuildingManagerOpenRequests(int BuildingID)
         {
-            return DatabaseEntity.SP_GetMMApprovedRequests().ToList();
+                List<SP_GetBMOpenedRequests_Result> BuildingManagerRequestsList = DatabaseEntity.SP_GetBMOpenedRequests(BuildingID).ToList();
+                return BuildingManagerRequestsList;
         }
-        public List<SP_GetAllCanceledRequests_Result> BackOfficeOverAllCanceledRequests()
+
+        public List<SP_GetBMClosedRequests_Result> BuildingManagerClosedRequests(int BuildingID)
         {
-            return DatabaseEntity.SP_GetAllCanceledRequests().ToList();
+            return DatabaseEntity.SP_GetBMClosedRequests(BuildingID).ToList();
+        }
+
+        public List<SP_BMCanceledRequests_Result> BuildingManagerCanceledRequests(int BuildingID)
+        {
+            return DatabaseEntity.SP_BMCanceledRequests(BuildingID).ToList();
+        }
+
+        public List<SP_GetBM_MM_ApprovedRequesets_Result> BuildingManagerApprovedByMM_Requests(int BuildingID)
+        {
+            return DatabaseEntity.SP_GetBM_MM_ApprovedRequesets(BuildingID).ToList();
+        }
+
+        public int GetBM_BuildingNumber(string ManagerUsername)
+        {
+            int ManagerID = DatabaseEntity.CompanyEmployees.Where(x => x.Username == ManagerUsername).Select(a => a.EmployeeID).FirstOrDefault();
+            return DatabaseEntity.Buildings.Where(x => x.BuildingManagerID == ManagerID).Select(a => a.BuildingID).FirstOrDefault();
+        }
+
+        // Maintanance Worker
+        public List<SP_GetWorkerOpenRequests_Result> GetWorkerOpenedServiceRequests(string Username)
+        {
+            return DatabaseEntity.SP_GetWorkerOpenRequests(Username).ToList();
+        }
+
+        public List<SP_GetWorkerClosedRequests_Result> GetWorkerClosedRequests(string username)
+        {
+            return DatabaseEntity.SP_GetWorkerClosedRequests(username).ToList();
+        }
+
+
+        // General Use Functions 
+        public bool AcceptRequestAndAssignWorker(ServiceRequestAssignmentModel serviceRequestAssignment)
+        {
+            var result = DatabaseEntity.SP_ChangeServiceRequestStatus(serviceRequestAssignment.MaintenanceWorkerID, serviceRequestAssignment.RequestID).FirstOrDefault();
+            if (result == 1)
+            {
+                if (serviceRequestAssignment.MaintenanceWorkerID == 0)
+                {
+                    return true;
+                }
+                result = DatabaseEntity.SP_AssignWorkerToRequest(serviceRequestAssignment.MaintenanceWorkerID, serviceRequestAssignment.RequestID);
+                if (result == 1)
+                    return true;
+                return false;
+            }
+
+            return false;
         }
 
         public bool Cancel_ServiceRequest(int RequestID)
@@ -78,10 +117,9 @@ namespace ClassLibrary.FMS.DatabaseOperations
             return DatabaseEntity.SP_GetWorkersOfSpecialization(SpecializationName).ToList();
         }
 
-        public List<SP_GetWorkerOpenRequests_Result> GetWorkerOpenedServiceRequests(string Username)
-        {
-            return DatabaseEntity.SP_GetWorkerOpenRequests(Username).ToList();
-        }
+        
+
+
 
     }
 }

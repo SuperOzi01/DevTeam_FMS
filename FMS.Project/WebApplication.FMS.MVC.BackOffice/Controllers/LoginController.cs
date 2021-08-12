@@ -92,12 +92,27 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                         if(userRoleResponce.Message.Equals("Maintenance Manager"))
                         {
                             return RedirectToAction("MaintananceManagerDashboard","BackOffice");
+                        } 
+                        else if(userRoleResponce.Message.Equals("Maintenance Worker"))
+                        {
+                            return RedirectToAction("MaintananceWorkerDashboard", "BackOffice");
+                        }
+                        else if(userRoleResponce.Message.Equals("Building Manager"))
+                        {
+                            // Need To change
+                            return RedirectToAction("BuildingManagerDashboard", "BackOffice");
+                        }
+                        else if (userRoleResponce.Message.Equals("System Adminstrator"))
+                        {
+                            // Need To change
+                            return RedirectToAction("MaintananceWorkerDashboard", "BackOffice");
+                        }
+                        else
+                        {
+                            // The User Is Not in any Authorized Role 
+                            return RedirectToAction("Index", "Home");
                         }
 
-
-
-                        // the account is active and user does not need to update password
-                        return RedirectToAction("Index", "Home");
                     }
                     // take the user to update password page
                     return RedirectToAction("UpdatePasswordPage", "Login");

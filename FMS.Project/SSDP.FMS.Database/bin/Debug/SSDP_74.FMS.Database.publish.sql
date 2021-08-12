@@ -15,8 +15,8 @@ SET NUMERIC_ROUNDABORT OFF;
 GO
 :setvar DatabaseName "FMS_Database"
 :setvar DefaultFilePrefix "FMS_Database"
-:setvar DefaultDataPath "C:\Users\alano\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\"
-:setvar DefaultLogPath "C:\Users\alano\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\"
+:setvar DefaultDataPath "C:\Users\zshar\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\"
+:setvar DefaultLogPath "C:\Users\zshar\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\"
 
 GO
 :on error exit
@@ -40,64 +40,58 @@ USE [$(DatabaseName)];
 
 
 GO
-PRINT N'Creating Procedure [dbo].[SP_BMCanceledRequests]...';
+PRINT N'Creating Procedure [dbo].[SP_GetBeneficiaryCanceledRequests]...';
 
 
 GO
-CREATE PROCEDURE [dbo].[SP_BMCanceledRequests]
-	@BuildingID INT
+CREATE PROCEDURE [dbo].[SP_GetBeneficiaryCanceledRequests]
+		@username varchar(40)
 AS
-	Select * from RequestView Where RequestView.BuildingID = @BuildingID AND RequestView.RequiestStatus = (Select dbo.RequestStatus.RequestStatusID From dbo.RequestStatus Where dbo.RequestStatus.StatusName like '%Cancel%')
+	Select * FROM RequestView
+	WHERE RequestView.RequiestStatus = (select dbo.RequestStatus.RequestStatusID
+										from dbo.RequestStatus Where dbo.RequestStatus.StatusName like '%Cancel%') 
+	AND RequestView.Request_Creator = @username
 GO
-PRINT N'Creating Procedure [dbo].[SP_BMClosedRequests]...';
+PRINT N'Creating Procedure [dbo].[SP_GetBeneficiaryCloseedRequest]...';
 
 
 GO
-CREATE PROCEDURE [dbo].[SP_BMClosedRequests]
-	@BuildingID INT
+CREATE PROCEDURE [dbo].[SP_GetBeneficiaryCloseedRequest]
+		@username varchar(40)
 AS
-	Select * from RequestView Where RequestView.BuildingID = @BuildingID AND RequestView.RequiestStatus = (Select dbo.RequestStatus.RequestStatusID From dbo.RequestStatus Where dbo.RequestStatus.StatusName like '%Close%')
+	Select * FROM RequestView
+	WHERE RequestView.RequiestStatus = (select dbo.RequestStatus.RequestStatusID
+										from dbo.RequestStatus Where dbo.RequestStatus.StatusName like '%Close%') 
+	AND RequestView.Request_Creator = @username
 GO
-PRINT N'Creating Procedure [dbo].[SP_BMOpenRequests]...';
+PRINT N'Creating Procedure [dbo].[SP_GetBeneficiaryOpenRequests]...';
 
 
 GO
-CREATE PROCEDURE [dbo].[SP_BMOpenRequests]
-	@BuildingID INT
-AS
-	Select * from RequestView Where RequestView.BuildingID = @BuildingID AND RequestView.RequiestStatus = (Select dbo.RequestStatus.RequestStatusID From dbo.RequestStatus Where dbo.RequestStatus.StatusName like '%BM Approve%')
-GO
-PRINT N'Creating Procedure [dbo].[SP_GetWorkerClosedRequests]...';
-
-
-GO
-CREATE PROCEDURE [dbo].[SP_GetWorkerClosedRequests]
+CREATE PROCEDURE [dbo].[SP_GetBeneficiaryOpenRequests]
 	@username varchar(40)
 AS
-	Select * FROM dbo.RequestView 
-	WHERE dbo.RequestView.Assigned_Worker like @username
-	AND dbo.RequestView.RequiestStatus = (Select dbo.RequestStatus.RequestStatusID From dbo.RequestStatus 
-											Where dbo.RequestStatus.StatusName like '%Close%')
+	Select * FROM RequestView
+	WHERE RequestView.RequiestStatus = (select dbo.RequestStatus.RequestStatusID
+										from dbo.RequestStatus Where dbo.RequestStatus.StatusName like '%Open%') 
+	AND RequestView.Request_Creator = @username
 GO
-PRINT N'Creating Procedure [dbo].[SP_GetWorkerOpenRequests]...';
+PRINT N'Creating Procedure [dbo].[SP_GetBMOpenedRequests]...';
 
 
 GO
-CREATE PROCEDURE [dbo].[SP_GetWorkerOpenRequests]
-	@username varchar(40)
+CREATE PROCEDURE [dbo].[SP_GetBMOpenedRequests]
+	AS
+	Select * FROM RequestView
+	WHERE RequestView.RequiestStatus = (select dbo.RequestStatus.RequestStatusID from dbo.RequestStatus Where dbo.RequestStatus.StatusName like '%Open%')
+GO
+PRINT N'Creating Procedure [dbo].[SP_TestDB]...';
+
+
+GO
+CREATE PROCEDURE [dbo].[SP_TestDB]
 AS
-	Select * FROM dbo.RequestView WHERE dbo.RequestView.Assigned_Worker like @username AND dbo.RequestView.RequiestStatus = (Select dbo.RequestStatus.RequestStatusID From dbo.RequestStatus Where dbo.RequestStatus.StatusName like '%MM Approve%')
-GO
-PRINT N'Creating Procedure [dbo].[SP_GetWorkersOfSpecialization]...';
-
-
-GO
-CREATE PROCEDURE [dbo].[SP_GetWorkersOfSpecialization]
-	@SpecializationName varchar(40)
-AS	
-	Select [EmployeeID], [FirstName], [LastName] From dbo.CompanyEmployee 
-	Where dbo.CompanyEmployee.AccountStatus = 1 AND dbo.CompanyEmployee.Specialization_idSpecialization = ( SELECt dbo.Specialization.SpecializationID From Dbo.Specialization Where dbo.Specialization.SpecializationName like @SpecializationName)
-	AND dbo.CompanyEmployee.Role_idRole = ( Select dbo.Role.RoleID From Dbo.Role Where dbo.Role.RoleName like '%Maintenance Worker%')
+	Select 1;
 GO
 PRINT N'Update complete.';
 

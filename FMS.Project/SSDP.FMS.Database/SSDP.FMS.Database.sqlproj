@@ -100,9 +100,14 @@
     <Build Include="StoredProcedures\SP_GetWorkersOfSpecialization.sql" />
     <Build Include="StoredProcedures\SP_GetWorkerOpenRequests.sql" />
     <Build Include="StoredProcedures\SP_GetWorkerClosedRequests.sql" />
-    <Build Include="StoredProcedures\SP_BMOpenRequests.sql" />
-    <Build Include="StoredProcedures\SP_BMClosedRequests.sql" />
-    <Build Include="StoredProcedures\SP_BMCanceledRequests.sql" />
+    <Build Include="StoredProcedures\SP_TestDB.sql" />
+    <Build Include="StoredProcedures\SP_GetBMOpenedRequests.sql" />
+    <Build Include="StoredProcedures\SP_GetBeneficiaryOpenRequests.sql" />
+    <Build Include="StoredProcedures\SP_GetBeneficiaryCloseedRequest.sql" />
+    <Build Include="StoredProcedures\SP_GetBeneficiaryCanceledRequests.sql" />
+    <Build Include="StoredProcedures\SP_GetBMClosedRequests.sql" />
+    <Build Include="StoredProcedures\SP_GetBMCanceledRequests.sql" />
+    <Build Include="StoredProcedures\SP_GetBM_MM_ApprovedRequesets.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SSDP.FMS.Database.refactorlog" />

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<ClassLibrary.FMS.DataModels.SP_GetMMOpenRequests_Result>
+@{
     ViewData["Title"] = "Login BackOffice";
 }
 
@@ -11,34 +12,16 @@
 <div class="jumbotron  jumbotron-fluid " style="border-radius: 25px; background:white;">
     <div class="container">
 
-        <h1 class="helloWorker">Hello Worker !</h1>
+        <h1 class="helloWorker">Hello @ViewBag.username !</h1>
         <p>We wish you a happy working day ! </p>
     </div>
 </div>
 <!-- Box info -->
 <div class="content">
     <div class="row ">
-        <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="card card-stats" style="border-radius: 25px; margin-bottom: 20px;">
-                <div class="card-body ">
-                    <div class="row ">
-                        <div class="col-5 col-md-4 ">
-                            <div class="icon-big text-center icon-warning">
-                                <img src="~/icon/plus.png" width="50px" height="50px">
-                            </div>
-                        </div>
-                        <div class="col-7 col-md-8">
-                            <div class="numbers">
-                                <p class="newtext1 card-category">New Requests</p>
-                                <p class="card-title"><p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
 
-        <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="col-lg-6 col-md-6 col-sm-6">
             <div class="card card-stats" style="border-radius: 25px; margin-bottom: 20px;">
                 <div class="card-body ">
                     <div class="row">
@@ -50,7 +33,7 @@
                         <div class="col-7 col-md-8">
                             <div class="numbers">
                                 <p class="opentext card-category">Opened Requests</p>
-                                <p class="card-title"><p>
+                                <p class="card-title">@ViewBag.NoNewRequests<p>
                             </div>
                         </div>
                     </div>
@@ -59,7 +42,7 @@
             </div>
         </div>
 
-        <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="col-lg-6 col-md-6 col-sm-6">
             <div class="card card-stats" style="border-radius: 25px; margin-bottom: 20px;">
                 <div class="card-body ">
                     <div class="row">
@@ -72,7 +55,7 @@
 
                             <div class="numbers">
                                 <p class="closetext card-category">Closed Requests</p>
-                                <p class="card-title"><p>
+                                <p class="card-title">@ViewBag.NoClosedRequests<p>
                             </div>
                         </div>
                     </div>
@@ -80,38 +63,18 @@
             </div>
         </div>
 
-        <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="card card-stats" style="border-radius: 25px; margin-bottom: 20px;">
-                <div class="card-body ">
-                    <div class="row">
-                        <div class="col-5 col-md-4">
-                            <div class="icon-big text-center icon-warning">
-                                <img src="~/icon/sign-check-icon.png" width="50px" height="50px">
-                            </div>
-                        </div>
-                        <div class="col-7 col-md-8">
-
-                            <div class="numbers">
-                                <p class="canseltext card-category">Canceled Requests</p>
-                                <p class="card-title"><p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
     </div>
 </div>
 
 <!-- End Box info -->
-<!--Start open Request-->
+<!--Start New Request-->
 <div class="content " style=" margin-bottom: 20px;">
     <div class="row">
         <div class="col-md-12 main-datatable">
             <div class="card_body">
                 <div class="row d-flex">
-                    <h5 class="opentext1">Opened Request</h5>
+                    <h5 class="newtext">New Request</h5>
                     <div class="col-sm-8 add_flex">
                         <div class="form-group searchInput">
                             <label for="email">Search:</label>
@@ -120,24 +83,25 @@
                     </div>
                 </div>
                 <div class="overflow-x">
-                    <table style="width:100%;" id="Opentable" class="table cust-datatable dataTable no-footer">
+                    <table style="width:100%;" id="Newtable" class="table cust-datatable dataTable no-footer">
                         <thead>
                             <tr>
                                 <th style="min-width:50px;">
-                                    Service Request No.
+                                    @Html.DisplayNameFor(model => model.ServiceRequestID)
                                 </th>
                                 <th style="min-width:150px;">
-                                    Building No.
+                                    @Html.DisplayNameFor(model => model.BuildingID)
                                 </th>
                                 <th style="min-width:150px;">
-                                    Specialization Type
+                                    @Html.DisplayNameFor(model => model.Specialization_Type)
                                 </th>
                                 <th style="min-width:100px;">
-                                    Assigned Worker
+                                    @Html.DisplayNameFor(model => model.Assigned_Worker)
                                 </th>
                                 <th style="min-width:150px;">
-                                    Request Issue Date
+                                    @Html.DisplayNameFor(model => model.RequestIssueDate)
                                 </th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -145,19 +109,19 @@
                             {
                                 <tr>
                                     <td>
-                                       
+                                        @Html.DisplayFor(modelItem => item.ServiceRequestID)
                                     </td>
                                     <td>
-                                       
+                                        @Html.DisplayFor(modelItem => item.BuildingID)
                                     </td>
                                     <td>
-                                       
+                                        @Html.DisplayFor(modelItem => item.Specialization_Type)
                                     </td>
                                     <td>
-                                        
+                                        @Html.DisplayFor(modelItem => item.Assigned_Worker)
                                     </td>
                                     <td>
-                                      
+                                        @Html.DisplayFor(modelItem => item.RequestIssueDate)
                                     </td>
                                 </tr>
                             }
@@ -168,10 +132,10 @@
         </div>
     </div>
 </div>
-<!--End open Request-->
+<!--End New Request-->
 <link href="~/js/DataTables/datatables.min.css" rel="stylesheet" />
 <link href="~/js/DataTables/DataTables-1.10.25/css/jquery.dataTables.min.css" rel="stylesheet" />
 @section scripts{
     <script src="~/js/DataTables/datatables.min.js"></script>
     <script src="~/js/DataTables/DataTables-1.10.25/js/jquery.dataTables.min.js"></script>
-    }
+}
