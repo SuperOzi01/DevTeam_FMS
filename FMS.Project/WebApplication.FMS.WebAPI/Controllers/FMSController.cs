@@ -27,11 +27,9 @@ namespace WebApplication.FMS.WebAPI.Controllers
 
         [Route("Api/Fms/ping")] 
         [HttpGet]
-        [ExceptionFilter]
         public IHttpActionResult Ping()
         {
             // test the api logs and exceptions   
-            //throw new DivideByZeroException();
             Response.Message = "Ping is Working";
             Response.Result = true;
             return Ok(Response);
@@ -43,11 +41,11 @@ namespace WebApplication.FMS.WebAPI.Controllers
         {
             // Here We Should ensure that: 
             // 1- JWT Working
+            
             // 2- DB connection 
-            // 3- Logs 
-            Response.Message = "Health Check is Working";
-            Response.Result = true;
-            return Ok(Response);
+            int result = loginOperationsObject.TestDB();
+            // 3- Logs
+            throw new DivideByZeroException();
         }
 
         [Route("Api/Fms/Token")]

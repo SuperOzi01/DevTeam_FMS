@@ -15,6 +15,14 @@ namespace WebApplication.FMS.MVC.Controllers
     {
         string BaseUrl = Startup.GetBaseUrl();
 
+        [Route("Ping")]
+        public IActionResult ping()
+        {
+
+            throw new Exception();
+            return Content("The Ping Page");
+        }
+
         public IActionResult Signin() 
         {
             return View();

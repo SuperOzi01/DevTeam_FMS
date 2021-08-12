@@ -57,16 +57,16 @@
             @Html.HiddenFor(x => x.RequestID, requestID);
             <!-- Start button -->
             <div class=" text-center">
-                <button type="submit" class="btnSignInCardgreen " data-toggle="modal" data-target="#loginModalAccept" value="Accept">Accept</button>
+                <button name="BtnValue" type="submit" class="btnSignInCardgreen " data-toggle="modal" data-target="#loginModalAccept" value="Accept">Accept</button>
             </div>
 
             <!-- End button -->
-        }
+        //}
 
-        @using (Html.BeginForm("CancelRequestAsync", "BackOffice", FormMethod.Post))
-        {
-            @Html.HiddenFor(x => x.RequestID, requestID);
-            <button type="submit" class="btnSignInCard " data-toggle="modal" data-target="#loginModalAccept" value="Accept">Reject</button>
+        //@using (Html.BeginForm("CancelRequestAsync", "BackOffice", FormMethod.Post))
+        //{
+         //   @Html.HiddenFor(x => x.RequestID, requestID);
+            <button name="BtnValue" type="submit" class="btnSignInCard " data-toggle="modal" data-target="#loginModalAccept" value="Reject">Reject</button>
         }
     </div>
     </div>

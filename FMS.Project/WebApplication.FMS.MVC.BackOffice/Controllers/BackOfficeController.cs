@@ -96,7 +96,7 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AcceptRequest(ServiceRequestAssignmentModel serviceRequest)
+        public async Task<IActionResult> AcceptRequest(ServiceRequestAssignmentModel serviceRequest, string BtnValue)
         {
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(BaseUrl);

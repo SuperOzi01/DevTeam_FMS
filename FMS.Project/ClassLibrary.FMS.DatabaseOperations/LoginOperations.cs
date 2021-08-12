@@ -31,7 +31,13 @@ namespace ClassLibrary.FMS.DatabaseOperations
                 return false; // beneficiary not found 
         }
 
-
+        public int TestDB()
+        {
+            var result = DatabaseEntity.SP_TestDB().FirstOrDefault().ToString();
+            int num;
+            Int32.TryParse(result, out num);
+            return num;
+        }
 
         public bool BeneficiaryRegistraion(BeneficiaryRegistraionModel BeneficiaryRegistraion)
         {

@@ -16,6 +16,8 @@ namespace WebApplication.FMS.MVC.Controllers
         static readonly ILog InfoLog = LogManager.GetLogger("InfoLog");
         private readonly ILogger<HomeController> _logger;
 
+        
+
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;

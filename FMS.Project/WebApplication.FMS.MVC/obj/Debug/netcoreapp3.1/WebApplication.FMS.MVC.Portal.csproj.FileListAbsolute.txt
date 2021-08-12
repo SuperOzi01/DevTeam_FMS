@@ -455,3 +455,6 @@ C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\o
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.Portal.dll
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.Portal.pdb
 C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.Portal.genruntimeconfig.cache
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\Razor\Views\PortalSystem\BeneficiariesDashboard.cshtml.g.cs
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\Razor\Views\PortalSystem\BeneficiariesMaintananceRequests.cshtml.g.cs
+C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\Razor\Views\PortalSystem\CreateNewRequests.cshtml.g.cs
