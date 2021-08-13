@@ -80,7 +80,6 @@
     <Build Include="StoredProcedures\SP_GetAllBuildings.sql" />
     <Build Include="StoredProcedures\SP_InsertNewServiceRequiest.sql" />
     <Build Include="StoredProcedures\SP_AssignWorkerToRequest.sql" />
-    <Build Include="StoredProcedures\SP_HandleServiceRequestByWorker.sql" />
     <Build Include="StoredProcedures\SP_GetAllServiceRequests.sql" />
     <Build Include="Views\View_BuildingAndLocationInfo.sql" />
     <Build Include="StoredProcedures\SP_ActivateBeneficiaryAccount.sql" />
@@ -108,6 +107,11 @@
     <Build Include="StoredProcedures\SP_GetBMClosedRequests.sql" />
     <Build Include="StoredProcedures\SP_GetBMCanceledRequests.sql" />
     <Build Include="StoredProcedures\SP_GetBM_MM_ApprovedRequesets.sql" />
+    <Build Include="StoredProcedures\SP_GetWorkersNumber.sql" />
+    <Build Include="StoredProcedures\SP_GetNumberOfBeneficiaries.sql" />
+    <Build Include="StoredProcedures\SP_GetAllClosedRequests.sql" />
+    <Build Include="StoredProcedures\SP_GetNumberOfOpenedRequests.sql" />
+    <Build Include="StoredProcedures\SP_ListOfNotActiveBeneficiaries.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SSDP.FMS.Database.refactorlog" />

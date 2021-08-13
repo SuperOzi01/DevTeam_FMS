@@ -31,7 +31,13 @@ namespace ClassLibrary.FMS.DatabaseOperations
                 return false; // beneficiary not found 
         }
 
-
+        public int TestDB()
+        {
+            var result = DatabaseEntity.SP_TestDB().FirstOrDefault().ToString();
+            int num;
+            Int32.TryParse(result, out num);
+            return num;
+        }
 
         public bool BeneficiaryRegistraion(BeneficiaryRegistraionModel BeneficiaryRegistraion)
         {
@@ -76,11 +82,12 @@ namespace ClassLibrary.FMS.DatabaseOperations
             return BuildingList.ToList();
         }
 
-        public List<Specialization> GetSpecializationList()
+        public List<SP_GetAllSpecializations_Result> GetSpecializationList()
         {
-            var SpecializationList = DatabaseEntity.Specializations.Select(a => a);
-            return SpecializationList.ToList();
+            var SpecializationList = DatabaseEntity.SP_GetAllSpecializations().ToList();
+            return SpecializationList;
         }
+
         public List<CompanyEmployee> GetManagerList()
         {
             var ManagerList = DatabaseEntity.CompanyEmployees.Select(a => a);

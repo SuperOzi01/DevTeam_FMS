@@ -12,7 +12,7 @@
 		</CustomData>
 		<CustomData Category="Reference" Type="Assembly">
 			<Metadata Name="LogicalName" Value="SSDP.FMS.Database.dll" />
-			<Metadata Name="FileName" Value="C:\USERS\RANA ALHAMDAN\DOCUMENTS\GITHUB\DEVTEAM_FMS\FMS.PROJECT\SSDP.FMS.DATABASE\OBJ\DEBUG\SSDP.FMS.DATABASE.DLL" />
+			<Metadata Name="FileName" Value="C:\USERS\ZSHAR\DOCUMENTS\GITHUB\DEVTEAM_FMS\FMS.PROJECT\SSDP.FMS.DATABASE\OBJ\DEBUG\SSDP.FMS.DATABASE.DLL" />
 			<Metadata Name="AssemblyName" Value="SSDP.FMS.Database" />
 			<Metadata Name="PermissionSet" Value="SAFE" />
 			<Metadata Name="Owner" Value="" />
@@ -20,7 +20,7 @@
 			<Metadata Name="IsVisible" Value="True" />
 			<Metadata Name="IsModelAware" Value="True" />
 			<Metadata Name="SkipCreationIfEmpty" Value="True" />
-			<Metadata Name="AssemblySymbolsName" Value="C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\SSDP.FMS.Database.pdb" />
+			<Metadata Name="AssemblySymbolsName" Value="C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\SSDP.FMS.Database\obj\Debug\SSDP.FMS.Database.pdb" />
 		</CustomData>
 		<CustomData Category="SqlCmdVariables" Type="SqlCmdVariable" />
 	</Header>
@@ -46,38 +46,6 @@
 		</Element>
 		<Element Type="SqlDefaultConstraint">
 			<Property Name="DefaultExpressionScript">
-				<Value><![CDATA[1]]></Value>
-			</Property>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[ServiceRequest]" />
-				</Entry>
-			</Relationship>
-			<Relationship Name="ForColumn">
-				<Entry>
-					<References Name="[dbo].[ServiceRequest].[RequiestStatus]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="3" />
-		</Element>
-		<Element Type="SqlDefaultConstraint">
-			<Property Name="DefaultExpressionScript">
-				<Value><![CDATA[GETDATE()]]></Value>
-			</Property>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[ServiceRequest]" />
-				</Entry>
-			</Relationship>
-			<Relationship Name="ForColumn">
-				<Entry>
-					<References Name="[dbo].[ServiceRequest].[RequestIssueDate]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="4" />
-		</Element>
-		<Element Type="SqlDefaultConstraint">
-			<Property Name="DefaultExpressionScript">
 				<Value><![CDATA[0]]></Value>
 			</Property>
 			<Relationship Name="DefiningTable">
@@ -90,7 +58,7 @@
 					<References Name="[dbo].[Beneficiary].[AccountStatus]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="5" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="3" />
 		</Element>
 		<Element Type="SqlDefaultConstraint">
 			<Property Name="DefaultExpressionScript">
@@ -106,26 +74,39 @@
 					<References Name="[dbo].[CompanyEmployee].[AccountStatus]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="6" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="4" />
 		</Element>
-		<Element Type="SqlPrimaryKeyConstraint">
-			<Relationship Name="ColumnSpecifications">
-				<Entry>
-					<Element Type="SqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
-								<References Name="[dbo].[ServiceRequest].[ServiceRequestID]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
+		<Element Type="SqlDefaultConstraint">
+			<Property Name="DefaultExpressionScript">
+				<Value><![CDATA[1]]></Value>
+			</Property>
 			<Relationship Name="DefiningTable">
 				<Entry>
 					<References Name="[dbo].[ServiceRequest]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="7" />
+			<Relationship Name="ForColumn">
+				<Entry>
+					<References Name="[dbo].[ServiceRequest].[RequiestStatus]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="5" />
+		</Element>
+		<Element Type="SqlDefaultConstraint">
+			<Property Name="DefaultExpressionScript">
+				<Value><![CDATA[CURRENT_TIMESTAMP]]></Value>
+			</Property>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[ServiceRequest]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForColumn">
+				<Entry>
+					<References Name="[dbo].[ServiceRequest].[RequestIssueDate]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="6" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -144,7 +125,7 @@
 					<References Name="[dbo].[Role]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="8" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="7" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -163,7 +144,7 @@
 					<References Name="[dbo].[Beneficiary]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="9" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="8" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -182,7 +163,7 @@
 					<References Name="[dbo].[Specialization]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="10" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="9" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -201,7 +182,7 @@
 					<References Name="[dbo].[Location]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="11" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="10" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -220,7 +201,7 @@
 					<References Name="[dbo].[CompanyEmployee]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="12" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="11" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -237,6 +218,25 @@
 			<Relationship Name="DefiningTable">
 				<Entry>
 					<References Name="[dbo].[RequestStatus]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="12" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[ServiceRequest].[ServiceRequestID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[ServiceRequest]" />
 				</Entry>
 			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="13" />
@@ -335,7 +335,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="9" />
+						<AttachedAnnotation Disambiguator="8" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -471,7 +471,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="5" />
+						<AttachedAnnotation Disambiguator="3" />
 					</Element>
 				</Entry>
 			</Relationship>
@@ -489,6 +489,8 @@
 				<Entry>
 					<Element Type="SqlSimpleColumn" Name="[dbo].[Building].[BuildingID]">
 						<Property Name="IsNullable" Value="False" />
+						<Property Name="IsIdentity" Value="True" />
+						<Property Name="IdentityIncrement" Value="100" />
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
@@ -594,7 +596,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="12" />
+						<AttachedAnnotation Disambiguator="11" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -761,7 +763,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="6" />
+						<AttachedAnnotation Disambiguator="4" />
 					</Element>
 				</Entry>
 			</Relationship>
@@ -1069,7 +1071,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="11" />
+						<AttachedAnnotation Disambiguator="10" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -1133,7 +1135,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="13" />
+						<AttachedAnnotation Disambiguator="12" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -1349,7 +1351,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="8" />
+						<AttachedAnnotation Disambiguator="7" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -1394,7 +1396,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="7" />
+						<AttachedAnnotation Disambiguator="13" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -1458,7 +1460,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="3" />
+						<AttachedAnnotation Disambiguator="5" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -1475,7 +1477,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="4" />
+						<AttachedAnnotation Disambiguator="6" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -1998,7 +2000,7 @@
 		<Element Type="SqlProcedure" Name="[dbo].[SP_Cancel_OpenedServiceRequest]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[
-	UPDATE dbo.ServiceRequest SET RequestCloseDate = GETDATE(), 
+	UPDATE dbo.ServiceRequest SET RequestCloseDate = CURRENT_TIMESTAMP, 
 	RequiestStatus = ( Select dbo.RequestStatus.RequestStatusID From dbo.RequestStatus WHERE dbo.RequestStatus.StatusName like '%Cancel%')
 	WHERE dbo.ServiceRequest.ServiceRequestID = @RequestID 
 	Select COUNT(1);]]></Value>
@@ -2053,7 +2055,7 @@
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="353" />
+				<Property Name="Length" Value="361" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_Cancel_OpenedServiceRequest]&#xD;&#xA;&#x9;@RequestID INT&#xD;&#xA;AS" />
@@ -2115,7 +2117,7 @@
 		END
 	ELSE
 		BEGIN
-			UPDATE dbo.ServiceRequest SET RequiestStatus = ( Select dbo.RequestStatus.RequestStatusID From dbo.RequestStatus WHERE dbo.RequestStatus.StatusName like '%Close%') WHERE dbo.ServiceRequest.ServiceRequestID = @RequestID
+			UPDATE dbo.ServiceRequest SET RequiestStatus = ( Select dbo.RequestStatus.RequestStatusID From dbo.RequestStatus WHERE dbo.RequestStatus.StatusName like '%Close%') , RequestCloseDate = CURRENT_TIMESTAMP WHERE dbo.ServiceRequest.ServiceRequestID = @RequestID
 			SELECT CAST(1 AS INT)
 		END]]></Value>
 			</Property>
@@ -2173,6 +2175,9 @@
 					<References ExternalSource="BuiltIns" Name="[int]" />
 				</Entry>
 				<Entry>
+					<References Name="[dbo].[ServiceRequest].[RequestCloseDate]" />
+				</Entry>
+				<Entry>
 					<References ExternalSource="BuiltIns" Name="[int]" />
 				</Entry>
 			</Relationship>
@@ -2214,7 +2219,7 @@
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="1214" />
+				<Property Name="Length" Value="1253" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_ChangeServiceRequestStatus]&#xD;&#xA;&#x9;@WorkerID INT,&#xD;&#xA;&#x9;@RequestID INT&#xD;&#xA;AS" />
@@ -2223,7 +2228,7 @@
 		<Element Type="SqlProcedure" Name="[dbo].[SP_CloseServiceRequest]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[
-	UPDATE dbo.ServiceRequest SET RequestCloseDate = GETDATE(), 
+	UPDATE dbo.ServiceRequest SET RequestCloseDate = CURRENT_TIMESTAMP, 
 	RequiestStatus = ( Select dbo.RequestStatus.RequestStatusID From dbo.RequestStatus WHERE dbo.RequestStatus.StatusName like '%Close%')
 	WHERE dbo.ServiceRequest.ServiceRequestID = @RequestID 
 	Select COUNT(1);]]></Value>
@@ -2278,7 +2283,7 @@
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="344" />
+				<Property Name="Length" Value="352" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_CloseServiceRequest]&#xD;&#xA;&#x9;@RequestID INT&#xD;&#xA;AS" />
@@ -3191,6 +3196,113 @@
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_GetMMOpenRequests]&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[SP_GetNumberOfBeneficiaries]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	SELECT COUNT(dbo.Beneficiary.Username) FROM dbo.Beneficiary WHERE dbo.Beneficiary.AccountStatus = 1]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Beneficiary]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Beneficiary].[Username]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Beneficiary].[AccountStatus]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="158" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_GetNumberOfBeneficiaries]&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[SP_GetNumberOfClosedRequests]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	SELECT COUNT(dbo.RequestView.ServiceRequestID) FROM dbo.RequestView 
+	WHERE dbo.RequestView.RequiestStatus = (SELECT dbo.RequestStatus.RequestStatusID FROM dbo.RequestStatus WHERE dbo.RequestStatus.StatusName like '%Close%')]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[RequestView]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[RequestView].[ServiceRequestID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[RequestView].[RequiestStatus]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[RequestStatus]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[RequestStatus].[RequestStatusID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[RequestStatus].[StatusName]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="285" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_GetNumberOfClosedRequests]&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[SP_GetNumberOfOpenedRequests]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	SELECT COUNT(dbo.RequestView.ServiceRequestID) FROM dbo.RequestView 
+	WHERE dbo.RequestView.RequiestStatus = (SELECT dbo.RequestStatus.RequestStatusID FROM dbo.RequestStatus WHERE dbo.RequestStatus.StatusName like '%Open%')]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[RequestView]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[RequestView].[ServiceRequestID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[RequestView].[RequiestStatus]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[RequestStatus]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[RequestStatus].[RequestStatusID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[RequestStatus].[StatusName]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="284" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_GetNumberOfOpenedRequests]&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[SP_GetSpecificServiceRequestInfo]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[
@@ -3440,6 +3552,35 @@
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_GetWorkerOpenRequests]&#xD;&#xA;&#x9;@username varchar(40)&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[SP_GetWorkersNumber]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	Select COUNT(dbo.CompanyEmployee.Username) From dbo.CompanyEmployee WHERE dbo.CompanyEmployee.AccountStatus = 1]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee].[Username]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee].[AccountStatus]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="162" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_GetWorkersNumber]&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[SP_GetWorkersOfSpecialization]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[	
@@ -3520,71 +3661,6 @@
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_GetWorkersOfSpecialization]&#xD;&#xA;&#x9;@SpecializationName varchar(40)&#xD;&#xA;AS" />
-			</Annotation>
-		</Element>
-		<Element Type="SqlProcedure" Name="[dbo].[SP_HandleServiceRequestByWorker]">
-			<Property Name="BodyScript">
-				<Value><![CDATA[
-	UPDATE dbo.ServiceRequest SET RequiestStatus = 4 
-	WHERE dbo.ServiceRequest.ServiceRequestID = @RequestID]]></Value>
-			</Property>
-			<Property Name="IsAnsiNullsOn" Value="True" />
-			<Relationship Name="BodyDependencies">
-				<Entry>
-					<References Name="[dbo].[ServiceRequest]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[ServiceRequest].[RequiestStatus]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[ServiceRequest].[ServiceRequestID]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[SP_HandleServiceRequestByWorker].[@RequestID]" />
-				</Entry>
-			</Relationship>
-			<Relationship Name="Parameters">
-				<Entry>
-					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_HandleServiceRequestByWorker].[@BuildingNo]">
-						<Relationship Name="Type">
-							<Entry>
-								<Element Type="SqlTypeSpecifier">
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[int]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_HandleServiceRequestByWorker].[@RequestID]">
-						<Relationship Name="Type">
-							<Entry>
-								<Element Type="SqlTypeSpecifier">
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[int]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="Schema">
-				<Entry>
-					<References ExternalSource="BuiltIns" Name="[dbo]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="205" />
-				<Property Name="StartLine" Value="1" />
-				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_HandleServiceRequestByWorker]&#xD;&#xA;&#x9;@BuildingNo INT,&#xD;&#xA;&#x9;@RequestID INT&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[SP_InsertBeneficiary]">
@@ -4007,19 +4083,42 @@
 		<Element Type="SqlProcedure" Name="[dbo].[SP_InsertNewServiceRequiest]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[
-	IF NOT EXISTS (SELECT 1 from dbo.ServiceRequest where dbo.ServiceRequest.BuildingID = @BuildinNo AND dbo.ServiceRequest.SpecializationID = @Specialization AND dbo.ServiceRequest.RequiestStatus = ( Select dbo.RequestStatus.RequestStatusID From dbo.RequestStatus WHERE dbo.RequestStatus.StatusName like '%Open%'))
-		BEGIN
-			INSERT INTO dbo.ServiceRequest(BuildingID, SpecializationID, ServiceDescribtion,RequestCreatorID, RequiestStatus)
-			Values (@BuildinNo, @Specialization, @Describtion, @CreatorID, ( Select dbo.RequestStatus.RequestStatusID From dbo.RequestStatus WHERE dbo.RequestStatus.StatusName like '%open%'));
-			SELECT 1;
-		END
+	Declare @creatorID AS INT
+	Select @creatorID = dbo.Beneficiary.BeneficiaryID FROM dbo.Beneficiary WHERE dbo.Beneficiary.Username = @CreatorUsername
+
+	IF NOT EXISTS(
+	SELECT 1 FROM dbo.ServiceRequest 
+	WHERE dbo.ServiceRequest.BuildingID = @BuildinNo 
+	AND dbo.ServiceRequest.SpecializationID = @Specialization 
+	AND dbo.ServiceRequest.RequiestStatus = (SELECT dbo.RequestStatus.RequestStatusID FROM dbo.RequestStatus WHERE dbo.RequestStatus.StatusName like '%Open%')  
+	)
+	Begin
+		INSERT INTO dbo.ServiceRequest(BuildingID, SpecializationID, ServiceDescribtion, RequestCreatorID)
+		VALUES (@BuildinNo, @Specialization, @Describtion, @creatorID)
+		SELECT 1;
+	End
 	ELSE
-		BEGIN
-			SELECT 0;
-		END]]></Value>
+	BEGIN
+		SELECT 0;
+	END]]></Value>
 			</Property>
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Beneficiary]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Beneficiary].[BeneficiaryID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Beneficiary].[Username]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SP_InsertNewServiceRequiest].[@CreatorUsername]" />
+				</Entry>
 				<Entry>
 					<References Name="[dbo].[ServiceRequest]" />
 				</Entry>
@@ -4060,19 +4159,7 @@
 					<References Name="[dbo].[ServiceRequest].[RequestCreatorID]" />
 				</Entry>
 				<Entry>
-					<References Name="[dbo].[ServiceRequest].[RequiestStatus]" />
-				</Entry>
-				<Entry>
 					<References Name="[dbo].[SP_InsertNewServiceRequiest].[@Describtion]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[SP_InsertNewServiceRequiest].[@CreatorID]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[RequestStatus].[RequestStatusID]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[RequestStatus].[StatusName]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="Parameters">
@@ -4123,7 +4210,58 @@
 					</Element>
 				</Entry>
 				<Entry>
-					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_InsertNewServiceRequiest].[@CreatorID]">
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_InsertNewServiceRequiest].[@CreatorUsername]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="40" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="868" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_InsertNewServiceRequiest]&#xD;&#xA;&#x9;@BuildinNo INT,&#xD;&#xA;&#x9;@Specialization INT,&#xD;&#xA;&#x9;@Describtion varchar(100),&#xD;&#xA;&#x9;@CreatorUsername varchar(40)&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[SP_ListOfNotActiveBeneficiaries]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	SELECT * FROM dbo.Beneficiary Where dbo.Beneficiary.AccountStatus = 0 
+	AND dbo.Beneficiary.Building_BuildingID = @BuildingID;]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Beneficiary]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Beneficiary].[AccountStatus]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Beneficiary].[Building_BuildingID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SP_ListOfNotActiveBeneficiaries].[@BuildingID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SP_ListOfNotActiveBeneficiaries].[@BuildingID]">
 						<Relationship Name="Type">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
@@ -4144,10 +4282,10 @@
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="827" />
+				<Property Name="Length" Value="208" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_InsertNewServiceRequiest]&#xD;&#xA;&#x9;@BuildinNo INT,&#xD;&#xA;&#x9;@Specialization INT,&#xD;&#xA;&#x9;@Describtion varchar(100),&#xD;&#xA;&#x9;@CreatorID INT&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_ListOfNotActiveBeneficiaries]&#xD;&#xA;&#x9;@BuildingID INT&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[SP_TestDB]">
@@ -4186,7 +4324,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="10" />
+						<AttachedAnnotation Disambiguator="9" />
 					</Element>
 				</Entry>
 				<Entry>

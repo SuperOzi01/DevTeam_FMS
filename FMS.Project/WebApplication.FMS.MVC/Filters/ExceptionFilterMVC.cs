@@ -14,7 +14,7 @@ namespace WebApplication.FMS.MVC.Filters
             log4net.ILog logError = log4net.LogManager.GetLogger("ErrorLog");
             var errorType = context.Exception.GetType();
             var ExceptionMessage = context.Exception.Message;
-            var InnerMessage = context.Exception.InnerException.StackTrace;
+            var InnerMessage = context.Exception.StackTrace;
 
             var logMessage = string.Format("Web API Exception Logs [ HTTP Path: {0} | Action: {1} | Time: {2} \n Exception Message:{3} \n ---  \n Inner Exception: \n {4}]",
                              context.RouteData.Values["controller"].ToString(),

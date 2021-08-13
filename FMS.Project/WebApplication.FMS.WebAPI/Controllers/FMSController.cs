@@ -27,11 +27,9 @@ namespace WebApplication.FMS.WebAPI.Controllers
 
         [Route("Api/Fms/ping")] 
         [HttpGet]
-        [ExceptionFilter]
         public IHttpActionResult Ping()
         {
             // test the api logs and exceptions   
-            //throw new DivideByZeroException();
             Response.Message = "Ping is Working";
             Response.Result = true;
             return Ok(Response);
@@ -43,11 +41,11 @@ namespace WebApplication.FMS.WebAPI.Controllers
         {
             // Here We Should ensure that: 
             // 1- JWT Working
+            
             // 2- DB connection 
-            // 3- Logs 
-            Response.Message = "Health Check is Working";
-            Response.Result = true;
-            return Ok(Response);
+            int result = loginOperationsObject.TestDB();
+            // 3- Logs
+            throw new DivideByZeroException();
         }
 
         [Route("Api/Fms/Token")]
@@ -202,34 +200,14 @@ namespace WebApplication.FMS.WebAPI.Controllers
         public IHttpActionResult GetBuildingList()
         {
             var BuildingList = loginOperationsObject.GetBuildingList();
-
-                List<System.Web.Mvc.SelectListItem> list = new List<System.Web.Mvc.SelectListItem>();
-                foreach (var item in BuildingList)
-                {
-                    list.Add(new System.Web.Mvc.SelectListItem()
-                    {
-                        Text = item.BuildingID.ToString(),
-                        Value = item.BuildingID.ToString()
-                    });
-                }
-                return Ok(list);
+            return Ok(BuildingList);
         }
         [Route("Api/Fms/GetSpecializationList")]
         [HttpGet]
         public IHttpActionResult GetSpecializationList()
         {
-            var SpecializationList = loginOperationsObject.GetSpecializationList();
-
-            List<System.Web.Mvc.SelectListItem> list = new List<System.Web.Mvc.SelectListItem>();
-            foreach (var item in SpecializationList)
-            {
-                list.Add(new System.Web.Mvc.SelectListItem()
-                {
-                    Text = item.SpecializationName.ToString(),
-                    Value = item.SpecializationID.ToString()
-                });
-            }
-            return Ok(list);
+            List<SP_GetAllSpecializations_Result> SpecializationList = loginOperationsObject.GetSpecializationList();
+            return Ok(SpecializationList);
         }
         [Route("Api/Fms/GetManagerList")]
         [HttpGet]
@@ -237,50 +215,22 @@ namespace WebApplication.FMS.WebAPI.Controllers
         {
             var ManagerList = loginOperationsObject.GetManagerList();
 
-            List<System.Web.Mvc.SelectListItem> list = new List<System.Web.Mvc.SelectListItem>();
-            foreach (var item in ManagerList)
-            {
-                list.Add(new System.Web.Mvc.SelectListItem()
-                {
-                    Text = item.Username.ToString(),
-                    Value = item.EmployeeID.ToString()
-                });
-            }
-            return Ok(list);
+            return Ok(ManagerList);
         }
         [Route("Api/Fms/GetLocationList")]
         [HttpGet]
         public IHttpActionResult GetLocationList()
         {
-            var BuildingList = loginOperationsObject.GetLocationList();
+            var Locations = loginOperationsObject.GetLocationList();
 
-            List<System.Web.Mvc.SelectListItem> list = new List<System.Web.Mvc.SelectListItem>();
-            foreach (var item in BuildingList)
-            {
-                list.Add(new System.Web.Mvc.SelectListItem()
-                {
-                    Text = item.City.ToString(),
-                    Value = item.LocationID.ToString()
-                });
-            }
-            return Ok(list);
+            return Ok(Locations);
         }
         [Route("Api/Fms/GetRoleList")]
         [HttpGet]
         public IHttpActionResult GetRoleList()
         {
-            var BuildingList = loginOperationsObject.GetRoleList();
-
-            List<System.Web.Mvc.SelectListItem> list = new List<System.Web.Mvc.SelectListItem>();
-            foreach (var item in BuildingList)
-            {
-                list.Add(new System.Web.Mvc.SelectListItem()
-                {
-                    Text = item.RoleName.ToString(),
-                    Value = item.RoleID.ToString()
-                });
-            }
-            return Ok(list);
+            var Roles = loginOperationsObject.GetRoleList();
+            return Ok(Roles);
         }
 
 

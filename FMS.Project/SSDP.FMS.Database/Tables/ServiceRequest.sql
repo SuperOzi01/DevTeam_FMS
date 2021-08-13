@@ -5,7 +5,7 @@
     [SpecializationID] INT NOT NULL, 
     [AssignedWorkerID] INT NULL, 
     [RequiestStatus] INT NOT NULL DEFAULT 1, 
-    [RequestIssueDate] DATE NOT NULL DEFAULT GETDATE(), 
+    [RequestIssueDate] DATE NOT NULL DEFAULT CURRENT_TIMESTAMP, 
     [RequestCloseDate] DATE NULL, 
     [ServiceDescribtion] VARCHAR(100) NOT NULL, 
     [RequestCreatorID] INT NOT NULL, 

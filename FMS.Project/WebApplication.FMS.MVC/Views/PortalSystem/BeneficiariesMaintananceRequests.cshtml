@@ -1,7 +1,9 @@
-﻿@using ClassLibrary.FMS.DataModels.Models
-@model MaintenanceManagerModel
+﻿@using ClassLibrary.FMS.DataModels;
 @{
     ViewData["Title"] = "Login BackOffice";
+    var OpenList = ViewBag.OpenList as List<SP_GetBeneficiaryOpenRequests_Result>;
+    var ClosedList = ViewBag.ClosedList as List<SP_GetBeneficiaryCloseedRequest_Result>;
+    var CanceledList = ViewBag.CanceledList as List<SP_GetBeneficiaryCanceledRequests_Result>;
 }
 
 
@@ -16,7 +18,7 @@
         <div class="col-md-12 main-datatable">
             <div class="card_body">
                 <div class="row d-flex">
-                    <h5 class="newtext">New Requests</h5>
+                    <h5 class="newtext">Opened Requests</h5>
                     <div class="col-sm-8 add_flex">
                         <div class="form-group searchInput">
                             <label for="email">Search:</label>
@@ -32,13 +34,7 @@
                                     Service Request No.
                                 </th>
                                 <th style="min-width:150px;">
-                                    Building No.
-                                </th>
-                                <th style="min-width:150px;">
                                     Specialization Type
-                                </th>
-                                <th style="min-width:100px;">
-                                    Assigned Worker
                                 </th>
                                 <th style="min-width:150px;">
                                     Request Issue Date
@@ -49,7 +45,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model.OpenRequests)
+                            @foreach (var item in OpenList)
                             {
 
                                 <tr>
@@ -57,19 +53,13 @@
                                         @Html.DisplayFor(modelItem => item.ServiceRequestID)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.BuildingID)
-                                    </td>
-                                    <td>
                                         @Html.DisplayFor(modelItem => item.Specialization_Type)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Assigned_Worker)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.RequestIssueDate)
                                     </td>
                                     <td>
-                                        @Html.ActionLink("", "WorkerRequestInfo", "BackOffice", new ServiceRequestAssignmentModel { RequestID = item.ServiceRequestID, EmployeeUsername = item.Specialization_Type }, new { @class = "fa-edit fa fa-edit" })
+                                        @Html.ActionLink("", "WorkerRequestInfo", "BackOffice", new ClassLibrary.FMS.DataModels.Models.ServiceRequestAssignmentModel { RequestID = item.ServiceRequestID, EmployeeUsername = item.Specialization_Type }, new { @class = "fa-edit fa fa-edit" })
                                     </td>
                                 </tr>
                             }
@@ -83,13 +73,12 @@
 </div>
 <!--End New Request-->
 <!--Closed Request-->
-
 <div class="content " style="margin-bottom: 30px;">
     <div class="row">
         <div class="col-md-12 main-datatable">
             <div class="card_body">
                 <div class="row d-flex">
-                    <h5 class="newtext">New Requests</h5>
+                    <h5 class="newtext">Closed Requests</h5>
                     <div class="col-sm-8 add_flex">
                         <div class="form-group searchInput">
                             <label for="email">Search:</label>
@@ -105,29 +94,22 @@
                                     Service Request No.
                                 </th>
                                 <th style="min-width:150px;">
-                                    Building No.
-                                </th>
-                                <th style="min-width:150px;">
                                     Specialization Type
                                 </th>
                                 <th style="min-width:150px;">
                                     Request Issue Date
                                 </th>
                                 <th style="min-width:150px;">
-                                    Request Information
+                                    Request Close Date
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model.OpenRequests)
+                            @foreach (var item in CanceledList)
                             {
-
                                 <tr>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.ServiceRequestID)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.BuildingID)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Specialization_Type)
@@ -136,7 +118,7 @@
                                         @Html.DisplayFor(modelItem => item.RequestIssueDate)
                                     </td>
                                     <td>
-                                        @Html.ActionLink("", "RequestsInfo", "BackOffice", new ServiceRequestAssignmentModel { RequestID = item.ServiceRequestID, EmployeeUsername = item.Specialization_Type }, new { @class = "fa-edit fa fa-edit" })
+                                        @Html.DisplayFor(modelItem => item.RequestCloseDate)
                                     </td>
                                 </tr>
                             }
@@ -149,6 +131,65 @@
     </div>
 </div>
 <!--End Closed Request-->
+<!--Canceled Request-->
+<div class="content " style="margin-bottom: 30px;">
+    <div class="row">
+        <div class="col-md-12 main-datatable">
+            <div class="card_body">
+                <div class="row d-flex">
+                    <h5 class="newtext">Canceled Requests</h5>
+                    <div class="col-sm-8 add_flex">
+                        <div class="form-group searchInput">
+                            <label for="email">Search:</label>
+                            <input type="search" class=" form-control" id="filterbox" placeholder=" ">
+                        </div>
+                    </div>
+                </div>
+                <div class="overflow-x">
+                    <table style="width:100%;" id="newtable" class="table cust-datatable dataTable no-footer ">
+                        <thead>
+                            <tr>
+                                <th style="min-width:50px;">
+                                    Service Request No.
+                                </th>
+                                <th style="min-width:150px;">
+                                    Specialization Type
+                                </th>
+                                <th style="min-width:150px;">
+                                    Request Issue Date
+                                </th>
+                                <th style="min-width:150px;">
+                                    Request Close Date
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in ClosedList)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ServiceRequestID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Specialization_Type)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.RequestIssueDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.RequestCloseDate)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Canceled Request-->
 <!-- End demo content -->
 
 <link href="~/js/DataTables/datatables.min.css" rel="stylesheet" />

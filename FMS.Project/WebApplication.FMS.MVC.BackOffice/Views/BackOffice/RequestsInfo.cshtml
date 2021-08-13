@@ -46,28 +46,26 @@
             @ViewBag.RequestInfo.ServiceDescribtion
         </p>
         <!-- End Brife Description -->
-
-        @using (Html.BeginForm("AcceptRequest", "BackOffice", FormMethod.Post))
+        @using (Html.BeginForm("RequestInfoClick", "BackOffice", FormMethod.Post))
         {
             <!-- Select Worker -->
             <div class="form-group mlr">
                 @Html.DropDownListFor(m => m.EmployeeUsername, workersList, "Select Worker", new { @class = "form-control input", id = "WorkersDropDown" })
             </div>
             <!-- End Select Worker -->
-            @Html.HiddenFor(x => x.RequestID, requestID);
+
             <!-- Start button -->
             <div class=" text-center">
-                <button type="submit" class="btnSignInCardgreen " data-toggle="modal" data-target="#loginModalAccept" value="Accept">Accept</button>
+                <button type="submit" class="btnSignInCard " data-toggle="modal" data-target="#loginModalAccept" name="BtnValue" value="Accept">Accept</button>
+                <button type="submit" class="btnSignInCard " data-toggle="modal" data-target="#loginModalAccept" name="BtnValue" value="Reject">Reject</button>
             </div>
-
             <!-- End button -->
+            @Html.HiddenFor(x => x.RequestID, requestID)
+            @Html.HiddenFor(bid => bid.BuildingID, 0)
+            @Html.HiddenFor(a => a.MaintenanceWorkerID, 1)
         }
 
-        @using (Html.BeginForm("CancelRequest", "BackOffice", FormMethod.Post))
-        {
-            @Html.HiddenFor(x => x.RequestID, requestID);
-            <button type="submit" class="btnSignInCard " data-toggle="modal" data-target="#loginModalAccept" value="Accept">Reject</button>
-        }
+
     </div>
     </div>
 <!-- End Demo content -->

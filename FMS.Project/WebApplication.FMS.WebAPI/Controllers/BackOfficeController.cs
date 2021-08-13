@@ -212,6 +212,46 @@ namespace WebApplication.FMS.WebAPI.Controllers
             return Ok(Response);
         }
 
+        [Route("Api/Fms/BackOffice/ListOfNotActiveBeneficiaries")]
+        [HttpGet]
+        public IHttpActionResult GetNotActiveBeneficiariesList()
+        {
+            var result = BackOfficeOperationsObject.GetListOfNotActiveUseres();
+            return Ok(result);
+        }
+
+        [Route("Api/Fms/BackOffice/NumberOfWorkers")]
+        [HttpGet]
+        public IHttpActionResult NumberOfWorkers()
+        {
+            var result = BackOfficeOperationsObject.NumberOfActiveWorkers();
+            return Ok(result);
+        }
+
+        [Route("Api/Fms/BackOffice/NumberOfBeneficiaries")]
+        [HttpGet]
+        public IHttpActionResult NumberOfBeneficiaries()
+        {
+            var result = BackOfficeOperationsObject.NumberOfActiveBeneficiaries();
+            return Ok(result);
+        }
+
+        [Route("Api/Fms/BackOffice/NumberOfOpenRequests")]
+        [HttpGet]
+        public IHttpActionResult NumberOfOpenRequests()
+        {
+            var result = BackOfficeOperationsObject.NumberOfOpenedRequests();
+            return Ok(result);
+        }
+
+        [Route("Api/Fms/BackOffice/NumberOfClosedRequests")]
+        [HttpGet]
+        public IHttpActionResult NumberOfClosedRequests()
+        {
+            var result = BackOfficeOperationsObject.NumberOfClosedRequests();
+            return Ok(result);
+        }
+
 
 
     }

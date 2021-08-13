@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="BackOfficeDatabaseOperations.cs" />
     <Compile Include="LoginOperations.cs" />
+    <Compile Include="PortalSystemOperations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

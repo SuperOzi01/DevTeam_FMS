@@ -118,8 +118,40 @@ namespace ClassLibrary.FMS.DatabaseOperations
         }
 
         
+       //////////////////////////////////////  System Admin  //////////////////////////////////////////
+       public List<NotActiveUsersOfBuildingModel> GetListOfNotActiveUseres()
+        {
+            List<NotActiveUsersOfBuildingModel> result = new List<NotActiveUsersOfBuildingModel>();
+            List<int> BuildingIDs = DatabaseEntity.Buildings.Select(a => a.BuildingID).ToList();
 
+            foreach(int item in BuildingIDs)
+            {
+                List<SP_ListOfNotActiveBeneficiaries_Result> Beneficiaries = DatabaseEntity.SP_ListOfNotActiveBeneficiaries(item).ToList();
+                result.Add( new NotActiveUsersOfBuildingModel() { BuildingNumber = item, BeneficiariesList = Beneficiaries }); 
+            }
+            return result;
 
+        }
+
+        public int NumberOfActiveBeneficiaries()
+        {
+            return (int) DatabaseEntity.SP_GetNumberOfBeneficiaries().First();
+        }
+
+        public int NumberOfActiveWorkers()
+        {
+            return (int) DatabaseEntity.SP_GetWorkersNumber().First();
+        }
+
+        public int NumberOfClosedRequests()
+        {
+            return (int)DatabaseEntity.SP_GetNumberOfClosedRequests().First();
+        }
+
+        public int NumberOfOpenedRequests()
+        {
+            return (int) DatabaseEntity.SP_GetNumberOfOpenedRequests().First();
+        }
 
     }
 }
