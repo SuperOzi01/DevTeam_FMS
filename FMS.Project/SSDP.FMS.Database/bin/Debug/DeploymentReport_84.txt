@@ -1,0 +1,52 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       [dbo].[Building]
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Drop
+       unnamed constraint on [dbo].[ServiceRequest] (Default Constraint)
+     Table rebuild
+       [dbo].[Building] (Table)
+     Create
+       Default Constraint: unnamed constraint on [dbo].[ServiceRequest] (Default Constraint)
+       [dbo].[SP_GetBeneficiaryCanceledRequests] (Procedure)
+       [dbo].[SP_GetBeneficiaryCloseedRequest] (Procedure)
+       [dbo].[SP_GetBeneficiaryOpenRequests] (Procedure)
+       [dbo].[SP_GetBM_MM_ApprovedRequesets] (Procedure)
+       [dbo].[SP_GetBMCanceledRequests] (Procedure)
+       [dbo].[SP_GetBMClosedRequests] (Procedure)
+       [dbo].[SP_GetBMOpenedRequests] (Procedure)
+       [dbo].[SP_GetNumberOfBeneficiaries] (Procedure)
+       [dbo].[SP_GetNumberOfClosedRequests] (Procedure)
+       [dbo].[SP_GetNumberOfOpenedRequests] (Procedure)
+       [dbo].[SP_GetWorkersNumber] (Procedure)
+       [dbo].[SP_ListOfNotActiveBeneficiaries] (Procedure)
+       [dbo].[SP_TestDB] (Procedure)
+     Alter
+       [dbo].[SP_Cancel_OpenedServiceRequest] (Procedure)
+       [dbo].[SP_ChangeServiceRequestStatus] (Procedure)
+       [dbo].[SP_CloseServiceRequest] (Procedure)
+       [dbo].[SP_InsertNewServiceRequiest] (Procedure)
+
+** Supporting actions
+     Drop
+       [dbo].[FK_Beneficiary_Building] (Foreign Key)
+       [dbo].[FK_Building_CompanyEmployee] (Foreign Key)
+       [dbo].[FK_Building_Location] (Foreign Key)
+       [dbo].[FK_ServiceRequest_Building] (Foreign Key)
+     Create
+       [dbo].[FK_Beneficiary_Building] (Foreign Key)
+       [dbo].[FK_Building_CompanyEmployee] (Foreign Key)
+       [dbo].[FK_Building_Location] (Foreign Key)
+       [dbo].[FK_ServiceRequest_Building] (Foreign Key)
+     Refresh
+       [dbo].[View_BuildingAndLocationInfo] (View)
+       [dbo].[SP_AddBuilding] (Procedure)
+       [dbo].[SP_GetAllBuildings] (Procedure)
+       [dbo].[SP_GetAllServiceRequests] (Procedure)

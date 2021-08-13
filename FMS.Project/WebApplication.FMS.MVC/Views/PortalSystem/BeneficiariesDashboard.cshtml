@@ -4,57 +4,8 @@
 @{
     ViewData["Title"] = "Login BackOffice";
 }
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DashBoard</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="~/js/fontawesome/css/all.css" rel="stylesheet" />
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="~/js/fontawesome/css/all.css" rel="stylesheet" />
-    <link href="~/css/StyleSheet1.css" rel="stylesheet" />
-
-    <style>
-        ul.nav li.active a {
-            color: #C43264;
-            background: #fff;
-        }
-    </style>
-</head>
-<!-- Vertical navbar -->
-<div class="vertical-nav bg-white" id="sidebar">
-    <div class="py-4 px-3 mb-4 ">
-        <div class="media d-flex align-items-center">
-            <img src="maintra logo 2.png" alt="..." width="200" height="100" class="text-center">
-            <div class="media-body">
-
-            </div>
-        </div>
-    </div>
 
 
-
-    <ul class="nav flex-column bg-white mb-0">
-        <li class="nav-item">
-            <a href="#" class="nav-link  ">
-                <i class="fa fa-th-large mr-3  fa-fw"></i>
-                DashBoard
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a href="#" class="nav-link ">
-                <i class="fa fa-cubes mr-3  fa-fw"></i>
-                Maintenance requests
-            </a>
-        </li>
-
-    </ul>
-
-
-</div>
-<!-- End vertical navbar -->
 <!-- Toggle button -->
 <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">DASHBOARD</small></button>
 
@@ -64,7 +15,7 @@
 <div class="jumbotron  jumbotron-fluid " style="border-radius: 25px; background:white;">
     <div class="container">
 
-        <h1 class="helloWorker">Hello @ViewBag.username !</h1>
+        <h1 class="helloWorker">Hello  @ViewBag.username !</h1>
         <p>We wish you a happy working day ! </p>
     </div>
 </div>
@@ -120,7 +71,7 @@
 
 <!-- End Box info -->
 <!--Start New Request-->
-<div class="content " style=" margin-bottom: 20px;">
+<div class="content " style=" margin-bottom: 30px;">
     <div class="row">
         <div class="col-md-12 main-datatable">
             <div class="card_body">
@@ -129,12 +80,12 @@
                     <div class="col-sm-8 add_flex">
                         <div class="form-group searchInput">
                             <label for="email">Search:</label>
-                            <input type="search" class=" form-control" id="filterbox" placeholder=" ">
+                            <input type="search" class=" form-control" id="BeneficiariesDashboardNewTablefilterbox" placeholder=" ">
                         </div>
                     </div>
                 </div>
                 <div class="overflow-x">
-                    <table style="width:100%;" id="Newtable" class="table cust-datatable dataTable no-footer">
+                    <table style="width:100%;" id="BeneficiariesDashboardNewTable" class="table cust-datatable dataTable no-footer">
                         <thead>
                             <tr>
                                 <th style="min-width:50px;">
@@ -177,7 +128,4 @@
 @section scripts{
     <script src="~/js/DataTables/datatables.min.js"></script>
     <script src="~/js/DataTables/DataTables-1.10.25/js/jquery.dataTables.min.js"></script>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/app.js"></script>
 }
