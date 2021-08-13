@@ -24,7 +24,7 @@
     <Key>
       <PropertyRef Name="BuildingID" />
     </Key>
-    <Property Name="BuildingID" Type="int" Nullable="false" />
+    <Property Name="BuildingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="NoFloors" Type="int" Nullable="false" />
     <Property Name="Ownership" Type="int" Nullable="false" />
     <Property Name="BuildingManagerID" Type="int" Nullable="false" />
@@ -349,6 +349,9 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
   <Function Name="SP_GetMMApprovedRequests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="SP_GetMMClosedRequests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="SP_GetMMOpenRequests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_GetNumberOfBeneficiaries" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_GetNumberOfClosedRequests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_GetNumberOfOpenedRequests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="SP_GetSpecificServiceRequestInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="RequestID" Type="int" Mode="In" />
   </Function>
@@ -361,6 +364,7 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
   <Function Name="SP_GetWorkerOpenRequests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="username" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="SP_GetWorkersNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="SP_GetWorkersOfSpecialization" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="SpecializationName" Type="varchar" Mode="In" />
   </Function>
@@ -392,6 +396,9 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
     <Parameter Name="Specialization" Type="int" Mode="In" />
     <Parameter Name="Describtion" Type="varchar" Mode="In" />
     <Parameter Name="CreatorUsername" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_ListOfNotActiveBeneficiaries" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BuildingID" Type="int" Mode="In" />
   </Function>
   <Function Name="SP_TestDB" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="FMS_DatabaseModelStoreContainer">

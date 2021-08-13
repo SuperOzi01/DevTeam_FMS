@@ -472,5 +472,24 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GetNumberOfBeneficiaries" FunctionName="FMS_DatabaseModel.Store.SP_GetNumberOfBeneficiaries" />
+    <FunctionImportMapping FunctionImportName="SP_GetNumberOfClosedRequests" FunctionName="FMS_DatabaseModel.Store.SP_GetNumberOfClosedRequests" />
+    <FunctionImportMapping FunctionImportName="SP_GetNumberOfOpenedRequests" FunctionName="FMS_DatabaseModel.Store.SP_GetNumberOfOpenedRequests" />
+    <FunctionImportMapping FunctionImportName="SP_GetWorkersNumber" FunctionName="FMS_DatabaseModel.Store.SP_GetWorkersNumber" />
+    <FunctionImportMapping FunctionImportName="SP_ListOfNotActiveBeneficiaries" FunctionName="FMS_DatabaseModel.Store.SP_ListOfNotActiveBeneficiaries">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_ListOfNotActiveBeneficiaries_Result">
+          <ScalarProperty Name="BeneficiaryID" ColumnName="BeneficiaryID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Building_BuildingID" ColumnName="Building_BuildingID" />
+          <ScalarProperty Name="Role_RoleID" ColumnName="Role_RoleID" />
+          <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

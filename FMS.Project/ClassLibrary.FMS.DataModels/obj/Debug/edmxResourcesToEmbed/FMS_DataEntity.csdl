@@ -465,6 +465,13 @@
     <FunctionImport Name="SP_BMOpenRequests1" ReturnType="Collection(FMS_DatabaseModel.SP_BMOpenRequests1_Result)">
       <Parameter Name="BuildingID" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="SP_GetNumberOfBeneficiaries" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="SP_GetNumberOfClosedRequests" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="SP_GetNumberOfOpenedRequests" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="SP_GetWorkersNumber" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="SP_ListOfNotActiveBeneficiaries" ReturnType="Collection(FMS_DatabaseModel.SP_ListOfNotActiveBeneficiaries_Result)">
+      <Parameter Name="BuildingID" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="SP_GetAllBuildings_Result">
     <Property Type="Int32" Name="BuildingID" Nullable="false" />
@@ -751,5 +758,16 @@
     <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
     <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
     <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
+  </ComplexType>
+  <ComplexType Name="SP_ListOfNotActiveBeneficiaries_Result">
+    <Property Type="Int32" Name="BeneficiaryID" Nullable="false" />
+    <Property Type="String" Name="Username" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="40" />
+    <Property Type="Int32" Name="Building_BuildingID" Nullable="false" />
+    <Property Type="Int32" Name="Role_RoleID" Nullable="false" />
+    <Property Type="Boolean" Name="AccountStatus" Nullable="false" />
   </ComplexType>
 </Schema>
