@@ -2,15 +2,23 @@
 	@BuildinNo INT,
 	@Specialization INT,
 	@Describtion varchar(100),
-	@CreatorID INT
+	@CreatorUsername varchar(40)
 AS
-	IF NOT EXISTS (SELECT 1 from dbo.ServiceRequest where dbo.ServiceRequest.BuildingID = @BuildinNo AND dbo.ServiceRequest.SpecializationID = @Specialization AND dbo.ServiceRequest.RequiestStatus = ( Select dbo.RequestStatus.RequestStatusID From dbo.RequestStatus WHERE dbo.RequestStatus.StatusName like '%Open%'))
-		BEGIN
-			INSERT INTO dbo.ServiceRequest(BuildingID, SpecializationID, ServiceDescribtion,RequestCreatorID, RequiestStatus)
-			Values (@BuildinNo, @Specialization, @Describtion, @CreatorID, ( Select dbo.RequestStatus.RequestStatusID From dbo.RequestStatus WHERE dbo.RequestStatus.StatusName like '%open%'));
-			SELECT 1;
-		END
+	Declare @creatorID AS INT
+	Select @creatorID = dbo.Beneficiary.BeneficiaryID FROM dbo.Beneficiary WHERE dbo.Beneficiary.Username = @CreatorUsername
+
+	IF NOT EXISTS(
+	SELECT 1 FROM dbo.ServiceRequest 
+	WHERE dbo.ServiceRequest.BuildingID = @BuildinNo 
+	AND dbo.ServiceRequest.SpecializationID = @Specialization 
+	AND dbo.ServiceRequest.RequiestStatus = (SELECT dbo.RequestStatus.RequestStatusID FROM dbo.RequestStatus WHERE dbo.RequestStatus.StatusName like '%Open%')  
+	)
+	Begin
+		INSERT INTO dbo.ServiceRequest(BuildingID, SpecializationID, ServiceDescribtion, RequestCreatorID)
+		VALUES (@BuildinNo, @Specialization, @Describtion, @creatorID)
+		SELECT 1;
+	End
 	ELSE
-		BEGIN
-			SELECT 0;
-		END
+	BEGIN
+		SELECT 0;
+	END

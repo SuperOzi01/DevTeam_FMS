@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Building]
 (
-	[BuildingID] INT NOT NULL , 
+	[BuildingID] INT NOT NULL IDENTITY(1, 100) , 
     [NoFloors] INT NOT NULL, 
     [Ownership] INT NOT NULL, 
     [BuildingManagerID] INT NOT NULL, 

@@ -110,6 +110,8 @@
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\MaintenanceManagerModel.cs" />
     <Compile Include="Models\MM_RequestInfo_Model.cs" />
+    <Compile Include="Models\NewServiceRequestModel.cs" />
+    <Compile Include="Models\NotActiveUsersOfBuildingModel.cs" />
     <Compile Include="Models\ServiceRequestAssignmentModel.cs" />
     <Compile Include="Models\UpdatePasswordModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -130,10 +132,19 @@
     <Compile Include="Specialization.cs">
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_BMCanceledRequests1_Result.cs">
+      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_BMCanceledRequests_Result.cs">
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_BMClosedRequests1_Result.cs">
+      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_BMClosedRequests_Result.cs">
+      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_BMOpenRequests1_Result.cs">
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_BMOpenRequests_Result.cs">
@@ -200,6 +211,9 @@
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_GetWorkersOfSpecialization_Result.cs">
+      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_ListOfNotActiveBeneficiaries_Result.cs">
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="View_BuildingAndLocationInfo.cs">

@@ -20,6 +20,6 @@ AS
 		END
 	ELSE
 		BEGIN
-			UPDATE dbo.ServiceRequest SET RequiestStatus = ( Select dbo.RequestStatus.RequestStatusID From dbo.RequestStatus WHERE dbo.RequestStatus.StatusName like '%Close%') WHERE dbo.ServiceRequest.ServiceRequestID = @RequestID
+			UPDATE dbo.ServiceRequest SET RequiestStatus = ( Select dbo.RequestStatus.RequestStatusID From dbo.RequestStatus WHERE dbo.RequestStatus.StatusName like '%Close%') , RequestCloseDate = CURRENT_TIMESTAMP WHERE dbo.ServiceRequest.ServiceRequestID = @RequestID
 			SELECT CAST(1 AS INT)
 		END

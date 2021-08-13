@@ -96,7 +96,15 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AcceptRequest(ServiceRequestAssignmentModel serviceRequest, string BtnValue)
+        public async Task<IActionResult> RequestInfoClick(ServiceRequestAssignmentModel serviceRequest, string BtnValue)
+        {
+            if (BtnValue.Equals("Accept"))
+                return await AcceptRequest(serviceRequest);
+            else
+                return await CancelRequest(serviceRequest);
+        }
+
+        public async Task<IActionResult> AcceptRequest(ServiceRequestAssignmentModel serviceRequest)
         {
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(BaseUrl);
@@ -104,7 +112,7 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
             var httpResponce = httpRequest.Content.ReadAsAsync<ResponseAPI>().Result;
             if (httpResponce.Result)
             {
-                if (serviceRequest.MaintenanceWorkerID != 0) // this request made by BM
+                if (serviceRequest.EmployeeUsername != null && serviceRequest.BuildingID == 0) // this request made by BM
                     return RedirectToAction("MaintananceManagerRequests");
                 else
                     return RedirectToAction("BuildingManagerMaintananceRequests");
@@ -112,7 +120,7 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
             return Content("This Request Fails");
         }
 
-        [HttpPost]
+        
         public async Task<IActionResult> CancelRequest(ServiceRequestAssignmentModel serviceRequest)
         { 
             //Api/Fms/BackOffice/CancelRequest
@@ -123,7 +131,7 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
             
             if(httpResponce.Result)
             {
-                if (serviceRequest.MaintenanceWorkerID == 0)
+                if (serviceRequest.BuildingID != 0)
                     return RedirectToAction("BuildingManagerMaintananceRequests"); // From The View Dont Add Username to the serviceRequest Object to know that this request is made by BM
                 else
                     return RedirectToAction("MaintananceManagerRequests");
@@ -323,6 +331,46 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
             PageModel.RequestInfo = ReqInforamationResponce;
             return View(PageModel);
         }
+
+        /////////////////////////////////////////////////////////////////////
+        public async Task<IActionResult> AdminDashboard()
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(BaseUrl);
+            ViewBag.username = Request.Cookies["Username"];
+
+            var WorkersRequest = await client.GetAsync("Api/Fms/BackOffice/NumberOfWorkers");
+            var WorkerResponse = WorkersRequest.Content.ReadAsAsync<int>().Result;
+            
+            var BeneficiariesRequest = await client.GetAsync("Api/Fms/BackOffice/NumberOfBeneficiaries");
+            var BeneficiariesResponse = BeneficiariesRequest.Content.ReadAsAsync<int>().Result;
+
+            var OpenRequest = await client.GetAsync("Api/Fms/BackOffice/NumberOfOpenRequests");
+            var OpenResponse = OpenRequest.Content.ReadAsAsync<int>().Result;
+
+            var ClosedRequest = await client.GetAsync("Api/Fms/BackOffice/NumberOfClosedRequests");
+            var ClosedResponse = ClosedRequest.Content.ReadAsAsync<int>().Result;
+
+            ViewBag.Workers = WorkerResponse.ToString();
+            ViewBag.Beneficiaries = BeneficiariesResponse.ToString();
+            ViewBag.Open = OpenResponse.ToString();
+            ViewBag.Closed = ClosedResponse.ToString();
+            return View();
+        }
+
+        public IActionResult AdminRegistrationRequests()
+        {
+            // GET Api/Fms/BackOffice/ListOfNotActiveBeneficiaries"
+            List<NotActiveUsersOfBuildingModel> PageModel = new List<NotActiveUsersOfBuildingModel>();
+            return View();
+        }
+
+
+        public IActionResult AdminEmployeesList()
+        {
+            return View();
+        }
+
 
     }
 }

@@ -53,7 +53,7 @@ namespace WebApplication.FMS.MVC.Controllers
                     securityToken = resultMessage.Message;
                     HttpContext.Response.Cookies.Append("Username", login.Username);
                     HttpContext.Response.Cookies.Append("securityToken", securityToken);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("BeneficiariesDashboard", "PortalSystem");
                 }
                 else
                 {

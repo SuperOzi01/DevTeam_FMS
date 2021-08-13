@@ -273,7 +273,7 @@ namespace ClassLibrary.FMS.DataModels
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_InsertCompanyEmployee", usernameParameter, passwordParameter, firstNameParameter, lastNameParameter, emailParameter, specializationIDParameter, roleIDParameter, locationIDParameter, managerIDParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> SP_InsertNewServiceRequiest(Nullable<int> buildinNo, Nullable<int> specialization, string describtion, Nullable<int> creatorID)
+        public virtual ObjectResult<Nullable<int>> SP_InsertNewServiceRequiest(Nullable<int> buildinNo, Nullable<int> specialization, string describtion, string creatorUsername)
         {
             var buildinNoParameter = buildinNo.HasValue ?
                 new ObjectParameter("BuildinNo", buildinNo) :
@@ -287,11 +287,11 @@ namespace ClassLibrary.FMS.DataModels
                 new ObjectParameter("Describtion", describtion) :
                 new ObjectParameter("Describtion", typeof(string));
     
-            var creatorIDParameter = creatorID.HasValue ?
-                new ObjectParameter("CreatorID", creatorID) :
-                new ObjectParameter("CreatorID", typeof(int));
+            var creatorUsernameParameter = creatorUsername != null ?
+                new ObjectParameter("CreatorUsername", creatorUsername) :
+                new ObjectParameter("CreatorUsername", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_InsertNewServiceRequiest", buildinNoParameter, specializationParameter, describtionParameter, creatorIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_InsertNewServiceRequiest", buildinNoParameter, specializationParameter, describtionParameter, creatorUsernameParameter);
         }
     
         public virtual ObjectResult<SP_GetMMOpenRequests_Result> SP_GetMMOpenRequests()
@@ -364,13 +364,13 @@ namespace ClassLibrary.FMS.DataModels
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetWorkerOpenRequests_Result>("SP_GetWorkerOpenRequests", usernameParameter);
         }
     
-        public virtual ObjectResult<SP_GetBMCanceledRequests_Result> SP_BMCanceledRequests(Nullable<int> buildingID)
+        public virtual ObjectResult<SP_BMCanceledRequests_Result> SP_BMCanceledRequests(Nullable<int> buildingID)
         {
             var buildingIDParameter = buildingID.HasValue ?
                 new ObjectParameter("BuildingID", buildingID) :
                 new ObjectParameter("BuildingID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetBMCanceledRequests_Result>("SP_GetBMCanceledRequests", buildingIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_BMCanceledRequests_Result>("SP_BMCanceledRequests", buildingIDParameter);
         }
     
         public virtual ObjectResult<SP_BMClosedRequests_Result> SP_BMClosedRequests(Nullable<int> buildingID)
@@ -466,6 +466,62 @@ namespace ClassLibrary.FMS.DataModels
                 new ObjectParameter("BuildingID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetBMClosedRequests_Result>("SP_GetBMClosedRequests", buildingIDParameter);
+        }
+    
+        public virtual ObjectResult<SP_BMCanceledRequests1_Result> SP_BMCanceledRequests1(Nullable<int> buildingID)
+        {
+            var buildingIDParameter = buildingID.HasValue ?
+                new ObjectParameter("BuildingID", buildingID) :
+                new ObjectParameter("BuildingID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_BMCanceledRequests1_Result>("SP_BMCanceledRequests1", buildingIDParameter);
+        }
+    
+        public virtual ObjectResult<SP_BMClosedRequests1_Result> SP_BMClosedRequests1(Nullable<int> buildingID)
+        {
+            var buildingIDParameter = buildingID.HasValue ?
+                new ObjectParameter("BuildingID", buildingID) :
+                new ObjectParameter("BuildingID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_BMClosedRequests1_Result>("SP_BMClosedRequests1", buildingIDParameter);
+        }
+    
+        public virtual ObjectResult<SP_BMOpenRequests1_Result> SP_BMOpenRequests1(Nullable<int> buildingID)
+        {
+            var buildingIDParameter = buildingID.HasValue ?
+                new ObjectParameter("BuildingID", buildingID) :
+                new ObjectParameter("BuildingID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_BMOpenRequests1_Result>("SP_BMOpenRequests1", buildingIDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_GetNumberOfBeneficiaries()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_GetNumberOfBeneficiaries");
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_GetNumberOfClosedRequests()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_GetNumberOfClosedRequests");
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_GetNumberOfOpenedRequests()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_GetNumberOfOpenedRequests");
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_GetWorkersNumber()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_GetWorkersNumber");
+        }
+    
+        public virtual ObjectResult<SP_ListOfNotActiveBeneficiaries_Result> SP_ListOfNotActiveBeneficiaries(Nullable<int> buildingID)
+        {
+            var buildingIDParameter = buildingID.HasValue ?
+                new ObjectParameter("BuildingID", buildingID) :
+                new ObjectParameter("BuildingID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_ListOfNotActiveBeneficiaries_Result>("SP_ListOfNotActiveBeneficiaries", buildingIDParameter);
         }
     }
 }
