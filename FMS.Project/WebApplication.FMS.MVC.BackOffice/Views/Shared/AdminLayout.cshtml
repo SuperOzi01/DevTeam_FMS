@@ -31,20 +31,20 @@
             </div>
         </div>
         <ul class="nav flex-column mb-0">
-            <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString()=="MaintananceManagerDashboard"?"active":"")">
-                <a asp-controller="BackOffice" asp-action="MaintananceManagerDashboard" class="nav-link ">
+            <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString()=="AdminDashboard"?"active":"")">
+                <a asp-controller="BackOffice" asp-action="AdminDashboard" class="nav-link ">
                     <i class="fa fa-th-large mr-3 fa-fw"></i>
                     DashBoard
                 </a>
             </li>
-            <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString()=="MaintananceManagerRequests"?"active":"")">
-                <a asp-controller="BackOffice" asp-action="MaintananceManagerRequests" class="nav-link ">
+            <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString()=="AdminRegistrationRequests"?"active":"")">
+                <a asp-controller="BackOffice" asp-action="AdminRegistrationRequests" class="nav-link ">
                     <i class="fa fa-cubes mr-3 fa-fw"></i>
-                    Maintenance requests
+                    Registration requests
                 </a>
             </li>
-            <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString()=="MaintananceManagerRequests"?"active":"")">
-                <a asp-controller="BackOffice" asp-action="MaintananceManagerRequests" class="nav-link ">
+            <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString()=="AdminEmployeesList"?"active":"")">
+                <a asp-controller="BackOffice" asp-action="AdminEmployeesList" class="nav-link ">
                     <i class="fa fa-cubes mr-3 fa-fw"></i>
                     Employee
                 </a>
