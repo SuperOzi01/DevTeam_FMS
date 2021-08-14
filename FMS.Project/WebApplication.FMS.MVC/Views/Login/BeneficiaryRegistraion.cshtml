@@ -66,31 +66,11 @@
                                 <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                @Html.DropDownListFor(model => model.BuildingID, (IEnumerable<SelectListItem>)ViewBag.BuildingList, "Bulding No", new { id = "select", name = "cours", @class = "input" })
-                                <span asp-validation-for="BuildingID" class="text-danger"></span>
+                                @Html.DropDownListFor(model => model.BuildingID, ViewBag.BuildingList as List<SelectListItem>, "Bulding No", new { @class = "input"})
+                                <div  asp-validation-for="BuildingID" class="text-danger"></div>
+                                <span>@ViewBag.Message</span>
                             </div>
-                            @if ((string)TempData["Ref"] == "Save")
-                            {
-                                <div class="message-model" id="open">
-                                    <div class="message-content text-center">
-                                        <img class="checkicon" src="~/icon/check_icon.png" alt="check icon" />
-
-                                        <div class="message">
-                                            <h1 class="TextColor3">Thank you</h1>
-                                            <p class="PupMesage">
-                                                You have been succfully registered,
-                                                please wati for your account to be
-                                                activated by the administrator
-                                            </p>
-
-
-                                        </div>
-
-                                        <button class="gotit-btn" asp-action="/Login/LoginPortal">GOT IT</button>
-                                    </div>
-                                </div>
-                                }
-                                <input type="submit" class="btnSignInCard" id="button" value="SIGN UP" />
+                                <input type="submit" class="btnSignInCard" id="button" value="Submit" />
 
                             </form>
                     </div>
@@ -105,18 +85,3 @@
 </body>
 
 </html>
-
-
-
-
-<script>
-    document.getElementById("button").addEventListener("click",
-        function () {
-            document.getElementById("open").style.visibility = "visible";
-            document.querySelector('.message-model').style.display = 'flex';
-        });
-
-   
-    
-</script>
-

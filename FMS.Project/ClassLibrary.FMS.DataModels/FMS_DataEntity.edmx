@@ -351,6 +351,7 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
         <Function Name="SP_GetBMOpenedRequests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="BuildingID" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_GetCompanyEmployeesList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_GetMMApprovedRequests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_GetMMClosedRequests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_GetMMOpenRequests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -405,6 +406,7 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
         <Function Name="SP_ListOfNotActiveBeneficiaries" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="BuildingID" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_MaintananceManagersList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_TestDB" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="FMS_DatabaseModelStoreContainer">
           <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
@@ -961,8 +963,10 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           <FunctionImport Name="SP_GetNumberOfOpenedRequests" ReturnType="Collection(Int32)" />
           <FunctionImport Name="SP_GetWorkersNumber" ReturnType="Collection(Int32)" />
           <FunctionImport Name="SP_ListOfNotActiveBeneficiaries" ReturnType="Collection(FMS_DatabaseModel.SP_ListOfNotActiveBeneficiaries_Result)">
-            <Parameter Name="BuildingID" Mode="In" Type="Int32" />
+          <Parameter Name="BuildingID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="SP_GetCompanyEmployeesList" ReturnType="Collection(FMS_DatabaseModel.SP_GetCompanyEmployeesList_Result)" />
+          <FunctionImport Name="SP_MaintananceManagersList" ReturnType="Collection(FMS_DatabaseModel.SP_MaintananceManagersList_Result)" />
         </EntityContainer>
         <ComplexType Name="SP_GetAllBuildings_Result">
           <Property Type="Int32" Name="BuildingID" Nullable="false" />
@@ -1260,6 +1264,18 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           <Property Type="Int32" Name="Building_BuildingID" Nullable="false" />
           <Property Type="Int32" Name="Role_RoleID" Nullable="false" />
           <Property Type="Boolean" Name="AccountStatus" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_GetCompanyEmployeesList_Result">
+          <Property Type="Int32" Name="EmployeeID" Nullable="false" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="RoleName" Nullable="false" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="SP_MaintananceManagersList_Result">
+          <Property Type="Int32" Name="EmployeeID" Nullable="false" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="40" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1754,6 +1770,26 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
                 <ScalarProperty Name="Building_BuildingID" ColumnName="Building_BuildingID" />
                 <ScalarProperty Name="Role_RoleID" ColumnName="Role_RoleID" />
                 <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetCompanyEmployeesList" FunctionName="FMS_DatabaseModel.Store.SP_GetCompanyEmployeesList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_GetCompanyEmployeesList_Result">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_MaintananceManagersList" FunctionName="FMS_DatabaseModel.Store.SP_MaintananceManagersList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_MaintananceManagersList_Result">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

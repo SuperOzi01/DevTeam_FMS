@@ -199,7 +199,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
         [HttpGet]
         public IHttpActionResult GetBuildingList()
         {
-            var BuildingList = loginOperationsObject.GetBuildingList();
+            List<SP_GetAllBuildings_Result> BuildingList = loginOperationsObject.GetBuildingList();
             return Ok(BuildingList);
         }
         [Route("Api/Fms/GetSpecializationList")]
@@ -213,7 +213,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
         [HttpGet]
         public IHttpActionResult GetManagerList()
         {
-            var ManagerList = loginOperationsObject.GetManagerList();
+            List<SP_MaintananceManagersList_Result> ManagerList = loginOperationsObject.GetManagerList();
 
             return Ok(ManagerList);
         }
@@ -221,7 +221,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
         [HttpGet]
         public IHttpActionResult GetLocationList()
         {
-            var Locations = loginOperationsObject.GetLocationList();
+            List<SP_GetAllLocations_Result> Locations = loginOperationsObject.GetLocationList();
 
             return Ok(Locations);
         }
@@ -229,7 +229,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
         [HttpGet]
         public IHttpActionResult GetRoleList()
         {
-            var Roles = loginOperationsObject.GetRoleList();
+            List<SP_GetAllRoles_Result> Roles = loginOperationsObject.GetRoleList();
             return Ok(Roles);
         }
 

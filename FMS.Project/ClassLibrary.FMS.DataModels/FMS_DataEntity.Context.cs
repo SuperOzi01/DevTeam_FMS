@@ -523,5 +523,15 @@ namespace ClassLibrary.FMS.DataModels
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_ListOfNotActiveBeneficiaries_Result>("SP_ListOfNotActiveBeneficiaries", buildingIDParameter);
         }
+    
+        public virtual ObjectResult<SP_GetCompanyEmployeesList_Result> SP_GetCompanyEmployeesList()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetCompanyEmployeesList_Result>("SP_GetCompanyEmployeesList");
+        }
+    
+        public virtual ObjectResult<SP_MaintananceManagersList_Result> SP_MaintananceManagersList()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_MaintananceManagersList_Result>("SP_MaintananceManagersList");
+        }
     }
 }

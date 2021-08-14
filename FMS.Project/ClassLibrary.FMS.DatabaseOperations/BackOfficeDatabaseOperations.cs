@@ -153,5 +153,18 @@ namespace ClassLibrary.FMS.DatabaseOperations
             return (int) DatabaseEntity.SP_GetNumberOfOpenedRequests().First();
         }
 
+
+        public bool PortalActivateBeneficiaryAccount(string username)
+        {
+            int result = (int) DatabaseEntity.SP_ActivateBeneficiaryAccount(username).First();
+            if(result == 1)
+                return true;
+            return false;
+        }
+
+        public List<SP_GetCompanyEmployeesList_Result> ListOfCompanyEmployees()
+        {
+           return DatabaseEntity.SP_GetCompanyEmployeesList().ToList();
+        }
     }
 }

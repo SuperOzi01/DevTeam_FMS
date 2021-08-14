@@ -192,6 +192,9 @@
     <Compile Include="SP_GetBM_MM_ApprovedRequesets_Result.cs">
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_GetCompanyEmployeesList_Result.cs">
+      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_GetMMApprovedRequests_Result.cs">
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
@@ -214,6 +217,9 @@
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_ListOfNotActiveBeneficiaries_Result.cs">
+      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_MaintananceManagersList_Result.cs">
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="View_BuildingAndLocationInfo.cs">

@@ -599,3 +599,50 @@ body {
 .modal {
     left: 130px;
 }
+
+
+.inputAddEmployee {
+    width: 100%;
+    padding: 10px;
+    padding-left: 40px;
+    border: none;
+    background-color: #F5F8F9;
+    margin: 10px;
+    outline: none;
+}
+
+.inputSelect {
+    width: 100%;
+    padding: 5px;
+    padding-left: 40px;
+    border: none;
+    background-color: #F5F8F9;
+    margin: 10px;
+    outline: none;
+}
+
+
+.input:focus {
+    box-shadow: 0 0 5px 2px #922B6B;
+}
+
+.iconinput {
+    position: absolute;
+    padding: 25px 25px;
+    top: auto;
+    color: #B1B0AF;
+}
+
+.W-500 {
+    width: 428px;
+    border-radius: 22px;
+}
+
+.myform1 {
+    padding-left: 10px;
+    padding-right: 20px;
+}
+
+.form-group {
+    margin-bottom: 0rem;
+}

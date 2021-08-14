@@ -67,41 +67,49 @@ namespace WebApplication.FMS.MVC.Controllers
         // On Validation use this line 
         //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", this.HttpContext.Request.Cookies["securityToken"]);
 
-        public IActionResult BeneficiaryRegistraion()
+        public async Task<IActionResult> BeneficiaryRegistraion()
         {
-            ViewBag.BuildingList = GetBuilding();
+            ViewBag.BuildingList = await GetBuilding();
             return View();
         }
+
         [HttpPost]
-        public IActionResult BeneficiaryRegistraion(BeneficiaryRegistraionModel BeneficiaryRegistraion)
+        public async Task<IActionResult> BeneficiaryRegistraionAsync(BeneficiaryRegistraionModel BeneficiaryRegistraion)
         {
             if (ModelState.IsValid)
             { 
                 HttpClient httpClient = new HttpClient();
                 httpClient.BaseAddress = new Uri(BaseUrl);
-                var response = httpClient.PostAsJsonAsync("Api/Fms/BeneficiaryRegistraion", BeneficiaryRegistraion).Result;
-                if (response.IsSuccessStatusCode)
+                var Request = await httpClient.PostAsJsonAsync("Api/Fms/BeneficiaryRegistraion", BeneficiaryRegistraion);
+                if (Request.IsSuccessStatusCode)
                 {
-                    TempData["Ref"] = "Save";
-
-                    //  return RedirectToAction("PopUp", "Login");
+                    var Response = Request.Content.ReadAsAsync<ResponseAPI>().Result;
+                    if(Response.Result == true)
+                        return RedirectToAction("LoginPortal", "Login");
+                    if (Response.Result == false)
+                        ViewBag.Message = "This Account Already Exists";
+                        ViewBag.BuildingList = await GetBuilding();
+                        return View();
                 }
             }
-            ViewBag.BuildingList = GetBuilding();
+            ViewBag.BuildingList = await GetBuilding();
             return View();
         }
 
         
-        private IEnumerable<SelectListItem> GetBuilding()
+        private async Task<IEnumerable<SelectListItem>> GetBuilding()
         {
-            SelectList ListOfBuilding = null;
+            List<SelectListItem> ListOfBuilding = new List<SelectListItem>();
             HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(BaseUrl);
-            var response = httpClient.GetAsync("Api/Fms/GetBuildingList").Result;
+            var response = await httpClient.GetAsync("Api/Fms/GetBuildingList");
             if (response.IsSuccessStatusCode)
             {
-                var BuildingList = response.Content.ReadAsAsync<IEnumerable<SelectListItem>>().Result;
-                ListOfBuilding = new SelectList(BuildingList, "Value", "Text");
+                var buildingResponse = response.Content.ReadAsAsync<List<SP_GetAllBuildings_Result>>().Result;
+                foreach(SP_GetAllBuildings_Result item in buildingResponse)
+                {
+                    ListOfBuilding.Add(new SelectListItem(item.BuildingID.ToString(), item.BuildingID.ToString()));
+                }
             }
             return ListOfBuilding;
         }

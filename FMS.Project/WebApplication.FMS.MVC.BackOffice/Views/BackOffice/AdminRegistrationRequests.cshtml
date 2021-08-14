@@ -1,4 +1,6 @@
-﻿@model ClassLibrary.FMS.DataModels.Models.NotActiveUsersOfBuildingModel;
+﻿@using ClassLibrary.FMS.DataModels.Models;
+@using ClassLibrary.FMS.DataModels;
+@model List<ClassLibrary.FMS.DataModels.Models.NotActiveUsersOfBuildingModel>;
 @{
     ViewData["Title"] = "Login BackOffice";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
@@ -12,51 +14,41 @@
 <!-- Box info -->
 <div class="content">
     <div class="row ">
-        <!-- Bulding Number 1 info -->
-        <div class="col-lg-6 ">
-            <div class="card card-stats" style="border-radius: 25px; margin-bottom: 20px;">
-                <div class="card-body ">
-                    <h5 class="newtext">Bulding Number</h5>
-                    <div class="row">
+        @foreach (NotActiveUsersOfBuildingModel building in Model)
+        {
+            <!-- Bulding Number 1 info -->
+            <div class="col-lg-6 ">
+                <div class="card card-stats" style="border-radius: 25px; margin-bottom: 20px;">
+                    <div class="card-body ">
+
+                        <h5 class="newtext" style="margin-bottom: 20px">Bulding NO. @building.BuildingNumber.ToString() </h5>
+
+                        @foreach (SP_ListOfNotActiveBeneficiaries_Result user in building.BeneficiariesList)
+                        {
+                    <div class="row" style="margin-top: 15px">
                         <div class="col-3 col-md-2 ">
                             <div class="icon-big text-center icon-warning" style="font-size: 44px; color:#652572;">
                                 <i class="fas fa-user-circle"></i>
                             </div>
                         </div>
                         <div class="col-6 col-md-7">
-                            <h4 class="opentext card-category">Alanoud</h4>
-                            <p class="card-title">alanoud@gmail.com<p>
+                            <h4 class="opentext card-category">@user.FirstName.ToString() @user.LastName.ToString()</h4>
+                            <p class="card-title">@user.Email.ToString()<p>
                         </div>
 
                         <div class="col-3 col-md-3">
-                            <div class="icon-big text-center icon-warning" style="    font-size: 30px; ; margin-top: 15px;">
-                                <i class="fas fa-check-circle" style="margin-right: 5px; color:#94C11F;"></i>
-                                <i class="fas fa-times-circle" style="margin-right: 5px; color:#C43264;"></i>
+                            <div class="icon-big text-center icon-warning" style="font-size: 33px;  margin-top: 15px;">
+                                @Html.ActionLink("","AcceptBeneficiary", "BackOffice", new LoginModel { Username = user.Username }, new { @class = "fas fa-check-circle", style = "color:#94C11F;" })
                             </div>
                         </div>
-
-                        <div class="col-3 col-md-2 ">
-                            <div class="icon-big text-center icon-warning" style="font-size: 44px; color:#652572;">
-                                <i class="fas fa-user-circle"></i>
-                            </div>
+                    </div> 
+                        }
                         </div>
-                        <div class="col-6 col-md-7">
-                            <h4 class="opentext card-category">Alanoud</h4>
-                            <p class="card-title">alanoud@gmail.com<p>
-                        </div>
-
-                        <div class="col-3 col-md-3">
-                            <div class="icon-big text-center icon-warning" style="    font-size: 30px; ; margin-top: 15px;">
-                                <i class="fas fa-check-circle" style="margin-right: 5px; color:#94C11F;"></i>
-                                <i class="fas fa-times-circle" style="margin-right: 5px; color:#C43264;"></i>
-                            </div>
-                        </div>
-
-                    </div>
                 </div>
             </div>
-        </div>
-        <!--End  Bulding Number 1 info -->
+            <!--End  Bulding Number 1 info -->
+        }
+        
     </div>
 </div>
 

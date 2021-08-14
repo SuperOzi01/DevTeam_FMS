@@ -1,0 +1,163 @@
+﻿@using ClassLibrary.FMS.DataModels;
+@model EmployeeRegistraionModel;
+@{
+    ViewData["Title"] = "Login BackOffice";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    var WorkersList = ViewBag.WorkersList as List<SP_GetCompanyEmployeesList_Result>;
+    List<SelectListItem> SpecializationsList = ViewBag.SpecializationList as List<SelectListItem>;
+    List<SelectListItem> ManagersList = ViewBag.ManagerList as List<SelectListItem>;
+    List<SelectListItem> LocationsList = ViewBag.LocationList as List<SelectListItem>;
+    List<SelectListItem> RolesList = ViewBag.RoleList as List<SelectListItem>;
+
+}
+
+<!-- Toggle button -->
+<button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Maintenance requests</small></button>
+
+<!-- Demo content -->
+<!-- Start employee Form Box -->
+<div class="content">
+    <div class="row ">
+        <!-- Start new employee Button Box -->
+        <div class="col-lg-6 ">
+            <div class="card card-stats" style="border-radius: 25px; margin-bottom: 20px;">
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-5 col-md-2 ">
+                            <div class="icon-big text-center icon-warning" style="font-size: 44px; color:#b1b0af;">
+                                <a class="fas fa-plus-circle" data-toggle="modal" data-target="#ModalAddEmployeeForm"></a>
+                            </div>
+                        </div>
+                        <div class="col-8 col-md-10">
+                            <h4 class="opentext card-category" style=" margin-top: 17px; color: #b1b0af;">Add Employee</h4>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- End new employee Button Box -->
+
+        @foreach (var item in WorkersList)
+        {
+            <div class="col-lg-6 ">
+                <div class="card card-stats" style="border-radius: 25px; margin-bottom: 20px;">
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col-3 col-md-2 ">
+                                <div class="icon-big text-center icon-warning" style="font-size: 60px; color:#652572;">
+                                    <i class="fas fa-user-circle"></i>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-7">
+                                <h4 class="opentext card-category">@item.FirstName.ToString()  @item.LastName.ToString()</h4>
+                                <p style="margin-bottom: 0rem;">
+                                    @item.RoleName.ToString()
+                                    <br>@item.Email.ToString()
+                                <p>
+                            </div>
+
+                            <div class="col-3 col-md-3">
+                                <div class="icon-big text-center icon-warning" style="font-size: 20px; color:#b1b0af; margin-top: 15px;">
+                                    <i class="fas fa-pen" style="margin-right: 5px;"></i>
+                                    <i class="fas fa-trash-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+
+
+    </div>
+
+</div>
+
+
+
+<!-- End employee Form Box -->
+<!-- End Demo content -->
+<!--  demo PopUp Add Employee -->
+<div class="modal fade pt-60" role="dialog" id="ModalAddEmployeeForm">
+    <div class="modal-dialog">
+        <div class="modal-content W-500">
+            <div class="modal-body  text-center">
+                @using (Html.BeginForm("EmployeeRegistraion", "BackOffice", FormMethod.Post, new { @class = "myform1 text-center" }))
+                {
+                    <h3 class="modal-title mbtc">Add Employee</h3>
+                    <div class="form-group">
+                        <i class="iconinput far fa-user"></i>
+                        <input asp-for="Username" placeholder="Username" class="inputAddEmployee " />
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <i class="iconinput far fa-user"></i>
+                        <input asp-for="FirstName" placeholder="FirstName" class="inputAddEmployee " />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <i class="iconinput far fa-user"></i>
+                        <input asp-for="LastName" placeholder="LastName" class="inputAddEmployee " />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <i class="iconinput far fa-user"></i>
+                        <input asp-for="Email" placeholder="Email" class="inputAddEmployee " />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <i class="iconinput far fa-user"></i>
+                        <input asp-for="Password" placeholder="Password" class="inputAddEmployee " />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.DropDownListFor(x => x.RoleID, RolesList, "Select Role", new { @class = "form-control inputSelect" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.DropDownListFor(x => x.SpecializationID, SpecializationsList, "Select Specialization", new { @class = "form-control inputSelect" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.DropDownListFor(x => x.LocationID, LocationsList, "Select Location", new { @class = "form-control inputSelect" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.DropDownListFor(x => x.ManagerID, ManagersList, "Select Manager", new { @class = "form-control inputSelect" })
+                    </div>
+
+                    <button type="submit" class="gotit-btn" data-toggle="modal" data-target="#ModalAddEmployeeButton">Submit</button>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--  End PopUp Add Employee -->
+
+@{
+    if (ViewBag.Result == true)
+    {
+        <!--  demo PopUp Add -->
+        <div class="modal fade pt-60" role="dialog" id="ModalAddEmployeeButton">
+            <div class="modal-dialog">
+                <div class="modal-content W-300">
+                    <div class="modal-body  text-center">
+                        <img class="imgcheck" src="check_icon.png">
+                        <h3 class="modal-title mbtc">Thank you</h3>
+                        <p class="p-pup">
+                            The Employee Added successfully
+                        </p>
+                        <button class="gotit-btn">GOT IT</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  End PopUp Add -->
+    }
+}

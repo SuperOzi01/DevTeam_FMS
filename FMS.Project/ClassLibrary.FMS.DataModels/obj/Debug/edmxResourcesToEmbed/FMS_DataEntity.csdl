@@ -472,6 +472,8 @@
     <FunctionImport Name="SP_ListOfNotActiveBeneficiaries" ReturnType="Collection(FMS_DatabaseModel.SP_ListOfNotActiveBeneficiaries_Result)">
       <Parameter Name="BuildingID" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="SP_GetCompanyEmployeesList" ReturnType="Collection(FMS_DatabaseModel.SP_GetCompanyEmployeesList_Result)" />
+    <FunctionImport Name="SP_MaintananceManagersList" ReturnType="Collection(FMS_DatabaseModel.SP_MaintananceManagersList_Result)" />
   </EntityContainer>
   <ComplexType Name="SP_GetAllBuildings_Result">
     <Property Type="Int32" Name="BuildingID" Nullable="false" />
@@ -769,5 +771,17 @@
     <Property Type="Int32" Name="Building_BuildingID" Nullable="false" />
     <Property Type="Int32" Name="Role_RoleID" Nullable="false" />
     <Property Type="Boolean" Name="AccountStatus" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_GetCompanyEmployeesList_Result">
+    <Property Type="Int32" Name="EmployeeID" Nullable="false" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="RoleName" Nullable="false" MaxLength="40" />
+  </ComplexType>
+  <ComplexType Name="SP_MaintananceManagersList_Result">
+    <Property Type="Int32" Name="EmployeeID" Nullable="false" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="40" />
   </ComplexType>
 </Schema>

@@ -10,7 +10,7 @@
 	@ManagerID INT
 
 AS
-    IF NOT EXISTS (Select Username from dbo.CompanyEmployee where dbo.CompanyEmployee.Username = @username)
+    IF NOT EXISTS (Select Username from dbo.CompanyEmployee where dbo.CompanyEmployee.Username = @username OR dbo.CompanyEmployee.Email like @Email)
 	    BEGIN
 			INSERT INTO dbo.CompanyEmployee(Username, Password,FirstName,LastName ,Email, Specialization_idSpecialization, Role_idRole, Location_idLocation, ManagerID)
 			VALUES (@username, @password,@FirstName,@LastName ,@Email, @SpecializationID, @RoleID, @LocationID, @ManagerID)
