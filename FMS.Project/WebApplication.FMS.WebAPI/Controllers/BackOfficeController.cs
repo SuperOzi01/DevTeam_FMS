@@ -26,7 +26,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
 
         [Route("Api/Fms/BackOffice/AcceptServiceRequest")]
         [HttpPost]
-        public IHttpActionResult BackOfficeChangeServiceRequestStatus(ServiceRequestAssignmentModel serviceModel)
+        public IHttpActionResult ChangeServiceRequestStatus(ServiceRequestAssignmentModel serviceModel)
         {
             Response.Result = BackOfficeOperationsObject.AcceptRequestAndAssignWorker(serviceModel);
             if (Response.Result)
@@ -41,7 +41,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
 
         [Route("Api/Fms/BackOffice/MMOpenRequests")]
         [HttpGet]
-        public IHttpActionResult BackOfficeGetMMOpenRequestsList()
+        public IHttpActionResult GetMMOpenRequestsList()
         {
 
             var response = BackOfficeOperationsObject.BackOfficeGetMaintananceManagerOpenRequests();
@@ -54,7 +54,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
 
         [Route("Api/Fms/BackOffice/MMCloseRequests")]
         [HttpGet]
-        public IHttpActionResult BackOfficeGetMMCloseRequestsList()
+        public IHttpActionResult GetMMCloseRequestsList()
         {
 
             var response = BackOfficeOperationsObject.BackOfficeGetMaintananceManagerCloseRequests();
@@ -67,7 +67,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
 
         [Route("Api/Fms/BackOffice/MMApprovedRequests")]
         [HttpGet]
-        public IHttpActionResult BackOfficeGetMMApprovedRequests()
+        public IHttpActionResult GetMMApprovedRequests()
         {
             var response = BackOfficeOperationsObject.BackOfficeMaintananceManagerApprovedRequests();
             if (response != null)
@@ -79,7 +79,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
 
         [Route("Api/Fms/BackOffice/CanceledRequests")]
         [HttpGet]
-        public IHttpActionResult BackOfficeCanceledRequests()
+        public IHttpActionResult GetAllCanceledRequests()
         {
             var response = BackOfficeOperationsObject.BackOfficeOverAllCanceledRequests();
             if (response != null)
@@ -91,7 +91,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
 
         [Route("Api/Fms/BackOffice/CancelRequest")]
         [HttpPost]
-        public IHttpActionResult BackOfficeCancelRequest(ServiceRequestAssignmentModel request)
+        public IHttpActionResult CancelRequest(ServiceRequestAssignmentModel request)
         {
             Response.Result = BackOfficeOperationsObject.Cancel_ServiceRequest(request.RequestID);
             if (Response.Result)
@@ -252,7 +252,26 @@ namespace WebApplication.FMS.WebAPI.Controllers
             return Ok(result);
         }
 
+        [Route("Api/Fms/BackOffice/ActivateBeneficiary")]
+        [HttpPost]
+        public IHttpActionResult ActivateBeneficiary(LoginModel userModel)
+        {
+           Response.Result =  BackOfficeOperationsObject.PortalActivateBeneficiaryAccount(userModel.Username);
+            if (Response.Result)
+                Response.Message = "Beneficiary Account Activated";
+            else
+                Response.Message = "Failed To Activate Beneficiary Account";
+            return Ok(Response);
+        }
 
+
+        [Route("Api/Fms/BackOffice/GetAllCompanyEmployees")]
+        [HttpGet]
+        public IHttpActionResult GetAllCompanyEmployees()
+        {
+            List<SP_GetCompanyEmployeesList_Result> list = BackOfficeOperationsObject.ListOfCompanyEmployees();
+            return Ok(list);
+        }
 
     }
 }

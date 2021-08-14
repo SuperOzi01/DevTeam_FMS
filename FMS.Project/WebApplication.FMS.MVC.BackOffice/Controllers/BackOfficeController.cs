@@ -139,19 +139,7 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
             return Content("This Request Fails");
         }
 
-        private List<SelectListItem> GetEmployeeList(List<SP_GetWorkersOfSpecialization_Result> list)
-        {
-            List<SelectListItem> responceItems = new List<SelectListItem>();
-            foreach (var item in list)
-            {
-                responceItems.Add(new SelectListItem()
-                {
-                    Text = item.FirstName.ToString() + " " + item.LastName.ToString(),
-                    Value = item.EmployeeID.ToString()
-                });
-            }
-            return responceItems;
-        }
+        
 
         // worker Dashboard 
         public async Task<IActionResult> MaintananceWorkerDashboard()
@@ -358,17 +346,150 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
             return View();
         }
 
-        public IActionResult AdminRegistrationRequests()
+        public async Task<IActionResult> AdminRegistrationRequests()
         {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(BaseUrl);
             // GET Api/Fms/BackOffice/ListOfNotActiveBeneficiaries"
             List<NotActiveUsersOfBuildingModel> PageModel = new List<NotActiveUsersOfBuildingModel>();
-            return View();
+            var usersRequest = await client.GetAsync("Api/Fms/BackOffice/ListOfNotActiveBeneficiaries");
+            var usersResponse = usersRequest.Content.ReadAsAsync<List<NotActiveUsersOfBuildingModel>>().Result;
+
+            if (usersResponse != null)
+                PageModel = usersResponse;
+                return View(PageModel);
         }
 
 
-        public IActionResult AdminEmployeesList()
+        public async Task<IActionResult> AcceptBeneficiary(LoginModel user)
         {
-            return View();
+            if(user.Username != null)
+            {
+
+                // Post Api/Fms/BackOffice/ActivateBeneficiary
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(BaseUrl);
+
+                var ActivateRequest = await client.PostAsJsonAsync("Api/Fms/BackOffice/ActivateBeneficiary", user);
+                var ActivateResponce = ActivateRequest.Content.ReadAsAsync<ResponseAPI>().Result;
+
+                if(!ActivateResponce.Result)
+                {
+                    return Content(ActivateResponce.Message);
+                }
+                return RedirectToAction("AdminRegistrationRequests");
+            }
+            return Content("Username Not Found");
+
+        }
+
+        public async Task<IActionResult> AdminEmployeesList()
+        {
+            // GET Api/Fms/BackOffice/GetAllCompanyEmployees { List<SP_GetCompanyEmployeesList_Result> }
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(BaseUrl);
+
+            var EmployeesListRequest = await client.GetAsync("Api/Fms/BackOffice/GetAllCompanyEmployees");
+            var EmployeesListResponce = EmployeesListRequest.Content.ReadAsAsync<List<SP_GetCompanyEmployeesList_Result>>().Result;
+            
+            ViewBag.WorkersList = EmployeesListResponce;
+            ViewBag.SpecializationList = GetSpecializationList();
+            ViewBag.ManagerList = GetManagerList();
+            ViewBag.LocationList = GetLocationList();
+            ViewBag.RoleList = GetRoleList();
+            ViewBag.Result = false;
+
+            EmployeeRegistraionModel InsertModel = new EmployeeRegistraionModel();
+            return View(InsertModel);
+        }
+
+
+        [HttpPost]
+        public IActionResult EmployeeRegistraion(EmployeeRegistraionModel EmployeeRegistraion)
+        {
+            if (ModelState.IsValid)
+            {
+                HttpClient httpClient = new HttpClient();
+                httpClient.BaseAddress = new Uri(BaseUrl);
+                var Request = httpClient.PostAsJsonAsync("Api/Fms/EmployeeRegistraion", EmployeeRegistraion).Result;
+                if (Request.IsSuccessStatusCode)
+                {
+                    var Response = Request.Content.ReadAsAsync<ResponseAPI>().Result;
+                    if (Response.Result == true)
+                        ViewBag.Result = true;
+                    else
+                        ViewBag.Result = false;
+
+                    return RedirectToAction("AdminEmployeesList");
+                }
+            }
+            return RedirectToAction("AdminEmployeesList");
+        }
+
+
+        public List<SelectListItem> GetSpecializationList()
+        {
+            List<SelectListItem> SpecializationName = new List<SelectListItem>();
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(BaseUrl);
+            var Request = httpClient.GetAsync("Api/Fms/GetSpecializationList").Result;
+            if (Request.IsSuccessStatusCode)
+            {
+                var Response = Request.Content.ReadAsAsync<List<SP_GetAllSpecializations_Result>>().Result;
+                foreach (var item in Response)
+                {
+                    SpecializationName.Add(new SelectListItem(item.SpecializationName, item.SpecializationID.ToString()));
+                }
+            }
+            return SpecializationName;
+        }
+        private List<SelectListItem> GetManagerList()
+        {
+            List<SelectListItem> ManagerName = new List<SelectListItem>();
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(BaseUrl);
+            var Request = httpClient.GetAsync("Api/Fms/GetManagerList").Result;
+            if (Request.IsSuccessStatusCode)
+            {
+                var Response = Request.Content.ReadAsAsync<List<SP_MaintananceManagersList_Result>>().Result;
+                foreach (var item in Response)
+                {
+                    ManagerName.Add(new SelectListItem(item.FirstName + " " + item.LastName, item.EmployeeID.ToString()));
+                }
+            }
+            return ManagerName;
+        }
+        private List<SelectListItem> GetLocationList()
+        {
+            List<SelectListItem> LocationName = new List<SelectListItem>();
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(BaseUrl);
+            var Request = httpClient.GetAsync("Api/Fms/GetLocationList").Result;
+            if (Request.IsSuccessStatusCode)
+            {
+                var Response = Request.Content.ReadAsAsync<List<SP_GetAllLocations_Result>>().Result;
+                foreach (var item in Response)
+                {
+                    LocationName.Add(new SelectListItem(item.City, item.LocationID.ToString()));
+                }
+            }
+            return LocationName;
+        }
+        private List<SelectListItem> GetRoleList()
+        {
+            List<SelectListItem> RolenName = new List<SelectListItem>();
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(BaseUrl);
+            var Request = httpClient.GetAsync("Api/Fms/GetRoleList").Result;
+            if (Request.IsSuccessStatusCode)
+            {
+                var Response = Request.Content.ReadAsAsync<List<SP_GetAllRoles_Result>>().Result;
+                foreach (var item in Response)
+                {
+                    RolenName.Add(new SelectListItem(item.RoleName, item.RoleID.ToString()));
+                }
+            }
+            return RolenName;
         }
 
 

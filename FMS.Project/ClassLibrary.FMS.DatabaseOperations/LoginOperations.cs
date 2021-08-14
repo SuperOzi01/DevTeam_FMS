@@ -49,7 +49,6 @@ namespace ClassLibrary.FMS.DatabaseOperations
                 BeneficiaryRegistraion.LastName,
                 BeneficiaryRegistraion.Email,
                 BeneficiaryRegistraion.BuildingID);
-            DatabaseEntity.SaveChanges();
             if (result.FirstOrDefault() == 1)
                 return true;
             else
@@ -75,11 +74,11 @@ namespace ClassLibrary.FMS.DatabaseOperations
                 return false;
         }
 
-        public List<Building> GetBuildingList()
+        public List<SP_GetAllBuildings_Result> GetBuildingList()
         {
             
-            var BuildingList = DatabaseEntity.Buildings.Select(a => a);
-            return BuildingList.ToList();
+            List<SP_GetAllBuildings_Result> BuildingList = DatabaseEntity.SP_GetAllBuildings().ToList();
+            return BuildingList;
         }
 
         public List<SP_GetAllSpecializations_Result> GetSpecializationList()
@@ -88,20 +87,22 @@ namespace ClassLibrary.FMS.DatabaseOperations
             return SpecializationList;
         }
 
-        public List<CompanyEmployee> GetManagerList()
+        public List<SP_MaintananceManagersList_Result> GetManagerList()
         {
-            var ManagerList = DatabaseEntity.CompanyEmployees.Select(a => a);
-            return ManagerList.ToList();
+            var ManagerList = DatabaseEntity.SP_MaintananceManagersList().ToList();
+            return ManagerList;
         }
-        public List<Location> GetLocationList()
+
+        public List<SP_GetAllLocations_Result> GetLocationList()
         {
-            var LocationList = DatabaseEntity.Locations.Select(a => a);
-            return LocationList.ToList();
+            var LocationList = DatabaseEntity.SP_GetAllLocations().ToList();
+            return LocationList;
         }
-        public List<Role> GetRoleList()
+
+        public List<SP_GetAllRoles_Result> GetRoleList()
         {
-            var RoleList = DatabaseEntity.Roles.Select(a => a);
-            return RoleList.ToList();
+            var RoleList = DatabaseEntity.SP_GetAllRoles().ToList();
+            return RoleList;
         }
 
         public string GetUserRole(LoginModel loginModel)
@@ -129,11 +130,7 @@ namespace ClassLibrary.FMS.DatabaseOperations
             return false; 
         }
 
-        public bool PortalActivateBeneficiaryAccount(LoginModel login)
-        {
-            DatabaseEntity.SP_ActivateBeneficiaryAccount(login.Username);
-            return true;
-        }
+        
 
 
     }

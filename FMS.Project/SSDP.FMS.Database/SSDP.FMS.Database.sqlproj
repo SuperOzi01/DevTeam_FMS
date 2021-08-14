@@ -112,6 +112,8 @@
     <Build Include="StoredProcedures\SP_GetAllClosedRequests.sql" />
     <Build Include="StoredProcedures\SP_GetNumberOfOpenedRequests.sql" />
     <Build Include="StoredProcedures\SP_ListOfNotActiveBeneficiaries.sql" />
+    <Build Include="StoredProcedures\SP_GetCompanyEmployeesList.sql" />
+    <Build Include="StoredProcedures\SP_MaintananceManagersList.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SSDP.FMS.Database.refactorlog" />
