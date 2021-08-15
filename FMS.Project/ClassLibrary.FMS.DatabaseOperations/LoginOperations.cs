@@ -14,7 +14,10 @@ namespace ClassLibrary.FMS.DatabaseOperations
         public bool LoginBackOffice(LoginModel login)
         {
             // TODO: Call the Employees DB to check the user to make it the log in the same page {x}
-            var employeesLoginCheck = DatabaseEntity.SP_Employee_LoginCheck(login.Username, login.Password);            
+            EncryptionModel encryptionModel = new EncryptionModel();
+            string EncryptedPassword = encryptionModel.EncryptPassword(login.Password);
+
+            var employeesLoginCheck = DatabaseEntity.SP_Employee_LoginCheck(login.Username, EncryptedPassword);            
             if (employeesLoginCheck.FirstOrDefault() == 1)
                 return true; // Employee is registred 
             else
@@ -24,7 +27,10 @@ namespace ClassLibrary.FMS.DatabaseOperations
         public bool LoginPortal(LoginModel login)
         {
             // TODO: Call the Employees DB to check the user to make it the log in the same page {x}
-            var beneficiaryLoginCheck = DatabaseEntity.SP_Ben_LoginCheck(login.Username, login.Password);
+            EncryptionModel encryptionModel = new EncryptionModel();
+            string EncryptedPassword = encryptionModel.EncryptPassword(login.Password);
+
+            var beneficiaryLoginCheck = DatabaseEntity.SP_Ben_LoginCheck(login.Username, EncryptedPassword);
             if (beneficiaryLoginCheck.FirstOrDefault() == 1)
                 return true; // beneficiary is registred 
             else
@@ -43,8 +49,10 @@ namespace ClassLibrary.FMS.DatabaseOperations
         {
             // RoleID is  set by the Developers Based on the registration page { System Admin , Beneficary Portal} pages
             // RoleID of 5 is Tenent ... 6 is Outsider Employee Based on the UI 
+            EncryptionModel encryptionModel = new EncryptionModel();
+            string EncryptedPassword = encryptionModel.EncryptPassword(BeneficiaryRegistraion.Password);
             var result = DatabaseEntity.SP_InsertBeneficiary(BeneficiaryRegistraion.Username,
-                BeneficiaryRegistraion.Password,
+                EncryptedPassword,
                 BeneficiaryRegistraion.FirstName,
                 BeneficiaryRegistraion.LastName,
                 BeneficiaryRegistraion.Email,
@@ -59,8 +67,12 @@ namespace ClassLibrary.FMS.DatabaseOperations
         {
             // RoleID is  set by the Developers Based on the registration page { System Admin , Beneficary Portal} pages
             // RoleID of 5 is Tenent ... 6 is Outsider Employee Based on the UI 
+            EncryptionModel encryptionModel = new EncryptionModel();
+            string EncryptedPassword = encryptionModel.EncryptPassword(EmployeeRegistraion.Password);
+
+
             var result = DatabaseEntity.SP_InsertCompanyEmployee(EmployeeRegistraion.Username,
-                EmployeeRegistraion.Password,
+                EncryptedPassword,
                 EmployeeRegistraion.FirstName,
                 EmployeeRegistraion.LastName,
                 EmployeeRegistraion.Email,

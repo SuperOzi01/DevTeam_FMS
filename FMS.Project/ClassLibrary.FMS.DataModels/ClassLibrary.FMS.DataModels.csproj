@@ -84,6 +84,7 @@
     <Compile Include="CompanyEmployee.cs">
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Constants\ConstantStrings\ConstantStrings.cs" />
     <Compile Include="C__RefactorLog.cs">
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
@@ -107,6 +108,8 @@
     </Compile>
     <Compile Include="Models\BeneficiaryRegistraionModel.cs" />
     <Compile Include="Models\EmployeeRegistraionModel.cs" />
+    <Compile Include="Models\EncryptionModel.cs" />
+    <Compile Include="Models\HttpClientCreator.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\MaintenanceManagerModel.cs" />
     <Compile Include="Models\MM_RequestInfo_Model.cs" />
@@ -135,16 +138,25 @@
     <Compile Include="SP_BMCanceledRequests1_Result.cs">
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_BMCanceledRequests2_Result.cs">
+      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_BMCanceledRequests_Result.cs">
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_BMClosedRequests1_Result.cs">
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_BMClosedRequests2_Result.cs">
+      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_BMClosedRequests_Result.cs">
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_BMOpenRequests1_Result.cs">
+      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_BMOpenRequests2_Result.cs">
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_BMOpenRequests_Result.cs">

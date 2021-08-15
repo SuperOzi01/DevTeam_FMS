@@ -1,4 +1,5 @@
 ﻿using ClassLibrary.FMS.DataModels;
+using ClassLibrary.FMS.DataModels.Constants.ConstantStrings;
 using ClassLibrary.FMS.DataModels.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -7,17 +8,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using WebApplication.FMS.MVC.Filters;
 
 namespace WebApplication.FMS.MVC.Portal.Controllers
 {
+    [LogsFilterMVC]
+    [ExceptionFilterMVC]
     public class PortalSystemController : Controller
     {
         string BaseUrl = Startup.GetBaseUrl();
         // Beneficiaries Dashboard
         public async Task<IActionResult> BeneficiariesDashboard()
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(BaseUrl);
+            string HeaderValue = Request.Cookies["securityToken"];
+            HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
             string username = Request.Cookies["Username"];
             if (username == null)
                 return Content("User Not Found");
@@ -25,10 +29,10 @@ namespace WebApplication.FMS.MVC.Portal.Controllers
             LoginModel login = new LoginModel();
             login.Username = username;
 
-            var OpenRequest = await client.PostAsJsonAsync("API/Fms/PortalSystem/OpenRequests", login);
+            var OpenRequest = await client.PostAsJsonAsync(ConstantStrings.PortalControlerURL + "OpenRequests", login);
             var OpenResponce = OpenRequest.Content.ReadAsAsync<List<SP_GetBeneficiaryOpenRequests_Result>>().Result;
 
-            var ClosedRequest = await client.PostAsJsonAsync("API/Fms/PortalSystem/ClosedRequests", login);
+            var ClosedRequest = await client.PostAsJsonAsync(ConstantStrings.PortalControlerURL + "ClosedRequests", login);
             var ClosedResponce = ClosedRequest.Content.ReadAsAsync<List<SP_GetBeneficiaryCloseedRequest_Result>>().Result;
 
             ViewBag.username = username;
@@ -40,8 +44,8 @@ namespace WebApplication.FMS.MVC.Portal.Controllers
         // Beneficiaries Requests
         public async Task<IActionResult> BeneficiariesMaintananceRequests()
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(BaseUrl);
+            string HeaderValue = Request.Cookies["securityToken"];
+            HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
             string username = Request.Cookies["Username"];
             if (username == null)
                 return Content("User Not Found");
@@ -49,13 +53,13 @@ namespace WebApplication.FMS.MVC.Portal.Controllers
             LoginModel login = new LoginModel();
             login.Username = username;
 
-            var OpenRequest = await client.PostAsJsonAsync("API/Fms/PortalSystem/OpenRequests", login);
+            var OpenRequest = await client.PostAsJsonAsync(ConstantStrings.PortalControlerURL +  "OpenRequests", login);
             var OpenResponce = OpenRequest.Content.ReadAsAsync<List<SP_GetBeneficiaryOpenRequests_Result>>().Result;
 
-            var ClosedRequest = await client.PostAsJsonAsync("API/Fms/PortalSystem/ClosedRequests", login);
+            var ClosedRequest = await client.PostAsJsonAsync(ConstantStrings.PortalControlerURL + "ClosedRequests", login);
             var ClosedResponce = ClosedRequest.Content.ReadAsAsync<List<SP_GetBeneficiaryCloseedRequest_Result>>().Result;
 
-            var CanceledRequest = await client.PostAsJsonAsync("API/Fms/PortalSystem/CanceledRequests", login);
+            var CanceledRequest = await client.PostAsJsonAsync(ConstantStrings.PortalControlerURL + "CanceledRequests", login);
             var CanceledResponce = CanceledRequest.Content.ReadAsAsync<List<SP_GetBeneficiaryCanceledRequests_Result>>().Result;
 
             ViewBag.OpenList = OpenResponce;
@@ -69,8 +73,8 @@ namespace WebApplication.FMS.MVC.Portal.Controllers
             // GET Api/Fms/GetSpecializationList
             // POST API/Fms/PortalSystem/BeneficiaryBuilding {LoginModel}
 
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(BaseUrl);
+            string HeaderValue = Request.Cookies["securityToken"];
+            HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
             string username = Request.Cookies["Username"];
             if (username == null)
                 return Content("User Not Found");
@@ -78,10 +82,10 @@ namespace WebApplication.FMS.MVC.Portal.Controllers
             LoginModel login = new LoginModel();
             login.Username = username;
 
-            var BuildingRequest = await client.PostAsJsonAsync("API/Fms/PortalSystem/BeneficiaryBuilding", login);
+            var BuildingRequest = await client.PostAsJsonAsync(ConstantStrings.PortalControlerURL + "BeneficiaryBuilding", login);
             var BuildingResponce = BuildingRequest.Content.ReadAsAsync<ResponseAPI>().Result;
 
-            var ServiceRequest = await client.GetAsync("Api/Fms/GetSpecializationList");
+            var ServiceRequest = await client.GetAsync(ConstantStrings.FMSControlerURL + "GetSpecializationList");
             var ServiceRequestResponce = ServiceRequest.Content.ReadAsAsync<List<SP_GetAllSpecializations_Result>>().Result;
 
             int number = 0;
@@ -99,10 +103,10 @@ namespace WebApplication.FMS.MVC.Portal.Controllers
         public async Task<IActionResult> SubmitCreateRequest(NewServiceRequestModel request)
         {
             // POST API/Fms/PortalSystem/CreateRequest {NewServiceRequestModel} 
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(BaseUrl);
+            string HeaderValue = Request.Cookies["securityToken"];
+            HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
 
-            var CreationRequest = await client.PostAsJsonAsync("API/Fms/PortalSystem/CreateRequest", request);
+            var CreationRequest = await client.PostAsJsonAsync(ConstantStrings.PortalControlerURL + "CreateRequest", request);
             var CreationResponce = CreationRequest.Content.ReadAsAsync<ResponseAPI>().Result;
             if (CreationResponce.Result == true)
                 return RedirectToAction("BeneficiariesMaintananceRequests");

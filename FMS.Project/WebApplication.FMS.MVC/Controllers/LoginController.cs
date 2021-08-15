@@ -1,4 +1,6 @@
 ﻿using ClassLibrary.FMS.DataModels;
+using ClassLibrary.FMS.DataModels.Constants.ConstantStrings;
+using ClassLibrary.FMS.DataModels.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -14,12 +16,12 @@ namespace WebApplication.FMS.MVC.Controllers
     public class LoginController : Controller
     {
         string BaseUrl = Startup.GetBaseUrl();
+        
 
         [Route("Ping")]
         public IActionResult ping()
         {
 
-            throw new Exception();
             return Content("The Ping Page");
         }
 
@@ -42,11 +44,10 @@ namespace WebApplication.FMS.MVC.Controllers
             var securityToken = string.Empty;
             if (ModelState.IsValid)
             {
-                HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri(BaseUrl);
+                HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, null);
 
-                
-                var response = await client.PostAsJsonAsync("Api/Fms/LoginPortal", login);
+
+                var response = await client.PostAsJsonAsync( ConstantStrings.FMSControlerURL + "LoginPortal", login);
                 var resultMessage = response.Content.ReadAsAsync<ResponseAPI>().Result;
                 if (resultMessage.Result == true)
                 {
@@ -77,13 +78,13 @@ namespace WebApplication.FMS.MVC.Controllers
         public async Task<IActionResult> BeneficiaryRegistraionAsync(BeneficiaryRegistraionModel BeneficiaryRegistraion)
         {
             if (ModelState.IsValid)
-            { 
-                HttpClient httpClient = new HttpClient();
-                httpClient.BaseAddress = new Uri(BaseUrl);
-                var Request = await httpClient.PostAsJsonAsync("Api/Fms/BeneficiaryRegistraion", BeneficiaryRegistraion);
-                if (Request.IsSuccessStatusCode)
+            {
+                string HeaderValue = Request.Cookies["securityToken"];
+                HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
+                var httpRequest = await client.PostAsJsonAsync(ConstantStrings.FMSControlerURL +"BeneficiaryRegistraion", BeneficiaryRegistraion);
+                if (httpRequest.IsSuccessStatusCode)
                 {
-                    var Response = Request.Content.ReadAsAsync<ResponseAPI>().Result;
+                    var Response = httpRequest.Content.ReadAsAsync<ResponseAPI>().Result;
                     if(Response.Result == true)
                         return RedirectToAction("LoginPortal", "Login");
                     if (Response.Result == false)
@@ -100,9 +101,9 @@ namespace WebApplication.FMS.MVC.Controllers
         private async Task<IEnumerable<SelectListItem>> GetBuilding()
         {
             List<SelectListItem> ListOfBuilding = new List<SelectListItem>();
-            HttpClient httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri(BaseUrl);
-            var response = await httpClient.GetAsync("Api/Fms/GetBuildingList");
+            string HeaderValue = Request.Cookies["securityToken"];
+            HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
+            var response = await client.GetAsync(ConstantStrings.FMSControlerURL + "GetBuildingList");
             if (response.IsSuccessStatusCode)
             {
                 var buildingResponse = response.Content.ReadAsAsync<List<SP_GetAllBuildings_Result>>().Result;
