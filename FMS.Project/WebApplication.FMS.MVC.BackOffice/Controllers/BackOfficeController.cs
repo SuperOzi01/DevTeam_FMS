@@ -492,6 +492,11 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
             return RolenName;
         }
 
+        public ActionResult Logout()
+        {
+            return RedirectToAction("EmployeeLogin", "Login");
+        }
+
 
     }
 }

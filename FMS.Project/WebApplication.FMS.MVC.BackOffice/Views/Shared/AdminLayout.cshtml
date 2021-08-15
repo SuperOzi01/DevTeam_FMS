@@ -45,8 +45,14 @@
             </li>
             <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString()=="AdminEmployeesList"?"active":"")">
                 <a asp-controller="BackOffice" asp-action="AdminEmployeesList" class="nav-link ">
-                    <i class="fa fa-cubes mr-3 fa-fw"></i>
+                    <i class="fa fa-users mr-3 fa-fw"></i>
                     Employee
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-controller="BackOffice" asp-action="Logout" class="nav-link ">
+                    <i class="fa fa-sign-out-alt mr-3 fa-fw"></i>
+                    Logout
                 </a>
             </li>
         </ul>
