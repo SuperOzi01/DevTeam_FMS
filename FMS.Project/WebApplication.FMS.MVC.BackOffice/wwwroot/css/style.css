@@ -164,7 +164,17 @@ body {
         }
 }
 
+@media (max-width: 880px) {
+    .imgWorker {
+        display: none;
+    }
+}
 
+@media(max-width:453px) {
+    .helloWorker {
+        font-size: 25px;
+    }
+}
 
 
 
@@ -577,25 +587,7 @@ body {
         color: #C43264;
         background: #fff;
     }
-@media (max-width: 768px) {
-    #sidebar {
-        margin-left: -17rem;
-    }
 
-        #sidebar.active {
-            margin-left: 0;
-        }
-
-    #content {
-        width: 100%;
-        margin: 0;
-    }
-
-        #content.active {
-            margin-left: 17rem;
-            width: calc(100% - 17rem);
-        }
-}
 .modal {
     left: 130px;
 }
