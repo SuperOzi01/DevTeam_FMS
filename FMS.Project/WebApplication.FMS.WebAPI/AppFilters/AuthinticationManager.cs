@@ -19,13 +19,16 @@ namespace WebApplication.FMS.WebAPI.AppFilters
     {
         public override void OnAuthorization(HttpActionContext actionContext)
         {
-            bool result = new TokenManager().ValidateToken(actionContext.Request.Headers.GetValues("Authorization").FirstOrDefault());
+            var token = actionContext.Request.Headers.GetValues("Authorization").FirstOrDefault();
+            if(token == null)
+                actionContext.Response = actionContext.Request.CreateErrorResponse(HttpStatusCode.Unauthorized, "Token Was Not Provided");
+
+            bool result = new TokenManager().ValidateToken(token);
             if(result)
             {
-                actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.OK, "Welcome");
                 return;
             }
-            actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized, "Unable to validate the token");
+            actionContext.Response = actionContext.Request.CreateErrorResponse(HttpStatusCode.Unauthorized, "Unable to validate the token");
            
         }
 

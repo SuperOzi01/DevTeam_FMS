@@ -1,4 +1,5 @@
 ﻿using ClassLibrary.FMS.DataModels;
+using ClassLibrary.FMS.DataModels.Constants.ConstantStrings;
 using ClassLibrary.FMS.DataModels.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -40,9 +41,9 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                 updatePasswordModel.Username = Request.Cookies["Username"].ToString();
 
 
-                HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri(BaseUrl);
-                var response = await client.PostAsJsonAsync("Api/Fms/BackOfficeUpdatePasswordAndStatus", updatePasswordModel);
+                string HeaderValue = Request.Cookies["securityToken"];
+                HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
+                var response = await client.PostAsJsonAsync(ConstantStrings.FMSControlerURL + "BackOfficeUpdatePasswordAndStatus", updatePasswordModel);
                 var resultMessage = response.Content.ReadAsAsync<ResponseAPI>().Result;
                 if (resultMessage.Result == true)
                 {
@@ -65,11 +66,10 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
             var securityToken = string.Empty;
             if (ModelState.IsValid)
             {
-                HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri(BaseUrl);
+                HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, null);
 
 
-                var response = await client.PostAsJsonAsync("Api/Fms/LoginBackOffice", loginModel);
+                var response = await client.PostAsJsonAsync(ConstantStrings.FMSControlerURL + "LoginBackOffice", loginModel);
                 var resultMessage = response.Content.ReadAsAsync<ResponseAPI>().Result;
                 if (resultMessage.Result == true)
                 {
@@ -77,12 +77,12 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                     HttpContext.Response.Cookies.Append("Username", loginModel.Username);
                     HttpContext.Response.Cookies.Append("securityToken", securityToken);
 
-                    var statusRequest = await client.PostAsJsonAsync("Api/Fms/BackOfficeAccountStatus", loginModel);
+                    var statusRequest = await client.PostAsJsonAsync(ConstantStrings.FMSControlerURL + "BackOfficeAccountStatus", loginModel);
                     var statusResponce = statusRequest.Content.ReadAsAsync<ResponseAPI>().Result;
                     if(statusResponce.Result == true)
                     {
                         // Check what page to redirect to based on the role. 
-                        var userRoleRequest = await client.PostAsJsonAsync("Api/Fms/GetUserRole", loginModel);
+                        var userRoleRequest = await client.PostAsJsonAsync(ConstantStrings.FMSControlerURL + "GetUserRole", loginModel);
                         var userRoleResponce = userRoleRequest.Content.ReadAsAsync<ResponseAPI>().Result;
                         if(userRoleResponce.Result == false)
                         {

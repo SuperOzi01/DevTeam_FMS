@@ -1,4 +1,5 @@
 ﻿using ClassLibrary.FMS.DataModels;
+using ClassLibrary.FMS.DataModels.Constants.ConstantStrings;
 using ClassLibrary.FMS.DataModels.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -8,31 +9,45 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using WebApplication.FMS.MVC.Filters;
 
 namespace WebApplication.FMS.MVC.BackOffice.Controllers
 {
+    [ExceptionFilterMVC]
+    [LogsFilterMVC]
     public class BackOfficeController : Controller
     {
 
         string BaseUrl = Startup.GetBaseUrl();
+
+
         public async Task<IActionResult> MaintananceManagerDashboard()
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(BaseUrl);
+            string HeaderValue = Request.Cookies["securityToken"];
+            HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
             ViewBag.username = Request.Cookies["Username"];
             if (ViewBag.username != null)
             {
-                var OpenRListRequest = await client.GetAsync("Api/Fms/BackOffice/MMOpenRequests");
-                var OpenRListResponce = OpenRListRequest.Content.ReadAsAsync<List<SP_GetMMOpenRequests_Result>>().Result;
+                List<SP_GetMMOpenRequests_Result> OpenRListResponce = new List<SP_GetMMOpenRequests_Result>();
+                List<SP_GetMMClosedRequests_Result> closeRListResponce = new List<SP_GetMMClosedRequests_Result>();
+                List<SP_GetMMApprovedRequests_Result> ApprovedListResponce = new List<SP_GetMMApprovedRequests_Result>();
+                List<SP_CanceledServiceRequests_Result> CanceledListResponce = new List<SP_CanceledServiceRequests_Result>();
 
-                var closeRListRequest = await client.GetAsync("Api/Fms/BackOffice/MMCloseRequests");
-                var closeRListResponce = closeRListRequest.Content.ReadAsAsync<List<SP_GetMMClosedRequests_Result>>().Result;
+               var OpenRListRequest = await client.GetAsync(ConstantStrings.BackOfficeControlerURL + "MMOpenRequests");
+                if(OpenRListRequest.IsSuccessStatusCode)
+                     OpenRListResponce = OpenRListRequest.Content.ReadAsAsync<List<SP_GetMMOpenRequests_Result>>().Result;
 
-                var ApprovedListRequest = await client.GetAsync("Api/Fms/BackOffice/MMApprovedRequests");
-                var ApprovedListResponce = ApprovedListRequest.Content.ReadAsAsync<List<SP_GetMMApprovedRequests_Result>>().Result;
+                var closeRListRequest = await client.GetAsync(ConstantStrings.BackOfficeControlerURL + "MMCloseRequests");
+                 if(closeRListRequest.IsSuccessStatusCode)
+                    closeRListResponce = closeRListRequest.Content.ReadAsAsync<List<SP_GetMMClosedRequests_Result>>().Result;
 
-                var CanceledListRequest = await client.GetAsync("Api/Fms/BackOffice/CanceledRequests");
-                var CanceledListResponce = CanceledListRequest.Content.ReadAsAsync<List<SP_CanceledServiceRequests_Result>>().Result;
+                var ApprovedListRequest = await client.GetAsync(ConstantStrings.BackOfficeControlerURL + "MMApprovedRequests");
+                if(ApprovedListRequest.IsSuccessStatusCode)
+                 ApprovedListResponce = ApprovedListRequest.Content.ReadAsAsync<List<SP_GetMMApprovedRequests_Result>>().Result;
+
+                var CanceledListRequest = await client.GetAsync(ConstantStrings.BackOfficeControlerURL + "CanceledRequests");
+                if(CanceledListRequest.IsSuccessStatusCode)
+                 CanceledListResponce = CanceledListRequest.Content.ReadAsAsync<List<SP_CanceledServiceRequests_Result>>().Result;
 
                 ViewBag.NoNewRequests = OpenRListResponce.Count;
                 ViewBag.NoOpenedRequests = ApprovedListResponce.Count;
@@ -49,22 +64,31 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
         {
             // Worker Username 
             // Open Requests ... New Requests... 
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(BaseUrl);
+            string HeaderValue = Request.Cookies["securityToken"];
+            HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
             string username = Request.Cookies["Username"];
             if (username != null)
             {
-                var OpenRListRequest = await client.GetAsync("Api/Fms/BackOffice/MMOpenRequests");
-                var OpenRListResponce = OpenRListRequest.Content.ReadAsAsync<List<SP_GetMMOpenRequests_Result>>().Result;
+                List<SP_GetMMOpenRequests_Result> OpenRListResponce = new List<SP_GetMMOpenRequests_Result>();
+                List<SP_GetMMClosedRequests_Result> closeRListResponce = new List<SP_GetMMClosedRequests_Result>();
+                List<SP_GetMMApprovedRequests_Result> ApprovedListResponce = new List<SP_GetMMApprovedRequests_Result>();
+                List<SP_CanceledServiceRequests_Result> CanceledListResponce = new List<SP_CanceledServiceRequests_Result>();
 
-                var closeRListRequest = await client.GetAsync("Api/Fms/BackOffice/MMCloseRequests");
-                var closeRListResponce = closeRListRequest.Content.ReadAsAsync<List<SP_GetMMClosedRequests_Result>>().Result;
+                var OpenRListRequest = await client.GetAsync(ConstantStrings.BackOfficeControlerURL + "MMOpenRequests");
+                if (OpenRListRequest.IsSuccessStatusCode)
+                    OpenRListResponce = OpenRListRequest.Content.ReadAsAsync<List<SP_GetMMOpenRequests_Result>>().Result;
 
-                var ApprovedListRequest = await client.GetAsync("Api/Fms/BackOffice/MMApprovedRequests");
-                var ApprovedListResponce = ApprovedListRequest.Content.ReadAsAsync<List<SP_GetMMApprovedRequests_Result>>().Result;
+                var closeRListRequest = await client.GetAsync(ConstantStrings.BackOfficeControlerURL + "MMCloseRequests");
+                if (closeRListRequest.IsSuccessStatusCode)
+                    closeRListResponce = closeRListRequest.Content.ReadAsAsync<List<SP_GetMMClosedRequests_Result>>().Result;
 
-                var CanceledListRequest = await client.GetAsync("Api/Fms/BackOffice/CanceledRequests");
-                var CanceledListResponce = CanceledListRequest.Content.ReadAsAsync<List<SP_CanceledServiceRequests_Result>>().Result;
+                var ApprovedListRequest = await client.GetAsync(ConstantStrings.BackOfficeControlerURL + "MMApprovedRequests");
+                if (ApprovedListRequest.IsSuccessStatusCode)
+                    ApprovedListResponce = ApprovedListRequest.Content.ReadAsAsync<List<SP_GetMMApprovedRequests_Result>>().Result;
+
+                var CanceledListRequest = await client.GetAsync(ConstantStrings.BackOfficeControlerURL + "CanceledRequests");
+                if (CanceledListRequest.IsSuccessStatusCode)
+                    CanceledListResponce = CanceledListRequest.Content.ReadAsAsync<List<SP_CanceledServiceRequests_Result>>().Result;
 
                 MaintenanceManagerModel mymodel = new MaintenanceManagerModel();
                 mymodel.OpenRequests = OpenRListResponce;
@@ -81,15 +105,21 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
 
         public async Task<IActionResult> RequestsInfo(ServiceRequestAssignmentModel serviceRequest)
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(BaseUrl);
-            var ReqInformation = await client.PostAsJsonAsync("Api/Fms/BackOffice/GetRequestInfo", serviceRequest);
-            var ReqInforamationResponce = ReqInformation.Content.ReadAsAsync<SP_GetSpecificServiceRequestInfo_Result>().Result;
+            string HeaderValue = Request.Cookies["securityToken"];
+            HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
+            var ReqInforamationResponce = new SP_GetSpecificServiceRequestInfo_Result();
+            var WorkersListResponse =  new List<SP_GetWorkersOfSpecialization_Result>();
 
-            var WorkersListRequest = await client.PostAsJsonAsync("Api/Fms/BackOffice/GetWorkersList", serviceRequest);
-            var WorkersListResponse = WorkersListRequest.Content.ReadAsAsync<List<SP_GetWorkersOfSpecialization_Result>>().Result;
+            var ReqInformation = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "GetRequestInfo", serviceRequest);
+            if(ReqInformation.IsSuccessStatusCode)
+             ReqInforamationResponce = ReqInformation.Content.ReadAsAsync<SP_GetSpecificServiceRequestInfo_Result>().Result;
+
+            var WorkersListRequest = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "GetWorkersList", serviceRequest);
+            if(WorkersListRequest.IsSuccessStatusCode)
+             WorkersListResponse = WorkersListRequest.Content.ReadAsAsync<List<SP_GetWorkersOfSpecialization_Result>>().Result;
 
             // New Model List , RequestInfo
+            ViewBag.Username = Request.Cookies["Username"];
             ViewBag.RequestInfo = ReqInforamationResponce;
             ViewBag.WorkersList = WorkersListResponse;
             return View();
@@ -106,35 +136,46 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
 
         public async Task<IActionResult> AcceptRequest(ServiceRequestAssignmentModel serviceRequest)
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(BaseUrl);
-            var httpRequest = await client.PostAsJsonAsync("Api/Fms/BackOffice/AcceptServiceRequest", serviceRequest);
-            var httpResponce = httpRequest.Content.ReadAsAsync<ResponseAPI>().Result;
-            if (httpResponce.Result)
+            if(ModelState.IsValid)
             {
-                if (serviceRequest.EmployeeUsername != null && serviceRequest.BuildingID == 0) // this request made by BM
-                    return RedirectToAction("MaintananceManagerRequests");
-                else
-                    return RedirectToAction("BuildingManagerMaintananceRequests");
+                string HeaderValue = Request.Cookies["securityToken"];
+                HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
+                var httpResponse = new ResponseAPI();
+
+                var httpRequest = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "AcceptServiceRequest", serviceRequest);
+                if (httpRequest.IsSuccessStatusCode)
+                {
+                    httpResponse = httpRequest.Content.ReadAsAsync<ResponseAPI>().Result;
+                    if (httpResponse.Result)
+                    {
+                        if (serviceRequest.BuildingID == 1) // this request made by BM
+                            return RedirectToAction("MaintananceManagerRequests");
+                        else
+                            return RedirectToAction("BuildingManagerMaintananceRequests");
+                    }
+                }
             }
             return Content("This Request Fails");
         }
 
         
         public async Task<IActionResult> CancelRequest(ServiceRequestAssignmentModel serviceRequest)
-        { 
+        {
             //Api/Fms/BackOffice/CancelRequest
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(BaseUrl);
-            var httpRequest = await client.PostAsJsonAsync("Api/Fms/BackOffice/CancelRequest", serviceRequest);
-            var httpResponce = httpRequest.Content.ReadAsAsync<ResponseAPI>().Result;
-            
-            if(httpResponce.Result)
+            if(ModelState.IsValid)
             {
-                if (serviceRequest.BuildingID != 0)
-                    return RedirectToAction("BuildingManagerMaintananceRequests"); // From The View Dont Add Username to the serviceRequest Object to know that this request is made by BM
-                else
-                    return RedirectToAction("MaintananceManagerRequests");
+                string HeaderValue = Request.Cookies["securityToken"];
+                HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
+                var httpRequest = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "CancelRequest", serviceRequest);
+                var httpResponce = httpRequest.Content.ReadAsAsync<ResponseAPI>().Result;
+
+                if (httpResponce.Result)
+                {
+                    if (serviceRequest.BuildingID == 0)
+                        return RedirectToAction("BuildingManagerMaintananceRequests"); // From The View Dont Add Username to the serviceRequest Object to know that this request is made by BM
+                    else
+                        return RedirectToAction("MaintananceManagerRequests");
+                }
             }
             return Content("This Request Fails");
         }
@@ -144,16 +185,16 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
         // worker Dashboard 
         public async Task<IActionResult> MaintananceWorkerDashboard()
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(BaseUrl);
+            string HeaderValue = Request.Cookies["securityToken"];
+            HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
             ViewBag.username = Request.Cookies["Username"];
             if (ViewBag.username != null)
             {
                 LoginModel user = new LoginModel() { Username = ViewBag.username };
-                var OpenRListRequest = await client.PostAsJsonAsync("Api/Fms/BackOffice/WorkerOpenRequests", user);
+                var OpenRListRequest = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "WorkerOpenRequests", user);
                 var OpenRListResponce = OpenRListRequest.Content.ReadAsAsync<List<SP_GetMMOpenRequests_Result>>().Result;
 
-                var closeRListRequest = await client.PostAsJsonAsync("Api/Fms/BackOffice/WorkerClosedRequests", user);
+                var closeRListRequest = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "WorkerClosedRequests", user);
                 var closeRListResponce = closeRListRequest.Content.ReadAsAsync<List<SP_GetMMClosedRequests_Result>>().Result;
 
                 ViewBag.NoNewRequests = OpenRListResponce.Count;
@@ -168,16 +209,16 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
         //worker Maintanance Requests
         public async Task<IActionResult> MaintananceWorkerRequests()
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(BaseUrl);
+            string HeaderValue = Request.Cookies["securityToken"];
+            HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
             string username = Request.Cookies["Username"];
             if (username != null)
             {
                 LoginModel user = new LoginModel() { Username = username };
-                var OpenRListRequest = await client.PostAsJsonAsync("Api/Fms/BackOffice/WorkerOpenRequests", user);
+                var OpenRListRequest = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "WorkerOpenRequests", user);
                 var OpenRListResponce = OpenRListRequest.Content.ReadAsAsync<List<SP_GetMMOpenRequests_Result>>().Result;
 
-                var closeRListRequest = await client.PostAsJsonAsync("Api/Fms/BackOffice/WorkerClosedRequests", user);
+                var closeRListRequest = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "WorkerClosedRequests", user);
                 var closeRListResponce = closeRListRequest.Content.ReadAsAsync<List<SP_GetMMClosedRequests_Result>>().Result;
 
                 MaintenanceManagerModel mymodel = new MaintenanceManagerModel();
@@ -192,9 +233,9 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
         //worker Maintanance Requests Information
         public async Task<IActionResult> WorkerRequestsInfo(ServiceRequestAssignmentModel serviceRequest)
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(BaseUrl);
-            var ReqInformation = await client.PostAsJsonAsync("Api/Fms/BackOffice/GetRequestInfo", serviceRequest);
+            string HeaderValue = Request.Cookies["securityToken"];
+            HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
+            var ReqInformation = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "GetRequestInfo", serviceRequest);
             var ReqInforamationResponce = ReqInformation.Content.ReadAsAsync<SP_GetSpecificServiceRequestInfo_Result>().Result;
 
             // New Model List , RequestInfo
@@ -207,9 +248,9 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
         [HttpPost]
         public async Task<IActionResult> CloseRequestByWorker(ServiceRequestAssignmentModel serviceRequest)
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(BaseUrl);
-            var httpRequest = await client.PostAsJsonAsync("Api/Fms/BackOffice/AcceptServiceRequest", serviceRequest);
+            string HeaderValue = Request.Cookies["securityToken"];
+            HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
+            var httpRequest = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "AcceptServiceRequest", serviceRequest);
             var httpResponce = httpRequest.Content.ReadAsAsync<ResponseAPI>().Result;
             if(httpResponce.Result != true)
             {
@@ -221,13 +262,13 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
         // Building manager Dashboard 
         public async Task<IActionResult> BuildingManagerDashboard()
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(BaseUrl);
+            string HeaderValue = Request.Cookies["securityToken"];
+            HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
             ViewBag.username = Request.Cookies["Username"];
             if (ViewBag.username != null)
             {
                 LoginModel user = new LoginModel() { Username = ViewBag.username };
-                var BuildingNumberRequest = await client.PostAsJsonAsync("Api/Fms/BackOffice/ManagerBuildingNo", user);
+                var BuildingNumberRequest = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "ManagerBuildingNo", user);
                 var BuildingNumberResponse = BuildingNumberRequest.Content.ReadAsAsync<ResponseAPI>().Result;
                 if (BuildingNumberResponse.Result != true)
                 {
@@ -238,16 +279,16 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                 Int32.TryParse(BuildingNumberResponse.Message, out buildingNo);
 
                 ServiceRequestAssignmentModel request = new ServiceRequestAssignmentModel() { BuildingID = buildingNo };
-                var OpenRListRequest = await client.PostAsJsonAsync("Api/Fms/BackOffice/BuildingManagerOpenServiceRequests", request);
+                var OpenRListRequest = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "BuildingManagerOpenServiceRequests", request);
                 var OpenRListResponce = OpenRListRequest.Content.ReadAsAsync<List<SP_GetBMOpenedRequests_Result>>().Result;
 
-                var closeRListRequest = await client.PostAsJsonAsync("Api/Fms/BackOffice/BuildingManagerClosedServiceRequests", request);
+                var closeRListRequest = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "BuildingManagerClosedServiceRequests", request);
                 var closeRListResponce = closeRListRequest.Content.ReadAsAsync<List<SP_GetBMClosedRequests_Result>>().Result;
 
-                var ApprovedListRequest = await client.PostAsJsonAsync("Api/Fms/BackOffice/BuildingManagerMM_ApprovedServiceRequests" , request);
+                var ApprovedListRequest = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "BuildingManagerMM_ApprovedServiceRequests" , request);
                 var ApprovedListResponce = ApprovedListRequest.Content.ReadAsAsync<List<SP_GetBM_MM_ApprovedRequesets_Result>>().Result;
 
-                var CanceledListRequest = await client.PostAsJsonAsync("Api/Fms/BackOffice/BuildingManagerCanceledServiceRequests", request);
+                var CanceledListRequest = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "BuildingManagerCanceledServiceRequests", request);
                 var CanceledListResponce = CanceledListRequest.Content.ReadAsAsync<List<SP_BMCanceledRequests_Result>>().Result;
 
                 ViewBag.NoNewRequests = OpenRListResponce.Count;
@@ -265,14 +306,14 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
         // Building manager Requests
         public async Task<IActionResult> BuildingManagerMaintananceRequests()
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(BaseUrl);
+            string HeaderValue = Request.Cookies["securityToken"];
+            HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
             string username = Request.Cookies["Username"];
             if (username != null)
             {
 
                 LoginModel user = new LoginModel() { Username = username };
-                var BuildingNumberRequest = await client.PostAsJsonAsync("Api/Fms/BackOffice/ManagerBuildingNo", user);
+                var BuildingNumberRequest = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "ManagerBuildingNo", user);
                 var BuildingNumberResponse = BuildingNumberRequest.Content.ReadAsAsync<ResponseAPI>().Result;
                 if (BuildingNumberResponse.Result != true && BuildingNumberResponse.Message != "0")
                 {
@@ -283,16 +324,16 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                 Int32.TryParse(BuildingNumberResponse.Message, out buildingNo);
 
                 ServiceRequestAssignmentModel request = new ServiceRequestAssignmentModel() { BuildingID = buildingNo };
-                var OpenRListRequest = await client.PostAsJsonAsync("Api/Fms/BackOffice/BuildingManagerOpenServiceRequests", request);
+                var OpenRListRequest = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "BuildingManagerOpenServiceRequests", request);
                 var OpenRListResponce = OpenRListRequest.Content.ReadAsAsync<List<SP_GetMMOpenRequests_Result>>().Result;
 
-                var closeRListRequest = await client.PostAsJsonAsync("Api/Fms/BackOffice/BuildingManagerClosedServiceRequests", request);
+                var closeRListRequest = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "BuildingManagerClosedServiceRequests", request);
                 var closeRListResponce = closeRListRequest.Content.ReadAsAsync<List<SP_GetMMClosedRequests_Result>>().Result;
 
-                var ApprovedListRequest = await client.PostAsJsonAsync("Api/Fms/BackOffice/BuildingManagerMM_ApprovedServiceRequests", request);
+                var ApprovedListRequest = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "BuildingManagerMM_ApprovedServiceRequests", request);
                 var ApprovedListResponce = ApprovedListRequest.Content.ReadAsAsync<List<SP_GetMMApprovedRequests_Result>>().Result;
 
-                var CanceledListRequest = await client.PostAsJsonAsync("Api/Fms/BackOffice/BuildingManagerCanceledServiceRequests", request);
+                var CanceledListRequest = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "BuildingManagerCanceledServiceRequests", request);
                 var CanceledListResponce = CanceledListRequest.Content.ReadAsAsync<List<SP_CanceledServiceRequests_Result>>().Result;
 
                 MaintenanceManagerModel mymodel = new MaintenanceManagerModel();
@@ -309,12 +350,13 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
         // Building manager Requests Information
         public async Task<IActionResult>  BuildingManagerRequestsInfo(ServiceRequestAssignmentModel serviceRequest)
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(BaseUrl);
-            var ReqInformation = await client.PostAsJsonAsync("Api/Fms/BackOffice/GetRequestInfo", serviceRequest);
+            string HeaderValue = Request.Cookies["securityToken"];
+            HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
+            var ReqInformation = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "GetRequestInfo", serviceRequest);
             var ReqInforamationResponce = ReqInformation.Content.ReadAsAsync<SP_GetSpecificServiceRequestInfo_Result>().Result;
 
             // New Model List , RequestInfo
+            ViewBag.Username = Request.Cookies["Username"];
             MM_RequestInfo_Model PageModel = new MM_RequestInfo_Model();
             PageModel.RequestInfo = ReqInforamationResponce;
             return View(PageModel);
@@ -323,20 +365,20 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
         /////////////////////////////////////////////////////////////////////
         public async Task<IActionResult> AdminDashboard()
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(BaseUrl);
+            string HeaderValue = Request.Cookies["securityToken"];
+            HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
             ViewBag.username = Request.Cookies["Username"];
 
-            var WorkersRequest = await client.GetAsync("Api/Fms/BackOffice/NumberOfWorkers");
+            var WorkersRequest = await client.GetAsync(ConstantStrings.BackOfficeControlerURL + "NumberOfWorkers");
             var WorkerResponse = WorkersRequest.Content.ReadAsAsync<int>().Result;
             
-            var BeneficiariesRequest = await client.GetAsync("Api/Fms/BackOffice/NumberOfBeneficiaries");
+            var BeneficiariesRequest = await client.GetAsync(ConstantStrings.BackOfficeControlerURL + "NumberOfBeneficiaries");
             var BeneficiariesResponse = BeneficiariesRequest.Content.ReadAsAsync<int>().Result;
 
-            var OpenRequest = await client.GetAsync("Api/Fms/BackOffice/NumberOfOpenRequests");
+            var OpenRequest = await client.GetAsync(ConstantStrings.BackOfficeControlerURL + "NumberOfOpenRequests");
             var OpenResponse = OpenRequest.Content.ReadAsAsync<int>().Result;
 
-            var ClosedRequest = await client.GetAsync("Api/Fms/BackOffice/NumberOfClosedRequests");
+            var ClosedRequest = await client.GetAsync(ConstantStrings.BackOfficeControlerURL + "NumberOfClosedRequests");
             var ClosedResponse = ClosedRequest.Content.ReadAsAsync<int>().Result;
 
             ViewBag.Workers = WorkerResponse.ToString();
@@ -348,11 +390,12 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
 
         public async Task<IActionResult> AdminRegistrationRequests()
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(BaseUrl);
+            string HeaderValue = Request.Cookies["securityToken"];
+            HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
+
             // GET Api/Fms/BackOffice/ListOfNotActiveBeneficiaries"
             List<NotActiveUsersOfBuildingModel> PageModel = new List<NotActiveUsersOfBuildingModel>();
-            var usersRequest = await client.GetAsync("Api/Fms/BackOffice/ListOfNotActiveBeneficiaries");
+            var usersRequest = await client.GetAsync(ConstantStrings.BackOfficeControlerURL + "ListOfNotActiveBeneficiaries");
             var usersResponse = usersRequest.Content.ReadAsAsync<List<NotActiveUsersOfBuildingModel>>().Result;
 
             if (usersResponse != null)
@@ -367,10 +410,10 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
             {
 
                 // Post Api/Fms/BackOffice/ActivateBeneficiary
-                HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri(BaseUrl);
+                string HeaderValue = Request.Cookies["securityToken"];
+                HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
 
-                var ActivateRequest = await client.PostAsJsonAsync("Api/Fms/BackOffice/ActivateBeneficiary", user);
+                var ActivateRequest = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "ActivateBeneficiary", user);
                 var ActivateResponce = ActivateRequest.Content.ReadAsAsync<ResponseAPI>().Result;
 
                 if(!ActivateResponce.Result)
@@ -386,10 +429,10 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
         public async Task<IActionResult> AdminEmployeesList()
         {
             // GET Api/Fms/BackOffice/GetAllCompanyEmployees { List<SP_GetCompanyEmployeesList_Result> }
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(BaseUrl);
+            string HeaderValue = Request.Cookies["securityToken"];
+            HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
 
-            var EmployeesListRequest = await client.GetAsync("Api/Fms/BackOffice/GetAllCompanyEmployees");
+            var EmployeesListRequest = await client.GetAsync(ConstantStrings.BackOfficeControlerURL + "GetAllCompanyEmployees");
             var EmployeesListResponce = EmployeesListRequest.Content.ReadAsAsync<List<SP_GetCompanyEmployeesList_Result>>().Result;
             
             ViewBag.WorkersList = EmployeesListResponce;
@@ -409,12 +452,13 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
         {
             if (ModelState.IsValid)
             {
-                HttpClient httpClient = new HttpClient();
-                httpClient.BaseAddress = new Uri(BaseUrl);
-                var Request = httpClient.PostAsJsonAsync("Api/Fms/EmployeeRegistraion", EmployeeRegistraion).Result;
-                if (Request.IsSuccessStatusCode)
+                string HeaderValue = Request.Cookies["securityToken"];
+                HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
+
+                var RequestList = client.PostAsJsonAsync(ConstantStrings.FMSControlerURL + "EmployeeRegistraion", EmployeeRegistraion).Result;
+                if (RequestList.IsSuccessStatusCode)
                 {
-                    var Response = Request.Content.ReadAsAsync<ResponseAPI>().Result;
+                    var Response = RequestList.Content.ReadAsAsync<ResponseAPI>().Result;
                     if (Response.Result == true)
                         ViewBag.Result = true;
                     else
@@ -430,12 +474,13 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
         public List<SelectListItem> GetSpecializationList()
         {
             List<SelectListItem> SpecializationName = new List<SelectListItem>();
-            HttpClient httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri(BaseUrl);
-            var Request = httpClient.GetAsync("Api/Fms/GetSpecializationList").Result;
-            if (Request.IsSuccessStatusCode)
+            string HeaderValue = Request.Cookies["securityToken"];
+            HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
+
+            var RequestList = client.GetAsync(ConstantStrings.FMSControlerURL + "GetSpecializationList").Result;
+            if (RequestList.IsSuccessStatusCode)
             {
-                var Response = Request.Content.ReadAsAsync<List<SP_GetAllSpecializations_Result>>().Result;
+                var Response = RequestList.Content.ReadAsAsync<List<SP_GetAllSpecializations_Result>>().Result;
                 foreach (var item in Response)
                 {
                     SpecializationName.Add(new SelectListItem(item.SpecializationName, item.SpecializationID.ToString()));
@@ -446,12 +491,13 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
         private List<SelectListItem> GetManagerList()
         {
             List<SelectListItem> ManagerName = new List<SelectListItem>();
-            HttpClient httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri(BaseUrl);
-            var Request = httpClient.GetAsync("Api/Fms/GetManagerList").Result;
-            if (Request.IsSuccessStatusCode)
+            string HeaderValue = Request.Cookies["securityToken"];
+            HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
+
+            var RequestList = client.GetAsync(ConstantStrings.FMSControlerURL + "GetManagerList").Result;
+            if (RequestList.IsSuccessStatusCode)
             {
-                var Response = Request.Content.ReadAsAsync<List<SP_MaintananceManagersList_Result>>().Result;
+                var Response = RequestList.Content.ReadAsAsync<List<SP_MaintananceManagersList_Result>>().Result;
                 foreach (var item in Response)
                 {
                     ManagerName.Add(new SelectListItem(item.FirstName + " " + item.LastName, item.EmployeeID.ToString()));
@@ -462,12 +508,13 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
         private List<SelectListItem> GetLocationList()
         {
             List<SelectListItem> LocationName = new List<SelectListItem>();
-            HttpClient httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri(BaseUrl);
-            var Request = httpClient.GetAsync("Api/Fms/GetLocationList").Result;
-            if (Request.IsSuccessStatusCode)
+            string HeaderValue = Request.Cookies["securityToken"];
+            HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
+
+            var RequestList = client.GetAsync(ConstantStrings.FMSControlerURL + "GetLocationList").Result;
+            if (RequestList.IsSuccessStatusCode)
             {
-                var Response = Request.Content.ReadAsAsync<List<SP_GetAllLocations_Result>>().Result;
+                var Response = RequestList.Content.ReadAsAsync<List<SP_GetAllLocations_Result>>().Result;
                 foreach (var item in Response)
                 {
                     LocationName.Add(new SelectListItem(item.City, item.LocationID.ToString()));
@@ -478,14 +525,17 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
         private List<SelectListItem> GetRoleList()
         {
             List<SelectListItem> RolenName = new List<SelectListItem>();
-            HttpClient httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri(BaseUrl);
-            var Request = httpClient.GetAsync("Api/Fms/GetRoleList").Result;
-            if (Request.IsSuccessStatusCode)
+            string HeaderValue = Request.Cookies["securityToken"];
+            HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
+
+            var RequestList = client.GetAsync(ConstantStrings.FMSControlerURL + "GetRoleList").Result;
+            if (RequestList.IsSuccessStatusCode)
             {
-                var Response = Request.Content.ReadAsAsync<List<SP_GetAllRoles_Result>>().Result;
+                var Response = RequestList.Content.ReadAsAsync<List<SP_GetAllRoles_Result>>().Result;
                 foreach (var item in Response)
                 {
+                    if (item.RoleName.Equals(ConstantStrings.Role_SystemAdmin) || item.RoleName.Equals(ConstantStrings.Role_Employee) || item.RoleName.Equals(ConstantStrings.Role_Beneficiary))
+                        continue;
                     RolenName.Add(new SelectListItem(item.RoleName, item.RoleID.ToString()));
                 }
             }

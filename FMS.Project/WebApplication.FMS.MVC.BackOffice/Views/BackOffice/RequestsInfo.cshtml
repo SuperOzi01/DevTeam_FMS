@@ -50,7 +50,7 @@
         {
             <!-- Select Worker -->
             <div class="form-group mlr">
-                @Html.DropDownListFor(m => m.EmployeeUsername, workersList, "Select Worker", new { @class = "form-control input", id = "WorkersDropDown" })
+                @Html.DropDownListFor(m => m.MaintenanceWorkerID, workersList, "Select Worker", new { @class = "form-control input", id = "WorkersDropDown" })
             </div>
             <!-- End Select Worker -->
 
@@ -61,8 +61,8 @@
             </div>
             <!-- End button -->
             @Html.HiddenFor(x => x.RequestID, requestID)
-            @Html.HiddenFor(bid => bid.BuildingID, 0)
-            @Html.HiddenFor(a => a.MaintenanceWorkerID, 1)
+            @Html.HiddenFor(bid => bid.BuildingID, 1)
+            @Html.HiddenFor(a => a.EmployeeUsername, ViewBag.Username as string)
         }
 
 
