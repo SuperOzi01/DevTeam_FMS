@@ -59,7 +59,7 @@
                                         @Html.DisplayFor(modelItem => item.RequestIssueDate)
                                     </td>
                                     <td>
-                                        @Html.ActionLink("", "WorkerRequestInfo", "BackOffice", new ClassLibrary.FMS.DataModels.Models.ServiceRequestAssignmentModel { RequestID = item.ServiceRequestID, EmployeeUsername = item.Specialization_Type }, new { @class = "fa-edit fa fa-edit" })
+                                        @Html.ActionLink("", "RequestsInfo", "PortalSystem", new ClassLibrary.FMS.DataModels.Models.ServiceRequestAssignmentModel { RequestID = item.ServiceRequestID }, new { @class = "fa-edit fa fa-edit" })
                                     </td>
                                 </tr>
                             }

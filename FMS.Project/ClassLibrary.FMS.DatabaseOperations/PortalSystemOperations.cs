@@ -17,6 +17,11 @@ namespace ClassLibrary.FMS.DatabaseOperations
             return DatabaseEntity.SP_GetBeneficiaryOpenRequests(username).ToList();
         }
 
+        public SP_GetSpecificServiceRequestInfo_Result GetServiceRequestInfo(int RequestID)
+        {
+            return DatabaseEntity.SP_GetSpecificServiceRequestInfo(RequestID).FirstOrDefault();
+        }
+
         public List<SP_GetBeneficiaryCloseedRequest_Result> GetBeneficiaryClosedRequests(string username)
         {
             return DatabaseEntity.SP_GetBeneficiaryCloseedRequest(username).ToList();
@@ -29,7 +34,7 @@ namespace ClassLibrary.FMS.DatabaseOperations
 
         public bool CreateNewServiceRequest(NewServiceRequestModel serviceRequest)
         {
-            int result = (Int32) DatabaseEntity.SP_InsertNewServiceRequiest(buildinNo: serviceRequest.BuildingID, specialization: serviceRequest.SpecializationID, describtion: serviceRequest.Describtion, creatorUsername: serviceRequest.CreatorUsername).FirstOrDefault();
+            int result = (int)DatabaseEntity.SP_InsertNewServiceRequiest(buildinNo: serviceRequest.BuildingID, specialization: serviceRequest.SpecializationID, describtion: serviceRequest.Describtion, creatorUsername: serviceRequest.CreatorUsername).FirstOrDefault();
             if (result == 1)
                 return true;
             else

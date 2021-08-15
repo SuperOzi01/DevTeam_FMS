@@ -556,6 +556,7 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
 
         public ActionResult Logout()
         {
+            Response.Cookies.Delete("securityToken");
             return RedirectToAction("EmployeeLogin", "Login");
         }
 
