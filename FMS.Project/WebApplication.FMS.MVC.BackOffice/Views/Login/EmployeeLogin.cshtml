@@ -9,19 +9,19 @@
 
 <body class="BodyEmployeeLogin">
     <div class="container pb-80">
-        <div class="card">
+        <div class="card br-25 mt-30">
             <div class="row">
 
                 <div class="col-lg-6">
                     <div class="cardLeft ">
 
-                        <img class="logo2" src="~/icon/maintra logo colored.png" />
+                        <img class="EmployeeLoginColordLogo" src="~/icon/maintra logo colored.png" />
 
-                        <form asp-action="EmployeeLogin" class="myform text-center">
+                        <form asp-action="EmployeeLogin" class="myform pt-60 text-center">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <header>Sign In </header>
                             <div class="form-group">
-                                <i class="far fa-envelope"></i>
+                                <i class="far fa-user"></i>
                                 <input asp-for="Username" placeholder="Username" class="input" />
                                 <span asp-validation-for="Username" class="text-danger"></span>
                             </div>
@@ -49,7 +49,7 @@
                                 Enter your personal Details and Start
                                 journey with us
                             </p>
-                      
+
                         </div>
                     </div>
                 </div>
@@ -58,6 +58,3 @@
     </div>
 </body>
 </html>
-
-
-

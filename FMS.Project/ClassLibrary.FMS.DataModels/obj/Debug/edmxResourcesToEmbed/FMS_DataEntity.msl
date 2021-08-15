@@ -427,51 +427,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_BMCanceledRequests1" FunctionName="FMS_DatabaseModel.Store.SP_BMCanceledRequests">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_BMCanceledRequests1_Result">
-          <ScalarProperty Name="ServiceRequestID" ColumnName="ServiceRequestID" />
-          <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
-          <ScalarProperty Name="Specialization_Type" ColumnName="Specialization_Type" />
-          <ScalarProperty Name="Assigned_Worker" ColumnName="Assigned_Worker" />
-          <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
-          <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
-          <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
-          <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
-          <ScalarProperty Name="Request_Creator" ColumnName="Request_Creator" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_BMClosedRequests1" FunctionName="FMS_DatabaseModel.Store.SP_BMClosedRequests">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_BMClosedRequests1_Result">
-          <ScalarProperty Name="ServiceRequestID" ColumnName="ServiceRequestID" />
-          <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
-          <ScalarProperty Name="Specialization_Type" ColumnName="Specialization_Type" />
-          <ScalarProperty Name="Assigned_Worker" ColumnName="Assigned_Worker" />
-          <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
-          <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
-          <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
-          <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
-          <ScalarProperty Name="Request_Creator" ColumnName="Request_Creator" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_BMOpenRequests1" FunctionName="FMS_DatabaseModel.Store.SP_BMOpenRequests">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_BMOpenRequests1_Result">
-          <ScalarProperty Name="ServiceRequestID" ColumnName="ServiceRequestID" />
-          <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
-          <ScalarProperty Name="Specialization_Type" ColumnName="Specialization_Type" />
-          <ScalarProperty Name="Assigned_Worker" ColumnName="Assigned_Worker" />
-          <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
-          <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
-          <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
-          <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
-          <ScalarProperty Name="Request_Creator" ColumnName="Request_Creator" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="SP_GetNumberOfBeneficiaries" FunctionName="FMS_DatabaseModel.Store.SP_GetNumberOfBeneficiaries" />
     <FunctionImportMapping FunctionImportName="SP_GetNumberOfClosedRequests" FunctionName="FMS_DatabaseModel.Store.SP_GetNumberOfClosedRequests" />
     <FunctionImportMapping FunctionImportName="SP_GetNumberOfOpenedRequests" FunctionName="FMS_DatabaseModel.Store.SP_GetNumberOfOpenedRequests" />

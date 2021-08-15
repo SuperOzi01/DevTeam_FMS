@@ -29,24 +29,29 @@
             </div>
         </div>
         <ul class="nav flex-column mb-0">
-            <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString()=="MaintananceManagerDashboard"?"active":"")">
-                <a asp-controller="BackOffice" asp-action="MaintananceManagerDashboard" class="nav-link ">
+            <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString()=="BeneficiariesDashboard"?"active":"")">
+                <a asp-controller="PortalSystem" asp-action="BeneficiariesDashboard" class="nav-link ">
                     <i class="fa fa-th-large mr-3 fa-fw"></i>
                     DashBoard
                 </a>
             </li>
-            <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString()=="MaintananceManagerRequests"?"active":"")">
-                <a asp-controller="BackOffice" asp-action="MaintananceManagerRequests" class="nav-link ">
+            <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString()=="BeneficiariesMaintananceRequests"?"active":"")">
+                <a asp-controller="PortalSystem" asp-action="BeneficiariesMaintananceRequests" class="nav-link ">
                     <i class="fa fa-cubes mr-3 fa-fw"></i>
                     Maintenance Requests
                 </a>
             </li>
-            <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString()=="MaintananceManagerRequests"?"active":"")">
-                <a asp-controller="BackOffice" asp-action="MaintananceManagerRequests" class="nav-link ">
+            <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString()=="CreateNewRequests"?"active":"")">
+                <a asp-controller="PortalSystem" asp-action="CreateNewRequests" class="nav-link ">
                     <i class="fa  fa-align-justify mr-3 fa-fw"></i>
                     Add New Requests
                 </a>
-               
+            </li>
+            <li class="nav-item">
+                <a asp-controller="PortalSystem" asp-action="Logout" class="nav-link ">
+                    <i class="fa fa-sign-out-alt mr-3 fa-fw"></i>
+                    Logout
+                </a>
             </li>
         </ul>
     </div>

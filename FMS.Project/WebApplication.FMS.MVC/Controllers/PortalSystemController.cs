@@ -109,5 +109,9 @@ namespace WebApplication.FMS.MVC.Portal.Controllers
             else
                 return Content(CreationResponce.Message);
         }
+        public ActionResult Logout()
+        {
+            return RedirectToAction("LoginPortal", "Login");
+        }
     }
 }
