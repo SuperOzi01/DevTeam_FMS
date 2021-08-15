@@ -63,8 +63,11 @@ namespace WebApplication.FMS.WebAPI.App_Start
 
             string[] controllerRoles = roles.Split(',');
 
-                if (controllerRoles.Contains(userRole))
+            foreach (string item in controllerRoles)
+            {
+                if (item.Trim().Equals(userRole.Trim()))
                     return true;
+            }
             
             // this mean the token is valid but no roles matched the user 
             return false;

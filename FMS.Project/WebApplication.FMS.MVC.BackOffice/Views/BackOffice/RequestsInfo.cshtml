@@ -1,14 +1,21 @@
-﻿@using ClassLibrary.FMS.DataModels.Models 
-@model ServiceRequestAssignmentModel
+﻿@using ClassLibrary.FMS.DataModels;
+@model ClassLibrary.FMS.DataModels.Models.ServiceRequestAssignmentModel;
 @{
+
     ViewData["Title"] = "Login BackOffice";
     List<SelectListItem> workersList = new List<SelectListItem>();
-    foreach (var item in ViewBag.WorkersList)
+    var Request = ViewBag.RequestInfo as SP_GetSpecificServiceRequestInfo_Result;
+    var Workers = ViewBag.WorkersList as List<SP_GetWorkersOfSpecialization_Result>;
+    
+    
+    foreach (var item in Workers)
     {
         workersList.Add(new SelectListItem { Text = item.FirstName + " " + item.LastName, Value = item.EmployeeID.ToString() });
     }
 
-    int requestID = ViewBag.RequestInfo.ServiceRequestID;
+    string USERNAME = ViewBag.Username;
+    int requestID = Request.ServiceRequestID;
+    int buildingNO = 1;
 }
 
 <!-- Toggle button -->
@@ -17,7 +24,7 @@
 <!-- Demo content -->
 <div class="jumbotron jumbotron-fluid " style="border-radius: 25px; background:white;">
     <div class="container">
-        <h5 class="reqestNotext">Request NO. @ViewBag.RequestInfo.ServiceRequestID</h5>
+        <h5 class="reqestNotext">Request NO. @Request.ServiceRequestID</h5>
         <!-- Start Table info -->
         <div class="table-responsive">
             <table class="table table-striped">
@@ -25,16 +32,16 @@
                     <tr>
                         <th scope="col">Request Creator</th>
                         <th scope="col">Request Issue Date</th>
-                        <th scope="col">Building No.</th>
+                        <th scope="col">Building No.</th> 
                         <th scope="col"> Service Type</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <th>@ViewBag.RequestInfo.Request_Creator</th>
-                        <td>@ViewBag.RequestInfo.RequestIssueDate</td>
-                        <td>@ViewBag.RequestInfo.BuildingID</td>
-                        <td>@ViewBag.RequestInfo.Specialization_Type</td>
+                        <th>@Request.Request_Creator </th>
+                        <td>@Request.RequestIssueDate</td>
+                        <td>@Request.BuildingID</td>
+                        <td>@Request.Specialization_Type</td>
                     </tr>
                 </tbody>
             </table>
@@ -43,7 +50,7 @@
         <!-- Start Brife Description -->
         <p class=" colorB">Brife Description </p>
         <p>
-            @ViewBag.RequestInfo.ServiceDescribtion
+            @Request.ServiceDescribtion
         </p>
         <!-- End Brife Description -->
         @using (Html.BeginForm("RequestInfoClick", "BackOffice", FormMethod.Post))
@@ -53,24 +60,23 @@
                 @Html.DropDownListFor(m => m.MaintenanceWorkerID, workersList, "Select Worker", new { @class = "form-control input", id = "WorkersDropDown" })
             </div>
             <!-- End Select Worker -->
-
+            @Html.HiddenFor(x => x.RequestID, requestID)
+            @Html.HiddenFor(x => x.EmployeeUsername , USERNAME)
+            @Html.HiddenFor(x => x.BuildingID, buildingNO)
+            
             <!-- Start button -->
             <div class=" text-center">
-                <button type="submit" class="btnSignInCard " data-toggle="modal" data-target="#loginModalAccept" name="BtnValue" value="Accept">Accept</button>
+                <button type="submit" class="btnSignInCardgreen " data-toggle="modal" data-target="#loginModalAccept" name="BtnValue" value="Accept">Accept</button>
                 <button type="submit" class="btnSignInCard " data-toggle="modal" data-target="#loginModalAccept" name="BtnValue" value="Reject">Reject</button>
             </div>
             <!-- End button -->
-            @Html.HiddenFor(x => x.RequestID, requestID)
-            @Html.HiddenFor(bid => bid.BuildingID, 1)
-            @Html.HiddenFor(a => a.EmployeeUsername, ViewBag.Username as string)
+
         }
 
 
     </div>
-    </div>
+</div>
 <!-- End Demo content -->
-
-
 <!--  demo PopUp Accept -->
 <div class="modal fade pt-60" role="dialog" id="loginModalAccept">
     <div class="modal-dialog">

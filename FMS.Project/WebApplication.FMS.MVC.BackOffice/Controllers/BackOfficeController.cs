@@ -103,52 +103,64 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
             // Open Requests ... New Requests... 
         }
 
-        public async Task<IActionResult> RequestsInfo(ServiceRequestAssignmentModel serviceRequest)
+
+
+        public async Task<IActionResult> RequestsInfo(string ServiceType, int RequestNo)
         {
+
+            ServiceRequestAssignmentModel serviceRequest = new ServiceRequestAssignmentModel();
+            serviceRequest.RequestID = RequestNo;
+            serviceRequest.EmployeeUsername = ServiceType;
+
             string HeaderValue = Request.Cookies["securityToken"];
             HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
             var ReqInforamationResponce = new SP_GetSpecificServiceRequestInfo_Result();
-            var WorkersListResponse =  new List<SP_GetWorkersOfSpecialization_Result>();
+            var WorkersListResponse = new List<SP_GetWorkersOfSpecialization_Result>();
 
             var ReqInformation = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "GetRequestInfo", serviceRequest);
-            if(ReqInformation.IsSuccessStatusCode)
-             ReqInforamationResponce = ReqInformation.Content.ReadAsAsync<SP_GetSpecificServiceRequestInfo_Result>().Result;
+            if (ReqInformation.IsSuccessStatusCode)
+                ReqInforamationResponce = ReqInformation.Content.ReadAsAsync<SP_GetSpecificServiceRequestInfo_Result>().Result;
 
             var WorkersListRequest = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "GetWorkersList", serviceRequest);
-            if(WorkersListRequest.IsSuccessStatusCode)
-             WorkersListResponse = WorkersListRequest.Content.ReadAsAsync<List<SP_GetWorkersOfSpecialization_Result>>().Result;
+            if (WorkersListRequest.IsSuccessStatusCode)
+                WorkersListResponse = WorkersListRequest.Content.ReadAsAsync<List<SP_GetWorkersOfSpecialization_Result>>().Result;
 
             // New Model List , RequestInfo
             ViewBag.Username = Request.Cookies["Username"];
-            ViewBag.RequestInfo = ReqInforamationResponce;
             ViewBag.WorkersList = WorkersListResponse;
+            ViewBag.RequestInfo = ReqInforamationResponce;
             return View();
         }
 
+
+
+
+
         [HttpPost]
-        public async Task<IActionResult> RequestInfoClick(ServiceRequestAssignmentModel serviceRequest, string BtnValue)
+        public async Task RequestInfoClick(ServiceRequestAssignmentModel PageModel, string BtnValue)
         {
             if (BtnValue.Equals("Accept"))
-                return await AcceptRequest(serviceRequest);
+                 await AcceptRequest(PageModel);
             else
-                return await CancelRequest(serviceRequest);
+                 await CancelRequest(PageModel);
         }
 
-        public async Task<IActionResult> AcceptRequest(ServiceRequestAssignmentModel serviceRequest)
+        public async Task<IActionResult> AcceptRequest(ServiceRequestAssignmentModel PageModel)
         {
-            if(ModelState.IsValid)
+            PageModel.EmployeeUsername = Request.Cookies["Username"];
+            if (ModelState.IsValid)
             {
                 string HeaderValue = Request.Cookies["securityToken"];
                 HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
                 var httpResponse = new ResponseAPI();
 
-                var httpRequest = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "AcceptServiceRequest", serviceRequest);
+                var httpRequest = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "AcceptServiceRequest", PageModel);
                 if (httpRequest.IsSuccessStatusCode)
                 {
                     httpResponse = httpRequest.Content.ReadAsAsync<ResponseAPI>().Result;
                     if (httpResponse.Result)
                     {
-                        if (serviceRequest.BuildingID == 1) // this request made by BM
+                        if (PageModel.BuildingID == 1) // this request made by BM
                             return RedirectToAction("MaintananceManagerRequests");
                         else
                             return RedirectToAction("BuildingManagerMaintananceRequests");
@@ -159,19 +171,19 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
         }
 
         
-        public async Task<IActionResult> CancelRequest(ServiceRequestAssignmentModel serviceRequest)
+        public async Task<IActionResult> CancelRequest(ServiceRequestAssignmentModel PageModel)
         {
             //Api/Fms/BackOffice/CancelRequest
             if(ModelState.IsValid)
             {
                 string HeaderValue = Request.Cookies["securityToken"];
                 HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
-                var httpRequest = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "CancelRequest", serviceRequest);
+                var httpRequest = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "CancelRequest", PageModel);
                 var httpResponce = httpRequest.Content.ReadAsAsync<ResponseAPI>().Result;
 
                 if (httpResponce.Result)
                 {
-                    if (serviceRequest.BuildingID == 0)
+                    if (PageModel.BuildingID == 0)
                         return RedirectToAction("BuildingManagerMaintananceRequests"); // From The View Dont Add Username to the serviceRequest Object to know that this request is made by BM
                     else
                         return RedirectToAction("MaintananceManagerRequests");
