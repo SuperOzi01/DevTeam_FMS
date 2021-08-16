@@ -441,3 +441,5 @@ C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.B
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.BackOffice.dll
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.BackOffice.pdb
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.BackOffice.genruntimeconfig.cache
+C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_BMLayout.cshtml.g.cs
+C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC.BackOffice\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_MWLayout.cshtml.g.cs

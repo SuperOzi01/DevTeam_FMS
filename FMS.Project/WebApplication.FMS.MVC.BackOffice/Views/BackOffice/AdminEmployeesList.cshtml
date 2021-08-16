@@ -12,7 +12,7 @@
 }
 
 <!-- Toggle button -->
-<button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Maintenance requests</small></button>
+<button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4 ToggleMedia"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold  text-toggel">Employee</small></button>
 
 <!-- Demo content -->
 <!-- Start employee Form Box -->
@@ -50,20 +50,14 @@
                                     <i class="fas fa-user-circle"></i>
                                 </div>
                             </div>
-                            <div class="col-6 col-md-7">
-                                <h4 class="opentext card-category">@item.FirstName.ToString()  @item.LastName.ToString()</h4>
+                            <div class="col-9 col-md-10">
+                                <h4 class="card-category">@item.FirstName.ToString()  @item.LastName.ToString()</h4>
                                 <p style="margin-bottom: 0rem;">
                                     @item.RoleName.ToString()
                                     <br>@item.Email.ToString()
                                 <p>
                             </div>
 
-                            <div class="col-3 col-md-3">
-                                <div class="icon-big text-center icon-warning" style="font-size: 20px; color:#b1b0af; margin-top: 15px;">
-                                    <i class="fas fa-pen" style="margin-right: 5px;"></i>
-                                    <i class="fas fa-trash-alt"></i>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

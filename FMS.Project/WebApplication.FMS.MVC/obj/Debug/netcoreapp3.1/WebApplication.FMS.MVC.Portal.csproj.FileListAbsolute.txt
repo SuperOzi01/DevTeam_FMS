@@ -311,3 +311,4 @@ C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.F
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.Portal.pdb
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\WebApplication.FMS.MVC.Portal.genruntimeconfig.cache
 C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\outSystemLayout.cshtml.g.cs
+C:\Users\alano\Documents\GitHub\DevTeam_FMS\FMS.Project\WebApplication.FMS.MVC\obj\Debug\netcoreapp3.1\Razor\Views\PortalSystem\RequestsInfo.cshtml.g.cs

@@ -45,7 +45,6 @@ $(document).ready(function () {
             null,
             null,
             null,
-            null,
             null
         ],
 
@@ -78,7 +77,7 @@ $(document).ready(function () {
         MaintananceManagerOpentable.search(this.value).draw();
     });
 
-    // Beneficiaries Closed Table "Datatable"
+    //  Maintanance Manager Closed Table "Datatable"
     var MaintananceManagerClosedtable = $('#MaintananceManagerClosedtable').DataTable({
         "pageLength": 5,
         'aoColumnDefs': [{
@@ -86,6 +85,7 @@ $(document).ready(function () {
             'aTargets': ['nosort'],
         }],
         "aoColumns": [
+            null,
             null,
             null,
             null,
@@ -100,7 +100,7 @@ $(document).ready(function () {
         MaintananceManagerClosedtable.search(this.value).draw();
     });
 
-    // Beneficiaries Canceled Table "Datatable"
+    //  Maintanance Manager Canceled Table "Datatable"
     var MaintananceManagerCanceledtable = $('#MaintananceManagerCanceledtable').DataTable({
         "pageLength": 5,
         'aoColumnDefs': [{
@@ -108,6 +108,7 @@ $(document).ready(function () {
             'aTargets': ['nosort'],
         }],
         "aoColumns": [
+            null,
             null,
             null,
             null,
@@ -154,9 +155,8 @@ $(document).ready(function () {
             null,
             null,
             null,
-            null,
-            null,
             null
+          
         ],
 
         "bLengthChange": false,
@@ -175,8 +175,6 @@ $(document).ready(function () {
             'aTargets': ['nosort'],
         }],
         "aoColumns": [
-            null,
-            null,
             null,
             null,
             null
@@ -225,7 +223,6 @@ $(document).ready(function () {
             null,
             null,
             null,
-            null,
             null
         ],
 
@@ -266,8 +263,6 @@ $(document).ready(function () {
             'aTargets': ['nosort'],
         }],
         "aoColumns": [
-            null,
-            null,
             null,
             null,
             null,
