@@ -301,7 +301,7 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
         </Function>
         <Function Name="SP_CanceledServiceRequests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_ChangeServiceRequestStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="WorkerID" Type="int" Mode="In" />
+          <Parameter Name="EmployeeUsername" Type="varchar" Mode="In" />
           <Parameter Name="RequestID" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_CloseServiceRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -837,7 +837,7 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
             <Parameter Name="password" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_ChangeServiceRequestStatus" ReturnType="Collection(Int32)">
-            <Parameter Name="WorkerID" Mode="In" Type="Int32" />
+            <Parameter Name="EmployeeUsername" Mode="In" Type="String" />
             <Parameter Name="RequestID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Employee_LoginCheck" ReturnType="Collection(Int32)">
@@ -958,6 +958,15 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           </FunctionImport>
           <FunctionImport Name="SP_GetCompanyEmployeesList" ReturnType="Collection(FMS_DatabaseModel.SP_GetCompanyEmployeesList_Result)" />
           <FunctionImport Name="SP_MaintananceManagersList" ReturnType="Collection(FMS_DatabaseModel.SP_MaintananceManagersList_Result)" />
+          <FunctionImport Name="SP_BMCanceledRequests2" ReturnType="Collection(FMS_DatabaseModel.SP_BMCanceledRequests2_Result)">
+          <Parameter Name="BuildingID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_BMClosedRequests2" ReturnType="Collection(FMS_DatabaseModel.SP_BMClosedRequests2_Result)">
+          <Parameter Name="BuildingID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_BMOpenRequests2" ReturnType="Collection(FMS_DatabaseModel.SP_BMOpenRequests2_Result)">
+          <Parameter Name="BuildingID" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="SP_GetAllBuildings_Result">
           <Property Type="Int32" Name="BuildingID" Nullable="false" />
@@ -1267,6 +1276,39 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           <Property Type="Int32" Name="EmployeeID" Nullable="false" />
           <Property Type="String" Name="FirstName" Nullable="false" MaxLength="40" />
           <Property Type="String" Name="LastName" Nullable="false" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="SP_BMCanceledRequests2_Result">
+          <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
+          <Property Type="Int32" Name="BuildingID" Nullable="false" />
+          <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="Assigned_Worker" Nullable="true" MaxLength="40" />
+          <Property Type="Int32" Name="RequiestStatus" Nullable="false" />
+          <Property Type="DateTime" Name="RequestIssueDate" Nullable="false" />
+          <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
+          <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="SP_BMClosedRequests2_Result">
+          <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
+          <Property Type="Int32" Name="BuildingID" Nullable="false" />
+          <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="Assigned_Worker" Nullable="true" MaxLength="40" />
+          <Property Type="Int32" Name="RequiestStatus" Nullable="false" />
+          <Property Type="DateTime" Name="RequestIssueDate" Nullable="false" />
+          <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
+          <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="SP_BMOpenRequests2_Result">
+          <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
+          <Property Type="Int32" Name="BuildingID" Nullable="false" />
+          <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="Assigned_Worker" Nullable="true" MaxLength="40" />
+          <Property Type="Int32" Name="RequiestStatus" Nullable="false" />
+          <Property Type="DateTime" Name="RequestIssueDate" Nullable="false" />
+          <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
+          <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1739,7 +1781,7 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

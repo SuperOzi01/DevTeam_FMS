@@ -15,8 +15,8 @@ SET NUMERIC_ROUNDABORT OFF;
 GO
 :setvar DatabaseName "FMS_Database"
 :setvar DefaultFilePrefix "FMS_Database"
-:setvar DefaultDataPath "C:\Users\Rana Alhamdan\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\"
-:setvar DefaultLogPath "C:\Users\Rana Alhamdan\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\"
+:setvar DefaultDataPath "C:\Users\zshar\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\"
+:setvar DefaultLogPath "C:\Users\zshar\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\"
 
 GO
 :on error exit
@@ -44,85 +44,7 @@ PRINT N'Dropping Default Constraint unnamed constraint on [dbo].[ServiceRequest]
 
 
 GO
-ALTER TABLE [dbo].[ServiceRequest] DROP CONSTRAINT [DF__ServiceRe__Reque__5FB337D6];
-
-
-GO
-PRINT N'Dropping Foreign Key [dbo].[FK_ServiceRequest_Building]...';
-
-
-GO
-ALTER TABLE [dbo].[ServiceRequest] DROP CONSTRAINT [FK_ServiceRequest_Building];
-
-
-GO
-PRINT N'Dropping Foreign Key [dbo].[FK_Beneficiary_Building]...';
-
-
-GO
-ALTER TABLE [dbo].[Beneficiary] DROP CONSTRAINT [FK_Beneficiary_Building];
-
-
-GO
-PRINT N'Dropping Foreign Key [dbo].[FK_Building_Location]...';
-
-
-GO
-ALTER TABLE [dbo].[Building] DROP CONSTRAINT [FK_Building_Location];
-
-
-GO
-PRINT N'Dropping Foreign Key [dbo].[FK_Building_CompanyEmployee]...';
-
-
-GO
-ALTER TABLE [dbo].[Building] DROP CONSTRAINT [FK_Building_CompanyEmployee];
-
-
-GO
-PRINT N'Starting rebuilding table [dbo].[Building]...';
-
-
-GO
-BEGIN TRANSACTION;
-
-SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
-
-SET XACT_ABORT ON;
-
-CREATE TABLE [dbo].[tmp_ms_xx_Building] (
-    [BuildingID]        INT IDENTITY (1, 100) NOT NULL,
-    [NoFloors]          INT NOT NULL,
-    [Ownership]         INT NOT NULL,
-    [BuildingManagerID] INT NOT NULL,
-    [LocationID]        INT NOT NULL,
-    CONSTRAINT [tmp_ms_xx_constraint_PK_Building1] PRIMARY KEY CLUSTERED ([BuildingID] ASC)
-);
-
-IF EXISTS (SELECT TOP 1 1 
-           FROM   [dbo].[Building])
-    BEGIN
-        SET IDENTITY_INSERT [dbo].[tmp_ms_xx_Building] ON;
-        INSERT INTO [dbo].[tmp_ms_xx_Building] ([BuildingID], [NoFloors], [Ownership], [BuildingManagerID], [LocationID])
-        SELECT   [BuildingID],
-                 [NoFloors],
-                 [Ownership],
-                 [BuildingManagerID],
-                 [LocationID]
-        FROM     [dbo].[Building]
-        ORDER BY [BuildingID] ASC;
-        SET IDENTITY_INSERT [dbo].[tmp_ms_xx_Building] OFF;
-    END
-
-DROP TABLE [dbo].[Building];
-
-EXECUTE sp_rename N'[dbo].[tmp_ms_xx_Building]', N'Building';
-
-EXECUTE sp_rename N'[dbo].[tmp_ms_xx_constraint_PK_Building1]', N'PK_Building', N'OBJECT';
-
-COMMIT TRANSACTION;
-
-SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+ALTER TABLE [dbo].[ServiceRequest] DROP CONSTRAINT [DF__ServiceRe__Reque__703EA55A];
 
 
 GO
@@ -135,75 +57,19 @@ ALTER TABLE [dbo].[ServiceRequest]
 
 
 GO
-PRINT N'Creating Foreign Key [dbo].[FK_ServiceRequest_Building]...';
-
-
-GO
-ALTER TABLE [dbo].[ServiceRequest] WITH NOCHECK
-    ADD CONSTRAINT [FK_ServiceRequest_Building] FOREIGN KEY ([BuildingID]) REFERENCES [dbo].[Building] ([BuildingID]);
-
-
-GO
-PRINT N'Creating Foreign Key [dbo].[FK_Beneficiary_Building]...';
-
-
-GO
-ALTER TABLE [dbo].[Beneficiary] WITH NOCHECK
-    ADD CONSTRAINT [FK_Beneficiary_Building] FOREIGN KEY ([Building_BuildingID]) REFERENCES [dbo].[Building] ([BuildingID]);
-
-
-GO
-PRINT N'Creating Foreign Key [dbo].[FK_Building_Location]...';
-
-
-GO
-ALTER TABLE [dbo].[Building] WITH NOCHECK
-    ADD CONSTRAINT [FK_Building_Location] FOREIGN KEY ([LocationID]) REFERENCES [dbo].[Location] ([LocationID]);
-
-
-GO
-PRINT N'Creating Foreign Key [dbo].[FK_Building_CompanyEmployee]...';
-
-
-GO
-ALTER TABLE [dbo].[Building] WITH NOCHECK
-    ADD CONSTRAINT [FK_Building_CompanyEmployee] FOREIGN KEY ([BuildingManagerID]) REFERENCES [dbo].[CompanyEmployee] ([EmployeeID]);
-
-
-GO
-PRINT N'Refreshing View [dbo].[View_BuildingAndLocationInfo]...';
-
-
-GO
-EXECUTE sp_refreshsqlmodule N'[dbo].[View_BuildingAndLocationInfo]';
-
-
-GO
-PRINT N'Altering Procedure [dbo].[SP_Cancel_OpenedServiceRequest]...';
-
-
-GO
-ALTER PROCEDURE [dbo].[SP_Cancel_OpenedServiceRequest]
-	@RequestID INT
-AS
-	UPDATE dbo.ServiceRequest SET RequestCloseDate = CURRENT_TIMESTAMP, 
-	RequiestStatus = ( Select dbo.RequestStatus.RequestStatusID From dbo.RequestStatus WHERE dbo.RequestStatus.StatusName like '%Cancel%')
-	WHERE dbo.ServiceRequest.ServiceRequestID = @RequestID 
-	Select COUNT(1);
-GO
 PRINT N'Altering Procedure [dbo].[SP_ChangeServiceRequestStatus]...';
 
 
 GO
 ALTER PROCEDURE [dbo].[SP_ChangeServiceRequestStatus]
-	@WorkerID INT,
+	@EmployeeUsername varchar(40),
 	@RequestID INT
 AS
 	DECLARE @Role AS Varchar(40)
 
 
 	SELECT @Role = dbo.Role.RoleName FROM dbo.Role 
-	Where dbo.Role.RoleID = (SELECT dbo.CompanyEmployee.Role_idRole FROM dbo.CompanyEmployee WHERE dbo.CompanyEmployee.EmployeeID = @WorkerID)
+	Where dbo.Role.RoleID = (SELECT dbo.CompanyEmployee.Role_idRole FROM dbo.CompanyEmployee WHERE dbo.CompanyEmployee.Username = @EmployeeUsername)
 
 	IF (@Role like 'Maintenance Manager')
 		BEGIN
@@ -220,207 +86,6 @@ AS
 			UPDATE dbo.ServiceRequest SET RequiestStatus = ( Select dbo.RequestStatus.RequestStatusID From dbo.RequestStatus WHERE dbo.RequestStatus.StatusName like '%Close%') , RequestCloseDate = CURRENT_TIMESTAMP WHERE dbo.ServiceRequest.ServiceRequestID = @RequestID
 			SELECT CAST(1 AS INT)
 		END
-GO
-PRINT N'Altering Procedure [dbo].[SP_CloseServiceRequest]...';
-
-
-GO
-ALTER PROCEDURE [dbo].[SP_CloseServiceRequest]
-	@RequestID INT
-AS
-	UPDATE dbo.ServiceRequest SET RequestCloseDate = CURRENT_TIMESTAMP, 
-	RequiestStatus = ( Select dbo.RequestStatus.RequestStatusID From dbo.RequestStatus WHERE dbo.RequestStatus.StatusName like '%Close%')
-	WHERE dbo.ServiceRequest.ServiceRequestID = @RequestID 
-	Select COUNT(1);
-GO
-PRINT N'Altering Procedure [dbo].[SP_InsertBeneficiary]...';
-
-
-GO
-ALTER PROCEDURE [dbo].[SP_InsertBeneficiary]
-	@Username varchar (40),
-	@Password varchar (40), 
-	@FirstName varchar (40), 
-	@LastName varchar (40), 
-	@Email varchar (40), 
-	@BuildingID INT
-AS
-	IF NOT EXISTS (Select Username from dbo.Beneficiary where dbo.Beneficiary.Username = @Username OR dbo.Beneficiary.Email like @Email)
-		Begin
-			INSERT INTO dbo.Beneficiary(Username, Password, FirstName,LastName ,Email, Building_BuildingID, Role_RoleID)
-			VALUES (@Username, @Password,@FirstName,@LastName ,@Email,@BuildingID, (Select RoleID from dbo.Role where dbo.Role.RoleName like '%Beneficiary%'))
-			SELECT 1;
-		END
-	ELSE
-		BEGIN
-			SELECT 0; 
-		END
-GO
-PRINT N'Altering Procedure [dbo].[SP_InsertCompanyEmployee]...';
-
-
-GO
-ALTER PROCEDURE [dbo].[SP_InsertCompanyEmployee]
-	@username varchar(40),
-	@password varchar(40),
-	@FirstName varchar(40),
-	@LastName varchar(40),
-	@Email varchar(40),
-	@SpecializationID INT, 
-	@RoleID INT, 
-	@LocationID INT, 
-	@ManagerID INT
-
-AS
-    IF NOT EXISTS (Select Username from dbo.CompanyEmployee where dbo.CompanyEmployee.Username = @username OR dbo.CompanyEmployee.Email like @Email)
-	    BEGIN
-			INSERT INTO dbo.CompanyEmployee(Username, Password,FirstName,LastName ,Email, Specialization_idSpecialization, Role_idRole, Location_idLocation, ManagerID)
-			VALUES (@username, @password,@FirstName,@LastName ,@Email, @SpecializationID, @RoleID, @LocationID, @ManagerID)
-			SELECT 1;
-	    END
-	ELSE
-		BEGIN
-			SELECT 0; 
-		END
-GO
-PRINT N'Altering Procedure [dbo].[SP_InsertNewServiceRequiest]...';
-
-
-GO
-ALTER PROCEDURE [dbo].[SP_InsertNewServiceRequiest]
-	@BuildinNo INT,
-	@Specialization INT,
-	@Describtion varchar(100),
-	@CreatorUsername varchar(40)
-AS
-	Declare @creatorID AS INT
-	Select @creatorID = dbo.Beneficiary.BeneficiaryID FROM dbo.Beneficiary WHERE dbo.Beneficiary.Username = @CreatorUsername
-
-	IF NOT EXISTS(
-	SELECT 1 FROM dbo.ServiceRequest 
-	WHERE dbo.ServiceRequest.BuildingID = @BuildinNo 
-	AND dbo.ServiceRequest.SpecializationID = @Specialization 
-	AND dbo.ServiceRequest.RequiestStatus = (SELECT dbo.RequestStatus.RequestStatusID FROM dbo.RequestStatus WHERE dbo.RequestStatus.StatusName like '%Open%')  
-	)
-	Begin
-		INSERT INTO dbo.ServiceRequest(BuildingID, SpecializationID, ServiceDescribtion, RequestCreatorID)
-		VALUES (@BuildinNo, @Specialization, @Describtion, @creatorID)
-		SELECT 1;
-	End
-	ELSE
-	BEGIN
-		SELECT 0;
-	END
-GO
-PRINT N'Creating Procedure [dbo].[SP_GetCompanyEmployeesList]...';
-
-
-GO
-CREATE PROCEDURE [dbo].[SP_GetCompanyEmployeesList]
-AS
-	SELECT 
-	dbo.CompanyEmployee.EmployeeID,
-	dbo.CompanyEmployee.FirstName,
-	dbo.CompanyEmployee.LastName,
-	dbo.CompanyEmployee.Email,
-	dbo.Role.RoleName
-	FROM dbo.CompanyEmployee Inner JOIN dbo.Role 
-	on dbo.CompanyEmployee.Role_idRole = dbo.Role.RoleID
-GO
-PRINT N'Creating Procedure [dbo].[SP_GetNumberOfBeneficiaries]...';
-
-
-GO
-CREATE PROCEDURE [dbo].[SP_GetNumberOfBeneficiaries]
-AS
-	SELECT COUNT(dbo.Beneficiary.Username) FROM dbo.Beneficiary WHERE dbo.Beneficiary.AccountStatus = 1
-GO
-PRINT N'Creating Procedure [dbo].[SP_GetNumberOfClosedRequests]...';
-
-
-GO
-CREATE PROCEDURE [dbo].[SP_GetNumberOfClosedRequests]
-AS
-	SELECT COUNT(dbo.RequestView.ServiceRequestID) FROM dbo.RequestView 
-	WHERE dbo.RequestView.RequiestStatus = (SELECT dbo.RequestStatus.RequestStatusID FROM dbo.RequestStatus WHERE dbo.RequestStatus.StatusName like '%Close%')
-GO
-PRINT N'Creating Procedure [dbo].[SP_GetNumberOfOpenedRequests]...';
-
-
-GO
-CREATE PROCEDURE [dbo].[SP_GetNumberOfOpenedRequests]
-AS
-	SELECT COUNT(dbo.RequestView.ServiceRequestID) FROM dbo.RequestView 
-	WHERE dbo.RequestView.RequiestStatus = (SELECT dbo.RequestStatus.RequestStatusID FROM dbo.RequestStatus WHERE dbo.RequestStatus.StatusName like '%Open%')
-GO
-PRINT N'Creating Procedure [dbo].[SP_GetWorkersNumber]...';
-
-
-GO
-CREATE PROCEDURE [dbo].[SP_GetWorkersNumber]
-AS
-	Select COUNT(dbo.CompanyEmployee.Username) From dbo.CompanyEmployee WHERE dbo.CompanyEmployee.AccountStatus = 1
-GO
-PRINT N'Creating Procedure [dbo].[SP_ListOfNotActiveBeneficiaries]...';
-
-
-GO
-CREATE PROCEDURE [dbo].[SP_ListOfNotActiveBeneficiaries]
-	@BuildingID INT
-AS
-	SELECT * FROM dbo.Beneficiary Where dbo.Beneficiary.AccountStatus = 0 
-	AND dbo.Beneficiary.Building_BuildingID = @BuildingID;
-GO
-PRINT N'Creating Procedure [dbo].[SP_MaintananceManagersList]...';
-
-
-GO
-CREATE PROCEDURE [dbo].[SP_MaintananceManagersList]
-AS
-	Select dbo.CompanyEmployee.EmployeeID, dbo.CompanyEmployee.FirstName, dbo.CompanyEmployee.LastName
-	FROM dbo.CompanyEmployee Where dbo.CompanyEmployee.Role_idRole = (SELECT dbo.Role.RoleID FROM dbo.Role WHERE dbo.Role.RoleName like '%Maintenance Manager%')
-GO
-PRINT N'Refreshing Procedure [dbo].[SP_AddBuilding]...';
-
-
-GO
-EXECUTE sp_refreshsqlmodule N'[dbo].[SP_AddBuilding]';
-
-
-GO
-PRINT N'Refreshing Procedure [dbo].[SP_GetAllBuildings]...';
-
-
-GO
-EXECUTE sp_refreshsqlmodule N'[dbo].[SP_GetAllBuildings]';
-
-
-GO
-PRINT N'Refreshing Procedure [dbo].[SP_GetAllServiceRequests]...';
-
-
-GO
-EXECUTE sp_refreshsqlmodule N'[dbo].[SP_GetAllServiceRequests]';
-
-
-GO
-PRINT N'Checking existing data against newly created constraints';
-
-
-GO
-USE [$(DatabaseName)];
-
-
-GO
-ALTER TABLE [dbo].[ServiceRequest] WITH CHECK CHECK CONSTRAINT [FK_ServiceRequest_Building];
-
-ALTER TABLE [dbo].[Beneficiary] WITH CHECK CHECK CONSTRAINT [FK_Beneficiary_Building];
-
-ALTER TABLE [dbo].[Building] WITH CHECK CHECK CONSTRAINT [FK_Building_Location];
-
-ALTER TABLE [dbo].[Building] WITH CHECK CHECK CONSTRAINT [FK_Building_CompanyEmployee];
-
-
 GO
 PRINT N'Update complete.';
 

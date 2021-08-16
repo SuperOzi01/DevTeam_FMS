@@ -1,6 +1,13 @@
-﻿@{
+﻿@using ClassLibrary.FMS.DataModels
+@using ClassLibrary.FMS.DataModels.Models
+@{
     ViewData["Title"] = "Login BackOffice";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
+    var users = ViewBag.Users as List<NotActiveUsersOfBuildingModel>;
+    int usersNum = 0;
+    int building = users.Count;
+    if (building > 2)
+        building = 2;
 }
 
 <!-- Toggle button -->
@@ -32,7 +39,7 @@
                             <div class="numbers">
                                 <p class="newtext1 card-category" style="font-size:14px">Workers</p>
                                 <p class="card-title">@ViewBag.Workers<p>
-</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -101,6 +108,54 @@
                 </div>
             </div>
         </div>
+
+    </div>
+</div>
+
+<!-- End Box info -->
+<!-- Box info -->
+<div class="content">
+    <div class="row ">
+        @for (int i = 0; i< building; i++)
+        {
+            NotActiveUsersOfBuildingModel buildingObj = users.ElementAt(i);
+            <!-- Bulding Number 1 info -->
+            <div class="col-lg-6 ">
+                <div class="card card-stats" style="border-radius: 25px; margin-bottom: 20px;">
+                    <div class="card-body ">
+
+                        <h5 class="newtext" style="margin-bottom: 20px">Bulding NO. @buildingObj.BuildingNumber.ToString() </h5>
+                        @{ 
+                            usersNum = buildingObj.BeneficiariesList.Count;
+                            if (usersNum > 3)
+                                usersNum = 3;
+                        }
+                        @for (int j = 0; j < usersNum; j++)
+                        {
+                            var user = buildingObj.BeneficiariesList.ElementAt(j);
+                            <div class="row" style="margin-top: 15px">
+                                <div class="col-3 col-md-2 ">
+                                    <div class="icon-big text-center icon-warning" style="font-size: 44px; color:#652572;">
+                                        <i class="fas fa-user-circle"></i>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-7">
+                                    <h4 class="opentext card-category">@user.FirstName.ToString() @user.LastName.ToString()</h4>
+                                    <p class="card-title">@user.Email.ToString()<p>
+                                </div>
+
+                                <div class="col-3 col-md-3">
+                                    <div class="icon-big text-center icon-warning" style="font-size: 33px;  margin-top: 15px;">
+                                        @Html.ActionLink("", "AdminRegistrationRequests", "BackOffice", new { @class = "fas fa-check-circle", style = "color:#94C11F;" })
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <!--End  Bulding Number 1 info -->
+        }
 
     </div>
 </div>

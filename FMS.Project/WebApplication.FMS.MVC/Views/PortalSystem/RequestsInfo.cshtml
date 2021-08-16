@@ -1,0 +1,45 @@
+﻿@using ClassLibrary.FMS.DataModels.Models;
+@model ClassLibrary.FMS.DataModels.Models.MM_RequestInfo_Model
+@{
+    ViewData["Title"] = "Login BackOffice";
+
+}
+
+<!-- Toggle button -->
+<button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Maintenance requests</small></button>
+
+<!-- Demo content -->
+<div class="jumbotron jumbotron-fluid " style="border-radius: 25px; background:white;">
+    <div class="container">
+        <h5 class="reqestNotext">Request NO. @Model.RequestInfo.ServiceRequestID</h5>
+        <!-- Start Table info -->
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Request Creator</th>
+                        <th scope="col">Request Issue Date</th>
+                        <th scope="col">Building No.</th>
+                        <th scope="col"> Service Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>@Model.RequestInfo.Request_Creator</th>
+                        <td>@Model.RequestInfo.RequestIssueDate</td>
+                        <td>@Model.RequestInfo.BuildingID</td>
+                        <td>@Model.RequestInfo.Specialization_Type</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--  End Table info -->
+        <!-- Start Brife Description -->
+        <p class=" colorB">Brife Description </p>
+        <p>
+            @Model.RequestInfo.ServiceDescribtion
+        </p>
+        <!-- End Brife Description -->
+    </div>
+</div>
+<!-- End Demo content -->

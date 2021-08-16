@@ -2,11 +2,12 @@
 @model MaintenanceManagerModel
 @{
     ViewData["Title"] = "Login BackOffice";
+    Layout = "_BMLayout";
 }
 
 
 <!-- Toggle button -->
-<button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Maintenance requests</small></button>
+<button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4 ToggleMedia "><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold text-toggel">Maintanance Requests</small></button>
 
 <!-- Demo content -->
 <!--New Request-->
@@ -32,13 +33,7 @@
                                     Service Request No.
                                 </th>
                                 <th style="min-width:150px;">
-                                    Building No.
-                                </th>
-                                <th style="min-width:150px;">
                                     Specialization Type
-                                </th>
-                                <th style="min-width:100px;">
-                                    Assigned Worker
                                 </th>
                                 <th style="min-width:150px;">
                                     Request Issue Date
@@ -57,13 +52,7 @@
                                         @Html.DisplayFor(modelItem => item.ServiceRequestID)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.BuildingID)
-                                    </td>
-                                    <td>
                                         @Html.DisplayFor(modelItem => item.Specialization_Type)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Assigned_Worker)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.RequestIssueDate)
@@ -88,7 +77,7 @@
         <div class="col-md-12 main-datatable">
             <div class="card_body">
                 <div class="row d-flex">
-                    <h5 class="opentext1">Opened Requests</h5>
+                    <h5 class="opentext1">Approved Requests</h5>
                     <div class="col-sm-8 add_flex">
                         <div class="form-group searchInput">
                             <label for="email">Search:</label>
@@ -104,13 +93,7 @@
                                     Service Request No.
                                 </th>
                                 <th style="min-width:150px;">
-                                    Building No.
-                                </th>
-                                <th style="min-width:150px;">
                                     Specialization Type
-                                </th>
-                                <th style="min-width:100px;">
-                                    Assigned Worker
                                 </th>
                                 <th style="min-width:150px;">
                                     Request Issue Date
@@ -126,13 +109,7 @@
                                         @Html.DisplayFor(modelItem => item.ServiceRequestID)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.BuildingID)
-                                    </td>
-                                    <td>
                                         @Html.DisplayFor(modelItem => item.Specialization_Type)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Assigned_Worker)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.RequestIssueDate)
@@ -168,40 +145,40 @@
                                 <th style="min-width:50px;">
                                     Service Request No.
                                 </th>
-                                <th style="min-width:150px;">
-                                    Building No.
-                                </th>
-                                <th style="min-width:150px;">
-                                    Specialization Type
-                                </th>
                                 <th style="min-width:100px;">
                                     Assigned Worker
                                 </th>
                                 <th style="min-width:150px;">
+                                    Specialization Type
+                                </th>
+                                <th style="min-width:150px;">
                                     Request Issue Date
+                                </th>
+                                <th style="min-width:150px;">
+                                    Request Close Date
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in Model.ClosedRequests)
                             {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.ServiceRequestID)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.BuildingID)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Specialization_Type)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Assigned_Worker)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.RequestIssueDate)
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ServiceRequestID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Assigned_Worker)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Specialization_Type)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RequestIssueDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RequestCloseDate)
+                                </td>
+                            </tr>
                             }
                         </tbody>
                     </table>
@@ -233,39 +210,33 @@
                                     Service Request No.
                                 </th>
                                 <th style="min-width:150px;">
-                                    Building No.
-                                </th>
-                                <th style="min-width:150px;">
                                     Specialization Type
-                                </th>
-                                <th style="min-width:100px;">
-                                    Assigned Worker
                                 </th>
                                 <th style="min-width:150px;">
                                     Request Issue Date
+                                </th>
+                                <th style="min-width:150px;">
+                                    Request Close Date
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in Model.CanceledRequests)
                             {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.ServiceRequestID)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.BuildingID)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Specialization_Type)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Assigned_Worker)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.RequestIssueDate)
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ServiceRequestID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Specialization_Type)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RequestIssueDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RequestCloseDate)
+                                </td>
+                            </tr>
                             }
                         </tbody>
                     </table>

@@ -23,9 +23,15 @@ namespace WebApplication
 
         public override void OnAuthorization(HttpActionContext actionContext)
         {
-            bool result = new TokenManager().AuthorizeToken(actionContext.Request.Headers.GetValues("Authorization").FirstOrDefault(), Roles);
+            var token = actionContext.Request.Headers.GetValues("Authorization").FirstOrDefault();
+            if (token == null)
+                actionContext.Response = actionContext.Request.CreateErrorResponse(HttpStatusCode.Unauthorized, "Token Was Not Provided");
+
+            bool result = new TokenManager().AuthorizeToken(token, Roles);
             if (result == false)
-                throw new UnauthorizedAccessException();
+            {
+                actionContext.Response = actionContext.Request.CreateErrorResponse(HttpStatusCode.Unauthorized , "You Are Not Authorized To Proced"); 
+            }
             else
                 return;
         }

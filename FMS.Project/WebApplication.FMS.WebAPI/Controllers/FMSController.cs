@@ -11,6 +11,7 @@ using ClassLibrary.FMS.DatabaseOperations;
 using ClassLibrary.FMS.DataModels;
 using WebApplication.FMS.WebAPI.App_Start;
 using ClassLibrary.FMS.DataModels.Models;
+using ClassLibrary.FMS.DataModels.Constants.ConstantStrings;
 
 namespace WebApplication.FMS.WebAPI.Controllers
 {
@@ -25,35 +26,36 @@ namespace WebApplication.FMS.WebAPI.Controllers
 
         public FMSController() { }
 
-        [Route("Api/Fms/ping")] 
+        [Route("API/FMS/PING")] 
         [HttpGet]
         public IHttpActionResult Ping()
         {
+           
             // test the api logs and exceptions   
             Response.Message = "Ping is Working";
             Response.Result = true;
             return Ok(Response);
         }
 
-        [Route("Api/Fms/HelthCheck")]
+        [Route("API/FMS/HelthCheck")]
         [HttpGet]
         public IHttpActionResult HelthCheck()
         {
             // Here We Should ensure that: 
-            // 1- JWT Working
             
-            // 2- DB connection 
+            // 1- DB connection 
             int result = loginOperationsObject.TestDB();
-            // 3- Logs
+            // 2- Logs
             throw new DivideByZeroException();
         }
 
-        [Route("Api/Fms/Token")]
+        [Route("API/FMS/Token")]
         [HttpPost]
         public IHttpActionResult Token(LoginModel loginModel)
-        {  
+        {
             // This Function Shall recieve User Model Object .. and return the token as a result.. 
             //string token = new AuthinticationManager().Authinticate(loginModel);
+            loginModel.Role = loginOperationsObject.GetUserRole(loginModel);
             string token = new TokenManager().GenerateToken(loginModel);
             Response.Result = true;
             Response.Message = token;
@@ -61,16 +63,16 @@ namespace WebApplication.FMS.WebAPI.Controllers
         }
 
         [AuthinticationManager]
-        [Route("Api/Fms/Validate")]
+        [Route("API/FMS/Validate")]
         [HttpPost]
         public IHttpActionResult Validate()
         {
             // This Function Shall recieve User Model Object .. and return the token as a result.. 
-            return Ok((true, HttpStatusCode.OK));
+            return Ok(this.Request.CreateResponse(HttpStatusCode.OK, "Validated"));
         }
 
-
-        [Route("Api/Fms/LoginBackOffice")]
+        
+        [Route("API/FMS/LoginBackOffice")]
         [HttpPost]
         public IHttpActionResult LoginBackOffice(LoginModel login)
         {
@@ -80,8 +82,6 @@ namespace WebApplication.FMS.WebAPI.Controllers
 
             if (result == true)
             {
-                string role = loginOperationsObject.GetUserRole(login);
-                login.Role = role;
                 return Token(login);
             }
             else
@@ -93,7 +93,8 @@ namespace WebApplication.FMS.WebAPI.Controllers
 
         }
         
-        [Route("Api/Fms/BackOfficeAccountStatus")]
+        
+        [Route("API/FMS/BackOfficeAccountStatus")]
         [HttpPost]
         public IHttpActionResult BackOfficeAccountStatus(LoginModel login)
         {
@@ -111,7 +112,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
 
         }
 
-        [Route("Api/Fms/BackOfficeUpdatePasswordAndStatus")]
+        [Route("API/FMS/BackOfficeUpdatePasswordAndStatus")]
         [HttpPost]
         public IHttpActionResult BackOfficeUpdatePasswordAndStatus(UpdatePasswordModel login)
         {
@@ -132,7 +133,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
 
 
 
-        [Route("Api/Fms/LoginPortal")]
+        [Route("API/FMS/LoginPortal")]
         [HttpPost]
         public IHttpActionResult LoginPortal(LoginModel login)
         {
@@ -155,7 +156,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
 
         }
 
-        [Route("Api/Fms/BeneficiaryRegistraion")]
+        [Route("API/FMS/BeneficiaryRegistraion")]
         [HttpPost]
         public IHttpActionResult BeneficiaryRegistraion(BeneficiaryRegistraionModel BeneficiaryRegistraion)
         {
@@ -175,7 +176,8 @@ namespace WebApplication.FMS.WebAPI.Controllers
                 return Ok(Response);
         }
 
-        [Route("Api/Fms/EmployeeRegistraion")]
+        [AuthorizationManager(Roles = "System Adminstrator")]
+        [Route("API/FMS/EmployeeRegistraion")]
         [HttpPost]
         public IHttpActionResult EmployeeRegistraion(EmployeeRegistraionModel EmployeeRegistraion)
         {
@@ -195,21 +197,22 @@ namespace WebApplication.FMS.WebAPI.Controllers
                 return Ok(Response);
         }
 
-        [Route("Api/Fms/GetBuildingList")]
+        [Route("API/FMS/GetBuildingList")]
         [HttpGet]
         public IHttpActionResult GetBuildingList()
         {
             List<SP_GetAllBuildings_Result> BuildingList = loginOperationsObject.GetBuildingList();
             return Ok(BuildingList);
         }
-        [Route("Api/Fms/GetSpecializationList")]
+        [Route("API/FMS/GetSpecializationList")]
         [HttpGet]
         public IHttpActionResult GetSpecializationList()
         {
             List<SP_GetAllSpecializations_Result> SpecializationList = loginOperationsObject.GetSpecializationList();
             return Ok(SpecializationList);
         }
-        [Route("Api/Fms/GetManagerList")]
+
+        [Route("API/FMS/GetManagerList")]
         [HttpGet]
         public IHttpActionResult GetManagerList()
         {
@@ -217,7 +220,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
 
             return Ok(ManagerList);
         }
-        [Route("Api/Fms/GetLocationList")]
+        [Route("API/FMS/GetLocationList")]
         [HttpGet]
         public IHttpActionResult GetLocationList()
         {
@@ -225,7 +228,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
 
             return Ok(Locations);
         }
-        [Route("Api/Fms/GetRoleList")]
+        [Route("API/FMS/GetRoleList")]
         [HttpGet]
         public IHttpActionResult GetRoleList()
         {
@@ -234,7 +237,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
         }
 
 
-        [Route("Api/Fms/GetUserRole")]
+        [Route("API/FMS/GetUserRole")]
         [HttpPost]
         public IHttpActionResult GetUserRole(LoginModel login)
         {

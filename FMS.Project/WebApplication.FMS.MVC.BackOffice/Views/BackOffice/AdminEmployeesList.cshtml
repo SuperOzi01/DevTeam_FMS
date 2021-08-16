@@ -117,18 +117,22 @@
 
                     <div class="form-group">
                         @Html.DropDownListFor(x => x.RoleID, RolesList, "Select Role", new { @class = "form-control inputSelect" })
+                        <span asp-validation-for="RoleID" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
                         @Html.DropDownListFor(x => x.SpecializationID, SpecializationsList, "Select Specialization", new { @class = "form-control inputSelect" })
+                        <span asp-validation-for="SpecializationID" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
                         @Html.DropDownListFor(x => x.LocationID, LocationsList, "Select Location", new { @class = "form-control inputSelect" })
+                        <span asp-validation-for="LocationID" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
                         @Html.DropDownListFor(x => x.ManagerID, ManagersList, "Select Manager", new { @class = "form-control inputSelect" })
+                        <span asp-validation-for="ManagerID" class="text-danger"></span>
                     </div>
 
                     <button type="submit" class="gotit-btn" data-toggle="modal" data-target="#ModalAddEmployeeButton">Submit</button>
@@ -161,3 +165,4 @@
         <!--  End PopUp Add -->
     }
 }
+

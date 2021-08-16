@@ -83,7 +83,7 @@ namespace ClassLibrary.FMS.DatabaseOperations
         // General Use Functions 
         public bool AcceptRequestAndAssignWorker(ServiceRequestAssignmentModel serviceRequestAssignment)
         {
-            var result = DatabaseEntity.SP_ChangeServiceRequestStatus(serviceRequestAssignment.MaintenanceWorkerID, serviceRequestAssignment.RequestID).FirstOrDefault();
+            var result = DatabaseEntity.SP_ChangeServiceRequestStatus(serviceRequestAssignment.EmployeeUsername, serviceRequestAssignment.RequestID).FirstOrDefault();
             if (result == 1)
             {
                 if (serviceRequestAssignment.MaintenanceWorkerID == 0)

@@ -296,7 +296,7 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
   </Function>
   <Function Name="SP_CanceledServiceRequests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="SP_ChangeServiceRequestStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="WorkerID" Type="int" Mode="In" />
+    <Parameter Name="EmployeeUsername" Type="varchar" Mode="In" />
     <Parameter Name="RequestID" Type="int" Mode="In" />
   </Function>
   <Function Name="SP_CloseServiceRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">

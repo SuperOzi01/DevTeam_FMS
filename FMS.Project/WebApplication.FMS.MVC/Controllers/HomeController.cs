@@ -6,10 +6,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApplication.FMS.MVC.Filters;
 using WebApplication.FMS.MVC.Models;
 
 namespace WebApplication.FMS.MVC.Controllers
 {
+    [LogsFilterMVC]
+    [ExceptionFilterMVC]
     public class HomeController : Controller
     {
         static readonly ILog ErrorLog = LogManager.GetLogger("ErrorLog");

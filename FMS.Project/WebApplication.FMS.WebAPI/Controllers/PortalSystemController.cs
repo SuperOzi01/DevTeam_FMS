@@ -23,7 +23,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
         ResponseAPI Response = new ResponseAPI();
         private PortalSystemOperations OperationsObject = new PortalSystemOperations();
 
-        [Route("API/Fms/PortalSystem/CreateRequest")]
+        [Route("API/PORTALSYSTEM/CreateRequest")]
         [HttpPost]
         public IHttpActionResult CreateNewRequest(NewServiceRequestModel serviceRequest)
         {
@@ -35,7 +35,15 @@ namespace WebApplication.FMS.WebAPI.Controllers
             return Ok(Response);
         }
 
-        [Route("API/Fms/PortalSystem/OpenRequests")]
+        [Route("API/PORTALSYSTEM/GetRequestInfo")]
+        [HttpPost]
+        public IHttpActionResult GetRequestInfo(ServiceRequestAssignmentModel request)
+        {
+            var response = OperationsObject.GetServiceRequestInfo(request.RequestID);
+            return Ok(response);
+        }
+
+        [Route("API/PORTALSYSTEM/OpenRequests")]
         [HttpPost]
         public IHttpActionResult OpenRequests(LoginModel login)
         {
@@ -43,7 +51,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
             return Ok(result);
         }
 
-        [Route("API/Fms/PortalSystem/ClosedRequests")]
+        [Route("API/PORTALSYSTEM/ClosedRequests")]
         [HttpPost]
         public IHttpActionResult ClosedRequests(LoginModel login)
         {
@@ -51,7 +59,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
             return Ok(result);
         }
 
-        [Route("API/Fms/PortalSystem/CanceledRequests")]
+        [Route("API/PORTALSYSTEM/CanceledRequests")]
         [HttpPost]
         public IHttpActionResult CanceledRequests(LoginModel login)
         {
@@ -59,7 +67,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
             return Ok(result);
         }
 
-        [Route("API/Fms/PortalSystem/BeneficiaryBuilding")]
+        [Route("API/PORTALSYSTEM/BeneficiaryBuilding")]
         [HttpPost]
         public IHttpActionResult BeneficiaryBuildingNo(LoginModel user)
         {

@@ -16,6 +16,7 @@ namespace WebApplication.FMS.WebAPI.Controllers
 {
     [ExceptionFilter]
     [LogsFilterWebAPI]
+    [AuthinticationManager]
     public class BackOfficeController : ApiController
     {
         static readonly ILog ErrorLog = LogManager.GetLogger("ErrorLog");
@@ -24,7 +25,8 @@ namespace WebApplication.FMS.WebAPI.Controllers
         BackOfficeDatabaseOperations BackOfficeOperationsObject = new BackOfficeDatabaseOperations();
 
 
-        [Route("Api/Fms/BackOffice/AcceptServiceRequest")]
+        [AuthorizationManager(Roles = "Maintenance Manager, Building Manager,Maintenance Worker")]
+        [Route("API/BACKOFFICE/AcceptServiceRequest")]
         [HttpPost]
         public IHttpActionResult ChangeServiceRequestStatus(ServiceRequestAssignmentModel serviceModel)
         {
@@ -39,57 +41,47 @@ namespace WebApplication.FMS.WebAPI.Controllers
         }
 
 
-        [Route("Api/Fms/BackOffice/MMOpenRequests")]
+
+        [AuthorizationManager(Roles = "Maintenance Manager")]
+        [Route("API/BACKOFFICE/MMOpenRequests")]
         [HttpGet]
         public IHttpActionResult GetMMOpenRequestsList()
         {
 
             var response = BackOfficeOperationsObject.BackOfficeGetMaintananceManagerOpenRequests();
-            if (response != null)
-                return Ok(response);
-            Response.Result = false;
-            Response.Message = "The Result Of This Request Was Empty";
-            return Ok(Response);
+            return Ok(response);
         }
 
-        [Route("Api/Fms/BackOffice/MMCloseRequests")]
+        [AuthorizationManager(Roles = "Maintenance Manager")]
+        [Route("API/BACKOFFICE/MMCloseRequests")]
         [HttpGet]
         public IHttpActionResult GetMMCloseRequestsList()
         {
 
             var response = BackOfficeOperationsObject.BackOfficeGetMaintananceManagerCloseRequests();
-            if (response != null)
                 return Ok(response);
-            Response.Result = false;
-            Response.Message = "The Result Of This Request Was Empty";
-            return Ok(Response);
         }
-
-        [Route("Api/Fms/BackOffice/MMApprovedRequests")]
+        [AuthorizationManager(Roles = "Maintenance Manager")]
+        [Route("API/BACKOFFICE/MMApprovedRequests")]
         [HttpGet]
         public IHttpActionResult GetMMApprovedRequests()
         {
             var response = BackOfficeOperationsObject.BackOfficeMaintananceManagerApprovedRequests();
-            if (response != null)
                 return Ok(response);
-            Response.Result = false;
-            Response.Message = "The Result Of This Request Was Empty";
-            return Ok(Response);
         }
 
-        [Route("Api/Fms/BackOffice/CanceledRequests")]
+        [AuthorizationManager(Roles = "System Adminstrator, Maintenance Manager, Building Manager,Maintenance Worker")]
+        [Route("API/BACKOFFICE/CanceledRequests")]
         [HttpGet]
         public IHttpActionResult GetAllCanceledRequests()
         {
             var response = BackOfficeOperationsObject.BackOfficeOverAllCanceledRequests();
-            if (response != null)
                 return Ok(response);
-            Response.Result = false;
-            Response.Message = "The Result Of This Request Was Empty";
-            return Ok(Response);
         }
 
-        [Route("Api/Fms/BackOffice/CancelRequest")]
+
+        [AuthorizationManager(Roles = "Maintenance Manager, Building Manager")]
+        [Route("API/BACKOFFICE/CancelRequest")]
         [HttpPost]
         public IHttpActionResult CancelRequest(ServiceRequestAssignmentModel request)
         {
@@ -101,118 +93,93 @@ namespace WebApplication.FMS.WebAPI.Controllers
             return Ok(Response);
         }
 
-        [Route("Api/Fms/BackOffice/GetRequestInfo")]
+
+        [AuthorizationManager(Roles = "System Adminstrator, Maintenance Manager, Building Manager,Maintenance Worker")]
+        [Route("API/BACKOFFICE/GetRequestInfo")]
         [HttpPost]
         public IHttpActionResult GetRequestInfo(ServiceRequestAssignmentModel request)
         {
             var response = BackOfficeOperationsObject.GetServiceRequestInfo(request.RequestID);
-            if (response != null)
                 return Ok(response);
-            Response.Result = false;
-            Response.Message = "The Result Of This Request Was Empty";
-            return Ok(Response);
         }
 
-        [Route("Api/Fms/BackOffice/GetWorkersList")]
+
+        [AuthorizationManager(Roles = "System Adminstrator, Maintenance Manager")]
+        [Route("API/BACKOFFICE/GetWorkersList")]
         [HttpPost]
         public IHttpActionResult GetWorkersList(ServiceRequestAssignmentModel request)
         {
             // the username here will contain the Service Request Type 
             var response = BackOfficeOperationsObject.GetWorkersListSpecializationBased(request.EmployeeUsername);
-            if(response != null)
             return Ok(response);
-            Response.Result = false;
-            Response.Message = "The Result Of This Request Was Empty";
-            return Ok(Response);
         }
 
-        [Route("Api/Fms/BackOffice/WorkerOpenRequests")]
+
+        [AuthorizationManager(Roles = "Maintenance Worker")]
+        [Route("API/BACKOFFICE/WorkerOpenRequests")]
         [HttpPost]
         public IHttpActionResult GetWorkerOpenRequests(LoginModel login)
         {
             var response = BackOfficeOperationsObject.GetWorkerOpenedServiceRequests(login.Username);
-            if(response != null)
                 return Ok(response);
-            Response.Result = false;
-            Response.Message = "The Result Of This Request Was Empty";
-            return Ok(Response);
         }
 
-        [Route("Api/Fms/BackOffice/WorkerClosedRequests")]
+        [AuthorizationManager(Roles = "Maintenance Worker")]
+        [Route("API/BACKOFFICE/WorkerClosedRequests")]
         [HttpPost]
         public IHttpActionResult GetWorkerClosedRequests(LoginModel login)
         {
             var response = BackOfficeOperationsObject.GetWorkerClosedRequests(login.Username);
-            if (response != null)
                 return Ok(response);
-            Response.Result = false;
-            Response.Message = "The Result Of This Request Was Empty";
-            return Ok(Response);
         }
 
-        [Route("Api/Fms/BackOffice/BuildingManagerOpenServiceRequests")]
+
+        [AuthorizationManager(Roles = "Building Manager")]
+        [Route("API/BACKOFFICE/BuildingManagerOpenServiceRequests")]
         [HttpPost]
         public IHttpActionResult GetBuildingManagerOpenRequests(ServiceRequestAssignmentModel serviceRequest)
         {
             var response = BackOfficeOperationsObject.BackOfficeGetBuildingManagerOpenRequests(serviceRequest.BuildingID);
-            if (response != null)
                 return Ok(response);
-            Response.Result = false;
-            Response.Message = "The Result Of This Request Was Empty";
-            return Ok(Response);
         }
 
-
-        [Route("Api/Fms/BackOffice/BuildingManagerClosedServiceRequests")]
+        [AuthorizationManager(Roles = "Building Manager")]
+        [Route("API/BACKOFFICE/BuildingManagerClosedServiceRequests")]
         [HttpPost]
         public IHttpActionResult GetBuildingManagerClosedRequests(ServiceRequestAssignmentModel serviceRequest)
         {
             var response = BackOfficeOperationsObject.BuildingManagerClosedRequests(serviceRequest.BuildingID);
-            if (response != null)
                 return Ok(response);
-            Response.Result = false;
-            Response.Message = "The Result Of This Request Was Empty";
-            return Ok(Response);
         }
-
-        [Route("Api/Fms/BackOffice/BuildingManagerCanceledServiceRequests")]
+        [AuthorizationManager(Roles = "Building Manager")]
+        [Route("API/BACKOFFICE/BuildingManagerCanceledServiceRequests")]
         [HttpPost]
         public IHttpActionResult GetBuildingManagerCanceledRequests(ServiceRequestAssignmentModel serviceRequest)
         {
             var response = BackOfficeOperationsObject.BuildingManagerCanceledRequests(serviceRequest.BuildingID);
-            if (response != null)
                 return Ok(response);
-            Response.Result = false;
-            Response.Message = "The Result Of This Request Was Empty";
-            return Ok(Response);
         }
-
-        [Route("Api/Fms/BackOffice/BuildingManagerMM_ApprovedServiceRequests")]
+        [AuthorizationManager(Roles = "Building Manager")]
+        [Route("API/BACKOFFICE/BuildingManagerMM_ApprovedServiceRequests")]
         [HttpPost]
         public IHttpActionResult GetBuildingManagerMM_ApprovedRequests(ServiceRequestAssignmentModel serviceRequest)
         {
             var response = BackOfficeOperationsObject.BuildingManagerApprovedByMM_Requests(serviceRequest.BuildingID);
-            if (response != null)
                 return Ok(response);
-            Response.Result = false;
-            Response.Message = "The Result Of This Request Was Empty";
-            return Ok(Response);
         }
 
-        [Route("Api/Fms/BackOffice/ManagerBuildingNo")]
+        [AuthorizationManager(Roles = "Building Manager")]
+        [Route("API/BACKOFFICE/ManagerBuildingNo")]
         [HttpPost]
         public IHttpActionResult GetBuildingNumberOfManager(LoginModel user)
         {
             Response.Result = true;
             Response.Message = BackOfficeOperationsObject.GetBM_BuildingNumber(user.Username).ToString();
-            if (Response.Message != null)
                 return Ok(Response);
-            Response.Result = false;
-            Response.Message = "The Result Of This Request Was Empty";
-            return Ok(Response);
         }
 
-        [Route("Api/Fms/BackOffice/ListOfNotActiveBeneficiaries")]
+        [AuthorizationManager(Roles = "System Adminstrator")]
+        [Route("API/BACKOFFICE/ListOfNotActiveBeneficiaries")]
         [HttpGet]
         public IHttpActionResult GetNotActiveBeneficiariesList()
         {
@@ -220,7 +187,8 @@ namespace WebApplication.FMS.WebAPI.Controllers
             return Ok(result);
         }
 
-        [Route("Api/Fms/BackOffice/NumberOfWorkers")]
+        [AuthorizationManager(Roles = "System Adminstrator")]
+        [Route("API/BACKOFFICE/NumberOfWorkers")]
         [HttpGet]
         public IHttpActionResult NumberOfWorkers()
         {
@@ -228,7 +196,8 @@ namespace WebApplication.FMS.WebAPI.Controllers
             return Ok(result);
         }
 
-        [Route("Api/Fms/BackOffice/NumberOfBeneficiaries")]
+        [AuthorizationManager(Roles = "System Adminstrator")]
+        [Route("API/BACKOFFICE/NumberOfBeneficiaries")]
         [HttpGet]
         public IHttpActionResult NumberOfBeneficiaries()
         {
@@ -236,7 +205,8 @@ namespace WebApplication.FMS.WebAPI.Controllers
             return Ok(result);
         }
 
-        [Route("Api/Fms/BackOffice/NumberOfOpenRequests")]
+        [AuthorizationManager(Roles = "System Adminstrator")]
+        [Route("API/BACKOFFICE/NumberOfOpenRequests")]
         [HttpGet]
         public IHttpActionResult NumberOfOpenRequests()
         {
@@ -244,7 +214,8 @@ namespace WebApplication.FMS.WebAPI.Controllers
             return Ok(result);
         }
 
-        [Route("Api/Fms/BackOffice/NumberOfClosedRequests")]
+        [AuthorizationManager(Roles = "System Adminstrator")]
+        [Route("API/BACKOFFICE/NumberOfClosedRequests")]
         [HttpGet]
         public IHttpActionResult NumberOfClosedRequests()
         {
@@ -252,7 +223,8 @@ namespace WebApplication.FMS.WebAPI.Controllers
             return Ok(result);
         }
 
-        [Route("Api/Fms/BackOffice/ActivateBeneficiary")]
+        [AuthorizationManager(Roles = "System Adminstrator")]
+        [Route("API/BACKOFFICE/ActivateBeneficiary")]
         [HttpPost]
         public IHttpActionResult ActivateBeneficiary(LoginModel userModel)
         {
@@ -264,8 +236,8 @@ namespace WebApplication.FMS.WebAPI.Controllers
             return Ok(Response);
         }
 
-
-        [Route("Api/Fms/BackOffice/GetAllCompanyEmployees")]
+        [AuthorizationManager(Roles = "System Adminstrator")]
+        [Route("API/BACKOFFICE/GetAllCompanyEmployees")]
         [HttpGet]
         public IHttpActionResult GetAllCompanyEmployees()
         {

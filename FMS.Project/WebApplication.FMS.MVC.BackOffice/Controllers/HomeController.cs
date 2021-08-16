@@ -6,9 +6,12 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApplication.FMS.MVC.BackOffice.Models;
+using WebApplication.FMS.MVC.Filters;
 
 namespace WebApplication.FMS.MVC.BackOffice.Controllers
 {
+    [ExceptionFilterMVC]
+    [LogsFilterMVC]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

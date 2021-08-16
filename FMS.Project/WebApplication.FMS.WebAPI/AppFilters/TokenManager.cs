@@ -6,7 +6,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Web;
 
 namespace WebApplication.FMS.WebAPI.App_Start
 {
@@ -60,15 +59,16 @@ namespace WebApplication.FMS.WebAPI.App_Start
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var token = tokenHandler.ReadJwtToken(tokenValue);
-            var userClaims = token.Claims.ToList();
+            string userRole = GetUserRole(tokenValue);
 
             string[] controllerRoles = roles.Split(',');
 
-            foreach(Claim item in userClaims)
+            foreach (string item in controllerRoles)
             {
-                if (controllerRoles.Contains(item.Value))
+                if (item.Trim().Equals(userRole.Trim()))
                     return true;
             }
+            
             // this mean the token is valid but no roles matched the user 
             return false;
         }
@@ -90,8 +90,16 @@ namespace WebApplication.FMS.WebAPI.App_Start
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var token = tokenHandler.ReadJwtToken(userToken);
-            string username = token.Claims.Select(x => x.Type == ClaimTypes.Name).FirstOrDefault().ToString();
-            return "";
+            var username = token.Claims.FirstOrDefault().Value.ToString();
+            return username;
+        }
+
+        public string GetUserRole(string userToken)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var token = tokenHandler.ReadJwtToken(userToken);
+            var userRole = token.Claims.ElementAtOrDefault(1).Value.ToString();
+            return userRole;
         }
 
     }

@@ -1,6 +1,6 @@
 ﻿** Highlights
      Tables that will be rebuilt
-       [dbo].[Building]
+       None
      Clustered indexes that will be dropped
        None
      Clustered indexes that will be created
@@ -11,38 +11,9 @@
 ** User actions
      Drop
        unnamed constraint on [dbo].[ServiceRequest] (Default Constraint)
-     Table rebuild
-       [dbo].[Building] (Table)
      Create
        Default Constraint: unnamed constraint on [dbo].[ServiceRequest] (Default Constraint)
-       [dbo].[SP_GetCompanyEmployeesList] (Procedure)
-       [dbo].[SP_GetNumberOfBeneficiaries] (Procedure)
-       [dbo].[SP_GetNumberOfClosedRequests] (Procedure)
-       [dbo].[SP_GetNumberOfOpenedRequests] (Procedure)
-       [dbo].[SP_GetWorkersNumber] (Procedure)
-       [dbo].[SP_ListOfNotActiveBeneficiaries] (Procedure)
-       [dbo].[SP_MaintananceManagersList] (Procedure)
      Alter
-       [dbo].[SP_Cancel_OpenedServiceRequest] (Procedure)
        [dbo].[SP_ChangeServiceRequestStatus] (Procedure)
-       [dbo].[SP_CloseServiceRequest] (Procedure)
-       [dbo].[SP_InsertBeneficiary] (Procedure)
-       [dbo].[SP_InsertCompanyEmployee] (Procedure)
-       [dbo].[SP_InsertNewServiceRequiest] (Procedure)
 
 ** Supporting actions
-     Drop
-       [dbo].[FK_ServiceRequest_Building] (Foreign Key)
-       [dbo].[FK_Beneficiary_Building] (Foreign Key)
-       [dbo].[FK_Building_Location] (Foreign Key)
-       [dbo].[FK_Building_CompanyEmployee] (Foreign Key)
-     Create
-       [dbo].[FK_ServiceRequest_Building] (Foreign Key)
-       [dbo].[FK_Beneficiary_Building] (Foreign Key)
-       [dbo].[FK_Building_Location] (Foreign Key)
-       [dbo].[FK_Building_CompanyEmployee] (Foreign Key)
-     Refresh
-       [dbo].[View_BuildingAndLocationInfo] (View)
-       [dbo].[SP_AddBuilding] (Procedure)
-       [dbo].[SP_GetAllBuildings] (Procedure)
-       [dbo].[SP_GetAllServiceRequests] (Procedure)
