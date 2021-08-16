@@ -140,6 +140,23 @@ body {
     .text-toggel {
         display: none;
     }
+
+}
+
+@media (max-width: 400px){
+    .smallEmailText{
+        font-size: 14px;
+    }
+    .smallNamesText{
+        font-size:22px;
+    }
+
+    .smallNamesTextWithCard{
+        font-size: 15px; 
+    }
+    .smallEmailTextWithCard{
+        font-size:13px;
+    }
 }
 
 @media (max-width: 880px) {
@@ -520,7 +537,8 @@ body {
         background: #fff;
     }
 .modal {
-    left: 130px;
+    text-align: center;
+    justify-items:center;
 }
 
 
@@ -553,7 +571,7 @@ body {
     color: #B1B0AF;
 }
 .W-500 {
-    width: 428px;
+    width: 100%;
     border-radius: 22px;
 }
 .myform1 {
@@ -562,5 +580,9 @@ body {
 }
 .form-group {
     margin-bottom: 0rem;
+}
+
+.firstname {
+    margin-right: 5px;
 }
 /*End For All Html View*/
