@@ -35,6 +35,14 @@ namespace WebApplication.FMS.WebAPI.Controllers
             return Ok(Response);
         }
 
+        [Route("API/PORTALSYSTEM/GetRequestInfo")]
+        [HttpPost]
+        public IHttpActionResult GetRequestInfo(ServiceRequestAssignmentModel request)
+        {
+            var response = OperationsObject.GetServiceRequestInfo(request.RequestID);
+            return Ok(response);
+        }
+
         [Route("API/PORTALSYSTEM/OpenRequests")]
         [HttpPost]
         public IHttpActionResult OpenRequests(LoginModel login)

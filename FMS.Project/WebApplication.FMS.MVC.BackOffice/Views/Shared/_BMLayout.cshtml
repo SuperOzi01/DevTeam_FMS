@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="~/js/fontawesome/css/all.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link href="~/js/fontawesome/css/fontawesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="~/js/fontawesome/css/all.css" rel="stylesheet" />
     <link href="~/css/style.css" rel="stylesheet" />
     <style>
@@ -31,14 +31,14 @@
             </div>
         </div>
         <ul class="nav flex-column mb-0">
-            <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString()=="MaintananceManagerDashboard"?"active":"")">
-                <a asp-controller="BackOffice" asp-action="MaintananceManagerDashboard" class="nav-link ">
+            <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString()=="BuildingManagerDashboard"?"active":"")">
+                <a asp-controller="BackOffice" asp-action="BuildingManagerDashboard" class="nav-link ">
                     <i class="fa fa-th-large mr-3 fa-fw"></i>
                     DashBoard
                 </a>
             </li>
-            <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString()=="MaintananceManagerRequests"?"active":"")">
-                <a asp-controller="BackOffice" asp-action="MaintananceManagerRequests" class="nav-link ">
+            <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString()=="BuildingManagerMaintananceRequests"?"active":"")">
+                <a asp-controller="BackOffice" asp-action="BuildingManagerMaintananceRequests" class="nav-link ">
                     <i class="fa fa-cubes mr-3 fa-fw"></i>
                     Maintenance requests
                 </a>

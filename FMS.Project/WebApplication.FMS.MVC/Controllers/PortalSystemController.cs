@@ -113,8 +113,23 @@ namespace WebApplication.FMS.MVC.Portal.Controllers
             else
                 return Content(CreationResponce.Message);
         }
+        
+        public async Task<IActionResult> RequestsInfo(ServiceRequestAssignmentModel serviceRequest)
+        {
+
+            string HeaderValue = Request.Cookies["securityToken"];
+            HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
+            var ReqInformation = await client.PostAsJsonAsync(ConstantStrings.PortalControlerURL + "GetRequestInfo", serviceRequest);
+            var ReqInforamationResponce = ReqInformation.Content.ReadAsAsync<SP_GetSpecificServiceRequestInfo_Result>().Result;
+
+            // New Model List , RequestInfo
+            MM_RequestInfo_Model PageModel = new MM_RequestInfo_Model();
+            PageModel.RequestInfo = ReqInforamationResponce;
+            return View(PageModel);
+        }
         public ActionResult Logout()
         {
+            Response.Cookies.Delete("securityToken");
             return RedirectToAction("LoginPortal", "Login");
         }
     }

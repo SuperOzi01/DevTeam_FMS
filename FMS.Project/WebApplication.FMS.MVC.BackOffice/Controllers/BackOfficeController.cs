@@ -103,8 +103,6 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
             // Open Requests ... New Requests... 
         }
 
-
-
         public async Task<IActionResult> RequestsInfo(string ServiceType, int RequestNo)
         {
 
@@ -129,20 +127,16 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
             ViewBag.Username = Request.Cookies["Username"];
             ViewBag.WorkersList = WorkersListResponse;
             ViewBag.RequestInfo = ReqInforamationResponce;
-            return View();
+            return View(serviceRequest);
         }
 
-
-
-
-
         [HttpPost]
-        public async Task RequestInfoClick(ServiceRequestAssignmentModel PageModel, string BtnValue)
+        public async Task<IActionResult> RequestInfoClick(ServiceRequestAssignmentModel PageModel, string BtnValue)
         {
             if (BtnValue.Equals("Accept"))
-                 await AcceptRequest(PageModel);
+                 return await AcceptRequest(PageModel);
             else
-                 await CancelRequest(PageModel);
+                 return await CancelRequest(PageModel);
         }
 
         public async Task<IActionResult> AcceptRequest(ServiceRequestAssignmentModel PageModel)
@@ -160,22 +154,18 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                     httpResponse = httpRequest.Content.ReadAsAsync<ResponseAPI>().Result;
                     if (httpResponse.Result)
                     {
-                        if (PageModel.BuildingID == 1) // this request made by BM
-                            return RedirectToAction("MaintananceManagerRequests");
-                        else
-                            return RedirectToAction("BuildingManagerMaintananceRequests");
+                        return RedirectToAction("MaintananceManagerRequests");
                     }
+                    return Content("This Request Fails");
                 }
             }
-            return Content("This Request Fails");
+            return RedirectToAction("MaintananceManagerRequests");
         }
 
         
         public async Task<IActionResult> CancelRequest(ServiceRequestAssignmentModel PageModel)
         {
             //Api/Fms/BackOffice/CancelRequest
-            if(ModelState.IsValid)
-            {
                 string HeaderValue = Request.Cookies["securityToken"];
                 HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
                 var httpRequest = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "CancelRequest", PageModel);
@@ -183,13 +173,9 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
 
                 if (httpResponce.Result)
                 {
-                    if (PageModel.BuildingID == 0)
-                        return RedirectToAction("BuildingManagerMaintananceRequests"); // From The View Dont Add Username to the serviceRequest Object to know that this request is made by BM
-                    else
-                        return RedirectToAction("MaintananceManagerRequests");
+                    return RedirectToAction("MaintananceManagerRequests");
                 }
-            }
-            return Content("This Request Fails");
+                return Content("This Request Fails");
         }
 
         
@@ -369,11 +355,55 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
 
             // New Model List , RequestInfo
             ViewBag.Username = Request.Cookies["Username"];
-            MM_RequestInfo_Model PageModel = new MM_RequestInfo_Model();
-            PageModel.RequestInfo = ReqInforamationResponce;
-            return View(PageModel);
+            ViewBag.RequestInfo = ReqInforamationResponce;
+            return View(serviceRequest);
+        }
+        [HttpPost]
+        public async Task<IActionResult> BuildingManagerRequestInfoClick(ServiceRequestAssignmentModel PageModel, string BtnValue)
+        {
+            if (BtnValue.Equals("Accept"))
+                return await BMAccept(PageModel);
+            else
+                return await BMCancel(PageModel);
         }
 
+        public async Task<IActionResult> BMAccept(ServiceRequestAssignmentModel PageModel)
+        {
+            PageModel.EmployeeUsername = Request.Cookies["Username"];
+            if (ModelState.IsValid)
+            {
+                string HeaderValue = Request.Cookies["securityToken"];
+                HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
+                var httpResponse = new ResponseAPI();
+
+                var httpRequest = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "AcceptServiceRequest", PageModel);
+                if (httpRequest.IsSuccessStatusCode)
+                {
+                    httpResponse = httpRequest.Content.ReadAsAsync<ResponseAPI>().Result;
+                    if (httpResponse.Result)
+                    {
+                        return RedirectToAction("BuildingManagerMaintananceRequests");
+                    }
+                    return Content("This Request Fails");
+                }
+            }
+            return RedirectToAction("BuildingManagerMaintananceRequests");
+        }
+        public async Task<IActionResult> BMCancel(ServiceRequestAssignmentModel PageModel)
+        {
+            PageModel.EmployeeUsername = Request.Cookies["Username"];
+                string HeaderValue = Request.Cookies["securityToken"];
+                HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
+                var httpResponse = new ResponseAPI();
+
+                var httpRequest = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "CancelRequest", PageModel);
+                    httpResponse = httpRequest.Content.ReadAsAsync<ResponseAPI>().Result;
+                    if (httpResponse.Result)
+                    {
+                        return RedirectToAction("BuildingManagerMaintananceRequests");
+                    }
+                    return Content("This Request Fails");
+        }
         /////////////////////////////////////////////////////////////////////
         public async Task<IActionResult> AdminDashboard()
         {
@@ -393,6 +423,9 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
             var ClosedRequest = await client.GetAsync(ConstantStrings.BackOfficeControlerURL + "NumberOfClosedRequests");
             var ClosedResponse = ClosedRequest.Content.ReadAsAsync<int>().Result;
 
+            var usersRequest = await client.GetAsync(ConstantStrings.BackOfficeControlerURL + "ListOfNotActiveBeneficiaries");
+            var usersResponse = usersRequest.Content.ReadAsAsync<List<NotActiveUsersOfBuildingModel>>().Result;
+            ViewBag.Users = usersResponse;
             ViewBag.Workers = WorkerResponse.ToString();
             ViewBag.Beneficiaries = BeneficiariesResponse.ToString();
             ViewBag.Open = OpenResponse.ToString();
@@ -556,6 +589,7 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
 
         public ActionResult Logout()
         {
+            Response.Cookies.Delete("securityToken");
             return RedirectToAction("EmployeeLogin", "Login");
         }
 
