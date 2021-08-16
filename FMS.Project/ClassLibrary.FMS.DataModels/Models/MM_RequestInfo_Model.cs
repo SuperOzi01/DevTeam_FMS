@@ -11,7 +11,5 @@ namespace ClassLibrary.FMS.DataModels.Models
         public SP_GetSpecificServiceRequestInfo_Result RequestInfo { set; get; }
         public List<SP_GetWorkersOfSpecialization_Result> WorkersList { set; get; }
 
-        public ServiceRequestAssignmentModel FormObject { set; get; }
-
     }
 }

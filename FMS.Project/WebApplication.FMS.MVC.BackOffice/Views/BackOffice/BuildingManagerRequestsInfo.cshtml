@@ -1,50 +1,61 @@
-﻿@model ClassLibrary.FMS.DataModels.Models.MM_RequestInfo_Model
+﻿@using ClassLibrary.FMS.DataModels
+@model ClassLibrary.FMS.DataModels.Models.ServiceRequestAssignmentModel
 @{
     ViewData["Title"] = "Login BackOffice";
     Layout = "_BMLayout";
+    var RequistInfo = ViewBag.RequestInfo as SP_GetSpecificServiceRequestInfo_Result;
+    string USERNAME = ViewBag.Username;
 }
 
 <!-- Toggle button -->
 <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Maintenance requests</small></button>
 
 <!-- Demo content -->
-<div class="jumbotron jumbotron-fluid " style="border-radius: 25px; background:white;">
+<div class="jumbotron jumbotron-fluid " 
+     style="border-radius: 25px; background:white;">
     <div class="container">
-        <h5 class="reqestNotext">Request NO. @Model.RequestInfo.ServiceRequestID</h5>
-        <!-- Start Table info -->
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">Request Creator</th>
-                        <th scope="col">Request Issue Date</th>
-                        <th scope="col">Building No.</th>
-                        <th scope="col"> Service Type</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th>@Model.RequestInfo.Request_Creator</th>
-                        <td>@Model.RequestInfo.RequestIssueDate</td>
-                        <td>@Model.RequestInfo.BuildingID</td>
-                        <td>@Model.RequestInfo.Specialization_Type</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <!--  End Table info -->
-        <!-- Start Brife Description -->
-        <p class=" colorB">Brife Description </p>
-        <p>
-            @Model.RequestInfo.ServiceDescribtion
-        </p>
-        <!-- End Brife Description -->
-        <!-- Start button -->
-        <div class=" text-center">
-            <button type="submit" class="btnSignInCard " data-toggle="modal" data-target="#loginModalReject">Forwarded</button>
-        </div>
-        <!-- End button -->
+        @using (Html.BeginForm("BuildingManagerRequestInfoClick", "BackOffice", FormMethod.Post))
+        {
+            <h5 class="reqestNotext">Request NO. @RequistInfo.ServiceRequestID</h5>
+            <!-- Start Table info -->
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Request Creator</th>
+                            <th scope="col">Request Issue Date</th>
+                            <th scope="col">Building No.</th>
+                            <th scope="col"> Service Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th> @RequistInfo.Request_Creator</th>
+                            <td> @RequistInfo.RequestIssueDate</td>
+                            <td> @RequistInfo.BuildingID </td>
+                            <td> @RequistInfo.Specialization_Type </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--  End Table info -->
+            <!-- Start Brife Description -->
+            <p class=" colorB">Brife Description </p>
+            <p>
+                @RequistInfo.ServiceDescribtion
+            </p>
+            <!-- End Brife Description -->
+            @Html.HiddenFor(x=>x.RequestID , RequistInfo.ServiceRequestID);
+            @Html.HiddenFor(x => x.EmployeeUsername, USERNAME);
+            <!-- Start button -->
+    <div class=" text-center">
+       <!-- <button type="submit" class="btnSignInCard " data-toggle="modal" data-target="#loginModalReject">Forwarded</button>-->
+        <button type="submit" class="btnSignInCardgreen " data-toggle="modal" data-target="#loginModalAccept" name="BtnValue" value="Accept">Accept</button>
+        <button type="submit" class="btnSignInCard " data-toggle="modal" data-target="#loginModalAccept" name="BtnValue" value="Reject">Reject</button>
     </div>
+            }
+            <!-- End button -->
+        </div>
 </div>
 <!-- End Demo content -->
 <!--  demo PopUp Reject -->
