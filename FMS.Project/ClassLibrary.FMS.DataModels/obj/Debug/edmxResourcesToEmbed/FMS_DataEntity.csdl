@@ -483,6 +483,15 @@
     <FunctionImport Name="SP_BMOpenRequests2" ReturnType="Collection(FMS_DatabaseModel.SP_BMOpenRequests2_Result)">
       <Parameter Name="BuildingID" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="SP_BMCanceledRequests3" ReturnType="Collection(FMS_DatabaseModel.SP_BMCanceledRequests3_Result)">
+      <Parameter Name="BuildingID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_BMClosedRequests3" ReturnType="Collection(FMS_DatabaseModel.SP_BMClosedRequests3_Result)">
+      <Parameter Name="BuildingID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_BMOpenRequests3" ReturnType="Collection(FMS_DatabaseModel.SP_BMOpenRequests3_Result)">
+      <Parameter Name="BuildingID" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="SP_GetAllBuildings_Result">
     <Property Type="Int32" Name="BuildingID" Nullable="false" />
@@ -816,6 +825,39 @@
     <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
   </ComplexType>
   <ComplexType Name="SP_BMOpenRequests2_Result">
+    <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
+    <Property Type="Int32" Name="BuildingID" Nullable="false" />
+    <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="Assigned_Worker" Nullable="true" MaxLength="40" />
+    <Property Type="Int32" Name="RequiestStatus" Nullable="false" />
+    <Property Type="DateTime" Name="RequestIssueDate" Nullable="false" />
+    <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
+    <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
+  </ComplexType>
+  <ComplexType Name="SP_BMCanceledRequests3_Result">
+    <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
+    <Property Type="Int32" Name="BuildingID" Nullable="false" />
+    <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="Assigned_Worker" Nullable="true" MaxLength="40" />
+    <Property Type="Int32" Name="RequiestStatus" Nullable="false" />
+    <Property Type="DateTime" Name="RequestIssueDate" Nullable="false" />
+    <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
+    <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
+  </ComplexType>
+  <ComplexType Name="SP_BMClosedRequests3_Result">
+    <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
+    <Property Type="Int32" Name="BuildingID" Nullable="false" />
+    <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="Assigned_Worker" Nullable="true" MaxLength="40" />
+    <Property Type="Int32" Name="RequiestStatus" Nullable="false" />
+    <Property Type="DateTime" Name="RequestIssueDate" Nullable="false" />
+    <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
+    <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
+  </ComplexType>
+  <ComplexType Name="SP_BMOpenRequests3_Result">
     <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
     <Property Type="Int32" Name="BuildingID" Nullable="false" />
     <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />

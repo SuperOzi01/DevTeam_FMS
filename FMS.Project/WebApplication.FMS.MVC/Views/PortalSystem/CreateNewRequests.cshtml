@@ -21,33 +21,35 @@
 
     
     <!-- Toggle button -->
-    <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Create New Requests</small></button>
+    <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4 ToggleMedia"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold  text-toggel">Create New Requests</small></button>
 
     <!-- Demo content -->
     <div class="jumbotron jumbotron-fluid " style="border-radius: 25px; background:white;">
         <div class="container">
-            <h5 class="reqestNotext" style="margin-bottom: 20px;">Create New Request</h5>
+            <h5 class="tableHederText" style="margin-bottom: 20px;">Create New Request</h5>
             @using (Html.BeginForm("SubmitCreateRequest", "PortalSystem", FormMethod.Post, new { @class = "needs-validation", style = "margin-bottom: 30px;" }))
             {
                 @Html.HiddenFor(x => x.BuildingID)
                 @Html.HiddenFor(x => x.CreatorUsername)
                 <div class="form-row">
                     <div class="col-lg-6 mb-2">
-                        <label for="validationTooltip01" class="colorB">Bulding NO.</label>
+                        <label for="validationTooltip01" class="colorDescription">Bulding NO.</label>
                         <input type="text" disabled="disabled" class="form-control input3" id="validationTooltip01" placeholder="@buildingNO">
                     </div>
 
                     <div class="col-lg-6 mb-2">
-                        <label for="validationTooltip02" class="colorB">Malfunction Type</label>
+                        <label for="validationTooltip02" class="colorDescription">Malfunction Type</label>
                         @Html.DropDownListFor(x => x.SpecializationID, ServiceType, "Select Service Type", new { @class = "form-control input3" })
+                        <span asp-validation-for="SpecializationID" class="text-danger"></span>
                     </div>
 
                 </div>
 
                 <div class="mb-3 col-lg-12" style="margin-top: 20px;">
-                    <label for="exampleFormControlTextarea1" placeholder="Type Your Description .. " class="form-label colorB">Brife Description</label>
-                 @Html.TextAreaFor(x => x.Describtion, new { @class = "form-control input3",  placeholder = "Type Your Description .. ", rows = "3" })
-                 </div>
+                    <label for="exampleFormControlTextarea1" placeholder="Type Your Description .. " class="form-label colorDescription">Brife Description</label>
+                    @Html.TextAreaFor(x => x.Describtion, new { @class = "form-control input3", placeholder = "Type Your Description .. ", rows = "3" })
+                    <span asp-validation-for="Describtion" class="text-danger"></span>
+                </div>
             <div class=" text-center">
                 <button type="submit" class="btnSignInCard " data-toggle="modal" data-target="#loginModalReject" value="Accept">Submit</button>
             </div>

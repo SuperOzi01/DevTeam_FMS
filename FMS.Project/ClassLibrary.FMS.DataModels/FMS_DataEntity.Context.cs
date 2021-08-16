@@ -560,5 +560,32 @@ namespace ClassLibrary.FMS.DataModels
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_BMOpenRequests2_Result>("SP_BMOpenRequests2", buildingIDParameter);
         }
+    
+        public virtual ObjectResult<SP_BMCanceledRequests3_Result> SP_BMCanceledRequests3(Nullable<int> buildingID)
+        {
+            var buildingIDParameter = buildingID.HasValue ?
+                new ObjectParameter("BuildingID", buildingID) :
+                new ObjectParameter("BuildingID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_BMCanceledRequests3_Result>("SP_BMCanceledRequests3", buildingIDParameter);
+        }
+    
+        public virtual ObjectResult<SP_BMClosedRequests3_Result> SP_BMClosedRequests3(Nullable<int> buildingID)
+        {
+            var buildingIDParameter = buildingID.HasValue ?
+                new ObjectParameter("BuildingID", buildingID) :
+                new ObjectParameter("BuildingID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_BMClosedRequests3_Result>("SP_BMClosedRequests3", buildingIDParameter);
+        }
+    
+        public virtual ObjectResult<SP_BMOpenRequests3_Result> SP_BMOpenRequests3(Nullable<int> buildingID)
+        {
+            var buildingIDParameter = buildingID.HasValue ?
+                new ObjectParameter("BuildingID", buildingID) :
+                new ObjectParameter("BuildingID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_BMOpenRequests3_Result>("SP_BMOpenRequests3", buildingIDParameter);
+        }
     }
 }

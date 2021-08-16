@@ -11,7 +11,7 @@
 }
 
 <!-- Toggle button -->
-<button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">DASHBOARD</small></button>
+<button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4 ToggleMedia"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold text-toggel">DASHBOARD</small></button>
 
 <!-- Demo content -->
 
@@ -37,7 +37,7 @@
                         </div>
                         <div class="col-7 col-md-8">
                             <div class="numbers">
-                                <p class="newtext1 card-category" style="font-size:14px">Workers</p>
+                                <p class="tableHederTextBox card-category" style="font-size:14px">Workers</p>
                                 <p class="card-title">@ViewBag.Workers<p>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                         </div>
                         <div class="col-7 col-md-8">
                             <div class="numbers">
-                                <p class="opentext card-category" style="font-size:14px">Beneficiaries</p>
+                                <p class="tableHederTextBox card-category" style="font-size:14px">Beneficiaries</p>
                                 <p class="card-title">@ViewBag.Beneficiaries<p>
                             </div>
                         </div>
@@ -79,7 +79,7 @@
                         <div class="col-7 col-md-8">
 
                             <div class="numbers">
-                                <p class="closetext card-category" style="font-size:14px">Open Requests</p>
+                                <p class="tableHederTextBox card-category" style="font-size:14px">Open Requests</p>
                                 <p class="card-title">@ViewBag.Open<p>
                             </div>
                         </div>
@@ -100,7 +100,7 @@
                         <div class="col-7 col-md-8">
 
                             <div class="numbers">
-                                <p class="canseltext card-category" style="font-size:14px">Closed Requests</p>
+                                <p class="tableHederTextBox card-category" style="font-size:14px">Closed Requests</p>
                                 <p class="card-title">@ViewBag.Closed<p>
                             </div>
                         </div>
@@ -124,7 +124,7 @@
                 <div class="card card-stats" style="border-radius: 25px; margin-bottom: 20px;">
                     <div class="card-body ">
 
-                        <h5 class="newtext" style="margin-bottom: 20px">Bulding NO. @buildingObj.BuildingNumber.ToString() </h5>
+                        <h5 class="tableHederText" style="margin-bottom: 20px">Bulding NO. @buildingObj.BuildingNumber.ToString() </h5>
                         @{ 
                             usersNum = buildingObj.BeneficiariesList.Count;
                             if (usersNum > 3)
@@ -140,7 +140,7 @@
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-7">
-                                    <h4 class="opentext card-category">@user.FirstName.ToString() @user.LastName.ToString()</h4>
+                                    <h4 class="card-category">@user.FirstName.ToString() @user.LastName.ToString()</h4>
                                     <p class="card-title">@user.Email.ToString()<p>
                                 </div>
 

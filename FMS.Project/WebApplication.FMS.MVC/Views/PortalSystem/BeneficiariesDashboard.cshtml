@@ -7,7 +7,7 @@
 
 
 <!-- Toggle button -->
-<button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">DASHBOARD</small></button>
+<button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4 ToggleMedia"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold  text-toggel">DASHBOARD</small></button>
 
 <!-- Demo content -->
 
@@ -34,7 +34,7 @@
                         </div>
                         <div class="col-7 col-md-8">
                             <div class="numbers">
-                                <p class="opentext card-category">Opened Requests</p>
+                                <p class="tableHederTextBox card-category">Opened Requests</p>
                                 <p class="card-title">@ViewBag.NoOpenedRequests<p>
                             </div>
                         </div>
@@ -56,7 +56,7 @@
                         <div class="col-7 col-md-8">
 
                             <div class="numbers">
-                                <p class="closetext card-category">Closed Requests</p>
+                                <p class="tableHederTextBox card-category">Closed Requests</p>
                                 <p class="card-title">@ViewBag.NoClosedRequests<p>
                             </div>
                         </div>
@@ -76,11 +76,11 @@
         <div class="col-md-12 main-datatable">
             <div class="card_body">
                 <div class="row d-flex">
-                    <h5 class="newtext">New Request</h5>
+                    <h5 class="tableHederText">New Request</h5>
                     <div class="col-sm-8 add_flex">
                         <div class="form-group searchInput">
-                            <label for="email">Search:</label>
-                            <input type="search" class=" form-control" id="BeneficiariesDashboardNewTablefilterbox" placeholder=" ">
+                            <i class="fas fa-search btnSearch "></i>
+                            <input type="search" class=" form-control" id="MaintananceManagerNew2tablefilterbox" placeholder=" ">
                         </div>
                     </div>
                 </div>
