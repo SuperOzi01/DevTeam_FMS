@@ -154,6 +154,7 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                     httpResponse = httpRequest.Content.ReadAsAsync<ResponseAPI>().Result;
                     if (httpResponse.Result)
                     {
+                        ViewBag.PopUp = true; 
                         return RedirectToAction("MaintananceManagerRequests");
                     }
                     return Content("This Request Fails");
