@@ -7,7 +7,7 @@
 
 
 <!-- Toggle button -->
-<button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Maintenance requests</small></button>
+<button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4 ToggleMedia "><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold text-toggel">Maintenance Requests</small></button>
 
 <!-- Demo content -->
 <!--New Request-->
@@ -17,7 +17,7 @@
         <div class="col-md-12 main-datatable">
             <div class="card_body">
                 <div class="row d-flex">
-                    <h5 class="newtext">Opened Requests</h5>
+                    <h5 class="newtext">Maintenance Requests</h5>
                     <div class="col-sm-8 add_flex">
                         <div class="form-group searchInput">
                             <label for="email">Search:</label>
@@ -34,12 +34,6 @@
                                 </th>
                                 <th style="min-width:150px;">
                                     Building No.
-                                </th>
-                                <th style="min-width:150px;">
-                                    Specialization Type
-                                </th>
-                                <th style="min-width:100px;">
-                                    Assigned Worker
                                 </th>
                                 <th style="min-width:150px;">
                                     Request Issue Date
@@ -59,12 +53,6 @@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.BuildingID)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Specialization_Type)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Assigned_Worker)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.RequestIssueDate)
@@ -109,10 +97,10 @@
                                     Building No.
                                 </th>
                                 <th style="min-width:150px;">
-                                    Specialization Type
+                                    Request Issue Date
                                 </th>
                                 <th style="min-width:150px;">
-                                    Request Issue Date
+                                    Request Close Date
                                 </th>
                             </tr>
                         </thead>
@@ -128,10 +116,10 @@
                                         @Html.DisplayFor(modelItem => item.BuildingID)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Specialization_Type)
+                                        @Html.DisplayFor(modelItem => item.RequestIssueDate)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.RequestIssueDate)
+                                        @Html.DisplayFor(modelItem => item.RequestCloseDate)
                                     </td>
                                 </tr>
                             }
