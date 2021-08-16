@@ -53,27 +53,3 @@ C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.csproj.CopyComplete
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.dll
 C:\Users\Rana Alhamdan\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.pdb
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\ClassLibrary.FMS.DataModels.dll.config
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\ClassLibrary.FMS.DataModels.dll
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\ClassLibrary.FMS.DataModels.pdb
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\EntityFramework.dll
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\Microsoft.Web.Infrastructure.dll
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\System.Web.Helpers.dll
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\System.Web.Mvc.dll
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\System.Web.Razor.dll
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\System.Web.WebPages.Deployment.dll
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\System.Web.WebPages.dll
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\System.Web.WebPages.Razor.dll
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\EntityFramework.xml
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\System.Web.Helpers.xml
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\System.Web.Mvc.xml
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\System.Web.Razor.xml
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\System.Web.WebPages.xml
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\System.Web.WebPages.Deployment.xml
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\bin\Debug\System.Web.WebPages.Razor.xml
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.csproj.CoreCompileInputs.cache
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.csproj.CopyComplete
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.dll
-C:\Users\zshar\Documents\GitHub\DevTeam_FMS\FMS.Project\ClassLibrary.FMS.DataModels\obj\Debug\ClassLibrary.FMS.DataModels.pdb

@@ -10,7 +10,6 @@
     List<SelectListItem> RolesList = ViewBag.RoleList as List<SelectListItem>;
 
 }
-
 <!-- Toggle button -->
 <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4 ToggleMedia"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold  text-toggel">Employee</small></button>
 
@@ -29,7 +28,7 @@
                             </div>
                         </div>
                         <div class="col-8 col-md-10">
-                            <h4 class="opentext card-category" style=" margin-top: 17px; color: #b1b0af;">Add Employee</h4>
+                            <h4 class="opentext card-category smallNamesText" style=" margin-top: 17px; color: #b1b0af;">Add Employee</h4>
 
                         </div>
                     </div>
@@ -51,8 +50,8 @@
                                 </div>
                             </div>
                             <div class="col-9 col-md-10">
-                                <h4 class="card-category">@item.FirstName.ToString()  @item.LastName.ToString()</h4>
-                                <p style="margin-bottom: 0rem;">
+                                <h4 class="card-category smallNamesText">@item.FirstName.ToString()  @item.LastName.ToString()</h4>
+                                <p class="smallEmailText" style="margin-bottom: 0rem;">
                                     @item.RoleName.ToString()
                                     <br>@item.Email.ToString()
                                 <p>
@@ -89,14 +88,21 @@
                     </div>
 
                     <div class="form-group">
-                        <i class="iconinput far fa-user"></i>
-                        <input asp-for="FirstName" placeholder="FirstName" class="inputAddEmployee " />
-                        <span asp-validation-for="FirstName" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <i class="iconinput far fa-user"></i>
-                        <input asp-for="LastName" placeholder="LastName" class="inputAddEmployee " />
-                        <span asp-validation-for="LastName" class="text-danger"></span>
+                        <ul>
+                            <li class=" d-flex flex-nowrap">
+                                <div class="firstname">
+                                    <i class="iconinput far fa-user"></i>
+                                    <input asp-for="FirstName" placeholder="FirstName" class="inputAddEmployee " />
+                                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                                </div>
+                                <div class="lastname">
+                                    <i class="iconinput far fa-user"></i>
+                                    <input asp-for="LastName" placeholder="LastName" class="inputAddEmployee " />
+                                    <span asp-validation-for="LastName" class="text-danger"></span>
+                                </div>
+                            </li>
+                        </ul>
+
                     </div>
                     <div class="form-group">
                         <i class="iconinput far fa-user"></i>
@@ -146,7 +152,7 @@
             <div class="modal-dialog">
                 <div class="modal-content W-300">
                     <div class="modal-body  text-center">
-                        <img class="imgcheck" src="check_icon.png">
+                        <img class="imgcheck" src="~/icon/check_icon.png">
                         <h3 class="modal-title mbtc">Thank you</h3>
                         <p class="p-pup">
                             The Employee Added successfully

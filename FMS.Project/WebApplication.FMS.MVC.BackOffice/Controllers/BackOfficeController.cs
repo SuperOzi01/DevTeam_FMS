@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using WebApplication.FMS.MVC.Filters;
+using System.Threading;
 
 namespace WebApplication.FMS.MVC.BackOffice.Controllers
 {
@@ -154,7 +155,7 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                     httpResponse = httpRequest.Content.ReadAsAsync<ResponseAPI>().Result;
                     if (httpResponse.Result)
                     {
-                        ViewBag.PopUp = true; 
+                        Thread.Sleep(4000);
                         return RedirectToAction("MaintananceManagerRequests");
                     }
                     return Content("This Request Fails");
@@ -174,6 +175,7 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
 
                 if (httpResponce.Result)
                 {
+                    Thread.Sleep(4000);
                     return RedirectToAction("MaintananceManagerRequests");
                 }
                 return Content("This Request Fails");
@@ -383,6 +385,7 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                     httpResponse = httpRequest.Content.ReadAsAsync<ResponseAPI>().Result;
                     if (httpResponse.Result)
                     {
+                        Thread.Sleep(4000);
                         return RedirectToAction("BuildingManagerMaintananceRequests");
                     }
                     return Content("This Request Fails");
@@ -401,6 +404,7 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                     httpResponse = httpRequest.Content.ReadAsAsync<ResponseAPI>().Result;
                     if (httpResponse.Result)
                     {
+                        Thread.Sleep(4000);
                         return RedirectToAction("BuildingManagerMaintananceRequests");
                     }
                     return Content("This Request Fails");
@@ -510,6 +514,7 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                     else
                         ViewBag.Result = false;
 
+                    Thread.Sleep(4000);
                     return RedirectToAction("AdminEmployeesList");
                 }
             }
