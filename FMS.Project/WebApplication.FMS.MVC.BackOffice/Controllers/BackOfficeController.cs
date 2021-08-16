@@ -423,6 +423,9 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
             var ClosedRequest = await client.GetAsync(ConstantStrings.BackOfficeControlerURL + "NumberOfClosedRequests");
             var ClosedResponse = ClosedRequest.Content.ReadAsAsync<int>().Result;
 
+            var usersRequest = await client.GetAsync(ConstantStrings.BackOfficeControlerURL + "ListOfNotActiveBeneficiaries");
+            var usersResponse = usersRequest.Content.ReadAsAsync<List<NotActiveUsersOfBuildingModel>>().Result;
+            ViewBag.Users = usersResponse;
             ViewBag.Workers = WorkerResponse.ToString();
             ViewBag.Beneficiaries = BeneficiariesResponse.ToString();
             ViewBag.Open = OpenResponse.ToString();
