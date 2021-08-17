@@ -21,7 +21,6 @@ $(document).ready(function () {
             null,
             null,
             null,
-            null,
             null
         ],
 
@@ -108,7 +107,6 @@ $(document).ready(function () {
             'aTargets': ['nosort'],
         }],
         "aoColumns": [
-            null,
             null,
             null,
             null,
