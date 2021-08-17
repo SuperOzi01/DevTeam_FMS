@@ -10,12 +10,23 @@
 
 <!-- Demo content -->
 <!--New Request-->
-@{
-    if(ViewBag.PopUp == true )
-            {
-                <h2>Succeed</h2>
-            }
- }
+<div class="form-group">
+    @if ((string)TempData["Ref"] == "TrueReq")
+    {
+        <div class="alert alert-success">
+            <strong>The request has been successfully.</strong>
+        </div>
+    }
+</div>
+<div class="form-group">
+    @if ((string)TempData["Ref"] == "RejectReq")
+    {
+        <div class="alert alert-success">
+            <strong>The request has been rejected successfully.</strong>
+        </div>
+    }
+</div>
+
 <div class="content " style="margin-bottom: 30px;">
     <div class="row">
         <div class="col-md-12 main-datatable">
@@ -243,9 +254,6 @@
                                 <th style="min-width:150px;">
                                     Specialization Type
                                 </th>
-                                <th style="min-width:100px;">
-                                    Assigned Worker
-                                </th>
                                 <th style="min-width:150px;">
                                     Request Issue Date
                                 </th>
@@ -266,9 +274,6 @@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Specialization_Type)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Assigned_Worker)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.RequestIssueDate)

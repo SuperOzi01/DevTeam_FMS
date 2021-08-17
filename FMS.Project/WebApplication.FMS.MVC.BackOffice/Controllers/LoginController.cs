@@ -47,7 +47,8 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                 var resultMessage = response.Content.ReadAsAsync<ResponseAPI>().Result;
                 if (resultMessage.Result == true)
                 {
-                    return Content("Worked");
+                    TempData["Ref"] = "TrueReq";
+                    return RedirectToAction("EmployeeLogin","Login");
                 }
             }
             return RedirectToAction("Index","Home");
@@ -86,7 +87,7 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                         var userRoleResponce = userRoleRequest.Content.ReadAsAsync<ResponseAPI>().Result;
                         if(userRoleResponce.Result == false)
                         {
-                            return Content("This user Is Not Found");
+                            return View("ErrorView");
                         }
 
                         if(userRoleResponce.Message.Equals("Maintenance Manager"))
@@ -122,7 +123,7 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                     return View();
                 }
             }
-            return Content(securityToken);
+            return View("ErrorView");
         }
 
 

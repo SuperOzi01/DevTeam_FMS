@@ -8,12 +8,14 @@ html{
 }
 body {
     width: 100%;
-    margin-top: 5%;
     background-color: #F5F8F9;
+}
+.pb-80 {
+    margin-top: 4%;
 }
 .BodyBeneficiaryRegistraion {
     width: 100%;
-    margin-top: 2%;
+    margin-top: 4%;
     background-color: #F5F8F9;
 }
 .CardRight {
@@ -33,8 +35,6 @@ body {
     border-radius: 25px;
     height: 100%;
     padding: 25px;
-    padding: 50px;
-    padding-bottom: 90px;
 }
 
     .cardLeft header {
@@ -44,6 +44,22 @@ body {
         padding-top: 10px;
         padding-bottom: 10px;
       
+    }
+
+.cardLeftSingIn {
+    position: relative;
+    background: #fff;
+    border-radius: 25px;
+    height: 100%;
+    padding: 50px;
+    padding-bottom: 90px;
+}
+    .cardLeftSingIn header {
+        color: #652572;
+        font-size: 34px;
+        font-weight: bold;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
 .CardRight header {
     color: #fff;
@@ -61,6 +77,16 @@ body {
     margin: 10px;
     outline: none;
 }
+.cardLeftSingIn .input {
+    width: 100%;
+    padding: 10px;
+    padding-left: 40px;
+    border: none;
+    background-color: #F5F8F9;
+    margin: 10px;
+    outline: none;
+}
+
 
 .inputsiz {
     width: 100%;
@@ -74,7 +100,13 @@ body {
 .cardLeft:focus-visible {
     outline: unset !important;
 }
+.cardLeftSingIn:focus-visible {
+    outline: unset !important;
+}
     .input:focus {
+    box-shadow: 0 0 5px 2px #922B6B;
+}
+.inputsiz:focus {
     box-shadow: 0 0 5px 2px #922B6B;
 }
 
@@ -89,6 +121,19 @@ body {
 }
 
     .cardLeft .btnSignInCard:hover {
+        background: linear-gradient( #C43264,#922B6B,#652572);
+    }
+.cardLeftSingIn .btnSignInCard {
+    background: linear-gradient(#652572,#922B6B,#C43264);
+    color: #fff;
+    width: 150px;
+    border: none;
+    border-radius: 25px;
+    padding: 10px;
+    margin: 20px;
+}
+
+    .cardLeftSingIn .btnSignInCard:hover {
         background: linear-gradient( #C43264,#922B6B,#652572);
     }
 
@@ -157,8 +202,3 @@ select {
 .firstname {
     margin-right: 10px;
 }
-
-.LoginSize {
-    padding-right: 0px;
-}
-

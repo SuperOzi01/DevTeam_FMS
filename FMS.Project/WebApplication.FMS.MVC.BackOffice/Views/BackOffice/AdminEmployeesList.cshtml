@@ -14,6 +14,14 @@
 <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4 ToggleMedia"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold  text-toggel">Employee</small></button>
 
 <!-- Demo content -->
+<div class="form-group">
+    @if ((string)TempData["Ref"] == "TrueReq")
+    {
+        <div class="alert alert-success">
+            <strong>Add employee has been added successfully.</strong>
+        </div>
+    }
+</div>
 <!-- Start employee Form Box -->
 <div class="content">
     <div class="row ">
