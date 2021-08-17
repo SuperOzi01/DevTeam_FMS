@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using WebApplication.FMS.MVC.Filters;
 
@@ -24,7 +25,7 @@ namespace WebApplication.FMS.MVC.Portal.Controllers
             HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
             string username = Request.Cookies["Username"];
             if (username == null)
-                return Content("User Not Found");
+                return View("ErrorView");
 
             LoginModel login = new LoginModel();
             login.Username = username;
@@ -48,7 +49,7 @@ namespace WebApplication.FMS.MVC.Portal.Controllers
             HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
             string username = Request.Cookies["Username"];
             if (username == null)
-                return Content("User Not Found");
+                return View("ErrorView");
 
             LoginModel login = new LoginModel();
             login.Username = username;
@@ -77,7 +78,7 @@ namespace WebApplication.FMS.MVC.Portal.Controllers
             HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
             string username = Request.Cookies["Username"];
             if (username == null)
-                return Content("User Not Found");
+                return View("ErrorView");
 
             LoginModel login = new LoginModel();
             login.Username = username;
@@ -91,7 +92,7 @@ namespace WebApplication.FMS.MVC.Portal.Controllers
             int number = 0;
             Int32.TryParse(BuildingResponce.Message, out number);
             if (number == 0)
-                return Content("Building Was Not Found");
+                return View("ErrorView");
 
             ViewBag.Username = username;
             ViewBag.BuildingNumber = number;
@@ -109,9 +110,13 @@ namespace WebApplication.FMS.MVC.Portal.Controllers
             var CreationRequest = await client.PostAsJsonAsync(ConstantStrings.PortalControlerURL + "CreateRequest", request);
             var CreationResponce = CreationRequest.Content.ReadAsAsync<ResponseAPI>().Result;
             if (CreationResponce.Result == true)
+            {
+                TempData["Ref"] = "TrueReq";
                 return RedirectToAction("BeneficiariesMaintananceRequests");
+            }
             else
-                return Content(CreationResponce.Message);
+                TempData["Ref"] = "ErrorReq";
+                return RedirectToAction("CreateNewRequests");
         }
         
         public async Task<IActionResult> RequestsInfo(ServiceRequestAssignmentModel serviceRequest)

@@ -21,6 +21,14 @@
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <header>Sign In </header>
                             <div class="form-group">
+                                @if ((string)TempData["Ref"] == "TrueReq")
+                                {
+                                    <div class="alert alert-success">
+                                        <strong>The password has been updated successfully.</strong>
+                                    </div>
+                                }
+                            </div>
+                            <div class="form-group">
                                 <i class="far fa-user"></i>
                                 <input asp-for="Username" placeholder="Username" class="input" />
                                 <span asp-validation-for="Username" class="text-danger"></span>
@@ -34,8 +42,7 @@
                             <div class="form-groupInput">
                                 @Html.HiddenFor(model => model.Role)
                             </div>
-                            @ViewBag.message
-
+                            <label style="color:red;">@ViewBag.message</label>
                             <input type="submit" class="btnSignInCard" value="SIGN IN" />
                         </form>
                     </div>

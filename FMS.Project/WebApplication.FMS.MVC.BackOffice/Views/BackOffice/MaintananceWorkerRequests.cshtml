@@ -10,6 +10,14 @@
 <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4 ToggleMedia "><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold text-toggel">Maintenance Requests</small></button>
 
 <!-- Demo content -->
+<div class="form-group">
+    @if ((string)TempData["Ref"] == "TrueReq")
+    {
+        <div class="alert alert-success">
+            <strong>The request has been closed successfully.</strong>
+        </div>
+    }
+</div>
 <!--New Request-->
 
 <div class="content " style="margin-bottom: 30px;">

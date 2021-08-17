@@ -11,6 +11,14 @@
 <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4 ToggleMedia "><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold text-toggel">Maintenance Requests</small></button>
 
 <!-- Demo content -->
+<div class="form-group">
+    @if ((string)TempData["Ref"] == "TrueReq")
+    {
+        <div class="alert alert-success">
+            <strong>Your Request has been successfully sent.</strong>
+        </div>
+    }
+</div>
 <!--New Request-->
 
 <div class="content " style="margin-bottom: 30px;">
@@ -22,7 +30,7 @@
                     <div class="col-sm-8 add_flex">
                         <div class="form-group searchInput">
                             <i class="fas fa-search btnSearch "></i>
-                            <input type="search" class=" form-control" id="MaintananceManagerNew2tablefilterbox" placeholder=" ">
+                            <input type="search" class=" form-control" id="BeneficiariesNew2Tablefilterbox" placeholder=" ">
                         </div>
                     </div>
                 </div>
@@ -82,7 +90,7 @@
                     <div class="col-sm-8 add_flex">
                         <div class="form-group searchInput">
                             <i class="fas fa-search btnSearch "></i>
-                            <input type="search" class=" form-control" id="MaintananceManagerNew2tablefilterbox" placeholder=" ">
+                            <input type="search" class=" form-control" id="BeneficiariesClosedTablefilterbox" placeholder=" ">
                         </div>
                     </div>
                 </div>
@@ -141,7 +149,7 @@
                     <div class="col-sm-8 add_flex">
                         <div class="form-group searchInput">
                             <i class="fas fa-search btnSearch "></i>
-                            <input type="search" class=" form-control" id="MaintananceManagerNew2tablefilterbox" placeholder=" ">
+                            <input type="search" class=" form-control" id="BeneficiariesCanceledTablefilterbox" placeholder=" ">
                         </div>
                     </div>
                 </div>
@@ -197,5 +205,4 @@
 @section scripts{
     <script src="~/js/DataTables/datatables.min.js"></script>
     <script src="~/js/DataTables/DataTables-1.10.25/js/jquery.dataTables.min.js"></script>
-
 }
