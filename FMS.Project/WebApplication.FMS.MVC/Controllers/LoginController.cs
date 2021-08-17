@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using WebApplication.FMS.MVC.Filters;
 
@@ -85,12 +86,17 @@ namespace WebApplication.FMS.MVC.Controllers
                 if (httpRequest.IsSuccessStatusCode)
                 {
                     var Response = httpRequest.Content.ReadAsAsync<ResponseAPI>().Result;
-                    if(Response.Result == true)
+                    if (Response.Result == true)
+                    {
+                        TempData["Ref"] = "TrueReq";
                         return RedirectToAction("LoginPortal", "Login");
+                    }
                     if (Response.Result == false)
+                    {
                         ViewBag.Message = "This Account Already Exists";
                         ViewBag.BuildingList = await GetBuilding();
                         return View();
+                    }
                 }
             }
             ViewBag.BuildingList = await GetBuilding();

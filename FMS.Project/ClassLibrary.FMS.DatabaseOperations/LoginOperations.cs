@@ -136,7 +136,9 @@ namespace ClassLibrary.FMS.DatabaseOperations
 
         public bool UpdateBackOfficeAccountPasswordAndStatus(UpdatePasswordModel updateModel)
         {
-            int result = DatabaseEntity.SP_EmployeeResetPassAndActivateAccount(updateModel.Password, updateModel.Username);
+            EncryptionModel encryptionModel = new EncryptionModel();
+            string EncryptedPassword = encryptionModel.EncryptPassword(updateModel.Password);
+            int result = DatabaseEntity.SP_EmployeeResetPassAndActivateAccount(EncryptedPassword, updateModel.Username);
             if (result == 1)
                 return true;
             return false; 

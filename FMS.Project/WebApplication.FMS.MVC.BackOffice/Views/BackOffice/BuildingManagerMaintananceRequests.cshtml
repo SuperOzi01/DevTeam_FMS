@@ -10,6 +10,22 @@
 <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4 ToggleMedia "><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold text-toggel">Maintanance Requests</small></button>
 
 <!-- Demo content -->
+<div class="form-group">
+    @if ((string)TempData["Ref"] == "TrueReq")
+    {
+        <div class="alert alert-success">
+            <strong>The request has been forwarded to the maintanance manager successfully.</strong>
+        </div>
+    }
+</div>
+<div class="form-group">
+    @if ((string)TempData["Ref"] == "RejectReq")
+    {
+        <div class="alert alert-success">
+            <strong>The request has been rejected successfully.</strong>
+        </div>
+    }
+</div>
 <!--New Request-->
 
 <div class="content " style="margin-bottom: 30px;">
@@ -162,23 +178,23 @@
                         <tbody>
                             @foreach (var item in Model.ClosedRequests)
                             {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ServiceRequestID)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Assigned_Worker)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Specialization_Type)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.RequestIssueDate)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.RequestCloseDate)
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ServiceRequestID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Assigned_Worker)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Specialization_Type)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.RequestIssueDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.RequestCloseDate)
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>
@@ -223,20 +239,20 @@
                         <tbody>
                             @foreach (var item in Model.CanceledRequests)
                             {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ServiceRequestID)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Specialization_Type)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.RequestIssueDate)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.RequestCloseDate)
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ServiceRequestID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Specialization_Type)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.RequestIssueDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.RequestCloseDate)
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>

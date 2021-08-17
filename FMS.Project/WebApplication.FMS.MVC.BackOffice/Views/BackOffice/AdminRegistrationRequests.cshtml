@@ -11,6 +11,14 @@
 <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4 ToggleMedia"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold  text-toggel">Registration Requests</small></button>
 
 <!-- Demo content -->
+<div class="form-group">
+    @if ((string)TempData["Ref"] == "TrueReq")
+    {
+        <div class="alert alert-success">
+            <strong>The request of a beneficiary has been accepted successfully.</strong>
+        </div>
+    }
+</div>
 <!-- Box info -->
 <div class="content">
     <div class="row ">

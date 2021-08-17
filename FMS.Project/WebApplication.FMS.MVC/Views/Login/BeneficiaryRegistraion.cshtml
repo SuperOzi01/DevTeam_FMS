@@ -10,9 +10,9 @@
 <body class="BodyBeneficiaryRegistraion">
     <div class="container pb-10">
         <div class="card">
-            <div class="row w-100">
+            <div class="row">
 
-                <div class="col-lg-6 p-0">
+                <div class="col-lg-6">
                     <div class="CardRight">
                         <img class="logo" src="~/icon/maintra logo white png.png" />
                         <div class="text-center">
@@ -25,12 +25,11 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6 p-0">
+                <div class="col-lg-6">
                     <div class="cardLeft">
                         <form asp-action="BeneficiaryRegistraion" class="myform1 text-center">
 
                             <header>Create Account </header>
-
                             <div class="form-group">
                                 <i class="far fa-user"></i>
                                 <input asp-for="Username" placeholder="Username" class="input" />
@@ -66,20 +65,20 @@
                                 <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                @Html.DropDownListFor(model => model.BuildingID, ViewBag.BuildingList as List<SelectListItem>, "Bulding No", new { @class = "input"})
+                                @Html.DropDownListFor(model => model.BuildingID, ViewBag.BuildingList as List<SelectListItem>, "Bulding No", new { @class = "input" })
                                 <span asp-validation-for="BuildingID" class="text-danger"></span>
                             </div>
-                                <input type="submit" class="btnSignInCard" id="button" value="Submit" />
-
-                            </form>
+                            <div class="form-groupInput">
+                                <label style="color:red;">@ViewBag.Message</label>
+                            </div>
+                            <button type="submit" class="btnSignInCard " data-toggle="modal" data-target="#loginModalReject" id="button" value="Submit">Submit</button>
+                        </form>
                     </div>
                 </div>
 
             </div>
         </div>
     </div>
-
-   
 
 </body>
 

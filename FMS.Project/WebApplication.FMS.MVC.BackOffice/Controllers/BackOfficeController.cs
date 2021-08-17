@@ -58,7 +58,7 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                 // Worker Username 
                 return View(OpenRListResponce);
             }
-            return Content("username not found");
+            return View("ErrorView");
             // Open Requests ... New Requests... 
         }
         public async Task<IActionResult> MaintananceManagerRequests()
@@ -100,7 +100,7 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                 // Worker Username 
                 return View(mymodel);
             }
-            return Content("username not found");
+            return View("ErrorView");
             // Open Requests ... New Requests... 
         }
 
@@ -142,6 +142,8 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
 
         public async Task<IActionResult> AcceptRequest(ServiceRequestAssignmentModel PageModel)
         {
+            string service = PageModel.EmployeeUsername;
+
             PageModel.EmployeeUsername = Request.Cookies["Username"];
             if (ModelState.IsValid)
             {
@@ -155,13 +157,15 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                     httpResponse = httpRequest.Content.ReadAsAsync<ResponseAPI>().Result;
                     if (httpResponse.Result)
                     {
-                        Thread.Sleep(4000);
+                        TempData["Ref"] = "TrueReq";
                         return RedirectToAction("MaintananceManagerRequests");
                     }
-                    return Content("This Request Fails");
+                    return View("ErrorView");
                 }
             }
-            return RedirectToAction("MaintananceManagerRequests");
+
+            TempData["Ref"] = "ErrorReq";
+            return RedirectToAction("RequestsInfo", new { ServiceType = service , RequestNo = PageModel.RequestID });
         }
 
         
@@ -175,10 +179,10 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
 
                 if (httpResponce.Result)
                 {
-                    Thread.Sleep(4000);
+                    TempData["Ref"] = "RejectReq";
                     return RedirectToAction("MaintananceManagerRequests");
                 }
-                return Content("This Request Fails");
+            return View("ErrorView");
         }
 
         
@@ -204,7 +208,7 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                 // Worker Username 
                 return View(OpenRListResponce);
             }
-            return Content("username not found");
+            return View("ErrorView");
         }
 
         //worker Maintanance Requests
@@ -229,7 +233,7 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                 // Worker Username 
                 return View(mymodel);
             }
-            return Content("username not found");
+            return View("ErrorView");
         }
         //worker Maintanance Requests Information
         public async Task<IActionResult> WorkerRequestsInfo(ServiceRequestAssignmentModel serviceRequest)
@@ -255,8 +259,9 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
             var httpResponce = httpRequest.Content.ReadAsAsync<ResponseAPI>().Result;
             if(httpResponce.Result != true)
             {
-                return Content("The Task Is Not Ok");
+                return View("ErrorView");
             }
+            TempData["Ref"] = "TrueReq";
             return RedirectToAction("MaintananceWorkerRequests");
         }
 
@@ -273,7 +278,7 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                 var BuildingNumberResponse = BuildingNumberRequest.Content.ReadAsAsync<ResponseAPI>().Result;
                 if (BuildingNumberResponse.Result != true)
                 {
-                    return Content("This BM Duesn't Manage Any Building");
+                    return View("ErrorView");
                 }
                 
                 int buildingNo;
@@ -300,7 +305,7 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                 // Worker Username 
                 return View(OpenRListResponce);
             }
-            return Content("username not found");
+            return View("ErrorView");
             // Open Requests ... New Requests...
         }
 
@@ -318,7 +323,7 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                 var BuildingNumberResponse = BuildingNumberRequest.Content.ReadAsAsync<ResponseAPI>().Result;
                 if (BuildingNumberResponse.Result != true && BuildingNumberResponse.Message != "0")
                 {
-                    return Content("This BM Duesn't Manage Any Building");
+                    return View("ErrorView");
                 }
 
                 int buildingNo;
@@ -346,7 +351,7 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                 // Worker Username 
                 return View(mymodel);
             }
-            return Content("username not found");
+            return View("ErrorView");
         }
         // Building manager Requests Information
         public async Task<IActionResult>  BuildingManagerRequestsInfo(ServiceRequestAssignmentModel serviceRequest)
@@ -385,13 +390,13 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                     httpResponse = httpRequest.Content.ReadAsAsync<ResponseAPI>().Result;
                     if (httpResponse.Result)
                     {
-                        Thread.Sleep(4000);
+                        TempData["Ref"] = "TrueReq";
                         return RedirectToAction("BuildingManagerMaintananceRequests");
                     }
-                    return Content("This Request Fails");
+                    return View("ErrorView");
                 }
             }
-            return RedirectToAction("BuildingManagerMaintananceRequests");
+            return RedirectToAction("BuildingManagerRequestsInfo");
         }
         public async Task<IActionResult> BMCancel(ServiceRequestAssignmentModel PageModel)
         {
@@ -404,10 +409,10 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                     httpResponse = httpRequest.Content.ReadAsAsync<ResponseAPI>().Result;
                     if (httpResponse.Result)
                     {
-                        Thread.Sleep(4000);
+                        TempData["Ref"] = "RejectReq";
                         return RedirectToAction("BuildingManagerMaintananceRequests");
                     }
-                    return Content("This Request Fails");
+                    return View("ErrorView");
         }
         /////////////////////////////////////////////////////////////////////
         public async Task<IActionResult> AdminDashboard()
@@ -470,9 +475,10 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                 {
                     return Content(ActivateResponce.Message);
                 }
+                TempData["Ref"] = "TrueReq";
                 return RedirectToAction("AdminRegistrationRequests");
             }
-            return Content("Username Not Found");
+            return View("ErrorView");
 
         }
 
@@ -514,7 +520,7 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                     else
                         ViewBag.Result = false;
 
-                    Thread.Sleep(4000);
+                    TempData["Ref"] = "TrueReq";
                     return RedirectToAction("AdminEmployeesList");
                 }
             }

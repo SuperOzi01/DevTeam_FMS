@@ -7,12 +7,20 @@
 <html lang="en">
 
 <body>
+    <div class="form-group" style="margin-top:1%">
+        @if ((string)TempData["Ref"] == "TrueReq")
+        {
+            <div class="alert alert-success">
+                <strong>Your Registration has been successfully, Please wait to for your account to be activated.</strong>
+            </div>
+        }
+    </div>
     <div class="container pb-80">
         <div class="card">
             <div class="row">
 
-                <div class="col-lg-6 LoginSize">
-                    <div class="cardLeft ">
+                <div class="col-lg-6">
+                    <div class="cardLeftSingIn ">
 
                         <img class="logo2" src="~/icon/maintra logo colored.png" />
 
@@ -31,14 +39,14 @@
                                 <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
                             <div class="form-groupInput">
-                                @ViewBag.message
+                                <label style="color:red;">@ViewBag.message</label>
                             </div>
                             <input type="submit" class="btnSignInCard" value="SIGN IN" />
                         </form>
                     </div>
                 </div>
 
-                <div class="col-lg-6 LoginSize">
+                <div class="col-lg-6">
                     <div class="CardRight">
                         <div class="text-center">
                             <header>Hello,Client!</header>
