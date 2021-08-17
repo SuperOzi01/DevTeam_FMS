@@ -14,6 +14,8 @@ using ClassLibrary.FMS.DataModels.Models;
 
 namespace WebApplication.FMS.WebAPI.Controllers
 {
+    [AuthorizationManager(Roles = "Beneficiary")]
+    [AuthinticationManager]
     [ExceptionFilter]
     [LogsFilterWebAPI]
     public class PortalSystemController : ApiController
