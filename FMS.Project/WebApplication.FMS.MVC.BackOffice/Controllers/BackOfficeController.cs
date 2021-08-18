@@ -11,6 +11,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using WebApplication.FMS.MVC.Filters;
 using System.Threading;
+using System.Net.Mail;
+using System.Net;
 
 namespace WebApplication.FMS.MVC.BackOffice.Controllers
 {
@@ -475,6 +477,14 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                 {
                     return Content(ActivateResponce.Message);
                 }
+                EmailModel StaticEmail = new EmailModel();
+                StaticEmail.Subject = "Welcome to Maintra";
+                StaticEmail.Body = "\nDear " + user.Username + ".."
+                            + "\n\nThis is a confirmaion message of Account Activation, " +
+                            "Now you can start using the system."
+                            + "\n\n .. Welcome to Maintra ..";
+                StaticEmail.ToEmail = user.Password;
+                Email(StaticEmail);
                 TempData["Ref"] = "TrueReq";
                 return RedirectToAction("AdminRegistrationRequests");
             }
@@ -516,7 +526,17 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                 {
                     var Response = RequestList.Content.ReadAsAsync<ResponseAPI>().Result;
                     if (Response.Result == true)
+                    {
+                        EmailModel StaticEmail = new EmailModel();
+                        StaticEmail.Subject = "Welcome to Maintra";
+                        StaticEmail.Body = "\nDear "+ EmployeeRegistraion.FirstName + " " + EmployeeRegistraion.LastName +".."
+                            +"\n\nThis is a confirmaion message of Employee Registration, \n " +
+                            "You can enter the system through \n USERNAME: " + EmployeeRegistraion.Username + 
+                            "\n PASSWORD: " + EmployeeRegistraion.Password +"\n\n .. Welcome to Maintra ..";
+                        StaticEmail.ToEmail = EmployeeRegistraion.Email;
+                        Email(StaticEmail);
                         ViewBag.Result = true;
+                    }
                     else
                         ViewBag.Result = false;
 
@@ -604,7 +624,30 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
             Response.Cookies.Delete("securityToken");
             return RedirectToAction("EmployeeLogin", "Login");
         }
+        
+        
+        //-----------Send Email------------//
+        private IActionResult Email(EmailModel model)
+        {
+            using (MailMessage message = new MailMessage("maintra.devteam@gmail.com", model.ToEmail))
+            {
+                message.Subject = model.Subject;
+                message.Body = model.Body;
+                message.IsBodyHtml = false;
 
+                using (SmtpClient smtp = new SmtpClient())
+                {
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.EnableSsl = true;
+                    NetworkCredential cred = new NetworkCredential("maintra.devteam@gmail.com", "MaintraDevTeam##");
+                    smtp.UseDefaultCredentials = true;
+                    smtp.Credentials = cred;
+                    smtp.Port = 587;
+                    smtp.Send(message);
+                    return Ok();
+                }
+            }
+        }
 
     }
 }

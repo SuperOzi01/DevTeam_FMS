@@ -46,7 +46,7 @@
 
                         <div class="col-3 col-md-3">
                             <div class="icon-big text-center icon-warning" style="font-size: 33px;  margin-top: 15px;">
-                                @Html.ActionLink("","AcceptBeneficiary", "BackOffice", new LoginModel { Username = user.Username }, new { @class = "fas fa-check-circle", style = "color:#94C11F;" })
+                                @Html.ActionLink("","AcceptBeneficiary", "BackOffice", new LoginModel { Username = user.Username , Password = user.Email }, new { @class = "fas fa-check-circle", style = "color:#94C11F;" })
                             </div>
                         </div>
                     </div> 
