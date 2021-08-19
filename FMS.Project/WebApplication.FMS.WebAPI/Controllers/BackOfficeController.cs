@@ -245,5 +245,26 @@ namespace WebApplication.FMS.WebAPI.Controllers
             return Ok(list);
         }
 
+        [AuthorizationManager(Roles = "System Adminstrator")]
+        [Route("API/BACKOFFICE/AddBuilding")]
+        [HttpPost]
+        public IHttpActionResult AddBuilding(BuildingModel building)
+        {
+
+            bool result = BackOfficeOperationsObject.AddNewBuilding(building);
+
+            if (result == true)
+            {
+                Response.Result = true;
+                Response.Message = "Building has been successfully added";
+            }
+            else
+            {
+                Response.Result = false;
+                Response.Message = "Adding failed";
+            }
+            return Ok(Response);
+        }
+
     }
 }

@@ -1,0 +1,71 @@
+﻿@using ClassLibrary.FMS.DataModels;
+@model ClassLibrary.FMS.DataModels.Models.BuildingModel;
+@{
+    ViewData["Title"] = "Add Building";
+    List<SelectListItem> LocationList = new List<SelectListItem>();
+    List<SP_GetAllSpecializations_Result> Specializations = ViewBag.ServicesList as List<SP_GetAllSpecializations_Result>;
+    List<SP_GetAllLocations_Result> GetLocationList = ViewBag.GetLocationList as List<SP_GetAllLocations_Result>;
+    int buildingNO = ViewBag.BuildingNumber;
+    string username = ViewBag.Username as string;
+
+    foreach (var item in GetLocationList)
+    {
+        LocationList.Add(new SelectListItem { Text = item.City, Value = item.LocationID.ToString() });
+    }
+}
+
+
+
+
+<!-- Toggle button -->
+<button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4 ToggleMedia"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold  text-toggel">Create New Requests</small></button>
+
+<div class="form-group">
+    @if ((string)TempData["Ref"] == "ErrorReq")
+    {
+        <div class="alert alert-danger">
+            <strong>Please Wait you have new request still processing.</strong>
+        </div>
+    }
+</div>
+<!-- Demo content -->
+<div class="jumbotron jumbotron-fluid " style="border-radius: 25px; background:white;">
+    <div class="container">
+        <h5 class="tableHederText" style="margin-bottom: 20px;">Create New Request</h5>
+        @using (Html.BeginForm("AddBuilding", "BackOffice", FormMethod.Post, new { @class = "needs-validation", style = "margin-bottom: 30px;" }))
+        {
+    <div class="form-row">
+        <div class="col-lg-6 mb-2">
+            <label for="validationTooltip01" class="colorDescription">Bulding NO.</label>
+            <input asp-for="BuildingID" placeholder="Username" class="inputAddEmployee " />
+            <span asp-validation-for="BuildingID" class="text-danger"></span>
+        </div>
+        <div class="col-lg-6 mb-2">
+            <label for="validationTooltip02" class="colorDescription">Bulding NO.</label>
+            <input asp-for="NoFloors" placeholder="Username" class="inputAddEmployee " />
+            <span asp-validation-for="NoFloors" class="text-danger"></span>
+        </div>
+
+        <div class="col-lg-6 mb-2">
+            <label for="validationTooltip03" class="colorDescription">Malfunction Type</label>
+            @Html.DropDownListFor(x => x.BMID, ServiceType, "Select Service Type", new { @class = "form-control input3" })
+            <span asp-validation-for="BMID" class="text-danger"></span>
+        </div>
+
+    </div>
+
+    <div class="col-lg-6 mb-2">
+        <label for="validationTooltip04"  class="colorDescription">Location</label>
+        @Html.DropDownListFor(x => x.LocationID, LocationList, "Select Location", new { @class = "form-control inputSelect" })
+        <span asp-validation-for="LocationID" class="text-danger"></span>
+    </div>
+            <div class=" text-center">
+                <button type="submit" class="btnSignInCard " value="Accept">Submit</button>
+            </div>
+        }
+
+    </div>
+</div>
+
+
+<!-- End Demo content -->

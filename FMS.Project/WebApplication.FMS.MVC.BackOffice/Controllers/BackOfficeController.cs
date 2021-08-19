@@ -547,6 +547,32 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
             return RedirectToAction("AdminEmployeesList");
         }
 
+        [HttpPost]
+        public IActionResult AddBuilding(BuildingModel building)
+        {
+            if (ModelState.IsValid)
+            {
+                ViewBag.LocationList = GetLocationList();
+                string HeaderValue = Request.Cookies["securityToken"];
+                HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
+
+                var RequestList = client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "AddBuilding", building).Result;
+                if (RequestList.IsSuccessStatusCode)
+                {
+                    var Response = RequestList.Content.ReadAsAsync<ResponseAPI>().Result;
+                    if (Response.Result == true)
+                    {
+                        ViewBag.Result = true;
+                    }
+                    else
+                        ViewBag.Result = false;
+
+                    TempData["Ref"] = "TrueReq";
+                    return RedirectToAction("AdminRegistrationRequests");
+                }
+            }
+            return RedirectToAction("AdminRegistrationRequests");
+        }
 
         public List<SelectListItem> GetSpecializationList()
         {
