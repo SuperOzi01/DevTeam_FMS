@@ -547,6 +547,70 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
             return RedirectToAction("AdminEmployeesList");
         }
 
+        public async Task<IActionResult> AddBuilding()
+        {
+            string HeaderValue = Request.Cookies["securityToken"];
+            HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
+            string username = Request.Cookies["Username"];
+            if (username == null)
+                return View("ErrorView");
+            var BulidingList = await client.GetAsync(ConstantStrings.FMSControlerURL + "GetLocationList");
+            var BulidingListResponce = BulidingList.Content.ReadAsAsync<List<SP_GetAllLocations_Result>>().Result;
+
+            var BMsList = await client.GetAsync(ConstantStrings.BackOfficeControlerURL + "GetBMList");
+            var BMsListResponce = BMsList.Content.ReadAsAsync<List<SP_GetAllBuildingManagers_Result>>().Result;
+
+            ViewBag.Username = username;
+            ViewBag.GetLocationList = BulidingListResponce;
+            ViewBag.GetBMList = BMsListResponce;
+            BuildingModel Model = new BuildingModel();
+            return View(Model);
+        }
+
+        public async Task<IActionResult> SubmitAddBuilding(BuildingModel building)
+        {
+            // POST API/Fms/PortalSystem/CreateRequest {NewServiceRequestModel} 
+            string HeaderValue = Request.Cookies["securityToken"];
+            HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
+            building.Ownership = building.Ownership - 1;
+            var CreationRequest = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "AddBuilding", building);
+            var CreationResponce = CreationRequest.Content.ReadAsAsync<ResponseAPI>().Result;
+            if (CreationResponce.Result == true)
+            {
+                TempData["Ref"] = "TrueReq";
+                return RedirectToAction("AddBuilding");
+            }
+            else
+                TempData["Ref"] = "ErrorReq";
+            return RedirectToAction("AddBuilding");
+        }
+
+        public IActionResult AddSpecialization()
+        {
+            string username = Request.Cookies["Username"];
+            if (username == null)
+                return View("ErrorView");
+            SpecializationModel Model = new SpecializationModel();
+            return View(Model);
+        }
+
+        public async Task<IActionResult> SubmitAddSpecialization(SpecializationModel model)
+        {
+            // POST API/Fms/PortalSystem/CreateRequest {NewServiceRequestModel} 
+            string HeaderValue = Request.Cookies["securityToken"];
+            HttpClient client = HttpClientCreator.CreateHttpClient(BaseUrl, HeaderValue);
+
+            var CreationRequest = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "AddSpecialization", model);
+            var CreationResponce = CreationRequest.Content.ReadAsAsync<ResponseAPI>().Result;
+            if (CreationResponce.Result == true)
+            {
+                TempData["Ref"] = "TrueReq";
+                return RedirectToAction("AddSpecialization");
+            }
+            else
+                TempData["Ref"] = "ErrorReq";
+            return RedirectToAction("AddSpecialization");
+        }
 
         public List<SelectListItem> GetSpecializationList()
         {

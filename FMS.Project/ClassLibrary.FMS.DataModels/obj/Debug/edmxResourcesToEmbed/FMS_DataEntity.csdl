@@ -492,6 +492,7 @@
     <FunctionImport Name="SP_BMOpenRequests3" ReturnType="Collection(FMS_DatabaseModel.SP_BMOpenRequests3_Result)">
       <Parameter Name="BuildingID" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="SP_GetAllBuildingManagers" ReturnType="Collection(FMS_DatabaseModel.SP_GetAllBuildingManagers_Result)" />
   </EntityContainer>
   <ComplexType Name="SP_GetAllBuildings_Result">
     <Property Type="Int32" Name="BuildingID" Nullable="false" />
@@ -867,5 +868,10 @@
     <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
     <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
     <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
+  </ComplexType>
+  <ComplexType Name="SP_GetAllBuildingManagers_Result">
+    <Property Type="Int32" Name="EmployeeID" Nullable="false" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="40" />
   </ComplexType>
 </Schema>
