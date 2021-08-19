@@ -1,0 +1,54 @@
+﻿@using ClassLibrary.FMS.DataModels.Models;
+@model SpecializationModel;
+@{
+    ViewData["Title"] = "Login BackOffice";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+
+}
+<head>
+    <style>
+        .inputAddEmployee:focus {
+            box-shadow: 0 0 5px 2px #922B6B;
+        }
+    </style>
+</head>
+<!-- Toggle button -->
+<button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4 ToggleMedia"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold  text-toggel">Add New Specialization</small></button>
+
+<div class="form-group">
+    @if ((string)TempData["Ref"] == "TrueReq")
+    {
+        <div class="alert alert-success">
+            <strong>Specialization name has been added successfully.</strong>
+        </div>
+    }
+</div>
+<div class="form-group">
+    @if ((string)TempData["Ref"] == "ErrorReq")
+    {
+        <div class="alert alert-danger">
+            <strong>Adding the Specialization name failed.</strong>
+        </div>
+    }
+</div>
+<!-- Demo content -->
+<div class="jumbotron jumbotron-fluid " style="border-radius: 25px; background:white;">
+    <div class="container">
+        <h5 class="tableHederText" style="margin-bottom: 20px;">Add New Specialization</h5>
+        @using (Html.BeginForm("SubmitAddSpecialization", "BackOffice", FormMethod.Post, new { @class = "myform1 text-center" }))
+        {
+    <div class="form-group" style="padding-bottom: 2%; padding-left: 10%; padding-right: 10%; padding-top: 2%;">
+        <i class="iconinput fas fa-wrench"></i>
+        <input asp-for="SpecializationName" placeholder="Specialization Name" class="inputAddEmployee" />
+        <span asp-validation-for="SpecializationName" class="text-danger"></span>
+    </div>
+            <div class=" text-center">
+                <button type="submit" class="btnSignInCard " value="Accept">Submit</button>
+            </div>
+        }
+
+    </div>
+</div>
+
+
+<!-- End Demo content -->
