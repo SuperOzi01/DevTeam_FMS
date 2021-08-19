@@ -1,0 +1,120 @@
+﻿*{    
+margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    margin-top: 5%;
+    background-color: #F5F8F9;
+}
+
+/*Employee Login and Update Password page */
+
+.CardRight {
+    position: relative;
+    background-image: linear-gradient(#652572,#922B6B,#C43264);
+    border-radius: 25px;
+    height: 100%;
+    width: 100%;
+    padding: 25px;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardLeft {
+    position: relative;
+    background: #fff;
+    border-radius: 25px;
+    height: 100%;
+    padding: 25px;
+    padding: 50px;
+    padding-bottom: 90px;
+}
+
+    .cardLeft header {
+        color: #652572;
+        font-size: 34px;
+        font-weight: bold;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+.CardRight header {
+    color: #fff;
+    font-size: 38px;
+    font-weight: bold;
+    margin-top: 173px;
+}
+
+.cardLeft .input {
+    width: 100%;
+    padding: 10px;
+    padding-left: 40px;
+    border: none;
+    background-color: #F5F8F9;
+    margin: 10px;
+    outline: none;
+}
+
+.input:focus {
+    box-shadow: 0 0 5px 2px #922B6B;
+}
+
+.cardLeft .btnSignInCard {
+    background: linear-gradient(#652572,#922B6B,#C43264);
+    color: #fff;
+    width: 150px;
+    border: none;
+    border-radius: 25px;
+    padding: 10px;
+    margin: 20px;
+}
+
+    .cardLeft .btnSignInCard:hover {
+        background: linear-gradient( #C43264,#922B6B,#652572);
+    }
+
+P {
+    color: #fff;
+    font-size: 20px;
+    padding-top: 31px;
+    padding-bottom: 48px;
+}
+
+.far {
+    position: absolute;
+    padding: 25px 25px;
+    top: auto;
+    color: #B1B0AF;
+}
+
+.fas {
+    position: absolute;
+    padding: 25px 25px;
+    top: auto;
+    color: #B1B0AF;
+}
+
+.EmployeeLoginColordLogo {
+    width: 60px;
+    height: 75px;
+}
+
+.pt-60 {
+    padding-top: 60px;
+}
+
+.br-25 {
+    border-radius: 25px;
+}
+
+.mt-30 {
+    margin-top: 30px;
+}
+

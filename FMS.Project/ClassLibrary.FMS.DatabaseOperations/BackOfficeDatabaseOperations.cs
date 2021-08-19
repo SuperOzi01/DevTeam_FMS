@@ -166,5 +166,14 @@ namespace ClassLibrary.FMS.DatabaseOperations
         {
            return DatabaseEntity.SP_GetCompanyEmployeesList().ToList();
         }
+
+        public bool AddNewBuilding(BuildingModel building)
+        {
+            int result = (int)DatabaseEntity.SP_AddBuilding(buildingID: building.BuildingID, ownership: building.Ownership, locationID: building.LocationID, managerID: building.BMID, noFloors: building.NoFloors).FirstOrDefault();
+            if (result == 1)
+                return true;
+            return false;
+        }
+
     }
 }

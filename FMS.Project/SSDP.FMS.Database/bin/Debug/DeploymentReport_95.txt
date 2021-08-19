@@ -1,0 +1,35 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       [dbo].[Building]
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Drop
+       unnamed constraint on [dbo].[ServiceRequest] (Default Constraint)
+     Table rebuild
+       [dbo].[Building] (Table)
+     Create
+       Default Constraint: unnamed constraint on [dbo].[ServiceRequest] (Default Constraint)
+     Alter
+       [dbo].[SP_AddBuilding] (Procedure)
+
+** Supporting actions
+     Drop
+       [dbo].[FK_Beneficiary_Building] (Foreign Key)
+       [dbo].[FK_Building_Location] (Foreign Key)
+       [dbo].[FK_Building_CompanyEmployee] (Foreign Key)
+       [dbo].[FK_ServiceRequest_Building] (Foreign Key)
+     Create
+       [dbo].[FK_Beneficiary_Building] (Foreign Key)
+       [dbo].[FK_Building_Location] (Foreign Key)
+       [dbo].[FK_Building_CompanyEmployee] (Foreign Key)
+       [dbo].[FK_ServiceRequest_Building] (Foreign Key)
+     Refresh
+       [dbo].[View_BuildingAndLocationInfo] (View)
+       [dbo].[SP_GetAllBuildings] (Procedure)
+       [dbo].[SP_GetAllServiceRequests] (Procedure)
