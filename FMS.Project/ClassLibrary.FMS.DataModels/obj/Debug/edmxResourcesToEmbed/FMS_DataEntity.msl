@@ -511,5 +511,14 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GetAllBuildingManagers" FunctionName="FMS_DatabaseModel.Store.SP_GetAllBuildingManagers">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_GetAllBuildingManagers_Result">
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>
