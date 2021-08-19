@@ -111,9 +111,6 @@ body {
         font-weight: bold;
     }
 
-#LocationDropDown{
-    margin-left:25%;
-}
 @media (max-width: 768px) {
     #sidebar {
         margin-left: -17rem;
@@ -160,9 +157,6 @@ body {
     }
     .smallEmailTextWithCard{
         font-size:13px;
-    }
-    #LocationDropDown {
-        margin-left: 0;
     }
 }
 
