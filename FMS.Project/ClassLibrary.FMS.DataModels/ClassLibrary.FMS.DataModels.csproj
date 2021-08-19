@@ -107,6 +107,7 @@
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BeneficiaryRegistraionModel.cs" />
+    <Compile Include="Models\BuildingManagersModel.cs" />
     <Compile Include="Models\BuildingModel.cs" />
     <Compile Include="Models\EmailModel.cs" />
     <Compile Include="Models\EmployeeRegistraionModel.cs" />
@@ -174,6 +175,9 @@
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_CanceledServiceRequests_Result.cs">
+      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GetAllBuildingManagers_Result.cs">
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_GetAllBuildings_Result.cs">

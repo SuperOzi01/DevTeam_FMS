@@ -2445,6 +2445,51 @@
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_EmployeeResetPassAndActivateAccount]&#xD;&#xA;&#x9;@password varchar(40),&#xD;&#xA;&#x9;@EmployeeUsername varchar(40)&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[SP_GetAllBuildingManagers]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	SELECT [EmployeeID], [FirstName], [LastName] FROM dbo.CompanyEmployee 
+	WHERE dbo.CompanyEmployee.Role_idRole = (Select dbo.Role.RoleID from dbo.Role Where dbo.Role.RoleName like '%Building Manager%')]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee].[EmployeeID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee].[FirstName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee].[LastName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CompanyEmployee].[Role_idRole]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Role]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Role].[RoleID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Role].[RoleName]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="258" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SP_GetAllBuildingManagers]&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[SP_GetAllBuildings]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[
