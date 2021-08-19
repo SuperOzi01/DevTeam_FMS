@@ -4,3 +4,6 @@
 *.jfm
 *.dll
 FMS.Project/.vs/FMS.Project/v16/.suo
+FMS.Project/.vs/FMS.Project/config/applicationhost.config
+FMS.Project/SSDP.FMS.Database/SSDP.FMS.Database.jfm
+*.pdb

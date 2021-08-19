@@ -144,6 +144,10 @@ namespace ClassLibrary.FMS.DatabaseOperations
             return false; 
         }
 
+        public static MakeTransaction()
+        {
+
+        }
         
 
 

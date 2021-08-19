@@ -1,0 +1,22 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Drop
+       unnamed constraint on [dbo].[ServiceRequest] (Default Constraint)
+     Create
+       [dbo].[Transactions] (Table)
+       Default Constraint: unnamed constraint on [dbo].[ServiceRequest] (Default Constraint)
+       Default Constraint: unnamed constraint on [dbo].[Transactions] (Default Constraint)
+       [dbo].[FK_Transactions_CompanyEmployee] (Foreign Key)
+       [dbo].[FK_Transactions_ServiceRequest] (Foreign Key)
+       [dbo].[SP_MakeTransaction] (Procedure)
+
+** Supporting actions

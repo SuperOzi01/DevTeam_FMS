@@ -120,6 +120,7 @@
     <Compile Include="Models\NotActiveUsersOfBuildingModel.cs" />
     <Compile Include="Models\ServiceRequestAssignmentModel.cs" />
     <Compile Include="Models\SpecializationModel.cs" />
+    <Compile Include="Models\TransactionModel.cs" />
     <Compile Include="Models\UpdatePasswordModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\ResponseAPI.cs" />
