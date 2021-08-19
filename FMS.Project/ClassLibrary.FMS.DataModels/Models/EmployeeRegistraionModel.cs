@@ -15,6 +15,7 @@ namespace ClassLibrary.FMS.DataModels
         [Required(ErrorMessage = "This field is required")]
         [DataType(DataType.Password)]
         [StringLength(maximumLength: 20, MinimumLength = 8, ErrorMessage = "The Password Should Be Between 8 - 20 Characters")]
+        [RegularExpression(@"^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)).+$", ErrorMessage = "The Password Should Contain Small and Capital Letters and Symbols")]
         public string Password { get; set; }
         
         [Required(ErrorMessage = "This field is required")]
