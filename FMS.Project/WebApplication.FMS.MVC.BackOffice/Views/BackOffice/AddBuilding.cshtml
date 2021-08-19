@@ -88,7 +88,7 @@
                     <span asp-validation-for="BMID" class="text-danger"></span>
                 </div>
 
-                <div class="col-lg-6 mb-2" id="LocationDropDown">
+                <div class="col-lg-6 mb-2">
                     <i class="icon fas fa-location-arrow"></i>
                     @Html.DropDownListFor(x => x.LocationID, LocationList, "-- Select Location --", new { @class = " form-control inputSelect" })
                     <span asp-validation-for="LocationID" class="text-danger"></span>
