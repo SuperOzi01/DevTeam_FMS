@@ -107,6 +107,7 @@
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BeneficiaryRegistraionModel.cs" />
+    <Compile Include="Models\BuildingModel.cs" />
     <Compile Include="Models\EmailModel.cs" />
     <Compile Include="Models\EmployeeRegistraionModel.cs" />
     <Compile Include="Models\EncryptionModel.cs" />
