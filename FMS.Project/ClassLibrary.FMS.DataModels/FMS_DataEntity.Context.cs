@@ -587,5 +587,10 @@ namespace ClassLibrary.FMS.DataModels
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_BMOpenRequests3_Result>("SP_BMOpenRequests3", buildingIDParameter);
         }
+    
+        public virtual ObjectResult<SP_GetAllBuildingManagers_Result> SP_GetAllBuildingManagers()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetAllBuildingManagers_Result>("SP_GetAllBuildingManagers");
+        }
     }
 }

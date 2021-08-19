@@ -174,6 +174,10 @@ namespace ClassLibrary.FMS.DatabaseOperations
                 return true;
             return false;
         }
+        public List<SP_GetAllBuildingManagers_Result> GetBMsList() 
+        {
+            return DatabaseEntity.SP_GetAllBuildingManagers().ToList();
+        }
 
     }
 }

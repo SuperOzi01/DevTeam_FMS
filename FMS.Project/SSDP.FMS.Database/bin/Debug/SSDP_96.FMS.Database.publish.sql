@@ -15,8 +15,8 @@ SET NUMERIC_ROUNDABORT OFF;
 GO
 :setvar DatabaseName "FMS_Database"
 :setvar DefaultFilePrefix "FMS_Database"
-:setvar DefaultDataPath "C:\Users\Rana Alhamdan\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\"
-:setvar DefaultLogPath "C:\Users\Rana Alhamdan\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\"
+:setvar DefaultDataPath "C:\Users\zshar\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\"
+:setvar DefaultLogPath "C:\Users\zshar\AppData\Local\Microsoft\Microsoft SQL Server Local DB\Instances\MSSQLLocalDB\"
 
 GO
 :on error exit
@@ -44,83 +44,7 @@ PRINT N'Dropping Default Constraint unnamed constraint on [dbo].[ServiceRequest]
 
 
 GO
-ALTER TABLE [dbo].[ServiceRequest] DROP CONSTRAINT [DF__ServiceRe__Reque__65F62111];
-
-
-GO
-PRINT N'Dropping Foreign Key [dbo].[FK_Building_Location]...';
-
-
-GO
-ALTER TABLE [dbo].[Building] DROP CONSTRAINT [FK_Building_Location];
-
-
-GO
-PRINT N'Dropping Foreign Key [dbo].[FK_Building_CompanyEmployee]...';
-
-
-GO
-ALTER TABLE [dbo].[Building] DROP CONSTRAINT [FK_Building_CompanyEmployee];
-
-
-GO
-PRINT N'Dropping Foreign Key [dbo].[FK_ServiceRequest_Building]...';
-
-
-GO
-ALTER TABLE [dbo].[ServiceRequest] DROP CONSTRAINT [FK_ServiceRequest_Building];
-
-
-GO
-PRINT N'Dropping Foreign Key [dbo].[FK_Beneficiary_Building]...';
-
-
-GO
-ALTER TABLE [dbo].[Beneficiary] DROP CONSTRAINT [FK_Beneficiary_Building];
-
-
-GO
-PRINT N'Starting rebuilding table [dbo].[Building]...';
-
-
-GO
-BEGIN TRANSACTION;
-
-SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
-
-SET XACT_ABORT ON;
-
-CREATE TABLE [dbo].[tmp_ms_xx_Building] (
-    [BuildingID]        INT NOT NULL,
-    [NoFloors]          INT NOT NULL,
-    [Ownership]         INT NOT NULL,
-    [BuildingManagerID] INT NOT NULL,
-    [LocationID]        INT NOT NULL,
-    CONSTRAINT [tmp_ms_xx_constraint_PK_Building1] PRIMARY KEY CLUSTERED ([BuildingID] ASC)
-);
-
-IF EXISTS (SELECT TOP 1 1 
-           FROM   [dbo].[Building])
-    BEGIN
-        INSERT INTO [dbo].[tmp_ms_xx_Building] ([BuildingID], [NoFloors], [Ownership], [BuildingManagerID], [LocationID])
-        SELECT   [BuildingID],
-                 [NoFloors],
-                 [Ownership],
-                 [BuildingManagerID],
-                 [LocationID]
-        FROM     [dbo].[Building]
-        ORDER BY [BuildingID] ASC;
-    END
-
-DROP TABLE [dbo].[Building];
-
-EXECUTE sp_rename N'[dbo].[tmp_ms_xx_Building]', N'Building';
-
-EXECUTE sp_rename N'[dbo].[tmp_ms_xx_constraint_PK_Building1]', N'PK_Building', N'OBJECT';
-
-COMMIT TRANSACTION;
-
-SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+ALTER TABLE [dbo].[ServiceRequest] DROP CONSTRAINT [DF__ServiceRe__Reque__1387E197];
 
 
 GO
@@ -133,105 +57,14 @@ ALTER TABLE [dbo].[ServiceRequest]
 
 
 GO
-PRINT N'Creating Foreign Key [dbo].[FK_Building_Location]...';
+PRINT N'Creating Procedure [dbo].[SP_GetAllBuildingManagers]...';
 
 
 GO
-ALTER TABLE [dbo].[Building] WITH NOCHECK
-    ADD CONSTRAINT [FK_Building_Location] FOREIGN KEY ([LocationID]) REFERENCES [dbo].[Location] ([LocationID]);
-
-
-GO
-PRINT N'Creating Foreign Key [dbo].[FK_Building_CompanyEmployee]...';
-
-
-GO
-ALTER TABLE [dbo].[Building] WITH NOCHECK
-    ADD CONSTRAINT [FK_Building_CompanyEmployee] FOREIGN KEY ([BuildingManagerID]) REFERENCES [dbo].[CompanyEmployee] ([EmployeeID]);
-
-
-GO
-PRINT N'Creating Foreign Key [dbo].[FK_ServiceRequest_Building]...';
-
-
-GO
-ALTER TABLE [dbo].[ServiceRequest] WITH NOCHECK
-    ADD CONSTRAINT [FK_ServiceRequest_Building] FOREIGN KEY ([BuildingID]) REFERENCES [dbo].[Building] ([BuildingID]);
-
-
-GO
-PRINT N'Creating Foreign Key [dbo].[FK_Beneficiary_Building]...';
-
-
-GO
-ALTER TABLE [dbo].[Beneficiary] WITH NOCHECK
-    ADD CONSTRAINT [FK_Beneficiary_Building] FOREIGN KEY ([Building_BuildingID]) REFERENCES [dbo].[Building] ([BuildingID]);
-
-
-GO
-PRINT N'Refreshing View [dbo].[View_BuildingAndLocationInfo]...';
-
-
-GO
-EXECUTE sp_refreshsqlmodule N'[dbo].[View_BuildingAndLocationInfo]';
-
-
-GO
-PRINT N'Altering Procedure [dbo].[SP_AddBuilding]...';
-
-
-GO
-ALTER PROCEDURE [dbo].[SP_AddBuilding]
-	@BuildingID INT,
-	@NoFloors INT,
-	@Ownership int, 
-	@ManagerID INT, 
-	@LocationID INT
+CREATE PROCEDURE [dbo].[SP_GetAllBuildingManagers]
 AS
-	IF NOT EXISTS (Select 1 FROM dbo.Building Where dbo.Building.BuildingID = @BuildingID)
-	Begin
-		INSERT INTO dbo.Building( BuildingID,NoFloors, Ownership, BuildingManagerID, LocationID)
-		VALUES (@BuildingID, @NoFloors, @Ownership, @ManagerID, @LocationID)
-		Select 1; 
-	End
-	ELSE
-	BEGIN
-		SELECT 0;
-	END
-GO
-PRINT N'Refreshing Procedure [dbo].[SP_GetAllBuildings]...';
-
-
-GO
-EXECUTE sp_refreshsqlmodule N'[dbo].[SP_GetAllBuildings]';
-
-
-GO
-PRINT N'Refreshing Procedure [dbo].[SP_GetAllServiceRequests]...';
-
-
-GO
-EXECUTE sp_refreshsqlmodule N'[dbo].[SP_GetAllServiceRequests]';
-
-
-GO
-PRINT N'Checking existing data against newly created constraints';
-
-
-GO
-USE [$(DatabaseName)];
-
-
-GO
-ALTER TABLE [dbo].[Building] WITH CHECK CHECK CONSTRAINT [FK_Building_Location];
-
-ALTER TABLE [dbo].[Building] WITH CHECK CHECK CONSTRAINT [FK_Building_CompanyEmployee];
-
-ALTER TABLE [dbo].[ServiceRequest] WITH CHECK CHECK CONSTRAINT [FK_ServiceRequest_Building];
-
-ALTER TABLE [dbo].[Beneficiary] WITH CHECK CHECK CONSTRAINT [FK_Beneficiary_Building];
-
-
+	SELECT [EmployeeID], [FirstName], [LastName] FROM dbo.CompanyEmployee 
+	WHERE dbo.CompanyEmployee.Role_idRole = (Select dbo.Role.RoleID from dbo.Role Where dbo.Role.RoleName like '%Building Manager%')
 GO
 PRINT N'Update complete.';
 
