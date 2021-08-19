@@ -111,6 +111,9 @@ body {
         font-weight: bold;
     }
 
+#LocationDropDown{
+    margin-left:25%;
+}
 @media (max-width: 768px) {
     #sidebar {
         margin-left: -17rem;
@@ -141,6 +144,7 @@ body {
         display: none;
     }
 
+
 }
 
 @media (max-width: 400px){
@@ -156,6 +160,9 @@ body {
     }
     .smallEmailTextWithCard{
         font-size:13px;
+    }
+    #LocationDropDown {
+        margin-left: 0;
     }
 }
 
@@ -459,11 +466,21 @@ body {
 }
 .input {
     width: 100%;
-    padding-left: 5%;
+    padding: 10px;
+    padding-left: 40px;
     border: none;
     background-color: #F5F8F9;
     margin: 10px;
     outline: none;
+}
+.input:focus {
+    box-shadow: 0 0 5px 2px #922B6B;
+}
+.far {
+    position: absolute;
+    padding: 25px 25px;
+    top: auto;
+    color: #B1B0AF;
 }
 .mlr {
     margin-left: 25%;
@@ -550,6 +567,9 @@ body {
     background-color: #F5F8F9;
     margin: 10px;
     outline: none;
+}
+.inputAddEmployee:focus {
+    box-shadow: 0 0 5px 2px #922B6B;
 }
 .inputSelect {
     width: 100%;

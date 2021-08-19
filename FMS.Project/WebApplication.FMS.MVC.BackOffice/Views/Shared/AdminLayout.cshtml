@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="~/js/fontawesome/css/all.css" rel="stylesheet" />
-    <link href="~/css/style.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet"/>
     <style>
         ul.nav li.active a {
             color: #C43264;
@@ -47,6 +47,18 @@
                 <a asp-controller="BackOffice" asp-action="AdminEmployeesList" class="nav-link ">
                     <i class="fa fa-users mr-3 fa-fw"></i>
                     Employee
+                </a>
+            </li>
+            <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString()=="AddBuilding"?"active":"")">
+                <a asp-controller="BackOffice" asp-action="AddBuilding" class="nav-link ">
+                    <i class="fa fa-building mr-3 fa-fw"></i>
+                    Add New Building
+                </a>
+            </li>
+            <li class="nav-item @(ViewContext.RouteData.Values["Action"].ToString()=="AddSpecialization"?"active":"")">
+                <a asp-controller="BackOffice" asp-action="AddSpecialization" class="nav-link ">
+                    <i class="fa fa-wrench mr-3 fa-fw"></i>
+                    Add New Specialization
                 </a>
             </li>
             <li class="nav-item">

@@ -246,25 +246,38 @@ namespace WebApplication.FMS.WebAPI.Controllers
         }
 
         [AuthorizationManager(Roles = "System Adminstrator")]
+        [Route("API/BACKOFFICE/GetBMList")]
+        [HttpGet]
+        public IHttpActionResult GetBMList()
+        {
+            List<SP_GetAllBuildingManagers_Result> list = BackOfficeOperationsObject.GetBMsList();
+            return Ok(list);
+        }
+
+        [AuthorizationManager(Roles = "System Adminstrator")]
         [Route("API/BACKOFFICE/AddBuilding")]
         [HttpPost]
         public IHttpActionResult AddBuilding(BuildingModel building)
         {
-
-            bool result = BackOfficeOperationsObject.AddNewBuilding(building);
-
-            if (result == true)
-            {
-                Response.Result = true;
-                Response.Message = "Building has been successfully added";
-            }
+            Response.Result = BackOfficeOperationsObject.AddNewBuilding(building);
+            if (Response.Result == true)
+                Response.Message = "Request Have Been Created";
             else
-            {
-                Response.Result = false;
-                Response.Message = "Adding failed";
-            }
+                Response.Message = "Request Failed";
             return Ok(Response);
         }
 
+        [AuthorizationManager(Roles = "System Adminstrator")]
+        [Route("API/BACKOFFICE/AddSpecialization")]
+        [HttpPost]
+        public IHttpActionResult AddSpecialization(SpecializationModel model)
+        {
+            Response.Result = BackOfficeOperationsObject.AddSpecialization(model);
+            if (Response.Result == true)
+                Response.Message = "Request Have Been Created";
+            else
+                Response.Message = "Request Failed";
+            return Ok(Response);
+        }
     }
 }

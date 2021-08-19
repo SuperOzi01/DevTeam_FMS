@@ -24,7 +24,7 @@
     <Key>
       <PropertyRef Name="BuildingID" />
     </Key>
-    <Property Name="BuildingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BuildingID" Type="int" Nullable="false" />
     <Property Name="NoFloors" Type="int" Nullable="false" />
     <Property Name="Ownership" Type="int" Nullable="false" />
     <Property Name="BuildingManagerID" Type="int" Nullable="false" />
@@ -319,6 +319,7 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
     <Parameter Name="password" Type="varchar" Mode="In" />
     <Parameter Name="EmployeeUsername" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="SP_GetAllBuildingManagers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="SP_GetAllBuildings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="SP_GetAllCanceledRequests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="SP_GetAllLocations" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />

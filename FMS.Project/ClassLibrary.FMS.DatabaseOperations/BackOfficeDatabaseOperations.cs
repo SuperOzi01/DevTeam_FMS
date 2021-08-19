@@ -169,7 +169,7 @@ namespace ClassLibrary.FMS.DatabaseOperations
 
         public bool AddNewBuilding(BuildingModel building)
         {
-            int result = (int)DatabaseEntity.SP_AddBuilding(buildingID: building.BuildingID, ownership: building.Ownership, locationID: building.LocationID, managerID: building.BMID, noFloors: building.NoFloors).FirstOrDefault();
+            int result = (int)DatabaseEntity.SP_AddBuilding(buildingID: int.Parse(building.BuildingID), ownership: building.Ownership, locationID: building.LocationID, managerID: building.BMID, noFloors: int.Parse(building.NoFloors)).FirstOrDefault();
             if (result == 1)
                 return true;
             return false;
@@ -177,6 +177,13 @@ namespace ClassLibrary.FMS.DatabaseOperations
         public List<SP_GetAllBuildingManagers_Result> GetBMsList() 
         {
             return DatabaseEntity.SP_GetAllBuildingManagers().ToList();
+        }
+        public bool AddSpecialization(SpecializationModel model)
+        {
+            int result = (int)DatabaseEntity.SP_AddSpecialization(specializationName: model.SpecializationName).FirstOrDefault();
+            if (result == 1)
+                return true;
+            return false;
         }
 
     }
