@@ -14,6 +14,12 @@ namespace ClassLibrary.FMS.DataModels
     
     public partial class ServiceRequest
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ServiceRequest()
+        {
+            this.Transactions = new HashSet<Transaction>();
+        }
+    
         public int ServiceRequestID { get; set; }
         public int BuildingID { get; set; }
         public int SpecializationID { get; set; }
@@ -28,5 +34,7 @@ namespace ClassLibrary.FMS.DataModels
         public virtual Building Building { get; set; }
         public virtual CompanyEmployee CompanyEmployee { get; set; }
         public virtual Specialization Specialization { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Transaction> Transactions { get; set; }
     }
 }

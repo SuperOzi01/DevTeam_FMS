@@ -36,8 +36,9 @@ namespace ClassLibrary.FMS.DataModels
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<ServiceRequest> ServiceRequests { get; set; }
         public virtual DbSet<Specialization> Specializations { get; set; }
-        public virtual DbSet<View_BuildingAndLocationInfo> View_BuildingAndLocationInfo { get; set; }
+        public virtual DbSet<Transaction> Transactions { get; set; }
         public virtual DbSet<RequestView> RequestViews { get; set; }
+        public virtual DbSet<View_BuildingAndLocationInfo> View_BuildingAndLocationInfo { get; set; }
     
         public virtual ObjectResult<Nullable<int>> SP_ActivateBeneficiaryAccount(string beneficiaryUsername)
         {
@@ -117,6 +118,47 @@ namespace ClassLibrary.FMS.DataModels
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_Ben_LoginCheck", usernameParameter, passwordParameter);
         }
     
+        public virtual ObjectResult<SP_BMCanceledRequests_Result> SP_BMCanceledRequests(Nullable<int> buildingID)
+        {
+            var buildingIDParameter = buildingID.HasValue ?
+                new ObjectParameter("BuildingID", buildingID) :
+                new ObjectParameter("BuildingID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_BMCanceledRequests_Result>("SP_BMCanceledRequests", buildingIDParameter);
+        }
+    
+        public virtual ObjectResult<SP_BMClosedRequests_Result> SP_BMClosedRequests(Nullable<int> buildingID)
+        {
+            var buildingIDParameter = buildingID.HasValue ?
+                new ObjectParameter("BuildingID", buildingID) :
+                new ObjectParameter("BuildingID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_BMClosedRequests_Result>("SP_BMClosedRequests", buildingIDParameter);
+        }
+    
+        public virtual ObjectResult<SP_BMOpenRequests_Result> SP_BMOpenRequests(Nullable<int> buildingID)
+        {
+            var buildingIDParameter = buildingID.HasValue ?
+                new ObjectParameter("BuildingID", buildingID) :
+                new ObjectParameter("BuildingID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_BMOpenRequests_Result>("SP_BMOpenRequests", buildingIDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_Cancel_OpenedServiceRequest(Nullable<int> requestID)
+        {
+            var requestIDParameter = requestID.HasValue ?
+                new ObjectParameter("RequestID", requestID) :
+                new ObjectParameter("RequestID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_Cancel_OpenedServiceRequest", requestIDParameter);
+        }
+    
+        public virtual ObjectResult<SP_CanceledServiceRequests_Result> SP_CanceledServiceRequests()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_CanceledServiceRequests_Result>("SP_CanceledServiceRequests");
+        }
+    
         public virtual ObjectResult<Nullable<int>> SP_ChangeServiceRequestStatus(string employeeUsername, Nullable<int> requestID)
         {
             var employeeUsernameParameter = employeeUsername != null ?
@@ -128,6 +170,15 @@ namespace ClassLibrary.FMS.DataModels
                 new ObjectParameter("RequestID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_ChangeServiceRequestStatus", employeeUsernameParameter, requestIDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_CloseServiceRequest(Nullable<int> requestID)
+        {
+            var requestIDParameter = requestID.HasValue ?
+                new ObjectParameter("RequestID", requestID) :
+                new ObjectParameter("RequestID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_CloseServiceRequest", requestIDParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> SP_Employee_LoginCheck(string username, string pass)
@@ -156,9 +207,19 @@ namespace ClassLibrary.FMS.DataModels
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_EmployeeResetPassAndActivateAccount", passwordParameter, employeeUsernameParameter);
         }
     
+        public virtual ObjectResult<SP_GetAllBuildingManagers_Result> SP_GetAllBuildingManagers()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetAllBuildingManagers_Result>("SP_GetAllBuildingManagers");
+        }
+    
         public virtual ObjectResult<SP_GetAllBuildings_Result> SP_GetAllBuildings()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetAllBuildings_Result>("SP_GetAllBuildings");
+        }
+    
+        public virtual ObjectResult<SP_GetAllCanceledRequests_Result> SP_GetAllCanceledRequests()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetAllCanceledRequests_Result>("SP_GetAllCanceledRequests");
         }
     
         public virtual ObjectResult<SP_GetAllLocations_Result> SP_GetAllLocations()
@@ -181,6 +242,113 @@ namespace ClassLibrary.FMS.DataModels
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetAllSpecializations_Result>("SP_GetAllSpecializations");
         }
     
+        public virtual ObjectResult<SP_GetBeneficiaryCanceledRequests_Result> SP_GetBeneficiaryCanceledRequests(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetBeneficiaryCanceledRequests_Result>("SP_GetBeneficiaryCanceledRequests", usernameParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetBeneficiaryCloseedRequest_Result> SP_GetBeneficiaryCloseedRequest(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetBeneficiaryCloseedRequest_Result>("SP_GetBeneficiaryCloseedRequest", usernameParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetBeneficiaryOpenRequests_Result> SP_GetBeneficiaryOpenRequests(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetBeneficiaryOpenRequests_Result>("SP_GetBeneficiaryOpenRequests", usernameParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetBM_MM_ApprovedRequesets_Result> SP_GetBM_MM_ApprovedRequesets(Nullable<int> buildingID)
+        {
+            var buildingIDParameter = buildingID.HasValue ?
+                new ObjectParameter("BuildingID", buildingID) :
+                new ObjectParameter("BuildingID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetBM_MM_ApprovedRequesets_Result>("SP_GetBM_MM_ApprovedRequesets", buildingIDParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetBMCanceledRequests_Result> SP_GetBMCanceledRequests(Nullable<int> buildingID)
+        {
+            var buildingIDParameter = buildingID.HasValue ?
+                new ObjectParameter("BuildingID", buildingID) :
+                new ObjectParameter("BuildingID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetBMCanceledRequests_Result>("SP_GetBMCanceledRequests", buildingIDParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetBMClosedRequests_Result> SP_GetBMClosedRequests(Nullable<int> buildingID)
+        {
+            var buildingIDParameter = buildingID.HasValue ?
+                new ObjectParameter("BuildingID", buildingID) :
+                new ObjectParameter("BuildingID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetBMClosedRequests_Result>("SP_GetBMClosedRequests", buildingIDParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetBMOpenedRequests_Result> SP_GetBMOpenedRequests(Nullable<int> buildingID)
+        {
+            var buildingIDParameter = buildingID.HasValue ?
+                new ObjectParameter("BuildingID", buildingID) :
+                new ObjectParameter("BuildingID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetBMOpenedRequests_Result>("SP_GetBMOpenedRequests", buildingIDParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetCompanyEmployeesList_Result> SP_GetCompanyEmployeesList()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetCompanyEmployeesList_Result>("SP_GetCompanyEmployeesList");
+        }
+    
+        public virtual ObjectResult<SP_GetMMApprovedRequests_Result> SP_GetMMApprovedRequests()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetMMApprovedRequests_Result>("SP_GetMMApprovedRequests");
+        }
+    
+        public virtual ObjectResult<SP_GetMMClosedRequests_Result> SP_GetMMClosedRequests()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetMMClosedRequests_Result>("SP_GetMMClosedRequests");
+        }
+    
+        public virtual ObjectResult<SP_GetMMOpenRequests_Result> SP_GetMMOpenRequests()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetMMOpenRequests_Result>("SP_GetMMOpenRequests");
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_GetNumberOfBeneficiaries()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_GetNumberOfBeneficiaries");
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_GetNumberOfClosedRequests()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_GetNumberOfClosedRequests");
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_GetNumberOfOpenedRequests()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_GetNumberOfOpenedRequests");
+        }
+    
+        public virtual ObjectResult<SP_GetSpecificServiceRequestInfo_Result> SP_GetSpecificServiceRequestInfo(Nullable<int> requestID)
+        {
+            var requestIDParameter = requestID.HasValue ?
+                new ObjectParameter("RequestID", requestID) :
+                new ObjectParameter("RequestID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetSpecificServiceRequestInfo_Result>("SP_GetSpecificServiceRequestInfo", requestIDParameter);
+        }
+    
         public virtual ObjectResult<string> SP_GetUserRoles(string username)
         {
             var usernameParameter = username != null ?
@@ -188,6 +356,38 @@ namespace ClassLibrary.FMS.DataModels
                 new ObjectParameter("username", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("SP_GetUserRoles", usernameParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetWorkerClosedRequests_Result> SP_GetWorkerClosedRequests(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetWorkerClosedRequests_Result>("SP_GetWorkerClosedRequests", usernameParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetWorkerOpenRequests_Result> SP_GetWorkerOpenRequests(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetWorkerOpenRequests_Result>("SP_GetWorkerOpenRequests", usernameParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_GetWorkersNumber()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_GetWorkersNumber");
+        }
+    
+        public virtual ObjectResult<SP_GetWorkersOfSpecialization_Result> SP_GetWorkersOfSpecialization(string specializationName)
+        {
+            var specializationNameParameter = specializationName != null ?
+                new ObjectParameter("SpecializationName", specializationName) :
+                new ObjectParameter("SpecializationName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetWorkersOfSpecialization_Result>("SP_GetWorkersOfSpecialization", specializationNameParameter);
         }
     
         public virtual int SP_HandleServiceRequestByWorker(Nullable<int> buildingNo, Nullable<int> requestID)
@@ -294,227 +494,6 @@ namespace ClassLibrary.FMS.DataModels
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_InsertNewServiceRequiest", buildinNoParameter, specializationParameter, describtionParameter, creatorUsernameParameter);
         }
     
-        public virtual ObjectResult<SP_GetMMOpenRequests_Result> SP_GetMMOpenRequests()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetMMOpenRequests_Result>("SP_GetMMOpenRequests");
-        }
-    
-        public virtual ObjectResult<SP_GetMMClosedRequests_Result> SP_GetMMClosedRequests()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetMMClosedRequests_Result>("SP_GetMMClosedRequests");
-        }
-    
-        public virtual ObjectResult<SP_CanceledServiceRequests_Result> SP_CanceledServiceRequests()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_CanceledServiceRequests_Result>("SP_CanceledServiceRequests");
-        }
-    
-        public virtual ObjectResult<SP_GetSpecificServiceRequestInfo_Result> SP_GetSpecificServiceRequestInfo(Nullable<int> requestID)
-        {
-            var requestIDParameter = requestID.HasValue ?
-                new ObjectParameter("RequestID", requestID) :
-                new ObjectParameter("RequestID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetSpecificServiceRequestInfo_Result>("SP_GetSpecificServiceRequestInfo", requestIDParameter);
-        }
-    
-        public virtual ObjectResult<Nullable<int>> SP_Cancel_OpenedServiceRequest(Nullable<int> requestID)
-        {
-            var requestIDParameter = requestID.HasValue ?
-                new ObjectParameter("RequestID", requestID) :
-                new ObjectParameter("RequestID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_Cancel_OpenedServiceRequest", requestIDParameter);
-        }
-    
-        public virtual ObjectResult<Nullable<int>> SP_CloseServiceRequest(Nullable<int> requestID)
-        {
-            var requestIDParameter = requestID.HasValue ?
-                new ObjectParameter("RequestID", requestID) :
-                new ObjectParameter("RequestID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_CloseServiceRequest", requestIDParameter);
-        }
-    
-        public virtual ObjectResult<SP_GetAllCanceledRequests_Result> SP_GetAllCanceledRequests()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetAllCanceledRequests_Result>("SP_GetAllCanceledRequests");
-        }
-    
-        public virtual ObjectResult<SP_GetMMApprovedRequests_Result> SP_GetMMApprovedRequests()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetMMApprovedRequests_Result>("SP_GetMMApprovedRequests");
-        }
-    
-        public virtual ObjectResult<SP_GetWorkersOfSpecialization_Result> SP_GetWorkersOfSpecialization(string specializationName)
-        {
-            var specializationNameParameter = specializationName != null ?
-                new ObjectParameter("SpecializationName", specializationName) :
-                new ObjectParameter("SpecializationName", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetWorkersOfSpecialization_Result>("SP_GetWorkersOfSpecialization", specializationNameParameter);
-        }
-    
-        public virtual ObjectResult<SP_GetWorkerOpenRequests_Result> SP_GetWorkerOpenRequests(string username)
-        {
-            var usernameParameter = username != null ?
-                new ObjectParameter("username", username) :
-                new ObjectParameter("username", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetWorkerOpenRequests_Result>("SP_GetWorkerOpenRequests", usernameParameter);
-        }
-    
-        public virtual ObjectResult<SP_BMCanceledRequests_Result> SP_BMCanceledRequests(Nullable<int> buildingID)
-        {
-            var buildingIDParameter = buildingID.HasValue ?
-                new ObjectParameter("BuildingID", buildingID) :
-                new ObjectParameter("BuildingID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_BMCanceledRequests_Result>("SP_BMCanceledRequests", buildingIDParameter);
-        }
-    
-        public virtual ObjectResult<SP_BMClosedRequests_Result> SP_BMClosedRequests(Nullable<int> buildingID)
-        {
-            var buildingIDParameter = buildingID.HasValue ?
-                new ObjectParameter("BuildingID", buildingID) :
-                new ObjectParameter("BuildingID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_BMClosedRequests_Result>("SP_BMClosedRequests", buildingIDParameter);
-        }
-    
-        public virtual ObjectResult<SP_BMOpenRequests_Result> SP_BMOpenRequests(Nullable<int> buildingID)
-        {
-            var buildingIDParameter = buildingID.HasValue ?
-                new ObjectParameter("BuildingID", buildingID) :
-                new ObjectParameter("BuildingID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_BMOpenRequests_Result>("SP_BMOpenRequests", buildingIDParameter);
-        }
-    
-        public virtual ObjectResult<SP_GetWorkerClosedRequests_Result> SP_GetWorkerClosedRequests(string username)
-        {
-            var usernameParameter = username != null ?
-                new ObjectParameter("username", username) :
-                new ObjectParameter("username", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetWorkerClosedRequests_Result>("SP_GetWorkerClosedRequests", usernameParameter);
-        }
-    
-        public virtual ObjectResult<SP_GetBeneficiaryCanceledRequests_Result> SP_GetBeneficiaryCanceledRequests(string username)
-        {
-            var usernameParameter = username != null ?
-                new ObjectParameter("username", username) :
-                new ObjectParameter("username", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetBeneficiaryCanceledRequests_Result>("SP_GetBeneficiaryCanceledRequests", usernameParameter);
-        }
-    
-        public virtual ObjectResult<SP_GetBeneficiaryCloseedRequest_Result> SP_GetBeneficiaryCloseedRequest(string username)
-        {
-            var usernameParameter = username != null ?
-                new ObjectParameter("username", username) :
-                new ObjectParameter("username", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetBeneficiaryCloseedRequest_Result>("SP_GetBeneficiaryCloseedRequest", usernameParameter);
-        }
-    
-        public virtual ObjectResult<SP_GetBeneficiaryOpenRequests_Result> SP_GetBeneficiaryOpenRequests(string username)
-        {
-            var usernameParameter = username != null ?
-                new ObjectParameter("username", username) :
-                new ObjectParameter("username", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetBeneficiaryOpenRequests_Result>("SP_GetBeneficiaryOpenRequests", usernameParameter);
-        }
-    
-        public virtual ObjectResult<SP_GetBMOpenedRequests_Result> SP_GetBMOpenedRequests(Nullable<int> buildingID)
-        {
-            var buildingIDParameter = buildingID.HasValue ?
-                new ObjectParameter("BuildingID", buildingID) :
-                new ObjectParameter("BuildingID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetBMOpenedRequests_Result>("SP_GetBMOpenedRequests", buildingIDParameter);
-        }
-    
-        public virtual ObjectResult<Nullable<int>> SP_TestDB()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_TestDB");
-        }
-    
-        public virtual ObjectResult<SP_GetBM_MM_ApprovedRequesets_Result> SP_GetBM_MM_ApprovedRequesets(Nullable<int> buildingID)
-        {
-            var buildingIDParameter = buildingID.HasValue ?
-                new ObjectParameter("BuildingID", buildingID) :
-                new ObjectParameter("BuildingID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetBM_MM_ApprovedRequesets_Result>("SP_GetBM_MM_ApprovedRequesets", buildingIDParameter);
-        }
-    
-        public virtual ObjectResult<SP_GetBMCanceledRequests_Result> SP_GetBMCanceledRequests(Nullable<int> buildingID)
-        {
-            var buildingIDParameter = buildingID.HasValue ?
-                new ObjectParameter("BuildingID", buildingID) :
-                new ObjectParameter("BuildingID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetBMCanceledRequests_Result>("SP_GetBMCanceledRequests", buildingIDParameter);
-        }
-    
-        public virtual ObjectResult<SP_GetBMClosedRequests_Result> SP_GetBMClosedRequests(Nullable<int> buildingID)
-        {
-            var buildingIDParameter = buildingID.HasValue ?
-                new ObjectParameter("BuildingID", buildingID) :
-                new ObjectParameter("BuildingID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetBMClosedRequests_Result>("SP_GetBMClosedRequests", buildingIDParameter);
-        }
-    
-        public virtual ObjectResult<SP_BMCanceledRequests1_Result> SP_BMCanceledRequests1(Nullable<int> buildingID)
-        {
-            var buildingIDParameter = buildingID.HasValue ?
-                new ObjectParameter("BuildingID", buildingID) :
-                new ObjectParameter("BuildingID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_BMCanceledRequests1_Result>("SP_BMCanceledRequests1", buildingIDParameter);
-        }
-    
-        public virtual ObjectResult<SP_BMClosedRequests1_Result> SP_BMClosedRequests1(Nullable<int> buildingID)
-        {
-            var buildingIDParameter = buildingID.HasValue ?
-                new ObjectParameter("BuildingID", buildingID) :
-                new ObjectParameter("BuildingID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_BMClosedRequests1_Result>("SP_BMClosedRequests1", buildingIDParameter);
-        }
-    
-        public virtual ObjectResult<SP_BMOpenRequests1_Result> SP_BMOpenRequests1(Nullable<int> buildingID)
-        {
-            var buildingIDParameter = buildingID.HasValue ?
-                new ObjectParameter("BuildingID", buildingID) :
-                new ObjectParameter("BuildingID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_BMOpenRequests1_Result>("SP_BMOpenRequests1", buildingIDParameter);
-        }
-    
-        public virtual ObjectResult<Nullable<int>> SP_GetNumberOfBeneficiaries()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_GetNumberOfBeneficiaries");
-        }
-    
-        public virtual ObjectResult<Nullable<int>> SP_GetNumberOfClosedRequests()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_GetNumberOfClosedRequests");
-        }
-    
-        public virtual ObjectResult<Nullable<int>> SP_GetNumberOfOpenedRequests()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_GetNumberOfOpenedRequests");
-        }
-    
-        public virtual ObjectResult<Nullable<int>> SP_GetWorkersNumber()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_GetWorkersNumber");
-        }
-    
         public virtual ObjectResult<SP_ListOfNotActiveBeneficiaries_Result> SP_ListOfNotActiveBeneficiaries(Nullable<int> buildingID)
         {
             var buildingIDParameter = buildingID.HasValue ?
@@ -524,73 +503,31 @@ namespace ClassLibrary.FMS.DataModels
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_ListOfNotActiveBeneficiaries_Result>("SP_ListOfNotActiveBeneficiaries", buildingIDParameter);
         }
     
-        public virtual ObjectResult<SP_GetCompanyEmployeesList_Result> SP_GetCompanyEmployeesList()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetCompanyEmployeesList_Result>("SP_GetCompanyEmployeesList");
-        }
-    
         public virtual ObjectResult<SP_MaintananceManagersList_Result> SP_MaintananceManagersList()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_MaintananceManagersList_Result>("SP_MaintananceManagersList");
         }
     
-        public virtual ObjectResult<SP_BMCanceledRequests2_Result> SP_BMCanceledRequests2(Nullable<int> buildingID)
+        public virtual int SP_MakeTransaction(string transactionMakerUsername, Nullable<int> transactionServiceRequestID, Nullable<bool> decision)
         {
-            var buildingIDParameter = buildingID.HasValue ?
-                new ObjectParameter("BuildingID", buildingID) :
-                new ObjectParameter("BuildingID", typeof(int));
+            var transactionMakerUsernameParameter = transactionMakerUsername != null ?
+                new ObjectParameter("TransactionMakerUsername", transactionMakerUsername) :
+                new ObjectParameter("TransactionMakerUsername", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_BMCanceledRequests2_Result>("SP_BMCanceledRequests2", buildingIDParameter);
+            var transactionServiceRequestIDParameter = transactionServiceRequestID.HasValue ?
+                new ObjectParameter("TransactionServiceRequestID", transactionServiceRequestID) :
+                new ObjectParameter("TransactionServiceRequestID", typeof(int));
+    
+            var decisionParameter = decision.HasValue ?
+                new ObjectParameter("Decision", decision) :
+                new ObjectParameter("Decision", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_MakeTransaction", transactionMakerUsernameParameter, transactionServiceRequestIDParameter, decisionParameter);
         }
     
-        public virtual ObjectResult<SP_BMClosedRequests2_Result> SP_BMClosedRequests2(Nullable<int> buildingID)
+        public virtual ObjectResult<Nullable<int>> SP_TestDB()
         {
-            var buildingIDParameter = buildingID.HasValue ?
-                new ObjectParameter("BuildingID", buildingID) :
-                new ObjectParameter("BuildingID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_BMClosedRequests2_Result>("SP_BMClosedRequests2", buildingIDParameter);
-        }
-    
-        public virtual ObjectResult<SP_BMOpenRequests2_Result> SP_BMOpenRequests2(Nullable<int> buildingID)
-        {
-            var buildingIDParameter = buildingID.HasValue ?
-                new ObjectParameter("BuildingID", buildingID) :
-                new ObjectParameter("BuildingID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_BMOpenRequests2_Result>("SP_BMOpenRequests2", buildingIDParameter);
-        }
-    
-        public virtual ObjectResult<SP_BMCanceledRequests3_Result> SP_BMCanceledRequests3(Nullable<int> buildingID)
-        {
-            var buildingIDParameter = buildingID.HasValue ?
-                new ObjectParameter("BuildingID", buildingID) :
-                new ObjectParameter("BuildingID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_BMCanceledRequests3_Result>("SP_BMCanceledRequests3", buildingIDParameter);
-        }
-    
-        public virtual ObjectResult<SP_BMClosedRequests3_Result> SP_BMClosedRequests3(Nullable<int> buildingID)
-        {
-            var buildingIDParameter = buildingID.HasValue ?
-                new ObjectParameter("BuildingID", buildingID) :
-                new ObjectParameter("BuildingID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_BMClosedRequests3_Result>("SP_BMClosedRequests3", buildingIDParameter);
-        }
-    
-        public virtual ObjectResult<SP_BMOpenRequests3_Result> SP_BMOpenRequests3(Nullable<int> buildingID)
-        {
-            var buildingIDParameter = buildingID.HasValue ?
-                new ObjectParameter("BuildingID", buildingID) :
-                new ObjectParameter("BuildingID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_BMOpenRequests3_Result>("SP_BMOpenRequests3", buildingIDParameter);
-        }
-    
-        public virtual ObjectResult<SP_GetAllBuildingManagers_Result> SP_GetAllBuildingManagers()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetAllBuildingManagers_Result>("SP_GetAllBuildingManagers");
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_TestDB");
         }
     }
 }

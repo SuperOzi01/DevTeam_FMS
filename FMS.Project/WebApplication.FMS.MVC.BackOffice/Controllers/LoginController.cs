@@ -20,7 +20,13 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
         string BaseUrl = Startup.GetBaseUrl();
         // GET: LoginController
 
-        
+        [Route("Ping")]
+        public IActionResult ping()
+        {
+
+            return Content("Ping Is Successful");
+        }
+
         public ActionResult UpdatePasswordPage()
         {
             return View();

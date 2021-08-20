@@ -159,8 +159,14 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                     httpResponse = httpRequest.Content.ReadAsAsync<ResponseAPI>().Result;
                     if (httpResponse.Result)
                     {
-                        TempData["Ref"] = "TrueReq";
-                        return RedirectToAction("MaintananceManagerRequests");
+                        TransactionModel transaction = new TransactionModel() { ServiceRequestID = PageModel.RequestID, TransactionMakerUsername = PageModel.EmployeeUsername, Decision = true };
+                        var AuditTransaction = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "AuditTransaction" , transaction);
+                        if(AuditTransaction.IsSuccessStatusCode)
+                        {
+                            TempData["Ref"] = "TrueReq";
+                            return RedirectToAction("MaintananceManagerRequests");
+                        }
+                        
                     }
                     return View("ErrorView");
                 }
@@ -181,9 +187,15 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
 
                 if (httpResponce.Result)
                 {
+                string username = Request.Cookies["Username"];
+                TransactionModel transaction = new TransactionModel() { ServiceRequestID = PageModel.RequestID, TransactionMakerUsername = username, Decision = false };
+                var AuditTransaction = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "AuditTransaction", transaction);
+                if (AuditTransaction.IsSuccessStatusCode)
+                {
                     TempData["Ref"] = "RejectReq";
                     return RedirectToAction("MaintananceManagerRequests");
                 }
+            }
             return View("ErrorView");
         }
 
@@ -263,6 +275,8 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
             {
                 return View("ErrorView");
             }
+
+
             TempData["Ref"] = "TrueReq";
             return RedirectToAction("MaintananceWorkerRequests");
         }
@@ -392,8 +406,15 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                     httpResponse = httpRequest.Content.ReadAsAsync<ResponseAPI>().Result;
                     if (httpResponse.Result)
                     {
-                        TempData["Ref"] = "TrueReq";
-                        return RedirectToAction("BuildingManagerMaintananceRequests");
+                        
+                        TransactionModel transaction = new TransactionModel() { ServiceRequestID = PageModel.RequestID, TransactionMakerUsername = PageModel.EmployeeUsername, Decision = true };
+                        var AuditTransaction = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "AuditTransaction", transaction);
+                        if (AuditTransaction.IsSuccessStatusCode)
+                        {
+                            TempData["Ref"] = "TrueReq";
+                            return RedirectToAction("BuildingManagerMaintananceRequests");
+                        }
+
                     }
                     return View("ErrorView");
                 }
@@ -411,8 +432,15 @@ namespace WebApplication.FMS.MVC.BackOffice.Controllers
                     httpResponse = httpRequest.Content.ReadAsAsync<ResponseAPI>().Result;
                     if (httpResponse.Result)
                     {
-                        TempData["Ref"] = "RejectReq";
-                        return RedirectToAction("BuildingManagerMaintananceRequests");
+
+                        TransactionModel transaction = new TransactionModel() { ServiceRequestID = PageModel.RequestID, TransactionMakerUsername = PageModel.EmployeeUsername, Decision = false };
+                        var AuditTransaction = await client.PostAsJsonAsync(ConstantStrings.BackOfficeControlerURL + "AuditTransaction", transaction);
+                        if (AuditTransaction.IsSuccessStatusCode)
+                        {
+                            TempData["Ref"] = "RejectReq";
+                            return RedirectToAction("BuildingManagerMaintananceRequests");
+                        }
+
                     }
                     return View("ErrorView");
         }

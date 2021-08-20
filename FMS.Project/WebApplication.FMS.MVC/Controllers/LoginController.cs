@@ -23,7 +23,7 @@ namespace WebApplication.FMS.MVC.Controllers
         public IActionResult ping()
         {
 
-            return Content("The Ping Page");
+            return Content("Ping Is Successful");
         }
 
         public IActionResult Signin() 

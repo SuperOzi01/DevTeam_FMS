@@ -279,5 +279,17 @@ namespace WebApplication.FMS.WebAPI.Controllers
                 Response.Message = "Request Failed";
             return Ok(Response);
         }
+
+
+        [AuthorizationManager(Roles = "System Adminstrator, Maintenance Manager, Building Manager,Maintenance Worker")]
+        [Route("API/BACKOFFICE/AuditTransaction")]
+        [HttpPost]
+        public IHttpActionResult AuditTransaction(TransactionModel transaction)
+        {
+            BackOfficeOperationsObject.MakeTransaction(transaction);
+            Response.Result = true;
+            Response.Message = "Request Have Been Created";
+            return Ok(Response);
+        }
     }
 }
