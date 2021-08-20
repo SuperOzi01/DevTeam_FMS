@@ -144,9 +144,9 @@ namespace ClassLibrary.FMS.DatabaseOperations
             return false; 
         }
 
-        public static MakeTransaction()
+        public void MakeTransaction(TransactionModel transaction)
         {
-
+            DatabaseEntity.SP_MakeTransaction(transactionMakerUsername: transaction.TransactionMakerUsername, transactionServiceRequestID: transaction.ServiceRequestID, decision: transaction.Decision);
         }
         
 

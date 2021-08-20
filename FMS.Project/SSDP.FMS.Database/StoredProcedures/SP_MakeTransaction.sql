@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[SP_MakeTransaction]
-	@TransactionMakerID INT,
+	@TransactionMakerUsername varchar(40),
 	@TransactionServiceRequestID INT,
 	@Decision Bit 
 AS
-	INSERT INTO dbo.Transactions(TransActionMakerID, TransactionServiceID, TransactionDecision)
-	VALUES(@TransactionMakerID, @TransactionServiceRequestID, @Decision)
+	INSERT INTO dbo.Transactions(TransActionMakerUsername, TransactionServiceID, TransactionDecision)
+	VALUES(@TransactionMakerUsername, @TransactionServiceRequestID, @Decision)

@@ -93,6 +93,16 @@
           <Property Name="SpecializationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SpecializationName" Type="varchar" MaxLength="40" Nullable="false" />
         </EntityType>
+        <EntityType Name="Transactions">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="TransactionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TransActionMakerUsername" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="TransactionDecision" Type="bit" Nullable="false" />
+          <Property Name="TransactionDate" Type="datetime" Nullable="false" />
+          <Property Name="TransactionServiceID" Type="int" Nullable="false" />
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'FMS_Database.dbo.RequestView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="RequestView">
@@ -260,6 +270,21 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_Transactions_CompanyEmployee' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_Transactions_CompanyEmployee" />-->
+        <Association Name="FK_Transactions_ServiceRequest">
+          <End Role="ServiceRequest" Type="Self.ServiceRequest" Multiplicity="1" />
+          <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceRequest">
+              <PropertyRef Name="ServiceRequestID" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="TransactionServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_ManagerID">
           <End Role="CompanyEmployee" Type="Self.CompanyEmployee" Multiplicity="0..1" />
           <End Role="CompanyEmployee1" Type="Self.CompanyEmployee" Multiplicity="*" />
@@ -408,6 +433,11 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           <Parameter Name="BuildingID" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_MaintananceManagersList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_MakeTransaction" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TransactionMakerUsername" Type="varchar" Mode="In" />
+          <Parameter Name="TransactionServiceRequestID" Type="int" Mode="In" />
+          <Parameter Name="Decision" Type="bit" Mode="In" />
+        </Function>
         <Function Name="SP_TestDB" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="FMS_DatabaseModelStoreContainer">
           <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
@@ -419,6 +449,7 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ServiceRequest" EntityType="Self.ServiceRequest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Specialization" EntityType="Self.Specialization" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RequestView" EntityType="Self.RequestView" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [RequestView].[ServiceRequestID] AS [ServiceRequestID], 
@@ -484,6 +515,10 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           <AssociationSet Name="FK_ServiceRequest_Specialization" Association="Self.FK_ServiceRequest_Specialization">
             <End Role="Specialization" EntitySet="Specialization" />
             <End Role="ServiceRequest" EntitySet="ServiceRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_ServiceRequest" Association="Self.FK_Transactions_ServiceRequest">
+            <End Role="ServiceRequest" EntitySet="ServiceRequest" />
+            <End Role="Transactions" EntitySet="Transactions" />
           </AssociationSet>
           <AssociationSet Name="FK_User_ManagerID" Association="Self.FK_User_ManagerID">
             <End Role="CompanyEmployee" EntitySet="CompanyEmployee" />
@@ -596,6 +631,7 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           <NavigationProperty Name="Building" Relationship="Self.FK_ServiceRequest_Building" FromRole="ServiceRequest" ToRole="Building" />
           <NavigationProperty Name="CompanyEmployee" Relationship="Self.FK_ServiceRequest_CompanyEmployee" FromRole="ServiceRequest" ToRole="CompanyEmployee" />
           <NavigationProperty Name="Specialization" Relationship="Self.FK_ServiceRequest_Specialization" FromRole="ServiceRequest" ToRole="Specialization" />
+          <NavigationProperty Name="Transactions" Relationship="Self.FK_Transactions_ServiceRequest" FromRole="ServiceRequest" ToRole="Transactions" />
         </EntityType>
         <EntityType Name="Specialization">
           <Key>
@@ -605,6 +641,35 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           <Property Name="SpecializationName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="CompanyEmployees" Relationship="Self.FK_CompanyEmployee_Specialization" FromRole="Specialization" ToRole="CompanyEmployee" />
           <NavigationProperty Name="ServiceRequests" Relationship="Self.FK_ServiceRequest_Specialization" FromRole="Specialization" ToRole="ServiceRequest" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="TransactionID" Type="Int32" Nullable="false" />
+          <Property Name="TransActionMakerUsername" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TransactionDecision" Type="Boolean" Nullable="false" />
+          <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TransactionServiceID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ServiceRequest" Relationship="Self.FK_Transactions_ServiceRequest" FromRole="Transactions" ToRole="ServiceRequest" />
+        </EntityType>
+        <EntityType Name="RequestView">
+          <Key>
+            <PropertyRef Name="ServiceRequestID" />
+            <PropertyRef Name="BuildingID" />
+            <PropertyRef Name="RequiestStatus" />
+            <PropertyRef Name="RequestIssueDate" />
+            <PropertyRef Name="ServiceDescribtion" />
+          </Key>
+          <Property Name="ServiceRequestID" Type="Int32" Nullable="false" />
+          <Property Name="BuildingID" Type="Int32" Nullable="false" />
+          <Property Name="Specialization_Type" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Assigned_Worker" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="RequiestStatus" Type="Int32" Nullable="false" />
+          <Property Name="RequestIssueDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="RequestCloseDate" Type="DateTime" Precision="0" />
+          <Property Name="ServiceDescribtion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Request_Creator" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="View_BuildingAndLocationInfo">
           <Key>
@@ -763,6 +828,18 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Transactions_ServiceRequest">
+          <End Role="ServiceRequest" Type="Self.ServiceRequest" Multiplicity="1" />
+          <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceRequest">
+              <PropertyRef Name="ServiceRequestID" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="TransactionServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="FMS_DatabaseEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
           <EntitySet Name="Beneficiaries" EntityType="Self.Beneficiary" />
@@ -773,6 +850,8 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           <EntitySet Name="Roles" EntityType="Self.Role" />
           <EntitySet Name="ServiceRequests" EntityType="Self.ServiceRequest" />
           <EntitySet Name="Specializations" EntityType="Self.Specialization" />
+          <EntitySet Name="Transactions" EntityType="Self.Transaction" />
+          <EntitySet Name="RequestViews" EntityType="Self.RequestView" />
           <EntitySet Name="View_BuildingAndLocationInfo" EntityType="Self.View_BuildingAndLocationInfo" />
           <AssociationSet Name="FK_Beneficiary_Building" Association="Self.FK_Beneficiary_Building">
             <End Role="Building" EntitySet="Buildings" />
@@ -822,6 +901,10 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
             <End Role="Specialization" EntitySet="Specializations" />
             <End Role="ServiceRequest" EntitySet="ServiceRequests" />
           </AssociationSet>
+          <AssociationSet Name="FK_Transactions_ServiceRequest" Association="Self.FK_Transactions_ServiceRequest">
+            <End Role="ServiceRequest" EntitySet="ServiceRequests" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
           <FunctionImport Name="SP_ActivateBeneficiaryAccount" ReturnType="Collection(Int32)">
           <Parameter Name="BeneficiaryUsername" Mode="In" Type="String" />
           </FunctionImport>
@@ -846,9 +929,25 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
             <Parameter Name="username" Mode="In" Type="String" />
             <Parameter Name="password" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="SP_BMCanceledRequests" ReturnType="Collection(FMS_DatabaseModel.SP_BMCanceledRequests_Result)">
+          <Parameter Name="BuildingID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_BMClosedRequests" ReturnType="Collection(FMS_DatabaseModel.SP_BMClosedRequests_Result)">
+          <Parameter Name="BuildingID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_BMOpenRequests" ReturnType="Collection(FMS_DatabaseModel.SP_BMOpenRequests_Result)">
+          <Parameter Name="BuildingID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Cancel_OpenedServiceRequest" ReturnType="Collection(Int32)">
+          <Parameter Name="RequestID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CanceledServiceRequests" ReturnType="Collection(FMS_DatabaseModel.SP_CanceledServiceRequests_Result)" />
           <FunctionImport Name="SP_ChangeServiceRequestStatus" ReturnType="Collection(Int32)">
             <Parameter Name="EmployeeUsername" Mode="In" Type="String" />
             <Parameter Name="RequestID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CloseServiceRequest" ReturnType="Collection(Int32)">
+          <Parameter Name="RequestID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_Employee_LoginCheck" ReturnType="Collection(Int32)">
             <Parameter Name="username" Mode="In" Type="String" />
@@ -858,13 +957,56 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
             <Parameter Name="password" Mode="In" Type="String" />
             <Parameter Name="EmployeeUsername" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="SP_GetAllBuildingManagers" ReturnType="Collection(FMS_DatabaseModel.SP_GetAllBuildingManagers_Result)" />
           <FunctionImport Name="SP_GetAllBuildings" ReturnType="Collection(FMS_DatabaseModel.SP_GetAllBuildings_Result)" />
+          <FunctionImport Name="SP_GetAllCanceledRequests" ReturnType="Collection(FMS_DatabaseModel.SP_GetAllCanceledRequests_Result)" />
           <FunctionImport Name="SP_GetAllLocations" ReturnType="Collection(FMS_DatabaseModel.SP_GetAllLocations_Result)" />
           <FunctionImport Name="SP_GetAllRoles" ReturnType="Collection(FMS_DatabaseModel.SP_GetAllRoles_Result)" />
           <FunctionImport Name="SP_GetAllServiceRequests" ReturnType="Collection(FMS_DatabaseModel.SP_GetAllServiceRequests_Result)" />
           <FunctionImport Name="SP_GetAllSpecializations" ReturnType="Collection(FMS_DatabaseModel.SP_GetAllSpecializations_Result)" />
+          <FunctionImport Name="SP_GetBeneficiaryCanceledRequests" ReturnType="Collection(FMS_DatabaseModel.SP_GetBeneficiaryCanceledRequests_Result)">
+          <Parameter Name="username" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetBeneficiaryCloseedRequest" ReturnType="Collection(FMS_DatabaseModel.SP_GetBeneficiaryCloseedRequest_Result)">
+          <Parameter Name="username" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetBeneficiaryOpenRequests" ReturnType="Collection(FMS_DatabaseModel.SP_GetBeneficiaryOpenRequests_Result)">
+          <Parameter Name="username" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetBM_MM_ApprovedRequesets" ReturnType="Collection(FMS_DatabaseModel.SP_GetBM_MM_ApprovedRequesets_Result)">
+          <Parameter Name="BuildingID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetBMCanceledRequests" ReturnType="Collection(FMS_DatabaseModel.SP_GetBMCanceledRequests_Result)">
+          <Parameter Name="BuildingID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetBMClosedRequests" ReturnType="Collection(FMS_DatabaseModel.SP_GetBMClosedRequests_Result)">
+          <Parameter Name="BuildingID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetBMOpenedRequests" ReturnType="Collection(FMS_DatabaseModel.SP_GetBMOpenedRequests_Result)">
+          <Parameter Name="BuildingID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetCompanyEmployeesList" ReturnType="Collection(FMS_DatabaseModel.SP_GetCompanyEmployeesList_Result)" />
+          <FunctionImport Name="SP_GetMMApprovedRequests" ReturnType="Collection(FMS_DatabaseModel.SP_GetMMApprovedRequests_Result)" />
+          <FunctionImport Name="SP_GetMMClosedRequests" ReturnType="Collection(FMS_DatabaseModel.SP_GetMMClosedRequests_Result)" />
+          <FunctionImport Name="SP_GetMMOpenRequests" ReturnType="Collection(FMS_DatabaseModel.SP_GetMMOpenRequests_Result)" />
+          <FunctionImport Name="SP_GetNumberOfBeneficiaries" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="SP_GetNumberOfClosedRequests" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="SP_GetNumberOfOpenedRequests" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="SP_GetSpecificServiceRequestInfo" ReturnType="Collection(FMS_DatabaseModel.SP_GetSpecificServiceRequestInfo_Result)">
+          <Parameter Name="RequestID" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="SP_GetUserRoles" ReturnType="Collection(String)">
           <Parameter Name="username" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetWorkerClosedRequests" ReturnType="Collection(FMS_DatabaseModel.SP_GetWorkerClosedRequests_Result)">
+          <Parameter Name="username" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetWorkerOpenRequests" ReturnType="Collection(FMS_DatabaseModel.SP_GetWorkerOpenRequests_Result)">
+          <Parameter Name="username" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetWorkersNumber" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="SP_GetWorkersOfSpecialization" ReturnType="Collection(FMS_DatabaseModel.SP_GetWorkersOfSpecialization_Result)">
+          <Parameter Name="SpecializationName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_HandleServiceRequestByWorker">
             <Parameter Name="BuildingNo" Mode="In" Type="Int32" />
@@ -895,231 +1037,17 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
             <Parameter Name="Describtion" Mode="In" Type="String" />
             <Parameter Name="CreatorUsername" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="SP_GetMMOpenRequests" ReturnType="Collection(FMS_DatabaseModel.SP_GetMMOpenRequests_Result)" />
-          <EntitySet Name="RequestViews" EntityType="FMS_DatabaseModel.RequestView" />
-          <FunctionImport Name="SP_GetMMClosedRequests" ReturnType="Collection(FMS_DatabaseModel.SP_GetMMClosedRequests_Result)" />
-          <FunctionImport Name="SP_CanceledServiceRequests" ReturnType="Collection(FMS_DatabaseModel.SP_CanceledServiceRequests_Result)" />
-          <FunctionImport Name="SP_GetSpecificServiceRequestInfo" ReturnType="Collection(FMS_DatabaseModel.SP_GetSpecificServiceRequestInfo_Result)">
-          <Parameter Name="RequestID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SP_Cancel_OpenedServiceRequest" ReturnType="Collection(Int32)">
-          <Parameter Name="RequestID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SP_CloseServiceRequest" ReturnType="Collection(Int32)">
-          <Parameter Name="RequestID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SP_GetAllCanceledRequests" ReturnType="Collection(FMS_DatabaseModel.SP_GetAllCanceledRequests_Result)" />
-          <FunctionImport Name="SP_GetMMApprovedRequests" ReturnType="Collection(FMS_DatabaseModel.SP_GetMMApprovedRequests_Result)" />
-          <FunctionImport Name="SP_GetWorkersOfSpecialization" ReturnType="Collection(FMS_DatabaseModel.SP_GetWorkersOfSpecialization_Result)">
-          <Parameter Name="SpecializationName" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="SP_GetWorkerOpenRequests" ReturnType="Collection(FMS_DatabaseModel.SP_GetWorkerOpenRequests_Result)">
-          <Parameter Name="username" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="SP_BMCanceledRequests" ReturnType="Collection(FMS_DatabaseModel.SP_BMCanceledRequests_Result)">
-          <Parameter Name="BuildingID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SP_BMClosedRequests" ReturnType="Collection(FMS_DatabaseModel.SP_BMClosedRequests_Result)">
-          <Parameter Name="BuildingID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SP_BMOpenRequests" ReturnType="Collection(FMS_DatabaseModel.SP_BMOpenRequests_Result)">
-          <Parameter Name="BuildingID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SP_GetWorkerClosedRequests" ReturnType="Collection(FMS_DatabaseModel.SP_GetWorkerClosedRequests_Result)">
-          <Parameter Name="username" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="SP_GetBeneficiaryCanceledRequests" ReturnType="Collection(FMS_DatabaseModel.SP_GetBeneficiaryCanceledRequests_Result)">
-          <Parameter Name="username" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="SP_GetBeneficiaryCloseedRequest" ReturnType="Collection(FMS_DatabaseModel.SP_GetBeneficiaryCloseedRequest_Result)">
-          <Parameter Name="username" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="SP_GetBeneficiaryOpenRequests" ReturnType="Collection(FMS_DatabaseModel.SP_GetBeneficiaryOpenRequests_Result)">
-          <Parameter Name="username" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="SP_GetBMOpenedRequests" ReturnType="Collection(FMS_DatabaseModel.SP_GetBMOpenedRequests_Result)" >
-          <Parameter Name="BuildingID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SP_TestDB" ReturnType="Collection(Int32)" />
-          <FunctionImport Name="SP_GetBM_MM_ApprovedRequesets" ReturnType="Collection(FMS_DatabaseModel.SP_GetBM_MM_ApprovedRequesets_Result)">
-          <Parameter Name="BuildingID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SP_GetBMCanceledRequests" ReturnType="Collection(FMS_DatabaseModel.SP_GetBMCanceledRequests_Result)">
-          <Parameter Name="BuildingID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SP_GetBMClosedRequests" ReturnType="Collection(FMS_DatabaseModel.SP_GetBMClosedRequests_Result)">
-          <Parameter Name="BuildingID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SP_BMCanceledRequests1" ReturnType="Collection(FMS_DatabaseModel.SP_BMCanceledRequests1_Result)">
-          <Parameter Name="BuildingID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SP_BMClosedRequests1" ReturnType="Collection(FMS_DatabaseModel.SP_BMClosedRequests1_Result)">
-          <Parameter Name="BuildingID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SP_BMOpenRequests1" ReturnType="Collection(FMS_DatabaseModel.SP_BMOpenRequests1_Result)">
-          <Parameter Name="BuildingID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SP_GetNumberOfBeneficiaries" ReturnType="Collection(Int32)" />
-          <FunctionImport Name="SP_GetNumberOfClosedRequests" ReturnType="Collection(Int32)" />
-          <FunctionImport Name="SP_GetNumberOfOpenedRequests" ReturnType="Collection(Int32)" />
-          <FunctionImport Name="SP_GetWorkersNumber" ReturnType="Collection(Int32)" />
           <FunctionImport Name="SP_ListOfNotActiveBeneficiaries" ReturnType="Collection(FMS_DatabaseModel.SP_ListOfNotActiveBeneficiaries_Result)">
           <Parameter Name="BuildingID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SP_GetCompanyEmployeesList" ReturnType="Collection(FMS_DatabaseModel.SP_GetCompanyEmployeesList_Result)" />
           <FunctionImport Name="SP_MaintananceManagersList" ReturnType="Collection(FMS_DatabaseModel.SP_MaintananceManagersList_Result)" />
-          <FunctionImport Name="SP_BMCanceledRequests2" ReturnType="Collection(FMS_DatabaseModel.SP_BMCanceledRequests2_Result)">
-          <Parameter Name="BuildingID" Mode="In" Type="Int32" />
+          <FunctionImport Name="SP_MakeTransaction">
+            <Parameter Name="TransactionMakerUsername" Mode="In" Type="String" />
+            <Parameter Name="TransactionServiceRequestID" Mode="In" Type="Int32" />
+            <Parameter Name="Decision" Mode="In" Type="Boolean" />
           </FunctionImport>
-          <FunctionImport Name="SP_BMClosedRequests2" ReturnType="Collection(FMS_DatabaseModel.SP_BMClosedRequests2_Result)">
-          <Parameter Name="BuildingID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SP_BMOpenRequests2" ReturnType="Collection(FMS_DatabaseModel.SP_BMOpenRequests2_Result)">
-          <Parameter Name="BuildingID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SP_BMCanceledRequests3" ReturnType="Collection(FMS_DatabaseModel.SP_BMCanceledRequests3_Result)">
-          <Parameter Name="BuildingID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SP_BMClosedRequests3" ReturnType="Collection(FMS_DatabaseModel.SP_BMClosedRequests3_Result)">
-          <Parameter Name="BuildingID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SP_BMOpenRequests3" ReturnType="Collection(FMS_DatabaseModel.SP_BMOpenRequests3_Result)">
-          <Parameter Name="BuildingID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SP_GetAllBuildingManagers" ReturnType="Collection(FMS_DatabaseModel.SP_GetAllBuildingManagers_Result)" />
+          <FunctionImport Name="SP_TestDB" ReturnType="Collection(Int32)" />
         </EntityContainer>
-        <ComplexType Name="SP_GetAllBuildings_Result">
-          <Property Type="Int32" Name="BuildingID" Nullable="false" />
-          <Property Type="Int32" Name="NoFloors" Nullable="false" />
-          <Property Type="Int32" Name="Ownership" Nullable="false" />
-          <Property Type="Int32" Name="BuildingManagerID" Nullable="false" />
-          <Property Type="Int32" Name="LocationID" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="SP_GetAllLocations_Result">
-          <Property Type="Int32" Name="LocationID" Nullable="false" />
-          <Property Type="String" Name="City" Nullable="false" MaxLength="40" />
-        </ComplexType>
-        <ComplexType Name="SP_GetAllRoles_Result">
-          <Property Type="Int32" Name="RoleID" Nullable="false" />
-          <Property Type="String" Name="RoleName" Nullable="false" MaxLength="40" />
-        </ComplexType>
-        <ComplexType Name="SP_GetAllServiceRequests_Result">
-          <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
-          <Property Type="String" Name="Username" Nullable="true" MaxLength="40" />
-          <Property Type="String" Name="SpecializationName" Nullable="true" MaxLength="40" />
-          <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
-          <Property Type="Int32" Name="BuildingID" Nullable="true" />
-          <Property Type="String" Name="City" Nullable="true" MaxLength="40" />
-          <Property Type="Int32" Name="NoFloors" Nullable="true" />
-          <Property Type="Int32" Name="BuildingManagerID" Nullable="true" />
-          <Property Type="Int32" Name="RequiestStatus" Nullable="false" />
-          <Property Type="DateTime" Name="RequestIssueDate" Nullable="false" />
-          <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="SP_GetAllSpecializations_Result">
-          <Property Type="Int32" Name="SpecializationID" Nullable="false" />
-          <Property Type="String" Name="SpecializationName" Nullable="false" MaxLength="40" />
-        </ComplexType>
-        <ComplexType Name="SP_GetMMOpenRequests_Result">
-          <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
-          <Property Type="Int32" Name="BuildingID" Nullable="false" />
-          <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />
-          <Property Type="String" Name="Assigned_Worker" Nullable="true" MaxLength="40" />
-          <Property Type="Int32" Name="RequiestStatus" Nullable="false" />
-          <Property Type="DateTime" Name="RequestIssueDate" Nullable="false" />
-          <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
-          <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
-        </ComplexType>
-        <EntityType Name="RequestView">
-          <Key>
-            <PropertyRef Name="ServiceRequestID" />
-            <PropertyRef Name="BuildingID" />
-            <PropertyRef Name="RequiestStatus" />
-            <PropertyRef Name="RequestIssueDate" />
-            <PropertyRef Name="ServiceDescribtion" />
-          </Key>
-          <Property Name="ServiceRequestID" Type="Int32" Nullable="false" />
-          <Property Name="BuildingID" Type="Int32" Nullable="false" />
-          <Property Name="Specialization_Type" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="Assigned_Worker" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="RequiestStatus" Type="Int32" Nullable="false" />
-          <Property Name="RequestIssueDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="RequestCloseDate" Type="DateTime" Precision="0" />
-          <Property Name="ServiceDescribtion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Request_Creator" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <ComplexType Name="SP_GetMMClosedRequests_Result">
-          <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
-          <Property Type="Int32" Name="BuildingID" Nullable="false" />
-          <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />
-          <Property Type="String" Name="Assigned_Worker" Nullable="true" MaxLength="40" />
-          <Property Type="Int32" Name="RequiestStatus" Nullable="false" />
-          <Property Type="DateTime" Name="RequestIssueDate" Nullable="false" />
-          <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
-          <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
-        </ComplexType>
-        <ComplexType Name="SP_CanceledServiceRequests_Result">
-          <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
-          <Property Type="Int32" Name="BuildingID" Nullable="false" />
-          <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />
-          <Property Type="String" Name="Assigned_Worker" Nullable="true" MaxLength="40" />
-          <Property Type="Int32" Name="RequiestStatus" Nullable="false" />
-          <Property Type="DateTime" Name="RequestIssueDate" Nullable="false" />
-          <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
-          <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
-        </ComplexType>
-        <ComplexType Name="SP_GetSpecificServiceRequestInfo_Result">
-          <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
-          <Property Type="Int32" Name="BuildingID" Nullable="false" />
-          <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />
-          <Property Type="String" Name="Assigned_Worker" Nullable="true" MaxLength="40" />
-          <Property Type="Int32" Name="RequiestStatus" Nullable="false" />
-          <Property Type="DateTime" Name="RequestIssueDate" Nullable="false" />
-          <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
-          <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
-        </ComplexType>
-        <ComplexType Name="SP_GetAllCanceledRequests_Result">
-          <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
-          <Property Type="Int32" Name="BuildingID" Nullable="false" />
-          <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />
-          <Property Type="String" Name="Assigned_Worker" Nullable="true" MaxLength="40" />
-          <Property Type="Int32" Name="RequiestStatus" Nullable="false" />
-          <Property Type="DateTime" Name="RequestIssueDate" Nullable="false" />
-          <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
-          <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
-        </ComplexType>
-        <ComplexType Name="SP_GetMMApprovedRequests_Result">
-          <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
-          <Property Type="Int32" Name="BuildingID" Nullable="false" />
-          <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />
-          <Property Type="String" Name="Assigned_Worker" Nullable="true" MaxLength="40" />
-          <Property Type="Int32" Name="RequiestStatus" Nullable="false" />
-          <Property Type="DateTime" Name="RequestIssueDate" Nullable="false" />
-          <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
-          <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
-        </ComplexType>
-        <ComplexType Name="SP_GetWorkersOfSpecialization_Result">
-          <Property Type="Int32" Name="EmployeeID" Nullable="false" />
-          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="40" />
-          <Property Type="String" Name="LastName" Nullable="false" MaxLength="40" />
-        </ComplexType>
-        <ComplexType Name="SP_GetWorkerOpenRequests_Result">
-          <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
-          <Property Type="Int32" Name="BuildingID" Nullable="false" />
-          <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />
-          <Property Type="String" Name="Assigned_Worker" Nullable="true" MaxLength="40" />
-          <Property Type="Int32" Name="RequiestStatus" Nullable="false" />
-          <Property Type="DateTime" Name="RequestIssueDate" Nullable="false" />
-          <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
-          <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
-        </ComplexType>
         <ComplexType Name="SP_BMCanceledRequests_Result">
           <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
           <Property Type="Int32" Name="BuildingID" Nullable="false" />
@@ -1153,7 +1081,7 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
         </ComplexType>
-        <ComplexType Name="SP_GetWorkerClosedRequests_Result">
+        <ComplexType Name="SP_CanceledServiceRequests_Result">
           <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
           <Property Type="Int32" Name="BuildingID" Nullable="false" />
           <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />
@@ -1163,6 +1091,54 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
           <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="SP_GetAllBuildingManagers_Result">
+          <Property Type="Int32" Name="EmployeeID" Nullable="false" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="SP_GetAllBuildings_Result">
+          <Property Type="Int32" Name="BuildingID" Nullable="false" />
+          <Property Type="Int32" Name="NoFloors" Nullable="false" />
+          <Property Type="Int32" Name="Ownership" Nullable="false" />
+          <Property Type="Int32" Name="BuildingManagerID" Nullable="false" />
+          <Property Type="Int32" Name="LocationID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_GetAllCanceledRequests_Result">
+          <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
+          <Property Type="Int32" Name="BuildingID" Nullable="false" />
+          <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="Assigned_Worker" Nullable="true" MaxLength="40" />
+          <Property Type="Int32" Name="RequiestStatus" Nullable="false" />
+          <Property Type="DateTime" Name="RequestIssueDate" Nullable="false" />
+          <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
+          <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="SP_GetAllLocations_Result">
+          <Property Type="Int32" Name="LocationID" Nullable="false" />
+          <Property Type="String" Name="City" Nullable="false" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="SP_GetAllRoles_Result">
+          <Property Type="Int32" Name="RoleID" Nullable="false" />
+          <Property Type="String" Name="RoleName" Nullable="false" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="SP_GetAllServiceRequests_Result">
+          <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
+          <Property Type="String" Name="Username" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="SpecializationName" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="BuildingID" Nullable="true" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="40" />
+          <Property Type="Int32" Name="NoFloors" Nullable="true" />
+          <Property Type="Int32" Name="BuildingManagerID" Nullable="true" />
+          <Property Type="Int32" Name="RequiestStatus" Nullable="false" />
+          <Property Type="DateTime" Name="RequestIssueDate" Nullable="false" />
+          <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_GetAllSpecializations_Result">
+          <Property Type="Int32" Name="SpecializationID" Nullable="false" />
+          <Property Type="String" Name="SpecializationName" Nullable="false" MaxLength="40" />
         </ComplexType>
         <ComplexType Name="SP_GetBeneficiaryCanceledRequests_Result">
           <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
@@ -1187,17 +1163,6 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
         </ComplexType>
         <ComplexType Name="SP_GetBeneficiaryOpenRequests_Result">
-          <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
-          <Property Type="Int32" Name="BuildingID" Nullable="false" />
-          <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />
-          <Property Type="String" Name="Assigned_Worker" Nullable="true" MaxLength="40" />
-          <Property Type="Int32" Name="RequiestStatus" Nullable="false" />
-          <Property Type="DateTime" Name="RequestIssueDate" Nullable="false" />
-          <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
-          <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
-        </ComplexType>
-        <ComplexType Name="SP_GetBMOpenedRequests_Result">
           <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
           <Property Type="Int32" Name="BuildingID" Nullable="false" />
           <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />
@@ -1241,7 +1206,7 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
         </ComplexType>
-        <ComplexType Name="SP_BMCanceledRequests1_Result">
+        <ComplexType Name="SP_GetBMOpenedRequests_Result">
           <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
           <Property Type="Int32" Name="BuildingID" Nullable="false" />
           <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />
@@ -1252,7 +1217,14 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
         </ComplexType>
-        <ComplexType Name="SP_BMClosedRequests1_Result">
+        <ComplexType Name="SP_GetCompanyEmployeesList_Result">
+          <Property Type="Int32" Name="EmployeeID" Nullable="false" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="RoleName" Nullable="false" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="SP_GetMMApprovedRequests_Result">
           <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
           <Property Type="Int32" Name="BuildingID" Nullable="false" />
           <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />
@@ -1263,7 +1235,7 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
         </ComplexType>
-        <ComplexType Name="SP_BMOpenRequests1_Result">
+        <ComplexType Name="SP_GetMMClosedRequests_Result">
           <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
           <Property Type="Int32" Name="BuildingID" Nullable="false" />
           <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />
@@ -1273,6 +1245,55 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
           <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="SP_GetMMOpenRequests_Result">
+          <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
+          <Property Type="Int32" Name="BuildingID" Nullable="false" />
+          <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="Assigned_Worker" Nullable="true" MaxLength="40" />
+          <Property Type="Int32" Name="RequiestStatus" Nullable="false" />
+          <Property Type="DateTime" Name="RequestIssueDate" Nullable="false" />
+          <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
+          <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="SP_GetSpecificServiceRequestInfo_Result">
+          <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
+          <Property Type="Int32" Name="BuildingID" Nullable="false" />
+          <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="Assigned_Worker" Nullable="true" MaxLength="40" />
+          <Property Type="Int32" Name="RequiestStatus" Nullable="false" />
+          <Property Type="DateTime" Name="RequestIssueDate" Nullable="false" />
+          <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
+          <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="SP_GetWorkerClosedRequests_Result">
+          <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
+          <Property Type="Int32" Name="BuildingID" Nullable="false" />
+          <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="Assigned_Worker" Nullable="true" MaxLength="40" />
+          <Property Type="Int32" Name="RequiestStatus" Nullable="false" />
+          <Property Type="DateTime" Name="RequestIssueDate" Nullable="false" />
+          <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
+          <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="SP_GetWorkerOpenRequests_Result">
+          <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
+          <Property Type="Int32" Name="BuildingID" Nullable="false" />
+          <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="Assigned_Worker" Nullable="true" MaxLength="40" />
+          <Property Type="Int32" Name="RequiestStatus" Nullable="false" />
+          <Property Type="DateTime" Name="RequestIssueDate" Nullable="false" />
+          <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
+          <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="SP_GetWorkersOfSpecialization_Result">
+          <Property Type="Int32" Name="EmployeeID" Nullable="false" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="40" />
         </ComplexType>
         <ComplexType Name="SP_ListOfNotActiveBeneficiaries_Result">
           <Property Type="Int32" Name="BeneficiaryID" Nullable="false" />
@@ -1285,85 +1306,7 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           <Property Type="Int32" Name="Role_RoleID" Nullable="false" />
           <Property Type="Boolean" Name="AccountStatus" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="SP_GetCompanyEmployeesList_Result">
-          <Property Type="Int32" Name="EmployeeID" Nullable="false" />
-          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="40" />
-          <Property Type="String" Name="LastName" Nullable="false" MaxLength="40" />
-          <Property Type="String" Name="Email" Nullable="false" MaxLength="40" />
-          <Property Type="String" Name="RoleName" Nullable="false" MaxLength="40" />
-        </ComplexType>
         <ComplexType Name="SP_MaintananceManagersList_Result">
-          <Property Type="Int32" Name="EmployeeID" Nullable="false" />
-          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="40" />
-          <Property Type="String" Name="LastName" Nullable="false" MaxLength="40" />
-        </ComplexType>
-        <ComplexType Name="SP_BMCanceledRequests2_Result">
-          <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
-          <Property Type="Int32" Name="BuildingID" Nullable="false" />
-          <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />
-          <Property Type="String" Name="Assigned_Worker" Nullable="true" MaxLength="40" />
-          <Property Type="Int32" Name="RequiestStatus" Nullable="false" />
-          <Property Type="DateTime" Name="RequestIssueDate" Nullable="false" />
-          <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
-          <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
-        </ComplexType>
-        <ComplexType Name="SP_BMClosedRequests2_Result">
-          <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
-          <Property Type="Int32" Name="BuildingID" Nullable="false" />
-          <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />
-          <Property Type="String" Name="Assigned_Worker" Nullable="true" MaxLength="40" />
-          <Property Type="Int32" Name="RequiestStatus" Nullable="false" />
-          <Property Type="DateTime" Name="RequestIssueDate" Nullable="false" />
-          <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
-          <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
-        </ComplexType>
-        <ComplexType Name="SP_BMOpenRequests2_Result">
-          <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
-          <Property Type="Int32" Name="BuildingID" Nullable="false" />
-          <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />
-          <Property Type="String" Name="Assigned_Worker" Nullable="true" MaxLength="40" />
-          <Property Type="Int32" Name="RequiestStatus" Nullable="false" />
-          <Property Type="DateTime" Name="RequestIssueDate" Nullable="false" />
-          <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
-          <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
-        </ComplexType>
-        <ComplexType Name="SP_BMCanceledRequests3_Result">
-          <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
-          <Property Type="Int32" Name="BuildingID" Nullable="false" />
-          <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />
-          <Property Type="String" Name="Assigned_Worker" Nullable="true" MaxLength="40" />
-          <Property Type="Int32" Name="RequiestStatus" Nullable="false" />
-          <Property Type="DateTime" Name="RequestIssueDate" Nullable="false" />
-          <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
-          <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
-        </ComplexType>
-        <ComplexType Name="SP_BMClosedRequests3_Result">
-          <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
-          <Property Type="Int32" Name="BuildingID" Nullable="false" />
-          <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />
-          <Property Type="String" Name="Assigned_Worker" Nullable="true" MaxLength="40" />
-          <Property Type="Int32" Name="RequiestStatus" Nullable="false" />
-          <Property Type="DateTime" Name="RequestIssueDate" Nullable="false" />
-          <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
-          <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
-        </ComplexType>
-        <ComplexType Name="SP_BMOpenRequests3_Result">
-          <Property Type="Int32" Name="ServiceRequestID" Nullable="false" />
-          <Property Type="Int32" Name="BuildingID" Nullable="false" />
-          <Property Type="String" Name="Specialization_Type" Nullable="true" MaxLength="40" />
-          <Property Type="String" Name="Assigned_Worker" Nullable="true" MaxLength="40" />
-          <Property Type="Int32" Name="RequiestStatus" Nullable="false" />
-          <Property Type="DateTime" Name="RequestIssueDate" Nullable="false" />
-          <Property Type="DateTime" Name="RequestCloseDate" Nullable="true" />
-          <Property Type="String" Name="ServiceDescribtion" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="Request_Creator" Nullable="true" MaxLength="40" />
-        </ComplexType>
-        <ComplexType Name="SP_GetAllBuildingManagers_Result">
           <Property Type="Int32" Name="EmployeeID" Nullable="false" />
           <Property Type="String" Name="FirstName" Nullable="false" MaxLength="40" />
           <Property Type="String" Name="LastName" Nullable="false" MaxLength="40" />
@@ -1471,6 +1414,32 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Transactions">
+            <EntityTypeMapping TypeName="FMS_DatabaseModel.Transaction">
+              <MappingFragment StoreEntitySet="Transactions">
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="TransActionMakerUsername" ColumnName="TransActionMakerUsername" />
+                <ScalarProperty Name="TransactionDecision" ColumnName="TransactionDecision" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="TransactionServiceID" ColumnName="TransactionServiceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RequestViews">
+            <EntityTypeMapping TypeName="FMS_DatabaseModel.RequestView">
+              <MappingFragment StoreEntitySet="RequestView">
+                <ScalarProperty Name="ServiceRequestID" ColumnName="ServiceRequestID" />
+                <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+                <ScalarProperty Name="Specialization_Type" ColumnName="Specialization_Type" />
+                <ScalarProperty Name="Assigned_Worker" ColumnName="Assigned_Worker" />
+                <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
+                <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
+                <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
+                <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
+                <ScalarProperty Name="Request_Creator" ColumnName="Request_Creator" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="View_BuildingAndLocationInfo">
             <EntityTypeMapping TypeName="FMS_DatabaseModel.View_BuildingAndLocationInfo">
               <MappingFragment StoreEntitySet="View_BuildingAndLocationInfo">
@@ -1488,9 +1457,80 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
           <FunctionImportMapping FunctionImportName="SP_AddSpecialization" FunctionName="FMS_DatabaseModel.Store.SP_AddSpecialization" />
           <FunctionImportMapping FunctionImportName="SP_AssignWorkerToRequest" FunctionName="FMS_DatabaseModel.Store.SP_AssignWorkerToRequest" />
           <FunctionImportMapping FunctionImportName="SP_Ben_LoginCheck" FunctionName="FMS_DatabaseModel.Store.SP_Ben_LoginCheck" />
+          <FunctionImportMapping FunctionImportName="SP_BMCanceledRequests" FunctionName="FMS_DatabaseModel.Store.SP_BMCanceledRequests">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_BMCanceledRequests_Result">
+                <ScalarProperty Name="ServiceRequestID" ColumnName="ServiceRequestID" />
+                <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+                <ScalarProperty Name="Specialization_Type" ColumnName="Specialization_Type" />
+                <ScalarProperty Name="Assigned_Worker" ColumnName="Assigned_Worker" />
+                <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
+                <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
+                <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
+                <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
+                <ScalarProperty Name="Request_Creator" ColumnName="Request_Creator" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_BMClosedRequests" FunctionName="FMS_DatabaseModel.Store.SP_BMClosedRequests">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_BMClosedRequests_Result">
+                <ScalarProperty Name="ServiceRequestID" ColumnName="ServiceRequestID" />
+                <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+                <ScalarProperty Name="Specialization_Type" ColumnName="Specialization_Type" />
+                <ScalarProperty Name="Assigned_Worker" ColumnName="Assigned_Worker" />
+                <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
+                <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
+                <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
+                <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
+                <ScalarProperty Name="Request_Creator" ColumnName="Request_Creator" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_BMOpenRequests" FunctionName="FMS_DatabaseModel.Store.SP_BMOpenRequests">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_BMOpenRequests_Result">
+                <ScalarProperty Name="ServiceRequestID" ColumnName="ServiceRequestID" />
+                <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+                <ScalarProperty Name="Specialization_Type" ColumnName="Specialization_Type" />
+                <ScalarProperty Name="Assigned_Worker" ColumnName="Assigned_Worker" />
+                <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
+                <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
+                <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
+                <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
+                <ScalarProperty Name="Request_Creator" ColumnName="Request_Creator" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_Cancel_OpenedServiceRequest" FunctionName="FMS_DatabaseModel.Store.SP_Cancel_OpenedServiceRequest" />
+          <FunctionImportMapping FunctionImportName="SP_CanceledServiceRequests" FunctionName="FMS_DatabaseModel.Store.SP_CanceledServiceRequests">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_CanceledServiceRequests_Result">
+                <ScalarProperty Name="ServiceRequestID" ColumnName="ServiceRequestID" />
+                <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+                <ScalarProperty Name="Specialization_Type" ColumnName="Specialization_Type" />
+                <ScalarProperty Name="Assigned_Worker" ColumnName="Assigned_Worker" />
+                <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
+                <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
+                <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
+                <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
+                <ScalarProperty Name="Request_Creator" ColumnName="Request_Creator" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_ChangeServiceRequestStatus" FunctionName="FMS_DatabaseModel.Store.SP_ChangeServiceRequestStatus" />
+          <FunctionImportMapping FunctionImportName="SP_CloseServiceRequest" FunctionName="FMS_DatabaseModel.Store.SP_CloseServiceRequest" />
           <FunctionImportMapping FunctionImportName="SP_Employee_LoginCheck" FunctionName="FMS_DatabaseModel.Store.SP_Employee_LoginCheck" />
           <FunctionImportMapping FunctionImportName="SP_EmployeeResetPassAndActivateAccount" FunctionName="FMS_DatabaseModel.Store.SP_EmployeeResetPassAndActivateAccount" />
+          <FunctionImportMapping FunctionImportName="SP_GetAllBuildingManagers" FunctionName="FMS_DatabaseModel.Store.SP_GetAllBuildingManagers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_GetAllBuildingManagers_Result">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_GetAllBuildings" FunctionName="FMS_DatabaseModel.Store.SP_GetAllBuildings">
             <ResultMapping>
               <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_GetAllBuildings_Result">
@@ -1499,6 +1539,21 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
                 <ScalarProperty Name="Ownership" ColumnName="Ownership" />
                 <ScalarProperty Name="BuildingManagerID" ColumnName="BuildingManagerID" />
                 <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetAllCanceledRequests" FunctionName="FMS_DatabaseModel.Store.SP_GetAllCanceledRequests">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_GetAllCanceledRequests_Result">
+                <ScalarProperty Name="ServiceRequestID" ColumnName="ServiceRequestID" />
+                <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+                <ScalarProperty Name="Specialization_Type" ColumnName="Specialization_Type" />
+                <ScalarProperty Name="Assigned_Worker" ColumnName="Assigned_Worker" />
+                <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
+                <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
+                <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
+                <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
+                <ScalarProperty Name="Request_Creator" ColumnName="Request_Creator" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1540,157 +1595,6 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
               <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_GetAllSpecializations_Result">
                 <ScalarProperty Name="SpecializationID" ColumnName="SpecializationID" />
                 <ScalarProperty Name="SpecializationName" ColumnName="SpecializationName" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_GetUserRoles" FunctionName="FMS_DatabaseModel.Store.SP_GetUserRoles" />
-          <FunctionImportMapping FunctionImportName="SP_HandleServiceRequestByWorker" FunctionName="FMS_DatabaseModel.Store.SP_HandleServiceRequestByWorker" />
-          <FunctionImportMapping FunctionImportName="SP_InsertBeneficiary" FunctionName="FMS_DatabaseModel.Store.SP_InsertBeneficiary" />
-          <FunctionImportMapping FunctionImportName="SP_InsertCompanyEmployee" FunctionName="FMS_DatabaseModel.Store.SP_InsertCompanyEmployee" />
-          <FunctionImportMapping FunctionImportName="SP_InsertNewServiceRequiest" FunctionName="FMS_DatabaseModel.Store.SP_InsertNewServiceRequiest" />
-          <FunctionImportMapping FunctionImportName="SP_GetMMOpenRequests" FunctionName="FMS_DatabaseModel.Store.SP_GetMMOpenRequests">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_GetMMOpenRequests_Result">
-                <ScalarProperty Name="ServiceRequestID" ColumnName="ServiceRequestID" />
-                <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
-                <ScalarProperty Name="Specialization_Type" ColumnName="Specialization_Type" />
-                <ScalarProperty Name="Assigned_Worker" ColumnName="Assigned_Worker" />
-                <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
-                <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
-                <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
-                <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
-                <ScalarProperty Name="Request_Creator" ColumnName="Request_Creator" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <EntitySetMapping Name="RequestViews">
-            <EntityTypeMapping TypeName="FMS_DatabaseModel.RequestView">
-              <MappingFragment StoreEntitySet="RequestView">
-                <ScalarProperty Name="Request_Creator" ColumnName="Request_Creator" />
-                <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
-                <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
-                <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
-                <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
-                <ScalarProperty Name="Assigned_Worker" ColumnName="Assigned_Worker" />
-                <ScalarProperty Name="Specialization_Type" ColumnName="Specialization_Type" />
-                <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
-                <ScalarProperty Name="ServiceRequestID" ColumnName="ServiceRequestID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="SP_GetMMClosedRequests" FunctionName="FMS_DatabaseModel.Store.SP_GetMMClosedRequests">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_GetMMClosedRequests_Result">
-                <ScalarProperty Name="ServiceRequestID" ColumnName="ServiceRequestID" />
-                <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
-                <ScalarProperty Name="Specialization_Type" ColumnName="Specialization_Type" />
-                <ScalarProperty Name="Assigned_Worker" ColumnName="Assigned_Worker" />
-                <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
-                <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
-                <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
-                <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
-                <ScalarProperty Name="Request_Creator" ColumnName="Request_Creator" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_CanceledServiceRequests" FunctionName="FMS_DatabaseModel.Store.SP_CanceledServiceRequests">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_CanceledServiceRequests_Result">
-                <ScalarProperty Name="ServiceRequestID" ColumnName="ServiceRequestID" />
-                <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
-                <ScalarProperty Name="Specialization_Type" ColumnName="Specialization_Type" />
-                <ScalarProperty Name="Assigned_Worker" ColumnName="Assigned_Worker" />
-                <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
-                <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
-                <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
-                <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
-                <ScalarProperty Name="Request_Creator" ColumnName="Request_Creator" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_GetSpecificServiceRequestInfo" FunctionName="FMS_DatabaseModel.Store.SP_GetSpecificServiceRequestInfo">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_GetSpecificServiceRequestInfo_Result">
-                <ScalarProperty Name="ServiceRequestID" ColumnName="ServiceRequestID" />
-                <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
-                <ScalarProperty Name="Specialization_Type" ColumnName="Specialization_Type" />
-                <ScalarProperty Name="Assigned_Worker" ColumnName="Assigned_Worker" />
-                <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
-                <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
-                <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
-                <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
-                <ScalarProperty Name="Request_Creator" ColumnName="Request_Creator" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_Cancel_OpenedServiceRequest" FunctionName="FMS_DatabaseModel.Store.SP_Cancel_OpenedServiceRequest" />
-          <FunctionImportMapping FunctionImportName="SP_CloseServiceRequest" FunctionName="FMS_DatabaseModel.Store.SP_CloseServiceRequest" />
-          <FunctionImportMapping FunctionImportName="SP_GetAllCanceledRequests" FunctionName="FMS_DatabaseModel.Store.SP_GetAllCanceledRequests">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_GetAllCanceledRequests_Result">
-                <ScalarProperty Name="ServiceRequestID" ColumnName="ServiceRequestID" />
-                <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
-                <ScalarProperty Name="Specialization_Type" ColumnName="Specialization_Type" />
-                <ScalarProperty Name="Assigned_Worker" ColumnName="Assigned_Worker" />
-                <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
-                <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
-                <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
-                <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
-                <ScalarProperty Name="Request_Creator" ColumnName="Request_Creator" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_GetMMApprovedRequests" FunctionName="FMS_DatabaseModel.Store.SP_GetMMApprovedRequests">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_GetMMApprovedRequests_Result">
-                <ScalarProperty Name="ServiceRequestID" ColumnName="ServiceRequestID" />
-                <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
-                <ScalarProperty Name="Specialization_Type" ColumnName="Specialization_Type" />
-                <ScalarProperty Name="Assigned_Worker" ColumnName="Assigned_Worker" />
-                <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
-                <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
-                <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
-                <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
-                <ScalarProperty Name="Request_Creator" ColumnName="Request_Creator" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_GetWorkersOfSpecialization" FunctionName="FMS_DatabaseModel.Store.SP_GetWorkersOfSpecialization">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_GetWorkersOfSpecialization_Result">
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_GetWorkerOpenRequests" FunctionName="FMS_DatabaseModel.Store.SP_GetWorkerOpenRequests">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_GetWorkerOpenRequests_Result">
-                <ScalarProperty Name="ServiceRequestID" ColumnName="ServiceRequestID" />
-                <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
-                <ScalarProperty Name="Specialization_Type" ColumnName="Specialization_Type" />
-                <ScalarProperty Name="Assigned_Worker" ColumnName="Assigned_Worker" />
-                <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
-                <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
-                <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
-                <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
-                <ScalarProperty Name="Request_Creator" ColumnName="Request_Creator" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_GetWorkerClosedRequests" FunctionName="FMS_DatabaseModel.Store.SP_GetWorkerClosedRequests">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_GetWorkerClosedRequests_Result">
-                <ScalarProperty Name="ServiceRequestID" ColumnName="ServiceRequestID" />
-                <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
-                <ScalarProperty Name="Specialization_Type" ColumnName="Specialization_Type" />
-                <ScalarProperty Name="Assigned_Worker" ColumnName="Assigned_Worker" />
-                <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
-                <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
-                <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
-                <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
-                <ScalarProperty Name="Request_Creator" ColumnName="Request_Creator" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1739,22 +1643,6 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_GetBMOpenedRequests" FunctionName="FMS_DatabaseModel.Store.SP_GetBMOpenedRequests">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_GetBMOpenedRequests_Result">
-                <ScalarProperty Name="ServiceRequestID" ColumnName="ServiceRequestID" />
-                <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
-                <ScalarProperty Name="Specialization_Type" ColumnName="Specialization_Type" />
-                <ScalarProperty Name="Assigned_Worker" ColumnName="Assigned_Worker" />
-                <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
-                <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
-                <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
-                <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
-                <ScalarProperty Name="Request_Creator" ColumnName="Request_Creator" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_TestDB" FunctionName="FMS_DatabaseModel.Store.SP_TestDB" />
           <FunctionImportMapping FunctionImportName="SP_GetBM_MM_ApprovedRequesets" FunctionName="FMS_DatabaseModel.Store.SP_GetBM_MM_ApprovedRequesets">
             <ResultMapping>
               <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_GetBM_MM_ApprovedRequesets_Result">
@@ -1800,10 +1688,140 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetBMOpenedRequests" FunctionName="FMS_DatabaseModel.Store.SP_GetBMOpenedRequests">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_GetBMOpenedRequests_Result">
+                <ScalarProperty Name="ServiceRequestID" ColumnName="ServiceRequestID" />
+                <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+                <ScalarProperty Name="Specialization_Type" ColumnName="Specialization_Type" />
+                <ScalarProperty Name="Assigned_Worker" ColumnName="Assigned_Worker" />
+                <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
+                <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
+                <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
+                <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
+                <ScalarProperty Name="Request_Creator" ColumnName="Request_Creator" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetCompanyEmployeesList" FunctionName="FMS_DatabaseModel.Store.SP_GetCompanyEmployeesList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_GetCompanyEmployeesList_Result">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetMMApprovedRequests" FunctionName="FMS_DatabaseModel.Store.SP_GetMMApprovedRequests">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_GetMMApprovedRequests_Result">
+                <ScalarProperty Name="ServiceRequestID" ColumnName="ServiceRequestID" />
+                <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+                <ScalarProperty Name="Specialization_Type" ColumnName="Specialization_Type" />
+                <ScalarProperty Name="Assigned_Worker" ColumnName="Assigned_Worker" />
+                <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
+                <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
+                <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
+                <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
+                <ScalarProperty Name="Request_Creator" ColumnName="Request_Creator" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetMMClosedRequests" FunctionName="FMS_DatabaseModel.Store.SP_GetMMClosedRequests">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_GetMMClosedRequests_Result">
+                <ScalarProperty Name="ServiceRequestID" ColumnName="ServiceRequestID" />
+                <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+                <ScalarProperty Name="Specialization_Type" ColumnName="Specialization_Type" />
+                <ScalarProperty Name="Assigned_Worker" ColumnName="Assigned_Worker" />
+                <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
+                <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
+                <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
+                <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
+                <ScalarProperty Name="Request_Creator" ColumnName="Request_Creator" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetMMOpenRequests" FunctionName="FMS_DatabaseModel.Store.SP_GetMMOpenRequests">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_GetMMOpenRequests_Result">
+                <ScalarProperty Name="ServiceRequestID" ColumnName="ServiceRequestID" />
+                <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+                <ScalarProperty Name="Specialization_Type" ColumnName="Specialization_Type" />
+                <ScalarProperty Name="Assigned_Worker" ColumnName="Assigned_Worker" />
+                <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
+                <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
+                <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
+                <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
+                <ScalarProperty Name="Request_Creator" ColumnName="Request_Creator" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_GetNumberOfBeneficiaries" FunctionName="FMS_DatabaseModel.Store.SP_GetNumberOfBeneficiaries" />
           <FunctionImportMapping FunctionImportName="SP_GetNumberOfClosedRequests" FunctionName="FMS_DatabaseModel.Store.SP_GetNumberOfClosedRequests" />
           <FunctionImportMapping FunctionImportName="SP_GetNumberOfOpenedRequests" FunctionName="FMS_DatabaseModel.Store.SP_GetNumberOfOpenedRequests" />
+          <FunctionImportMapping FunctionImportName="SP_GetSpecificServiceRequestInfo" FunctionName="FMS_DatabaseModel.Store.SP_GetSpecificServiceRequestInfo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_GetSpecificServiceRequestInfo_Result">
+                <ScalarProperty Name="ServiceRequestID" ColumnName="ServiceRequestID" />
+                <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+                <ScalarProperty Name="Specialization_Type" ColumnName="Specialization_Type" />
+                <ScalarProperty Name="Assigned_Worker" ColumnName="Assigned_Worker" />
+                <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
+                <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
+                <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
+                <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
+                <ScalarProperty Name="Request_Creator" ColumnName="Request_Creator" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetUserRoles" FunctionName="FMS_DatabaseModel.Store.SP_GetUserRoles" />
+          <FunctionImportMapping FunctionImportName="SP_GetWorkerClosedRequests" FunctionName="FMS_DatabaseModel.Store.SP_GetWorkerClosedRequests">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_GetWorkerClosedRequests_Result">
+                <ScalarProperty Name="ServiceRequestID" ColumnName="ServiceRequestID" />
+                <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+                <ScalarProperty Name="Specialization_Type" ColumnName="Specialization_Type" />
+                <ScalarProperty Name="Assigned_Worker" ColumnName="Assigned_Worker" />
+                <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
+                <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
+                <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
+                <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
+                <ScalarProperty Name="Request_Creator" ColumnName="Request_Creator" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetWorkerOpenRequests" FunctionName="FMS_DatabaseModel.Store.SP_GetWorkerOpenRequests">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_GetWorkerOpenRequests_Result">
+                <ScalarProperty Name="ServiceRequestID" ColumnName="ServiceRequestID" />
+                <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+                <ScalarProperty Name="Specialization_Type" ColumnName="Specialization_Type" />
+                <ScalarProperty Name="Assigned_Worker" ColumnName="Assigned_Worker" />
+                <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
+                <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
+                <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
+                <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
+                <ScalarProperty Name="Request_Creator" ColumnName="Request_Creator" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_GetWorkersNumber" FunctionName="FMS_DatabaseModel.Store.SP_GetWorkersNumber" />
+          <FunctionImportMapping FunctionImportName="SP_GetWorkersOfSpecialization" FunctionName="FMS_DatabaseModel.Store.SP_GetWorkersOfSpecialization">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_GetWorkersOfSpecialization_Result">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_HandleServiceRequestByWorker" FunctionName="FMS_DatabaseModel.Store.SP_HandleServiceRequestByWorker" />
+          <FunctionImportMapping FunctionImportName="SP_InsertBeneficiary" FunctionName="FMS_DatabaseModel.Store.SP_InsertBeneficiary" />
+          <FunctionImportMapping FunctionImportName="SP_InsertCompanyEmployee" FunctionName="FMS_DatabaseModel.Store.SP_InsertCompanyEmployee" />
+          <FunctionImportMapping FunctionImportName="SP_InsertNewServiceRequiest" FunctionName="FMS_DatabaseModel.Store.SP_InsertNewServiceRequiest" />
           <FunctionImportMapping FunctionImportName="SP_ListOfNotActiveBeneficiaries" FunctionName="FMS_DatabaseModel.Store.SP_ListOfNotActiveBeneficiaries">
             <ResultMapping>
               <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_ListOfNotActiveBeneficiaries_Result">
@@ -1819,17 +1837,6 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_GetCompanyEmployeesList" FunctionName="FMS_DatabaseModel.Store.SP_GetCompanyEmployeesList">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_GetCompanyEmployeesList_Result">
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_MaintananceManagersList" FunctionName="FMS_DatabaseModel.Store.SP_MaintananceManagersList">
             <ResultMapping>
               <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_MaintananceManagersList_Result">
@@ -1839,61 +1846,9 @@ warning 6002: The table/view 'FMS_Database.dbo.View_BuildingAndLocationInfo' doe
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_BMCanceledRequests3" FunctionName="FMS_DatabaseModel.Store.SP_BMCanceledRequests">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_BMCanceledRequests3_Result">
-                <ScalarProperty Name="ServiceRequestID" ColumnName="ServiceRequestID" />
-                <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
-                <ScalarProperty Name="Specialization_Type" ColumnName="Specialization_Type" />
-                <ScalarProperty Name="Assigned_Worker" ColumnName="Assigned_Worker" />
-                <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
-                <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
-                <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
-                <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
-                <ScalarProperty Name="Request_Creator" ColumnName="Request_Creator" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_BMClosedRequests3" FunctionName="FMS_DatabaseModel.Store.SP_BMClosedRequests">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_BMClosedRequests3_Result">
-                <ScalarProperty Name="ServiceRequestID" ColumnName="ServiceRequestID" />
-                <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
-                <ScalarProperty Name="Specialization_Type" ColumnName="Specialization_Type" />
-                <ScalarProperty Name="Assigned_Worker" ColumnName="Assigned_Worker" />
-                <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
-                <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
-                <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
-                <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
-                <ScalarProperty Name="Request_Creator" ColumnName="Request_Creator" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_BMOpenRequests3" FunctionName="FMS_DatabaseModel.Store.SP_BMOpenRequests">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_BMOpenRequests3_Result">
-                <ScalarProperty Name="ServiceRequestID" ColumnName="ServiceRequestID" />
-                <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
-                <ScalarProperty Name="Specialization_Type" ColumnName="Specialization_Type" />
-                <ScalarProperty Name="Assigned_Worker" ColumnName="Assigned_Worker" />
-                <ScalarProperty Name="RequiestStatus" ColumnName="RequiestStatus" />
-                <ScalarProperty Name="RequestIssueDate" ColumnName="RequestIssueDate" />
-                <ScalarProperty Name="RequestCloseDate" ColumnName="RequestCloseDate" />
-                <ScalarProperty Name="ServiceDescribtion" ColumnName="ServiceDescribtion" />
-                <ScalarProperty Name="Request_Creator" ColumnName="Request_Creator" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_GetAllBuildingManagers" FunctionName="FMS_DatabaseModel.Store.SP_GetAllBuildingManagers">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="FMS_DatabaseModel.SP_GetAllBuildingManagers_Result">
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          </EntityContainerMapping>
+          <FunctionImportMapping FunctionImportName="SP_MakeTransaction" FunctionName="FMS_DatabaseModel.Store.SP_MakeTransaction" />
+          <FunctionImportMapping FunctionImportName="SP_TestDB" FunctionName="FMS_DatabaseModel.Store.SP_TestDB" />
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

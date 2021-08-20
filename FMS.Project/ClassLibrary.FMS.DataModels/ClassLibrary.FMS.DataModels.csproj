@@ -140,37 +140,10 @@
     <Compile Include="Specialization.cs">
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_BMCanceledRequests1_Result.cs">
-      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SP_BMCanceledRequests2_Result.cs">
-      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SP_BMCanceledRequests3_Result.cs">
-      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
-    </Compile>
     <Compile Include="SP_BMCanceledRequests_Result.cs">
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="SP_BMClosedRequests1_Result.cs">
-      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SP_BMClosedRequests2_Result.cs">
-      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SP_BMClosedRequests3_Result.cs">
-      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
-    </Compile>
     <Compile Include="SP_BMClosedRequests_Result.cs">
-      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SP_BMOpenRequests1_Result.cs">
-      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SP_BMOpenRequests2_Result.cs">
-      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SP_BMOpenRequests3_Result.cs">
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_BMOpenRequests_Result.cs">
@@ -249,6 +222,9 @@
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_MaintananceManagersList_Result.cs">
+      <DependentUpon>FMS_DataEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Transaction.cs">
       <DependentUpon>FMS_DataEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="View_BuildingAndLocationInfo.cs">
